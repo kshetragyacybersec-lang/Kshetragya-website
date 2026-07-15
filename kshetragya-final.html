@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kshetragya Cybersec LLP — Knowers of the Field</title>
+  <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,300;1,7..72,400;1,7..72,500&family=Noto+Serif+Devanagari:wght@200;300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /*
+      KSHETRAGYA CYBERSEC — v4 FINAL
+      "The Living Manuscript"
+
+      The Gita was written as dialogue on a battlefield.
+      This page is that manuscript — read verse by verse.
+      Sanskrit leads. English explains.
+
+      Palette:
+        #0F0B08   manuscript-dark   deepest background — burnt ink, not cold black
+        #1C1410   manuscript        primary dark surface
+        #2A1F17   manuscript-mid    card surfaces
+        #F7F2E8   vellum            primary light — manuscript paper
+        #EDE5D4   vellum-2          section variant
+        #E0D5BE   vellum-border     hairlines and dividers
+        #8B1A1A   vermillion        THE accent — Gita chapter heading red
+        #6B1414   vermillion-dim    secondary vermillion
+        #C4955A   gilt              gold leaf — Devanagari and sacred moments only
+        #9A8878   faded-ink         secondary text — aged ink colour
+        #3D2B1F   dark-mid          mid-tone surfaces
+    */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ms-dark:   #0F0B08;
+      --ms:        #1C1410;
+      --ms-mid:    #2A1F17;
+      --vellum:    #F7F2E8;
+      --vellum2:   #EDE5D4;
+      --vellum-b:  #E0D5BE;
+      --vermillion:#8B1A1A;
+      --verm-dim:  #6B1414;
+      --gilt:      #C4955A;
+      --gilt-dim:  #8A6535;
+      --ink:       #9A8878;
+      --dark-mid:  #3D2B1F;
+      --f-yatra:   'Yatra One', serif;
+      --f-lit:     'Literata', Georgia, serif;
+      --f-deva:    'Noto Serif Devanagari', serif;
+      --f-inter:   'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--vellum);
+      color: var(--ms);
+      font-family: var(--f-lit);
+      font-size: 17px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 5vw;
+      background: rgba(15,11,8,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196,149,90,0.15);
+    }
+
+    .logo { text-decoration: none; display: flex; align-items: baseline; gap: 0.6rem; }
+
+    .logo-deva {
+      font-family: var(--f-deva);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--gilt);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .logo-divider {
+      width: 1px;
+      height: 1.1rem;
+      background: rgba(196,149,90,0.3);
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .logo-en {
+      font-family: var(--f-inter);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: rgba(247,242,232,0.5);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--f-inter);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: rgba(247,242,232,0.45);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gilt); }
+
+    .nav-cta {
+      font-family: var(--f-inter);
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--vellum) !important;
+      background: var(--vermillion);
+      padding: 0.6rem 1.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--verm-dim) !important; }
+
+    /* ── HERO — THE OPENING VERSE ──────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--ms-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 9rem 5vw 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* aged paper texture via CSS — horizontal grain lines */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 28px,
+        rgba(196,149,90,0.025) 28px,
+        rgba(196,149,90,0.025) 29px
+      );
+      pointer-events: none;
+    }
+
+    /* large ghosted Devanagari — entire right half, very subtle */
+    .hero-bg-char {
+      position: absolute;
+      right: -4vw;
+      top: 50%;
+      transform: translateY(-48%);
+      font-family: var(--f-deva);
+      font-size: clamp(20rem, 38vw, 52rem);
+      font-weight: 200;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(196,149,90,0.055);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+
+    /* vermillion chapter marker — top left, like a Gita shloka marker */
+    .hero-chapter {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .chapter-mark {
+      font-family: var(--f-inter);
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: var(--vermillion);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .chapter-rule {
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--vermillion);
+      opacity: 0.6;
+    }
+
+    /* THE INVERSION: Sanskrit verse leads — this is the signature */
+    .hero-verse {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-verse-devanagari {
+      font-family: var(--f-deva);
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--gilt);
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-verse-transliteration {
+      font-family: var(--f-lit);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: rgba(196,149,90,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-verse-divider {
+      width: 100%;
+      max-width: 560px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(196,149,90,0.3), transparent);
+      margin: 1.5rem 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* English headline appears AFTER — smaller, explanatory */
+    .hero-translation-label {
+      font-family: var(--f-inter);
+      font-size: 0.58rem;
+      font-weight: 600;
+      color: rgba(154,136,120,0.6);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-h1 {
+      font-family: var(--f-yatra);
+      font-size: clamp(2.5rem, 5.5vw, 5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--vellum);
+      max-width: 700px;
+      margin-bottom: 1.75rem;
+      position: relative;
+      z-index: 2;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--vermillion);
+    }
+
+    .hero-p {
+      font-family: var(--f-lit);
+      font-size: 1rem;
+      color: var(--ink);
+      line-height: 1.8;
+      max-width: 500px;
+      font-weight: 300;
+      margin-bottom: 2.75rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 4rem;
+    }
+
+    .btn-vermillion {
+      font-family: var(--f-inter);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--vellum);
+      background: var(--vermillion);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-vermillion:hover { background: var(--verm-dim); transform: translateY(-1px); }
+
+    .btn-ghost-warm {
+      font-family: var(--f-inter);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: rgba(247,242,232,0.6);
+      border: 1px solid rgba(196,149,90,0.25);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+
+    .btn-ghost-warm:hover { border-color: var(--gilt); color: var(--gilt); }
+
+    /* hero bottom — citation like a Gita footnote */
+    .hero-citation {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(196,149,90,0.12);
+      max-width: 700px;
+    }
+
+    .citation-ref {
+      font-family: var(--f-inter);
+      font-size: 0.6rem;
+      color: rgba(154,136,120,0.5);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .citation-stats {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .cstat-num {
+      font-family: var(--f-yatra);
+      font-size: 1.4rem;
+      color: var(--gilt);
+      line-height: 1;
+      display: block;
+    }
+
+    .cstat-label {
+      font-family: var(--f-inter);
+      font-size: 0.58rem;
+      color: rgba(154,136,120,0.5);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION COMMONS ───────────────────────────── */
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .ch-mark {
+      font-family: var(--f-inter);
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: var(--vermillion);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .ch-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--vellum-b);
+    }
+
+    .sec-title {
+      font-family: var(--f-yatra);
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      color: var(--ms);
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+    }
+
+    .sec-title em { color: var(--vermillion); font-style: italic; }
+
+    .sec-title-light {
+      font-family: var(--f-yatra);
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      color: var(--vellum);
+      line-height: 1.1;
+    }
+
+    .sec-title-light em { color: var(--vermillion); }
+
+    /* ── INTRO STRIP — dark, with gilt verse ───────── */
+    .intro-strip {
+      background: var(--ms);
+      padding: 5rem 5vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      border-top: 1px solid rgba(196,149,90,0.1);
+      border-bottom: 1px solid rgba(196,149,90,0.1);
+    }
+
+    .intro-deva-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .intro-deva-word {
+      font-family: var(--f-deva);
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--gilt);
+      line-height: 1.2;
+    }
+
+    .intro-deva-roman {
+      font-family: var(--f-lit);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(196,149,90,0.5);
+    }
+
+    .intro-deva-meaning {
+      font-family: var(--f-yatra);
+      font-size: 1.5rem;
+      color: var(--vellum);
+      margin-top: 0.5rem;
+    }
+
+    .intro-deva-desc {
+      font-family: var(--f-lit);
+      font-size: 0.88rem;
+      color: var(--ink);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-top: 0.75rem;
+    }
+
+    .intro-right {
+      border-left: 1px solid rgba(196,149,90,0.15);
+      padding-left: 4rem;
+    }
+
+    .intro-philosophy {
+      font-family: var(--f-lit);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(247,242,232,0.75);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-philosophy strong {
+      color: var(--gilt);
+      font-style: normal;
+    }
+
+    .intro-tagline {
+      font-family: var(--f-inter);
+      font-size: 0.65rem;
+      color: var(--vermillion);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    /* ── SERVICES — manuscript ledger ──────────────── */
+    #services {
+      padding: 7rem 5vw;
+      background: var(--vellum);
+    }
+
+    .services-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+
+    .services-note {
+      font-family: var(--f-lit);
+      font-size: 0.92rem;
+      color: #5A4A3A;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ledger table — scripture layout */
+    .svc-ledger {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--vellum-b);
+    }
+
+    .svc-ledger-head {
+      background: var(--ms);
+    }
+
+    .svc-ledger-head th {
+      font-family: var(--f-inter);
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: rgba(196,149,90,0.6);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      border-right: 1px solid rgba(196,149,90,0.08);
+    }
+
+    .svc-ledger-head th:last-child { border-right: none; }
+
+    .svc-row {
+      border-bottom: 1px solid var(--vellum-b);
+      transition: background 0.2s;
+    }
+
+    .svc-row:last-child { border-bottom: none; }
+    .svc-row:hover { background: var(--vellum2); }
+
+    .svc-row td {
+      padding: 1.5rem;
+      vertical-align: top;
+      border-right: 1px solid var(--vellum-b);
+    }
+
+    .svc-row td:last-child { border-right: none; }
+
+    .svc-num {
+      font-family: var(--f-deva);
+      font-size: 1.1rem;
+      color: var(--gilt);
+      font-weight: 400;
+      width: 60px;
+      text-align: center;
+    }
+
+    .svc-name-cell { width: 220px; }
+
+    .svc-name {
+      font-family: var(--f-yatra);
+      font-size: 1.05rem;
+      color: var(--ms);
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+
+    .svc-category {
+      font-family: var(--f-inter);
+      font-size: 0.58rem;
+      color: var(--vermillion);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .svc-desc-cell {
+      font-family: var(--f-lit);
+      font-size: 0.82rem;
+      color: #5A4A3A;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .svc-tags-cell { width: 180px; }
+
+    .svc-tag-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .svc-tag {
+      font-family: var(--f-inter);
+      font-size: 0.58rem;
+      color: var(--gilt-dim);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── PHILOSOPHY — dark manuscript ──────────────── */
+    #philosophy {
+      background: var(--ms-dark);
+      padding: 7rem 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #philosophy::after {
+      content: 'धर्म';
+      position: absolute;
+      right: -3vw;
+      bottom: -3rem;
+      font-family: var(--f-deva);
+      font-size: clamp(16rem, 28vw, 36rem);
+      font-weight: 200;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(196,149,90,0.04);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .phil-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .phil-verse {
+      font-family: var(--f-deva);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--gilt);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      opacity: 0.85;
+    }
+
+    .phil-verse-en {
+      font-family: var(--f-lit);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(247,242,232,0.6);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--vermillion);
+    }
+
+    .phil-verse-source {
+      font-family: var(--f-inter);
+      font-size: 0.6rem;
+      color: var(--vermillion);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .phil-body {
+      font-family: var(--f-lit);
+      font-size: 0.92rem;
+      color: var(--ink);
+      line-height: 1.85;
+      font-weight: 300;
+    }
+
+    /* four dharmic tenets */
+    .phil-tenets {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .phil-tenet {
+      padding: 1.75rem 0;
+      border-bottom: 1px solid rgba(196,149,90,0.1);
+    }
+
+    .phil-tenet:first-child { padding-top: 0; }
+    .phil-tenet:last-child { border-bottom: none; }
+
+    .tenet-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tenet-deva {
+      font-family: var(--f-deva);
+      font-size: 1.2rem;
+      color: var(--gilt);
+      font-weight: 400;
+      opacity: 0.8;
+      min-width: 1.8rem;
+    }
+
+    .tenet-title {
+      font-family: var(--f-yatra);
+      font-size: 1.05rem;
+      color: var(--vellum);
+    }
+
+    .tenet-body {
+      font-family: var(--f-lit);
+      font-size: 0.82rem;
+      color: var(--ink);
+      line-height: 1.72;
+      font-weight: 300;
+      padding-left: 2.8rem;
+    }
+
+    /* ── PROCESS — scroll of steps ─────────────────── */
+    #process {
+      padding: 7rem 5vw;
+      background: var(--vellum2);
+      border-top: 1px solid var(--vellum-b);
+      border-bottom: 1px solid var(--vellum-b);
+    }
+
+    .process-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+
+    .process-note {
+      font-family: var(--f-lit);
+      font-size: 0.92rem;
+      color: #5A4A3A;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .process-scroll {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--vellum-b);
+      background: var(--vellum);
+    }
+
+    .proc-step {
+      display: grid;
+      grid-template-columns: 70px 1fr 1fr auto;
+      align-items: start;
+      border-bottom: 1px solid var(--vellum-b);
+      transition: background 0.2s;
+    }
+
+    .proc-step:last-child { border-bottom: none; }
+    .proc-step:hover { background: var(--vellum2); }
+
+    .proc-deva {
+      font-family: var(--f-deva);
+      font-size: 1.4rem;
+      color: var(--gilt);
+      font-weight: 300;
+      padding: 1.75rem 1rem 1.75rem 1.75rem;
+      opacity: 0.7;
+    }
+
+    .proc-title {
+      font-family: var(--f-yatra);
+      font-size: 1rem;
+      color: var(--ms);
+      padding: 1.75rem 1.5rem;
+      line-height: 1.3;
+    }
+
+    .proc-desc {
+      font-family: var(--f-lit);
+      font-size: 0.8rem;
+      color: #5A4A3A;
+      line-height: 1.72;
+      font-weight: 300;
+      padding: 1.75rem 1.5rem;
+    }
+
+    .proc-timeline {
+      font-family: var(--f-inter);
+      font-size: 0.6rem;
+      color: var(--vermillion);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1.75rem 1.75rem 1.75rem 0;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    /* ── CREDENTIALS ────────────────────────────────── */
+    #credentials {
+      padding: 7rem 5vw;
+      background: var(--ms);
+    }
+
+    .cred-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+
+    .cred-note {
+      font-family: var(--f-lit);
+      font-size: 0.92rem;
+      color: var(--ink);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(196,149,90,0.1);
+      border: 1px solid rgba(196,149,90,0.1);
+    }
+
+    .cred-domain {
+      background: var(--ms-dark);
+      padding: 2rem;
+    }
+
+    .cred-domain-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(196,149,90,0.12);
+    }
+
+    .cred-domain-deva {
+      font-family: var(--f-deva);
+      font-size: 1.3rem;
+      color: var(--gilt);
+      font-weight: 300;
+      opacity: 0.7;
+    }
+
+    .cred-domain-name {
+      font-family: var(--f-yatra);
+      font-size: 1rem;
+      color: var(--vellum);
+    }
+
+    .cred-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .cred-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--f-inter);
+      font-size: 0.72rem;
+      font-weight: 400;
+    }
+
+    .chip-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cred-chip.active { color: rgba(247,242,232,0.8); }
+    .cred-chip.active .chip-dot { background: var(--gilt); }
+
+    .cred-chip.progress { color: var(--ink); }
+    .cred-chip.progress .chip-dot { background: var(--ink); }
+
+    .cred-chip.planned { color: rgba(154,136,120,0.4); }
+    .cred-chip.planned .chip-dot { background: rgba(154,136,120,0.3); }
+
+    /* ── CONTACT ────────────────────────────────────── */
+    #contact {
+      padding: 7rem 5vw;
+      background: var(--vellum);
+      border-top: 1px solid var(--vellum-b);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contact::before {
+      content: 'संपर्क';
+      position: absolute;
+      right: -2vw;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--f-deva);
+      font-size: clamp(12rem, 20vw, 26rem);
+      font-weight: 200;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(15,11,8,0.04);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 6rem;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-details {
+      margin-top: 2rem;
+    }
+
+    .cd-item {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--vellum-b);
+    }
+
+    .cd-item:first-child { border-top: 1px solid var(--vellum-b); }
+
+    .cd-label {
+      font-family: var(--f-inter);
+      font-size: 0.57rem;
+      font-weight: 700;
+      color: var(--vermillion);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .cd-value {
+      font-family: var(--f-yatra);
+      font-size: 0.95rem;
+      color: var(--ms);
+    }
+
+    /* form as manuscript document */
+    .contact-form {
+      border: 1px solid var(--vellum-b);
+    }
+
+    .form-top {
+      padding: 1.5rem 2rem;
+      background: var(--ms-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(196,149,90,0.12);
+    }
+
+    .form-top-deva {
+      font-family: var(--f-deva);
+      font-size: 1rem;
+      color: var(--gilt);
+      font-weight: 300;
+    }
+
+    .form-top-en {
+      font-family: var(--f-inter);
+      font-size: 0.58rem;
+      color: rgba(154,136,120,0.5);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .form-rows { background: var(--vellum); }
+
+    .frow {
+      display: grid;
+      border-bottom: 1px solid var(--vellum-b);
+    }
+
+    .frow.two { grid-template-columns: 1fr 1fr; }
+    .frow.one { grid-template-columns: 1fr; }
+    .frow:last-of-type { border-bottom: none; }
+
+    .fg {
+      display: flex;
+      flex-direction: column;
+      padding: 1.2rem 2rem;
+      border-right: 1px solid var(--vellum-b);
+      gap: 0.35rem;
+    }
+
+    .fg:last-child { border-right: none; }
+
+    .fg label {
+      font-family: var(--f-inter);
+      font-size: 0.55rem;
+      font-weight: 700;
+      color: var(--gilt-dim);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .fg input,
+    .fg select,
+    .fg textarea {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--ms);
+      font-family: var(--f-lit);
+      font-size: 0.95rem;
+      width: 100%;
+      padding: 0;
+    }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: var(--vellum-b);
+      font-style: italic;
+    }
+
+    .fg select { cursor: pointer; }
+    .fg select option { background: var(--vellum); color: var(--ms); }
+    .fg textarea { resize: none; min-height: 80px; line-height: 1.6; }
+
+    .form-bottom {
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--vellum2);
+      border-top: 1px solid var(--vellum-b);
+    }
+
+    .form-note-text {
+      font-family: var(--f-lit);
+      font-size: 0.72rem;
+      color: #8A7060;
+      font-style: italic;
+    }
+
+    .form-btn {
+      font-family: var(--f-inter);
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--vellum);
+      background: var(--vermillion);
+      border: none;
+      padding: 0.75rem 2rem;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .form-btn:hover { background: var(--verm-dim); }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--ms-dark);
+      border-top: 1px solid rgba(196,149,90,0.1);
+      padding: 3rem 5vw;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-brand { display: flex; flex-direction: column; gap: 0.3rem; }
+
+    .footer-deva {
+      font-family: var(--f-deva);
+      font-size: 1.2rem;
+      color: var(--gilt);
+      font-weight: 300;
+    }
+
+    .footer-name {
+      font-family: var(--f-inter);
+      font-size: 0.68rem;
+      color: rgba(247,242,232,0.35);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer-tagline {
+      font-family: var(--f-lit);
+      font-size: 0.72rem;
+      color: rgba(154,136,120,0.4);
+      font-style: italic;
+    }
+
+    .footer-copy {
+      font-family: var(--f-inter);
+      font-size: 0.65rem;
+      color: rgba(154,136,120,0.35);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      justify-content: flex-end;
+    }
+
+    .footer-links a {
+      font-family: var(--f-inter);
+      font-size: 0.65rem;
+      color: rgba(154,136,120,0.4);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gilt); }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .intro-strip { grid-template-columns: 1fr; gap: 3rem; }
+      .intro-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(196,149,90,0.15); padding-top: 3rem; }
+      .services-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+      .phil-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .process-head { grid-template-columns: 1fr; gap: 1.5rem; }
+      .cred-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      footer { grid-template-columns: 1fr; text-align: center; gap: 1.25rem; }
+      .footer-links { justify-content: center; }
+      .proc-step { grid-template-columns: 60px 1fr; }
+      .proc-desc { display: none; }
+      .proc-timeline { padding-right: 1.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.9rem 5vw; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 5vw 5rem; }
+      .hero-bg-char { display: none; }
+      .hero-citation { flex-direction: column; gap: 1rem; }
+      #services, #philosophy, #process, #credentials, #contact { padding: 5rem 5vw; }
+      .cred-grid { grid-template-columns: 1fr; }
+      .svc-ledger { display: none; }
+      .svc-mobile { display: flex; }
+      .frow.two { grid-template-columns: 1fr; }
+      .fg { border-right: none !important; }
+      .proc-step { grid-template-columns: 50px 1fr; }
+    }
+
+    /* mobile service cards — shown only on small screens */
+    .svc-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--vellum-b);
+      border: 1px solid var(--vellum-b);
+    }
+
+    .svc-mobile-card {
+      background: var(--vellum);
+      padding: 1.75rem;
+    }
+
+    .svc-mobile-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    @media (max-width: 768px) {
+      .svc-mobile { display: flex; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ═══════════════════════════════════════════════ -->
+<nav>
+  <a class="logo" href="#">
+    <span class="logo-deva">क्षेत्रज्ञ</span>
+    <span class="logo-divider"></span>
+    <span class="logo-en">Kshetragya Cybersec · LLP</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#philosophy">Dharma</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#contact" class="nav-cta">Begin Assessment</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO — THE OPENING VERSE ══════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg-char" aria-hidden="true">क्षेत्रज्ञ</div>
+
+  <!-- chapter marker — like a Gita shloka header -->
+  <div class="hero-chapter">
+    <span class="chapter-mark">Bhagavad Gita · Chapter XIII · Verse 2</span>
+    <span class="chapter-rule"></span>
+  </div>
+
+  <!-- THE INVERSION: Sanskrit leads. English explains. -->
+  <div class="hero-verse">
+    <div class="hero-verse-devanagari">
+      यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति
+    </div>
+    <div class="hero-verse-transliteration">
+      yo vetti taṃ prāhuḥ kṣetrajña iti
+    </div>
+  </div>
+
+  <div class="hero-verse-divider"></div>
+
+  <div class="hero-translation-label">Translation · English</div>
+
+  <h1 class="hero-h1">
+    He who knows the field —<br/>
+    that one is called <em>Kshetragya.</em>
+  </h1>
+
+  <p class="hero-p">
+    In cybersecurity, the one who knows your network completely — its terrain, its vulnerabilities, its hidden passages — wins before the attack begins. We are Kshetragya. We know your field.
+  </p>
+
+  <div class="hero-actions">
+    <a class="btn-vermillion" href="#contact">Request Free Assessment</a>
+    <a class="btn-ghost-warm" href="#services">View All Services</a>
+  </div>
+
+  <div class="hero-citation">
+    <span class="citation-ref">Our practice</span>
+    <div class="citation-stats">
+      <div>
+        <span class="cstat-num">9</span>
+        <span class="cstat-label">Service lines</span>
+      </div>
+      <div>
+        <span class="cstat-num">72h</span>
+        <span class="cstat-label">Report turnaround</span>
+      </div>
+      <div>
+        <span class="cstat-num">Global</span>
+        <span class="cstat-label">Remote delivery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTRO STRIP ════════════════════════════════════════ -->
+<div class="intro-strip">
+  <div class="intro-deva-block">
+    <span class="intro-deva-word">क्षेत्रज्ञ</span>
+    <span class="intro-deva-roman">Kshetragya · Sanskrit · क्षेत्र (Kshetra) + ज्ञ (Jna)</span>
+    <span class="intro-deva-meaning">"Knower of the Field"</span>
+    <p class="intro-deva-desc">
+      Kshetra means the field — the domain, the terrain, the battlefield. Jna means the knower — the consciousness that perceives it completely. Together: the one whose knowledge of the field is total. In cybersecurity, that knowledge is your most powerful defence.
+    </p>
+  </div>
+  <div class="intro-right">
+    <p class="intro-philosophy">
+      "Three thousand years ago, the Bhagavad Gita named the quality that wins every battle: <strong>complete knowledge of the field.</strong> We built a cybersecurity firm around that single idea — and carried it into the modern threat landscape."
+    </p>
+    <span class="intro-tagline">Rooted in ancient Indian Dharma · Built for the global cyber battlefield</span>
+  </div>
+</div>
+
+<!-- ══ SERVICES ════════════════════════════════════════════ -->
+<section id="services">
+  <div class="services-intro">
+    <div>
+      <div class="chapter-header">
+        <span class="ch-mark">Our Practice</span>
+        <span class="ch-rule"></span>
+      </div>
+      <h2 class="sec-title">Nine disciplines.<br/><em>One field known completely.</em></h2>
+    </div>
+    <p class="services-note">From network perimeter to cloud infrastructure, from compliance audit to active incident response — we defend every dimension of your digital terrain with specialists who own their domain, not generalists who approximate it.</p>
+  </div>
+
+  <!-- Desktop: ledger table -->
+  <table class="svc-ledger">
+    <thead class="svc-ledger-head">
+      <tr>
+        <th style="width:60px;">Shloka</th>
+        <th style="width:220px;">Discipline</th>
+        <th>Description</th>
+        <th style="width:180px;">Tools & Methods</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="svc-row">
+        <td class="svc-num">१</td>
+        <td class="svc-name-cell"><div class="svc-name">Network VAPT</div><div class="svc-category">Core Service</div></td>
+        <td class="svc-desc-cell">Internal and external network penetration testing. We map your attack surface, exploit real vulnerabilities under controlled conditions, and deliver a risk-rated, compliance-ready report your auditor will accept.</td>
+        <td class="svc-tags-cell"><div class="svc-tag-list"><span class="svc-tag">Nmap</span><span class="svc-tag">Metasploit</span><span class="svc-tag">Nessus</span><span class="svc-tag">Manual Testing</span></div></td>
+      </tr>
+      <tr class="svc-row">
+        <td class="svc-num">२</td>
+        <td class="svc-name-cell"><div class="svc-name">Web Application VAPT</div><div class="svc-category">Offensive</div></td>
+        <td class="svc-desc-cell">OWASP Top 10 assessment, API security review, authentication bypass, injection testing, and business logic analysis. Every finding documented with proof-of-concept evidence.</td>
+        <td class="svc-tags-cell"><div class="svc-tag-list"><span class="svc-tag">Burp Suite</span><span class="svc-tag">OWASP</span><span class="svc-tag">API Testing</span></div></td>
+      </tr>
+      <tr class="svc-row">
+        <td class="svc-num">३</td>
+        <td class="svc-name-cell"><div class="svc-name">Firewall & Network Security</div><div class="svc-category">Defence</div></td>
+        <td class="svc-desc-cell">Fortinet, Sophos, and Cisco firewall configuration, rule audits, VPN deployment, ACL review, switch and routing hardening for your perimeter and internal segments.</td>
+        <td class="svc-tags-cell"><div class="svc-tag-list"><span class="svc-tag">Fortinet</span><span class="svc-tag">Sophos</span><span class="svc-tag">Cisco</span><span class="svc-tag">VPN</span></div></td>
+      </tr>
+      <tr class="svc-row">
+        <td class="svc-num">४</td>
+        <td class="svc-name-cell"><div class="svc-name">GRC & Compliance Audit</div><div class="svc-category">Governance</div></td>
+        <td class="svc-desc-cell">ISO 27001 gap assessments, risk register development, security policy creation, and compliance readiness for SOC 2, PCI-DSS, HIPAA, and India's DPDPA framework.</td>
+        <td class="svc-tags-cell"><div class="svc-tag-list"><span class="svc-tag">ISO 27001</span><span class="svc-tag">SOC 2</span><span class="svc-tag">PCI-DSS</span><span class="svc-tag">HIPAA</span></div></td>
+      </tr>
+      <tr class="svc-row">
+        <td class="svc-num">५</td>
+        <td class="svc-name-cell"><div class="svc-name">Incident Response & DFIR</div><div class="svc-category">Response</div></td>
+        <td class="svc-desc-cell">Malware analysis, ransomware investigation, compromised account triage, log analysis, and digital forensics to contain breaches and preserve evidence chains.</td>
+        <td class="svc-tags-cell"><div class="svc-tag-list"><span class="svc-tag">Malware Analysis</span><span class="svc-tag">Log Forensics</span><span class="svc-tag">Ransomware IR</span></div></td>
+      </tr>
+      <tr class="svc-row">
+        <td class="svc-num">६</td>
+        <td class="svc-name-cell"><div class="svc-name">Cloud Security Review</div><div class="svc-category">Cloud</div></td>
+        <td class="svc-desc-cell">AWS IAM audit, S3 bucket security, cloud misconfiguration assessment, and security posture review for organisations running workloads in the cloud.</td>
+        <td class="svc-tags-cell"><div class="svc-tag-list"><span class="svc-tag">AWS</span><span class="svc-tag">IAM Audit</span><span class="svc-tag">S3 Security</span></div></td>
+      </tr>
+      <tr class="svc-row">
+        <td class="svc-num">७</td>
+        <td class="svc-name-cell"><div class="svc-name">SOC as a Service</div><div class="svc-category">Operations</div></td>
+        <td class="svc-desc-cell">24×7 security monitoring, SIEM management, threat detection, and escalation workflows — without the overhead of building an in-house security operations centre.</td>
+        <td class="svc-tags-cell"><div class="svc-tag-list"><span class="svc-tag">SIEM</span><span class="svc-tag">24×7 Monitoring</span><span class="svc-tag">Threat Detection</span></div></td>
+      </tr>
+      <tr class="svc-row">
+        <td class="svc-num">८</td>
+        <td class="svc-name-cell"><div class="svc-name">Network Infrastructure</div><div class="svc-category">Infrastructure</div></td>
+        <td class="svc-desc-cell">Switch and routing configuration, access point deployment, CCTV and surveillance network design, structured cabling, and complete network documentation.</td>
+        <td class="svc-tags-cell"><div class="svc-tag-list"><span class="svc-tag">Switching</span><span class="svc-tag">Routing</span><span class="svc-tag">CCTV</span><span class="svc-tag">Wireless</span></div></td>
+      </tr>
+      <tr class="svc-row">
+        <td class="svc-num">९</td>
+        <td class="svc-name-cell"><div class="svc-name">Security Hardening</div><div class="svc-category">Hardening</div></td>
+        <td class="svc-desc-cell">Endpoint hardening, server baseline configuration, network segmentation, and defence-in-depth architecture aligned to CIS benchmarks and NIST guidelines.</td>
+        <td class="svc-tags-cell"><div class="svc-tag-list"><span class="svc-tag">CIS Benchmarks</span><span class="svc-tag">NIST</span><span class="svc-tag">Segmentation</span></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Mobile: cards -->
+  <div class="svc-mobile">
+    <div class="svc-mobile-card"><div class="svc-mobile-head"><span class="svc-num" style="color:var(--gilt);font-family:var(--f-deva);font-size:1.1rem;">१</span><div class="svc-name" style="font-family:var(--f-yatra);font-size:1rem;color:var(--ms);">Network VAPT</div></div><p class="svc-desc-cell">Internal and external network penetration testing with risk-rated compliance-ready reporting.</p></div>
+    <div class="svc-mobile-card"><div class="svc-mobile-head"><span class="svc-num" style="color:var(--gilt);font-family:var(--f-deva);font-size:1.1rem;">२</span><div class="svc-name" style="font-family:var(--f-yatra);font-size:1rem;color:var(--ms);">Web Application VAPT</div></div><p class="svc-desc-cell">OWASP Top 10, API security, authentication bypass, and business logic testing.</p></div>
+    <div class="svc-mobile-card"><div class="svc-mobile-head"><span class="svc-num" style="color:var(--gilt);font-family:var(--f-deva);font-size:1.1rem;">३</span><div class="svc-name" style="font-family:var(--f-yatra);font-size:1rem;color:var(--ms);">Firewall & Network Security</div></div><p class="svc-desc-cell">Fortinet, Sophos, Cisco firewall management, VPN, ACL review and network hardening.</p></div>
+    <div class="svc-mobile-card"><div class="svc-mobile-head"><span class="svc-num" style="color:var(--gilt);font-family:var(--f-deva);font-size:1.1rem;">४</span><div class="svc-name" style="font-family:var(--f-yatra);font-size:1rem;color:var(--ms);">GRC & Compliance Audit</div></div><p class="svc-desc-cell">ISO 27001, SOC 2, PCI-DSS, HIPAA, and DPDPA compliance readiness and audits.</p></div>
+    <div class="svc-mobile-card"><div class="svc-mobile-head"><span class="svc-num" style="color:var(--gilt);font-family:var(--f-deva);font-size:1.1rem;">५</span><div class="svc-name" style="font-family:var(--f-yatra);font-size:1rem;color:var(--ms);">Incident Response & DFIR</div></div><p class="svc-desc-cell">Malware analysis, ransomware IR, log forensics, and digital evidence preservation.</p></div>
+    <div class="svc-mobile-card"><div class="svc-mobile-head"><span class="svc-num" style="color:var(--gilt);font-family:var(--f-deva);font-size:1.1rem;">६</span><div class="svc-name" style="font-family:var(--f-yatra);font-size:1rem;color:var(--ms);">Cloud Security Review</div></div><p class="svc-desc-cell">AWS IAM audit, S3 security, and cloud misconfiguration assessment.</p></div>
+    <div class="svc-mobile-card"><div class="svc-mobile-head"><span class="svc-num" style="color:var(--gilt);font-family:var(--f-deva);font-size:1.1rem;">७</span><div class="svc-name" style="font-family:var(--f-yatra);font-size:1rem;color:var(--ms);">SOC as a Service</div></div><p class="svc-desc-cell">24×7 SIEM monitoring, threat detection, and escalation without an in-house team.</p></div>
+    <div class="svc-mobile-card"><div class="svc-mobile-head"><span class="svc-num" style="color:var(--gilt);font-family:var(--f-deva);font-size:1.1rem;">८</span><div class="svc-name" style="font-family:var(--f-yatra);font-size:1rem;color:var(--ms);">Network Infrastructure</div></div><p class="svc-desc-cell">Switch, routing, AP, CCTV design and complete network documentation.</p></div>
+    <div class="svc-mobile-card"><div class="svc-mobile-head"><span class="svc-num" style="color:var(--gilt);font-family:var(--f-deva);font-size:1.1rem;">९</span><div class="svc-name" style="font-family:var(--f-yatra);font-size:1rem;color:var(--ms);">Security Hardening</div></div><p class="svc-desc-cell">CIS benchmarks, NIST guidelines, endpoint and server baseline hardening.</p></div>
+  </div>
+</section>
+
+<!-- ══ PHILOSOPHY ═════════════════════════════════════════ -->
+<section id="philosophy">
+  <div class="phil-grid">
+    <div>
+      <div class="chapter-header" style="margin-bottom:1.5rem;">
+        <span class="ch-mark" style="color:var(--gilt);opacity:0.7;">Our Dharma</span>
+        <span class="ch-rule" style="background:rgba(196,149,90,0.15);"></span>
+      </div>
+      <h2 class="sec-title-light" style="margin-bottom:2rem;">Ancient wisdom.<br/><em style="color:var(--vermillion);">Modern threats.</em></h2>
+
+      <div class="phil-verse">क्षेत्रं क्षेत्री तथा कृत्स्नं प्रकाशयति भारत</div>
+      <div class="phil-verse-en">"The field and its knower — together they illuminate everything, O Arjuna."</div>
+      <div class="phil-verse-source">Bhagavad Gita · Chapter XIII · Verse 34</div>
+
+      <p class="phil-body">
+        The Bhagavad Gita teaches that the Kshetragya — the knower of the field — possesses complete awareness of the terrain: what is present, what is absent, and what is hidden. This is not a metaphor we borrowed. It is the operating principle of every engagement we conduct. Before we defend your network, we know it more completely than those who would attack it. Every vulnerability, every misconfiguration, every hidden passage. That is Kshetragya.
+      </p>
+    </div>
+
+    <div class="phil-tenets">
+      <div class="phil-tenet">
+        <div class="tenet-head">
+          <span class="tenet-deva">ज्ञा</span>
+          <span class="tenet-title">Manual-first methodology</span>
+        </div>
+        <p class="tenet-body">Automated scanners find the known. Our manual testing finds the logic flaws, chained misconfigurations, and attack paths that no tool can enumerate — the ones that become the actual breach.</p>
+      </div>
+      <div class="phil-tenet">
+        <div class="tenet-head">
+          <span class="tenet-deva">सत्</span>
+          <span class="tenet-title">Compliance-grade deliverables</span>
+        </div>
+        <p class="tenet-body">Every report is built for its real audience — your auditor, your compliance officer, or the enterprise customer demanding proof of testing before signing your contract.</p>
+      </div>
+      <div class="phil-tenet">
+        <div class="tenet-head">
+          <span class="tenet-deva">धर्</span>
+          <span class="tenet-title">Domain-specialized ownership</span>
+        </div>
+        <p class="tenet-body">Each partner owns one domain — network security, application security, or GRC. You engage a focused specialist, not a generalist reading about your problem for the first time.</p>
+      </div>
+      <div class="phil-tenet">
+        <div class="tenet-head">
+          <span class="tenet-deva">ऋत</span>
+          <span class="tenet-title">Transparent, fixed engagements</span>
+        </div>
+        <p class="tenet-body">Clear scope, clear deliverables, clear price before work begins. No retainer traps, no vague consulting hours, no surprises on your invoice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ════════════════════════════════════════════ -->
+<section id="process">
+  <div class="process-head">
+    <div>
+      <div class="chapter-header">
+        <span class="ch-mark">Our Method</span>
+        <span class="ch-rule"></span>
+      </div>
+      <h2 class="sec-title">From first call<br/><em>to final report.</em></h2>
+    </div>
+    <p class="process-note">A structured engagement at every stage — you know exactly what is happening, when, and why. No black box. No unexplained gaps between kickoff and delivery.</p>
+  </div>
+
+  <div class="process-scroll">
+    <div class="proc-step">
+      <span class="proc-deva">१</span>
+      <div class="proc-title">Scoping & Discovery</div>
+      <div class="proc-desc">We define scope, compliance requirements, environment topology, and what success looks like — before any testing begins.</div>
+      <div class="proc-timeline">Day 1</div>
+    </div>
+    <div class="proc-step">
+      <span class="proc-deva">२</span>
+      <div class="proc-title">NDA & Rules of Engagement</div>
+      <div class="proc-desc">Signed NDA and rules of engagement protect your assets and operations before any tool runs or query touches your systems.</div>
+      <div class="proc-timeline">Day 1–2</div>
+    </div>
+    <div class="proc-step">
+      <span class="proc-deva">३</span>
+      <div class="proc-title">Assessment & Testing</div>
+      <div class="proc-desc">Manual and tool-assisted testing, methodically conducted. Every finding documented with evidence as discovered — not reconstructed after.</div>
+      <div class="proc-timeline">Day 2–5</div>
+    </div>
+    <div class="proc-step">
+      <span class="proc-deva">४</span>
+      <div class="proc-title">Report Delivery</div>
+      <div class="proc-desc">Executive summary for leadership. Full technical report with risk ratings, evidence, and step-by-step remediation for your engineering team.</div>
+      <div class="proc-timeline">Day 5–7</div>
+    </div>
+    <div class="proc-step">
+      <span class="proc-deva">५</span>
+      <div class="proc-title">Remediation & Retest</div>
+      <div class="proc-desc">We answer questions on every finding, support remediation, and retest to confirm fixes hold — included in every engagement scope.</div>
+      <div class="proc-timeline">Day 14–21</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CREDENTIALS ════════════════════════════════════════ -->
+<section id="credentials">
+  <div class="cred-intro">
+    <div>
+      <div class="chapter-header" style="margin-bottom:1rem;">
+        <span class="ch-mark" style="color:var(--gilt);opacity:0.7;">Our Qualifications</span>
+        <span class="ch-rule" style="background:rgba(196,149,90,0.15);"></span>
+      </div>
+      <h2 class="sec-title-light">Certifications &<br/><em style="color:var(--vermillion);">active expertise.</em></h2>
+    </div>
+    <p class="cred-note">Each partner specializes in their domain — network security, offensive testing, or GRC — with certifications matched precisely to their service ownership. Depth over breadth.</p>
+  </div>
+
+  <div class="cred-grid">
+    <div class="cred-domain">
+      <div class="cred-domain-head">
+        <span class="cred-domain-deva">नेट</span>
+        <span class="cred-domain-name">Network & Infrastructure</span>
+      </div>
+      <div class="cred-chips">
+        <span class="cred-chip active"><span class="chip-dot"></span>Fortinet NSE 1–4</span>
+        <span class="cred-chip active"><span class="chip-dot"></span>Sophos Certified Engineer</span>
+        <span class="cred-chip progress"><span class="chip-dot"></span>CCNA — In Progress</span>
+        <span class="cred-chip planned"><span class="chip-dot"></span>CCNP Security — Planned</span>
+      </div>
+    </div>
+    <div class="cred-domain">
+      <div class="cred-domain-head">
+        <span class="cred-domain-deva">आक्र</span>
+        <span class="cred-domain-name">Offensive Security</span>
+      </div>
+      <div class="cred-chips">
+        <span class="cred-chip active"><span class="chip-dot"></span>eJPT</span>
+        <span class="cred-chip progress"><span class="chip-dot"></span>PNPT — In Progress</span>
+        <span class="cred-chip progress"><span class="chip-dot"></span>OSCP — In Progress</span>
+        <span class="cred-chip planned"><span class="chip-dot"></span>OSWE — Planned</span>
+      </div>
+    </div>
+    <div class="cred-domain">
+      <div class="cred-domain-head">
+        <span class="cred-domain-deva">धर्म</span>
+        <span class="cred-domain-name">GRC & Compliance</span>
+      </div>
+      <div class="cred-chips">
+        <span class="cred-chip active"><span class="chip-dot"></span>CC — ISC2</span>
+        <span class="cred-chip planned"><span class="chip-dot"></span>ISO 27001 Lead Implementer</span>
+        <span class="cred-chip planned"><span class="chip-dot"></span>ISO 27001 Lead Auditor</span>
+        <span class="cred-chip planned"><span class="chip-dot"></span>CISA — Planned</span>
+      </div>
+    </div>
+    <div class="cred-domain">
+      <div class="cred-domain-head">
+        <span class="cred-domain-deva">मेघ</span>
+        <span class="cred-domain-name">Cloud & Blue Team</span>
+      </div>
+      <div class="cred-chips">
+        <span class="cred-chip active"><span class="chip-dot"></span>AWS Cloud Practitioner</span>
+        <span class="cred-chip progress"><span class="chip-dot"></span>BTL1 — In Progress</span>
+        <span class="cred-chip planned"><span class="chip-dot"></span>AWS Security Specialty</span>
+        <span class="cred-chip planned"><span class="chip-dot"></span>CCSP — Planned</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="chapter-header">
+        <span class="ch-mark">Begin Here</span>
+        <span class="ch-rule"></span>
+      </div>
+      <h2 class="sec-title" style="margin-bottom:0.5rem;">Start with a<br/><em>free assessment.</em></h2>
+      <p style="font-family:var(--f-lit);font-size:0.88rem;color:#5A4A3A;line-height:1.75;font-weight:300;margin-top:1rem;margin-bottom:0;">Tell us what you are working with. We respond within 24 hours with a scoping proposal and a clear quote — no obligation.</p>
+      <div class="contact-details">
+        <div class="cd-item">
+          <div class="cd-label">Location</div>
+          <div class="cd-value">Ahmedabad, Gujarat, India</div>
+        </div>
+        <div class="cd-item">
+          <div class="cd-label">Email</div>
+          <div class="cd-value">hello@kshetragya.in</div>
+        </div>
+        <div class="cd-item">
+          <div class="cd-label">Service Region</div>
+          <div class="cd-value">India · USA · UK · UAE · Global Remote</div>
+        </div>
+        <div class="cd-item">
+          <div class="cd-label">Response Time</div>
+          <div class="cd-value">Within 24 hours on business days</div>
+        </div>
+        <div class="cd-item">
+          <div class="cd-label">Pronunciation</div>
+          <div class="cd-value">Kshe · tra · gya</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-top">
+        <span class="form-top-deva">संपर्क · Assessment Request</span>
+        <span class="form-top-en">KCS · Inquiry Form</span>
+      </div>
+      <div class="form-rows">
+        <div class="frow two">
+          <div class="fg"><label>Full Name</label><input type="text" placeholder="John Smith"/></div>
+          <div class="fg"><label>Company</label><input type="text" placeholder="Acme Corp"/></div>
+        </div>
+        <div class="frow two">
+          <div class="fg"><label>Email Address</label><input type="email" placeholder="john@acmecorp.com"/></div>
+          <div class="fg"><label>Country</label><input type="text" placeholder="United States"/></div>
+        </div>
+        <div class="frow one">
+          <div class="fg">
+            <label>Service Required</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Network VAPT</option>
+              <option>Web Application VAPT</option>
+              <option>Firewall & Network Security Management</option>
+              <option>GRC & Compliance Audit</option>
+              <option>Incident Response & DFIR</option>
+              <option>Cloud Security Review</option>
+              <option>SOC as a Service</option>
+              <option>Network Infrastructure</option>
+              <option>Security Hardening</option>
+              <option>Multiple Services / Not Sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="frow one">
+          <div class="fg"><label>Requirements & Environment</label><textarea placeholder="Brief description of your environment, compliance needs, or what requires testing..."></textarea></div>
+        </div>
+      </div>
+      <div class="form-bottom">
+        <span class="form-note-text">NDA available on request · No obligation</span>
+        <button class="form-btn">Send Request</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-brand">
+    <span class="footer-deva">क्षेत्रज्ञ</span>
+    <span class="footer-name">Kshetragya Cybersec LLP · Ahmedabad, India</span>
+    <span class="footer-tagline">"Knowers of the Field"</span>
+  </div>
+  <p class="footer-copy">© 2025 Kshetragya Cybersec LLP<br/>All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#philosophy">Dharma</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
