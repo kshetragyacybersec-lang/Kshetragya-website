@@ -3,6 +3,10 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-overlay"></div>
 
+      <div className="hero-visual">
+        <img src="/hero-visual.jpg" alt="Cybersecurity operations" />
+      </div>
+
       <div className="hero-stats">
         <div className="hstat"><span className="hstat-num">9</span><span className="hstat-lbl">Service Lines</span></div>
         <div className="hstat"><span className="hstat-num">72h</span><span className="hstat-lbl">Report Turnaround</span></div>
@@ -15,8 +19,7 @@ export default function Hero() {
           <span className="hero-ch-rule"></span>
         </div>
         <div className="hero-sk">यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति</div>
-        <div className="hero-rom">yo vetti taṃ prāhuḥ kṣetrajña iti</div>
-        <h1 className="hero-h1">He who knows the field -<br/>that one is called <em>Kshetragya.</em></h1>
+        <h1 className="hero-h1">He who knows the field - that one is called <em>Kshetragya.</em></h1>
         <p className="hero-p">In cybersecurity, complete knowledge of the terrain wins before the attack begins. We know your network, your vulnerabilities, your field - before threats do.</p>
         <div className="hero-actions">
           <a className="btn-v" href="#contact">Request Free Assessment</a>
