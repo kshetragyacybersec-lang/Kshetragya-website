@@ -1,0 +1,54 @@
+export const services = [
+  { n: 1, name: 'Network VAPT', cat: 'Core · Offensive', desc: 'Internal and external network penetration testing. Attack surface mapping, real vulnerability exploitation, risk-rated compliance-ready report.', tags: ['Nmap', 'Metasploit', 'Nessus', 'Manual Testing'] },
+  { n: 2, name: 'Web Application VAPT', cat: 'Offensive', desc: 'OWASP Top 10, API security, authentication bypass, injection testing, and business logic analysis with proof-of-concept evidence.', tags: ['Burp Suite', 'OWASP', 'API Testing'] },
+  { n: 3, name: 'Firewall & Network Security', cat: 'Defence', desc: 'Fortinet, Sophos, Cisco firewall configuration, rule audits, VPN deployment, ACL review, and network hardening.', tags: ['Fortinet', 'Sophos', 'Cisco · VPN'] },
+  { n: 4, name: 'GRC & Compliance Audit', cat: 'Governance', desc: 'ISO 27001 gap assessments, risk register development, policy creation, SOC 2, PCI-DSS, HIPAA, and DPDPA readiness.', tags: ['ISO 27001', 'SOC 2', 'PCI-DSS'] },
+  { n: 5, name: 'Incident Response & DFIR', cat: 'Response', desc: 'Malware analysis, ransomware investigation, compromised account triage, log analysis, and digital forensics.', tags: ['Malware Analysis', 'Log Forensics', 'Ransomware IR'] },
+  { n: 6, name: 'Cloud Security Review', cat: 'Cloud', desc: 'AWS IAM audit, S3 bucket security, cloud misconfiguration assessment, and security posture review.', tags: ['AWS', 'IAM Audit', 'S3 Security'] },
+  { n: 7, name: 'SOC as a Service', cat: 'Operations', desc: '24×7 security monitoring, SIEM management, threat detection, and escalation without building an in-house operations centre.', tags: ['SIEM', '24×7 Monitoring', 'Detection'] },
+  { n: 8, name: 'Network Infrastructure', cat: 'Infrastructure', desc: 'Switch and routing configuration, access point deployment, CCTV design, cabling, and complete network documentation.', tags: ['Switching', 'Routing · CCTV', 'Wireless'] },
+  { n: 9, name: 'Security Hardening', cat: 'Hardening', desc: 'Endpoint hardening, server baseline configuration, network segmentation, and defence-in-depth architecture aligned to CIS and NIST.', tags: ['CIS Benchmarks', 'NIST', 'Segmentation'] },
+];
+
+export const processSteps = [
+  { d: 1, title: 'Scoping & Discovery', desc: 'We define scope, compliance requirements, environment topology, and what success looks like - before any testing begins.', time: 'Day 1' },
+  { d: 2, title: 'NDA & Rules of Engagement', desc: 'Signed NDA and rules of engagement protect your assets before any tool runs or query touches your systems.', time: 'Day 1–2' },
+  { d: 3, title: 'Assessment & Testing', desc: 'Manual and tool-assisted testing. Every finding documented with evidence as discovered - not reconstructed after.', time: 'Day 2–5' },
+  { d: 4, title: 'Report Delivery', desc: 'Executive summary for leadership. Full technical report with risk ratings, evidence, and step-by-step remediation guidance.', time: 'Day 5–7' },
+  { d: 5, title: 'Remediation & Retest', desc: 'We answer questions, support remediation, and retest to confirm fixes hold - included in every engagement.', time: 'Day 14–21' },
+];
+
+export const credentials = [
+  { name: 'Network & Infrastructure', chips: [
+    { label: 'Fortinet NSE 1–4', state: 'active' },
+    { label: 'Sophos Certified Engineer', state: 'active' },
+    { label: 'CCNA - In Progress', state: 'prog' },
+    { label: 'CCNP Security - Planned', state: 'plan' },
+  ]},
+  { name: 'Offensive Security', chips: [
+    { label: 'eJPT', state: 'active' },
+    { label: 'PNPT - In Progress', state: 'prog' },
+    { label: 'OSCP - In Progress', state: 'prog' },
+    { label: 'OSWE - Planned', state: 'plan' },
+  ]},
+  { name: 'GRC & Compliance', chips: [
+    { label: 'CC - ISC2', state: 'active' },
+    { label: 'ISO 27001 Lead Implementer', state: 'plan' },
+    { label: 'ISO 27001 Lead Auditor', state: 'plan' },
+    { label: 'CISA - Planned', state: 'plan' },
+  ]},
+  { name: 'Cloud & Blue Team', chips: [
+    { label: 'AWS Cloud Practitioner', state: 'active' },
+    { label: 'BTL1 - In Progress', state: 'prog' },
+    { label: 'AWS Security Specialty', state: 'plan' },
+    { label: 'CCSP - Planned', state: 'plan' },
+  ]},
+];
+
+export const testimonials = [
+  { quote: 'The scoping call alone told us more about our exposure than a report we paid a bigger firm for last year. No jargon, just a clear list of what to fix first.', initials: 'RS', name: 'Rohit Shah', role: 'IT Head, Manufacturing (Ahmedabad)' },
+  { quote: "Retest was included without us having to ask twice. That's rarer than it should be in this industry.", initials: 'PM', name: 'Priya Mehta', role: 'Founder, D2C Retail Brand' },
+  { quote: 'We needed ISO 27001 readiness fast for a client audit. They gave us a straight timeline and stuck to it.', initials: 'AK', name: 'Amit Kapadia', role: 'Operations Director, FinTech' },
+];
+
+export const serviceOptions = services.map(s => s.name).concat('Multiple / Not Sure');
