@@ -19,7 +19,7 @@ export default function Hero() {
           <span className="hero-ch-rule"></span>
         </div>
         <div className="hero-sk">यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति</div>
-        <h1 className="hero-h1">He who knows the field - that one is called <em>Kshetragya.</em></h1>
+        <h1 className="hero-h1">He who knows the field -<br/>that one is called <em>Kshetragya.</em></h1>
         <p className="hero-p">In cybersecurity, complete knowledge of the terrain wins before the attack begins. We know your network, your vulnerabilities, your field - before threats do.</p>
         <div className="hero-actions">
           <a className="btn-v" href="#contact">Request Free Assessment</a>
