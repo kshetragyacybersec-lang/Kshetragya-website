@@ -26,6 +26,14 @@ html { scroll-behavior: smooth; }
       --f-s:  'Fraunces', Georgia, serif;                         /* editorial display headlines */
       --f-i:  'Inter', system-ui, sans-serif;                     /* body/UI */
       --f-d:  'Noto Serif Devanagari', serif;                     /* shlok only */
+
+      /* ── Non-color tokens (new) ──
+         Added for consistency/maintainability. Existing hardcoded values
+         elsewhere in this file are left as-is to avoid regressions;
+         these are used by the new rules added in this pass. */
+      --radius-btn: 6px;               /* shared by all pill/rect buttons */
+      --focus-ring: 2px solid var(--blue);
+      --focus-offset: 2px;
     }
 
     html { scroll-behavior: smooth; }
@@ -37,6 +45,34 @@ html { scroll-behavior: smooth; }
       font-size: 16px;
       line-height: 1.65;
       overflow-x: hidden;
+    }
+
+    /* ── ACCESSIBILITY UTILITIES (new) ──────────── */
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--navy); color: #fff;
+      padding: 0.75rem 1.25rem; z-index: 2000;
+      border-radius: 0 0 8px 0;
+      font-family: var(--f-i); font-size: 0.85rem; font-weight: 600;
+      text-decoration: none;
+    }
+    .skip-link:focus { left: 0; }
+
+    /* Default focus-visible ring, reuses the existing accent color only. */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    [tabindex]:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: var(--focus-offset);
     }
 
     /* ── NAV ──────────────────────────────────── */
@@ -72,7 +108,7 @@ html { scroll-behavior: smooth; }
     .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
     .nav-links a { font-family: var(--f-i); font-size: 0.8rem; font-weight: 500; color: var(--ink-mut); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--blue); }
-    .nav-cta { background: var(--blue) !important; color: #fff !important; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 600 !important; transition: background 0.2s !important; }
+    .nav-cta { background: var(--blue) !important; color: #fff !important; padding: 0.6rem 1.4rem; border-radius: var(--radius-btn); font-weight: 600 !important; transition: background 0.2s !important; }
     .nav-cta:hover { background: var(--blue-dk) !important; color: #fff !important; }
 
     /* ── MOBILE NAV TOGGLE ────────────────────── */
@@ -107,9 +143,9 @@ html { scroll-behavior: smooth; }
     .hero-p { font-family: var(--f-i); font-size: 0.98rem; color: rgba(248,245,240,0.78); line-height: 1.8; max-width: 480px; font-weight: 300; margin-bottom: 1.85rem; }
 
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .btn-v { font-family: var(--f-i); font-size: 0.78rem; font-weight: 600; color: #fff; background: var(--blue); border-radius: 6px; padding: 0.88rem 2rem; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
+    .btn-v { font-family: var(--f-i); font-size: 0.78rem; font-weight: 600; color: #fff; background: var(--blue); border-radius: var(--radius-btn); padding: 0.88rem 2rem; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
     .btn-v:hover { background: var(--blue-dk); transform: translateY(-1px); }
-    .btn-g { font-family: var(--f-i); font-size: 0.78rem; font-weight: 500; color: #fff; border: 1px solid rgba(255,255,255,0.35); border-radius: 6px; padding: 0.88rem 2rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; display: inline-block; }
+    .btn-g { font-family: var(--f-i); font-size: 0.78rem; font-weight: 500; color: #fff; border: 1px solid rgba(255,255,255,0.35); border-radius: var(--radius-btn); padding: 0.88rem 2rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; display: inline-block; }
     .btn-g:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
     .hero-scroll { display: flex; align-items: center; gap: 0.7rem; }
@@ -118,7 +154,9 @@ html { scroll-behavior: smooth; }
     .scroll-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--cyan); animation: sp 2.2s ease-in-out infinite; }
     @keyframes sp { 0% { left: -100%; } 100% { left: 100%; } }
 
-    .hero-stats { position: absolute; top: 50%; right: 5vw; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1.75rem; z-index: 10; }
+    .hero-stats { position: absolute; top: 50%; right: 5vw; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1.75rem; z-index: 10; margin: 0; }
+    .hstat dt, .hstat dd { margin: 0; }
+    .hstat { display: flex; flex-direction: column-reverse; } /* dd (number) renders above dt (label) visually; DOM order stays label-then-value for correct dl semantics */
 
     .hero-visual { position: absolute; top: 0; right: 0; width: 46%; height: 100%; z-index: 2; overflow: hidden; }
     .hero-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%); }
@@ -171,8 +209,8 @@ html { scroll-behavior: smooth; }
     @media (max-width: 1024px) { .proc-head.reversed { text-align: left; } }
     .proc-note { font-family: var(--f-i); font-size: 0.92rem; color: var(--ink-mut); line-height: 1.8; font-weight: 400; }
 
-    .proc-list { border: 1px solid var(--line); background: var(--panel); border-radius: 14px 4px 14px 4px; overflow: hidden; }
-    .proc-row { display: grid; grid-template-columns: 60px 190px 1fr 110px; border-bottom: 1px solid var(--line); transition: background 0.18s; }
+    .proc-list { border: 1px solid var(--line); background: var(--panel); border-radius: 14px 4px 14px 4px; overflow: hidden; list-style: none; margin: 0; padding: 0; }
+    .proc-row { display: grid; grid-template-columns: 60px 190px 1fr 110px; border-bottom: 1px solid var(--line); transition: background 0.18s; list-style: none; }
     .proc-row:last-child { border-bottom: none; }
     .proc-row:hover { background: var(--bg2); }
 
@@ -195,7 +233,11 @@ html { scroll-behavior: smooth; }
     .cred-block:hover { transform: rotate(0deg) scale(1.01); }
     .cb-hd { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 1.1rem; padding-bottom: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .cb-n { font-family: var(--f-h); font-weight: 600; font-size: 0.95rem; color: #fff; }
-    .cb-chips { display: flex; flex-direction: column; gap: 0.5rem; }
+    .cb-chips { display: flex; flex-direction: column; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+
+    /* Keyboard focus rings for newly-focusable interactive rows/cards */
+    .svc-card:focus-visible,
+    .svc-tr:focus-visible { outline: var(--focus-ring); outline-offset: -2px; }
     .cc { display: flex; align-items: center; gap: 0.5rem; font-family: var(--f-i); font-size: 0.72rem; }
     .cd { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
     .cc.active { color: rgba(255,255,255,0.85); } .cc.active .cd { background: var(--cyan); }
@@ -207,17 +249,18 @@ html { scroll-behavior: smooth; }
     .tm-head { max-width: 640px; margin: 0 auto 3rem; text-align: center; }
     .tm-note { font-family: var(--f-i); font-size: 0.92rem; color: var(--ink-mut); line-height: 1.8; font-weight: 400; margin-top: 1rem; }
     .tm-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-    .tm-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.85rem; display: flex; flex-direction: column; gap: 1.1rem; }
+    .tm-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.85rem; display: flex; flex-direction: column; gap: 1.1rem; margin: 0; }
     .tm-quote { font-family: var(--f-i); font-size: 0.92rem; color: var(--ink); line-height: 1.75; font-weight: 400; }
     .tm-quote::before { content: '"'; color: var(--blue); font-family: var(--f-s); font-size: 1.4rem; }
     .tm-quote::after { content: '"'; color: var(--blue); font-family: var(--f-s); font-size: 1.4rem; }
     .tm-person { display: flex; align-items: center; gap: 0.7rem; padding-top: 1rem; border-top: 1px solid var(--line); }
     .tm-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--navy); color: var(--cyan); display: flex; align-items: center; justify-content: center; font-family: var(--f-h); font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
-    .tm-name { font-family: var(--f-h); font-weight: 600; font-size: 0.85rem; color: var(--ink); line-height: 1.3; }
+    .tm-name { font-family: var(--f-h); font-weight: 600; font-size: 0.85rem; color: var(--ink); line-height: 1.3; font-style: normal; display: block; }
     .tm-role { font-family: var(--f-i); font-size: 0.72rem; color: var(--ink-soft); }
 
     /* ── CONTACT ──────────────────────────────── */
     #contact { padding: 6rem 5vw; background: var(--bg); border-top: 1px solid var(--line); position: relative; overflow: hidden; }
+    .contact-intro { font-family: var(--f-i); font-size: 0.9rem; color: var(--ink-mut); line-height: 1.75; font-weight: 400; margin-top: 0.5rem; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; position: relative; z-index: 1; }
     .contact-details { margin-top: 1.6rem; }
     .cd-item { padding: 0.95rem 0; border-bottom: 1px solid var(--line); }
@@ -238,13 +281,15 @@ html { scroll-behavior: smooth; }
     .fg:last-child { border-right: none; }
     .fg label { font-family: var(--f-i); font-size: 0.58rem; font-weight: 700; color: var(--ink-soft); letter-spacing: 0.14em; text-transform: uppercase; }
     .fg input, .fg select, .fg textarea { background: transparent; border: none; outline: none; color: var(--ink); font-family: var(--f-i); font-size: 0.9rem; width: 100%; padding: 0; }
+    .fg input:focus-visible, .fg select:focus-visible, .fg textarea:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); border-radius: 3px; }
+    .fg:focus-within { background: var(--bg2); } /* reuses existing token to show which field group is active */
     .fg input::placeholder, .fg textarea::placeholder { color: var(--ink-soft); }
     .fg select { cursor: pointer; } .fg select option { background: var(--bg); color: var(--ink); }
     .fg textarea { resize: none; min-height: 78px; line-height: 1.6; }
 
     .cform-foot { padding: 1.05rem 2rem; display: flex; align-items: center; justify-content: space-between; background: var(--bg2); border-top: 1px solid var(--line); }
     .cform-note { font-family: var(--f-i); font-size: 0.7rem; color: var(--ink-soft); }
-    .cform-btn { font-family: var(--f-i); font-size: 0.68rem; font-weight: 700; color: #fff; background: var(--blue); border: none; border-radius: 6px; padding: 0.7rem 1.85rem; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; transition: background 0.2s; }
+    .cform-btn { font-family: var(--f-i); font-size: 0.68rem; font-weight: 700; color: #fff; background: var(--blue); border: none; border-radius: var(--radius-btn); padding: 0.7rem 1.85rem; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; transition: background 0.2s; }
     .cform-btn:hover { background: var(--blue-dk); }
     .cform-btn:disabled { opacity: 0.55; cursor: default; }
     .cform-status { font-family: var(--f-i); font-size: 0.7rem; padding: 0 2rem 1.05rem; }
@@ -253,6 +298,7 @@ html { scroll-behavior: smooth; }
 
     /* ── FOOTER ───────────────────────────────── */
     footer { background: var(--navy); padding: 2.25rem 5vw; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 2rem; }
+    footer > nav[aria-label="Footer"] { display: contents; } /* unwraps the landmark from grid flow so .ft-links stays the direct grid item */
     .ft-brand { display: flex; flex-direction: column; gap: 0.18rem; }
     .ft-name { font-family: var(--f-h); font-weight: 600; font-size: 0.85rem; color: #fff; }
     .ft-tag { font-family: var(--f-i); font-size: 0.68rem; color: rgba(248,245,240,0.45); font-style: italic; }
@@ -271,8 +317,16 @@ html { scroll-behavior: smooth; }
       .tm-grid { grid-template-columns: 1fr 1fr; }
     }
 
+    /* Intermediate tablet step (new): keep the process timeline's
+       description column visible a while longer instead of jumping
+       straight to the fully-collapsed 2-column mobile layout. */
+    @media (max-width: 900px) {
+      .proc-row { grid-template-columns: 52px 160px 1fr; }
+      .proc-time { display: none; }
+    }
+
     /* ── SERVICES MOBILE CARDS ────────────────── */
-    .svc-cards { display: none; }
+    .svc-cards { display: none; list-style: none; margin: 0; padding: 0; }
     .svc-card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.25rem; margin-bottom: 0.9rem; }
     .svc-card:last-child { margin-bottom: 0; }
     .svc-card-hd { display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 0.7rem; }
@@ -311,5 +365,13 @@ html { scroll-behavior: smooth; }
 
     @media (prefers-reduced-motion: reduce) {
       .scroll-line::after { animation: none; }
+      .cred-block,
+      .btn-v,
+      .svc-tr,
+      .proc-row,
+      .nav-links,
+      .nav-burger span {
+        transition: none !important;
+        transform: none !important;
+      }
     }
-  
