@@ -31,12 +31,12 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact">
+    <section id="contact" aria-labelledby="contact-heading">
       <div className="contact-grid">
         <div>
           <div className="eyebrow">Begin Here</div>
-          <h2 className="sec-h dark" style={{ marginBottom: '0.65rem' }}>Start with a<br/><em>free assessment.</em></h2>
-          <p style={{ fontFamily: 'var(--f-i)', fontSize: '0.9rem', color: 'var(--ink-mut)', lineHeight: 1.75, fontWeight: 400, marginTop: '0.5rem' }}>
+          <h2 className="sec-h dark" style={{ marginBottom: '0.65rem' }} id="contact-heading">Start with a<br/><em>free assessment.</em></h2>
+          <p className="contact-intro">
             Tell us what you are working with. We respond within 24 hours with a scoping proposal and a clear quote - no obligation.
           </p>
           <div className="contact-details">
@@ -47,7 +47,12 @@ export default function Contact() {
           </div>
         </div>
         <div className="cform">
-          <form action="https://formsubmit.co/info@kshetragyacybersec.com" method="POST" onSubmit={handleSubmit}>
+          <form
+            action="https://formsubmit.co/info@kshetragyacybersec.com"
+            method="POST"
+            onSubmit={handleSubmit}
+            aria-describedby={status.show ? 'cform-status-msg' : undefined}
+          >
             <input type="hidden" name="_subject" value="New Assessment Request - Kshetragya website" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
@@ -58,12 +63,24 @@ export default function Contact() {
               <span className="cform-te">KCS · Inquiry Form</span>
             </div>
             <div className="frow two">
-              <div className="fg"><label htmlFor="f-name">Full Name</label><input id="f-name" type="text" name="Full Name" placeholder="John Smith" required /></div>
-              <div className="fg"><label htmlFor="f-company">Company</label><input id="f-company" type="text" name="Company" placeholder="Acme Corp" /></div>
+              <div className="fg">
+                <label htmlFor="f-name">Full Name</label>
+                <input id="f-name" type="text" name="Full Name" placeholder="John Smith" required aria-required="true" />
+              </div>
+              <div className="fg">
+                <label htmlFor="f-company">Company</label>
+                <input id="f-company" type="text" name="Company" placeholder="Acme Corp" />
+              </div>
             </div>
             <div className="frow two">
-              <div className="fg"><label htmlFor="f-email">Email Address</label><input id="f-email" type="email" name="Email" placeholder="john@acmecorp.com" required /></div>
-              <div className="fg"><label htmlFor="f-country">Country</label><input id="f-country" type="text" name="Country" placeholder="United States" /></div>
+              <div className="fg">
+                <label htmlFor="f-email">Email Address</label>
+                <input id="f-email" type="email" name="Email" placeholder="john@acmecorp.com" required aria-required="true" />
+              </div>
+              <div className="fg">
+                <label htmlFor="f-country">Country</label>
+                <input id="f-country" type="text" name="Country" placeholder="United States" />
+              </div>
             </div>
             <div className="frow one">
               <div className="fg">
@@ -82,10 +99,17 @@ export default function Contact() {
             </div>
             <div className="cform-foot">
               <span className="cform-note">NDA available on request · No obligation</span>
-              <button className="cform-btn" type="submit" disabled={sending}>{sending ? 'Sending...' : 'Send Request'}</button>
+              <button className="cform-btn" type="submit" disabled={sending} aria-busy={sending}>
+                {sending ? 'Sending...' : 'Send Request'}
+              </button>
             </div>
             {status.show && (
-              <div className={`cform-status ${status.ok ? 'ok' : 'err'}`} role="status" aria-live="polite">
+              <div
+                id="cform-status-msg"
+                className={`cform-status ${status.ok ? 'ok' : 'err'}`}
+                role="status"
+                aria-live="polite"
+              >
                 {status.msg}
               </div>
             )}

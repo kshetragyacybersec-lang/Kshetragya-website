@@ -2,19 +2,20 @@ import { services } from '../data.js';
 
 export default function Services() {
   return (
-    <section id="services">
+    <section id="services" aria-labelledby="services-heading">
       <div className="svc-head">
         <div>
           <div className="eyebrow">Our Practice</div>
-          <h2 className="sec-h dark">Nine disciplines.<br/><em>One field known completely.</em></h2>
+          <h2 className="sec-h dark" id="services-heading">Nine disciplines.<br/><em>One field known completely.</em></h2>
         </div>
         <p className="svc-note">From network perimeter to cloud infrastructure, from compliance audit to active incident response - specialists who own their domain, not generalists who approximate it.</p>
       </div>
-      <div className="svc-cards">
+
+      <ul className="svc-cards">
         {services.map(s => (
-          <div className="svc-card" key={s.n}>
+          <li className="svc-card" key={s.n} tabIndex={0}>
             <div className="svc-card-hd">
-              <span className="td-num">{s.n}</span>
+              <span className="td-num" aria-hidden="true">{s.n}</span>
               <div>
                 <div className="svc-n">{s.name}</div>
                 <div className="svc-cat">{s.cat}</div>
@@ -24,23 +25,27 @@ export default function Services() {
             <div className="tag-list row">
               {s.tags.map(t => <span className="tag-item" key={t}>{t}</span>)}
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
+
       <div className="svc-table-wrap">
         <table className="svc-table">
+          <caption className="visually-hidden">
+            Full list of the nine Kshetragya Cybersec service disciplines, with descriptions and tools used for each.
+          </caption>
           <thead className="svc-thead">
             <tr>
-              <th style={{ width: 44 }}>#</th>
-              <th style={{ width: 200 }}>Discipline</th>
-              <th>Description</th>
-              <th style={{ width: 148 }}>Tools</th>
+              <th scope="col" style={{ width: 44 }}>#</th>
+              <th scope="col" style={{ width: 200 }}>Discipline</th>
+              <th scope="col">Description</th>
+              <th scope="col" style={{ width: 148 }}>Tools</th>
             </tr>
           </thead>
           <tbody>
             {services.map(s => (
-              <tr className="svc-tr" key={s.n}>
-                <td className="td-num">{s.n}</td>
+              <tr className="svc-tr" key={s.n} tabIndex={0}>
+                <td className="td-num" aria-hidden="true">{s.n}</td>
                 <td className="td-name">
                   <div className="svc-n">{s.name}</div>
                   <div className="svc-cat">{s.cat}</div>
