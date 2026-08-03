@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import NetworkField from './NetworkField.jsx';
 
 const STATS = [
   { key: 'svc',    label: 'Service Lines',      target: 9,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud & more — full-spectrum coverage.' },
@@ -53,7 +54,7 @@ export default function Hero() {
       <div className="hero-overlay" aria-hidden="true"></div>
 
       <div className="hero-visual">
-        <img src="/hero-visual.jpg" alt="Security analyst reviewing network monitoring dashboards" />
+        <NetworkField />
       </div>
 
       <dl className="hero-stats">
