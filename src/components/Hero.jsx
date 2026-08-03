@@ -38,9 +38,6 @@ function StatNode({ stat }) {
 
   return (
     <div className="hstat" tabIndex={0}>
-      <span className="hstat-node" aria-hidden="true">
-        {stat.target === null ? <span className="hstat-orbit"></span> : null}
-      </span>
       <dt className="hstat-lbl">{stat.label}</dt>
       <dd className="hstat-num">{displayValue}{stat.suffix}</dd>
       <span className="hstat-tip" role="tooltip">{stat.tooltip}</span>
