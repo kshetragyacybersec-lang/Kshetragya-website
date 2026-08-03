@@ -154,14 +154,56 @@ html { scroll-behavior: smooth; }
     .scroll-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--cyan); animation: sp 2.2s ease-in-out infinite; }
     @keyframes sp { 0% { left: -100%; } 100% { left: 100%; } }
 
-    .hero-stats { position: absolute; top: 50%; right: 5vw; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1.75rem; z-index: 10; margin: 0; }
     .hstat dt, .hstat dd { margin: 0; }
     .hstat { display: flex; flex-direction: column-reverse; } /* dd (number) renders above dt (label) visually; DOM order stays label-then-value for correct dl semantics */
+
+    /* ── Stat "node-line" treatment (new) — reuses --cyan/--navy2/white only ── */
+    .hero-stats { position: absolute; top: 50%; right: 5vw; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1.75rem; z-index: 10; margin: 0; }
+    .hstat-line {
+      position: absolute; top: 6px; bottom: 6px; right: -1.6rem;
+      width: 1px; background: rgba(255,138,107,0.28); /* --cyan at low opacity, matches existing rgba pattern used elsewhere in this file */
+    }
+    .hstat { position: relative; text-align: right; border-right: 1px solid rgba(255,255,255,0.2); padding-right: 1.1rem; cursor: default; }
+    .hstat-node {
+      position: absolute; top: 0.35rem; right: -1.85rem; width: 9px; height: 9px;
+      border-radius: 50%; background: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(255,138,107,0.18);
+      animation: nodePulse 2.6s ease-in-out infinite;
+    }
+    .hstat:nth-child(2) .hstat-node { animation-delay: 0.4s; }
+    .hstat:nth-child(3) .hstat-node { animation-delay: 0.8s; }
+    @keyframes nodePulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(255,138,107,0.18); }
+      50%      { box-shadow: 0 0 0 6px rgba(255,138,107,0.06); }
+    }
+    .hstat-orbit {
+      display: inline-block; width: 4px; height: 4px; border-radius: 50%;
+      background: var(--cyan); position: relative;
+    }
+    .hstat-orbit::before {
+      content: ''; position: absolute; top: -3px; left: -3px; width: 10px; height: 10px;
+      border: 1px solid rgba(255,138,107,0.4); border-radius: 50%;
+      animation: orbitSpin 3.5s linear infinite;
+    }
+    @keyframes orbitSpin { to { transform: rotate(360deg); } }
+
+    .hstat-tip {
+      position: absolute; top: 50%; right: calc(100% + 2.4rem); transform: translateY(-50%) translateX(6px);
+      width: 190px; background: var(--navy2); color: rgba(248,245,240,0.85);
+      font-family: var(--f-i); font-size: 0.7rem; font-weight: 400; line-height: 1.5;
+      padding: 0.7rem 0.85rem; border-radius: 8px; border: 1px solid rgba(255,138,107,0.25);
+      text-align: left; text-transform: none; letter-spacing: normal;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 20;
+    }
+    .hstat:hover .hstat-tip,
+    .hstat:focus-visible .hstat-tip {
+      opacity: 1; transform: translateY(-50%) translateX(0);
+    }
 
     .hero-visual { position: absolute; top: 0; right: 0; width: 46%; height: 100%; z-index: 2; overflow: hidden; }
     .hero-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%); }
     @media (max-width: 1024px) { .hero-visual { display: none; } }
-    .hstat { text-align: right; border-right: 1px solid rgba(255,255,255,0.2); padding-right: 1.1rem; }
     .hstat-num { font-family: var(--f-h); font-size: 1.9rem; font-weight: 700; color: var(--cyan); line-height: 1; display: block; }
     .hstat-lbl { font-family: var(--f-i); font-size: 0.6rem; color: rgba(248,245,240,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
 
