@@ -58,7 +58,6 @@ export default function Hero() {
       </div>
 
       <dl className="hero-stats">
-        <span className="hstat-line" aria-hidden="true"></span>
         {STATS.map(s => <StatNode stat={s} key={s.key} />)}
       </dl>
 
