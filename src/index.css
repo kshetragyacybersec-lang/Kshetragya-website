@@ -157,31 +157,9 @@ html { scroll-behavior: smooth; }
     .hstat dt, .hstat dd { margin: 0; }
     .hstat { display: flex; flex-direction: column-reverse; } /* dd (number) renders above dt (label) visually; DOM order stays label-then-value for correct dl semantics */
 
-    /* ── Stat "node-line" treatment (new) — reuses --cyan/--navy2/white only ── */
+    /* ── Stat tooltip treatment — reuses --cyan/--navy2/white only ── */
     .hero-stats { position: absolute; top: 50%; right: 5vw; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1.75rem; z-index: 10; margin: 0; }
-    .hstat { position: relative; text-align: right; border-right: 1px solid rgba(255,255,255,0.2); padding-right: 1.1rem; cursor: default; }
-    .hstat-node {
-      position: absolute; top: 0.35rem; right: -1.85rem; width: 9px; height: 9px;
-      border-radius: 50%; background: var(--cyan);
-      box-shadow: 0 0 0 3px rgba(255,138,107,0.18);
-      animation: nodePulse 2.6s ease-in-out infinite;
-    }
-    .hstat:nth-child(2) .hstat-node { animation-delay: 0.4s; }
-    .hstat:nth-child(3) .hstat-node { animation-delay: 0.8s; }
-    @keyframes nodePulse {
-      0%, 100% { box-shadow: 0 0 0 3px rgba(255,138,107,0.18); }
-      50%      { box-shadow: 0 0 0 6px rgba(255,138,107,0.06); }
-    }
-    .hstat-orbit {
-      display: inline-block; width: 4px; height: 4px; border-radius: 50%;
-      background: var(--cyan); position: relative;
-    }
-    .hstat-orbit::before {
-      content: ''; position: absolute; top: -3px; left: -3px; width: 10px; height: 10px;
-      border: 1px solid rgba(255,138,107,0.4); border-radius: 50%;
-      animation: orbitSpin 3.5s linear infinite;
-    }
-    @keyframes orbitSpin { to { transform: rotate(360deg); } }
+    .hstat { position: relative; text-align: right; padding-right: 0.3rem; cursor: default; }
 
     .hstat-tip {
       position: absolute; top: 50%; right: calc(100% + 2.4rem); transform: translateY(-50%) translateX(6px);
