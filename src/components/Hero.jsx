@@ -1,3 +1,52 @@
+import { useEffect, useRef, useState } from 'react';
+
+const STATS = [
+  { key: 'svc',    label: 'Service Lines',      target: 9,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud & more — full-spectrum coverage.' },
+  { key: 'turn',   label: 'Report Turnaround',   target: 72,  suffix: 'h', tooltip: 'From kickoff call to your first delivered report draft.' },
+  { key: 'global', label: 'Remote Delivery',     target: null, display: 'Global', tooltip: 'Serving clients across India, USA, UK & UAE remotely.' },
+];
+
+function useCountUp(target, duration = 1100) {
+  const [value, setValue] = useState(0);
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (target === null || started.current) return;
+    started.current = true;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) { setValue(target); return; }
+
+    let start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
+      setValue(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }, [target, duration]);
+
+  return value;
+}
+
+function StatNode({ stat }) {
+  const count = useCountUp(stat.target);
+  const displayValue = stat.target === null ? stat.display : count;
+
+  return (
+    <div className="hstat" tabIndex={0}>
+      <span className="hstat-node" aria-hidden="true">
+        {stat.target === null ? <span className="hstat-orbit"></span> : null}
+      </span>
+      <dt className="hstat-lbl">{stat.label}</dt>
+      <dd className="hstat-num">{displayValue}{stat.suffix}</dd>
+      <span className="hstat-tip" role="tooltip">{stat.tooltip}</span>
+    </div>
+  );
+}
+
 export default function Hero() {
   return (
     <section className="hero" id="main-content" tabIndex={-1}>
@@ -8,18 +57,8 @@ export default function Hero() {
       </div>
 
       <dl className="hero-stats">
-        <div className="hstat">
-          <dt className="hstat-lbl">Service Lines</dt>
-          <dd className="hstat-num">9</dd>
-        </div>
-        <div className="hstat">
-          <dt className="hstat-lbl">Report Turnaround</dt>
-          <dd className="hstat-num">72h</dd>
-        </div>
-        <div className="hstat">
-          <dt className="hstat-lbl">Remote Delivery</dt>
-          <dd className="hstat-num">Global</dd>
-        </div>
+        <span className="hstat-line" aria-hidden="true"></span>
+        {STATS.map(s => <StatNode stat={s} key={s.key} />)}
       </dl>
 
       <div className="hero-content">
