@@ -54,7 +54,7 @@ export default function Nav() {
           <span className="logo-mark" aria-hidden="true">K</span>
           <span className="logo-text">
             <span className="logo-en">Kshetragya Cybersec</span>
-            <span className="logo-sub">LLP · Ahmedabad, India</span>
+            <span className="logo-sub">Ahmedabad, India</span>
           </span>
         </a>
         <ul
