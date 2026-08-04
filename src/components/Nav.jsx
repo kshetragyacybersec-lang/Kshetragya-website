@@ -64,7 +64,6 @@ export default function Nav() {
         >
           <li><a href="#services" onClick={close}>Services</a></li>
           <li><a href="#process" onClick={close}>Process</a></li>
-          <li><a href="#credentials" onClick={close}>Credentials</a></li>
           <li><a href="#contact" className="nav-cta" onClick={close}>Begin Assessment</a></li>
         </ul>
         <button
