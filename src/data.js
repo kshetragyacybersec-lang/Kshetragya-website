@@ -45,10 +45,6 @@ export const credentials = [
   ]},
 ];
 
-export const testimonials = [
-  { quote: 'The scoping call alone told us more about our exposure than a report we paid a bigger firm for last year. No jargon, just a clear list of what to fix first.', initials: 'RS', name: 'Rohit Shah', role: 'IT Head, Manufacturing (Ahmedabad)' },
-  { quote: "Retest was included without us having to ask twice. That's rarer than it should be in this industry.", initials: 'PM', name: 'Priya Mehta', role: 'Founder, D2C Retail Brand' },
-  { quote: 'We needed ISO 27001 readiness fast for a client audit. They gave us a straight timeline and stuck to it.', initials: 'AK', name: 'Amit Kapadia', role: 'Operations Director, FinTech' },
-];
+export const testimonials = [];
 
 export const serviceOptions = services.map(s => s.name).concat('Multiple / Not Sure');
