@@ -49,10 +49,6 @@ export default function Hero() {
     <section className="hero" id="main-content" tabIndex={-1}>
       <div className="hero-overlay" aria-hidden="true"></div>
 
-      <div className="hero-visual">
-        <img src="/hero-visual.jpg" alt="Security analyst reviewing network monitoring dashboards" />
-      </div>
-
       <dl className="hero-stats">
         {STATS.map(s => <StatNode stat={s} key={s.key} />)}
       </dl>
