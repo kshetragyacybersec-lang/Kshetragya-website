@@ -118,8 +118,6 @@ html { scroll-behavior: smooth; }
       padding: 0; transition: color 0.2s;
     }
     .nav-svc-trigger:hover, .nav-svc-trigger.open { color: var(--blue); }
-    .nav-svc-caret { transition: transform 0.25s ease; }
-    .nav-svc-trigger.open .nav-svc-caret { transform: rotate(180deg); }
 
     .mega-scrim {
       display: none; position: fixed; inset: 0; top: 0;
