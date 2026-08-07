@@ -40,12 +40,6 @@ html { scroll-behavior: smooth; }
       overflow-x: hidden;
     }
 
-    .visually-hidden {
-      position: absolute; width: 1px; height: 1px;
-      padding: 0; margin: -1px; overflow: hidden;
-      clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-    }
-
     .skip-link {
       position: absolute; left: -9999px; top: 0;
       background: var(--navy); color: #fff;
@@ -261,13 +255,10 @@ html { scroll-behavior: smooth; }
     /* ── SHARED ───────────────────────────────── */
     .eyebrow { font-family: var(--f-i); font-size: 0.65rem; font-weight: 700; color: var(--blue); letter-spacing: 0.18em; text-transform: uppercase; display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; }
     .eyebrow::after { content: ''; width: 36px; height: 1px; background: var(--blue); opacity: 0.6; }
-    .eyebrow.on-dark { color: var(--cyan); } .eyebrow.on-dark::after { background: var(--cyan); }
 
     .sec-h { font-family: var(--f-s); font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
-    .sec-h.light { color: #fff; }
     .sec-h.dark  { color: var(--ink); }
     .sec-h em    { font-style: italic; color: var(--blue); }
-    .sec-h.light em { color: var(--cyan); }
 
     /* ── SERVICES ─────────────────────────────── */
     #services { padding: 6rem 5vw; background: var(--bg); }
@@ -354,11 +345,6 @@ html { scroll-behavior: smooth; }
     .ft-links { display: flex; gap: 1.75rem; list-style: none; justify-content: flex-end; }
     .ft-links a { font-family: var(--f-i); font-size: 0.68rem; color: rgba(248,245,240,0.5); text-decoration: none; transition: color 0.2s; }
     .ft-links a:hover { color: var(--cyan); }
-    .ft-link-btn {
-      font-family: var(--f-i); font-size: 0.68rem; color: rgba(248,245,240,0.5);
-      background: none; border: none; padding: 0; cursor: pointer; transition: color 0.2s;
-    }
-    .ft-link-btn:hover { color: var(--cyan); }
 
     /* ── RESPONSIVE ───────────────────────────── */
     @media (max-width: 1024px) {
