@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const STATS = [
   { key: 'svc',    label: 'Service Lines',      target: 11,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud & more — full-spectrum coverage.' },
@@ -8,11 +8,9 @@ const STATS = [
 
 function useCountUp(target, duration = 1100) {
   const [value, setValue] = useState(0);
-  const started = useRef(false);
 
   useEffect(() => {
-    if (target === null || started.current) return;
-    started.current = true;
+    if (target === null) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) { setValue(target); return; }
