@@ -1,16 +1,17 @@
+import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav.jsx';
-import Hero from './components/Hero.jsx';
-import Process from './components/Process.jsx';
-import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
+import Home from './pages/Home.jsx';
+import ServiceDetail from './pages/ServiceDetail.jsx';
 
 export default function App() {
   return (
     <>
       <Nav />
-      <Hero />
-      <Process />
-      <Contact />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
+      </Routes>
       <Footer />
     </>
   );
