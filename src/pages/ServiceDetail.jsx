@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { serviceGroups } from '../data.js';
 
@@ -14,9 +15,19 @@ export default function ServiceDetail() {
   const { slug } = useParams();
   const match = findService(slug);
 
+  // Per-route document title, since index.html only sets one static title/meta
+  // shared across all routes otherwise.
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = match
+      ? `${match.service.name} - Kshetragya Cybersec LLP`
+      : 'Service Not Found - Kshetragya Cybersec LLP';
+    return () => { document.title = prevTitle; };
+  }, [match]);
+
   if (!match) {
     return (
-      <div style={{ padding: '8rem 5vw 4rem' }}>
+      <div className="svc-detail svc-detail-empty">
         <p>Sorry, we couldn't find that service.</p>
         <Link to="/">← Back to home</Link>
       </div>
@@ -26,16 +37,11 @@ export default function ServiceDetail() {
   const { group, service } = match;
 
   return (
-    <div style={{ padding: '8rem 5vw 4rem', maxWidth: '760px', margin: '0 auto' }}>
-      <p style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-soft)', marginBottom: '0.75rem' }}>
-        {group.name}
-      </p>
-      <h1 style={{ fontFamily: 'var(--f-s)', fontSize: '2.2rem', marginBottom: '1.25rem', color: 'var(--ink)' }}>
-        {service.name}
-      </h1>
-      <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'var(--ink-mut)' }}>
-        {service.full}
-      </p>
+    <div className="svc-detail">
+      <p className="svc-detail-group">{group.name}</p>
+      <h1 className="svc-detail-title">{service.name}</h1>
+      <p className="svc-detail-full">{service.full}</p>
+      <Link to="/#contact" className="svc-detail-cta">Request this assessment →</Link>
     </div>
   );
 }
