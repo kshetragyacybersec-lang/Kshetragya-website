@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { services } from '../data.js';
+import { serviceGroups } from '../data.js';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeGroupIdx, setActiveGroupIdx] = useState(0);
   const burgerRef = useRef(null);
   const drawerRef = useRef(null);
   const megaRef = useRef(null);
@@ -117,26 +117,32 @@ export default function Nav() {
       <div className={`mega-scrim${megaOpen ? ' open' : ''}`} onClick={() => setMegaOpen(false)} aria-hidden="true"></div>
       <div className={`mega-menu${megaOpen ? ' open' : ''}`} ref={megaRef} role="dialog" aria-label="Services menu">
         <div className="mega-list">
-          {services.map((s, i) => (
+          {serviceGroups.map((g, i) => (
             <button
-              key={s.n}
+              key={g.id}
               type="button"
-              className={`mega-item${activeIdx === i ? ' active' : ''}`}
-              onMouseEnter={() => setActiveIdx(i)}
-              onClick={() => setActiveIdx(i)}
+              className={`mega-item${activeGroupIdx === i ? ' active' : ''}`}
+              aria-current={activeGroupIdx === i}
+              onMouseEnter={() => setActiveGroupIdx(i)}
+              onFocus={() => setActiveGroupIdx(i)}
+              onClick={() => setActiveGroupIdx(i)}
             >
-              <span>{s.name}</span>
+              <span>{g.name}</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2.5L9.5 7L5 11.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </button>
           ))}
         </div>
-        <div className="mega-detail" key={activeIdx}>
-          <span className="mega-detail-cat">{services[activeIdx].cat}</span>
-          <h3 className="mega-detail-title">{services[activeIdx].name}</h3>
-          <p className="mega-detail-desc">{services[activeIdx].desc}</p>
-          <div className="mega-detail-tags">
-            {services[activeIdx].tags.map(t => <span key={t} className="mega-tag">{t}</span>)}
-          </div>
+        <div className="mega-detail" key={activeGroupIdx}>
+          <span className="mega-detail-cat">{serviceGroups[activeGroupIdx].services.length} services</span>
+          <h3 className="mega-detail-title">{serviceGroups[activeGroupIdx].name}</h3>
+          <ul className="mega-svc-list">
+            {serviceGroups[activeGroupIdx].services.map(s => (
+              <li key={s.id} className="mega-svc-item">
+                <span className="mega-svc-name">{s.name}</span>
+                <p className="mega-svc-short">{s.short}</p>
+              </li>
+            ))}
+          </ul>
           <a href="#contact" className="mega-detail-cta" onClick={() => setMegaOpen(false)}>Request this assessment →</a>
         </div>
       </div>
