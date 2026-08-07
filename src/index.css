@@ -119,7 +119,7 @@ html { scroll-behavior: smooth; }
     .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
     /* ── HERO ─────────────────────────────────── */
-    .hero { position: relative; width: 100%; height: 100vh; overflow: hidden; background: var(--navy); }
+    .hero { position: relative; width: 100%; min-height: 100vh; overflow: hidden; background: var(--navy); display: flex; align-items: center; }
 
     .hero-overlay {
       position: absolute; inset: 0;
@@ -128,7 +128,7 @@ html { scroll-behavior: smooth; }
       pointer-events: none;
     }
 
-    .hero-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 0 5vw 4.5rem; z-index: 10; }
+    .hero-content { position: relative; width: 100%; padding: 7rem 5vw 4.5rem; z-index: 10; }
 
     .hero-ch { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.25rem; }
     .hero-ch-mark { font-family: var(--f-i); font-size: 0.6rem; font-weight: 700; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; }
@@ -293,7 +293,7 @@ html { scroll-behavior: smooth; }
     .fg label { font-family: var(--f-i); font-size: 0.58rem; font-weight: 700; color: var(--ink-soft); letter-spacing: 0.14em; text-transform: uppercase; }
     .fg input, .fg select, .fg textarea { background: transparent; border: none; outline: none; color: var(--ink); font-family: var(--f-i); font-size: 0.9rem; width: 100%; padding: 0; }
     .fg input:focus-visible, .fg select:focus-visible, .fg textarea:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); border-radius: 3px; }
-    .fg:focus-within { background: var(--bg2); } /* reuses existing token to show which field group is active */
+    .fg:focus-within { background: var(--bg2); }
     .fg input::placeholder, .fg textarea::placeholder { color: var(--ink-soft); }
     .fg select { cursor: pointer; } .fg select option { background: var(--bg); color: var(--ink); }
     .fg textarea { resize: none; min-height: 78px; line-height: 1.6; }
@@ -309,7 +309,7 @@ html { scroll-behavior: smooth; }
 
     /* ── FOOTER ───────────────────────────────── */
     footer { background: var(--navy); padding: 2.25rem 5vw; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 2rem; }
-    footer > nav[aria-label="Footer"] { display: contents; } /* unwraps the landmark from grid flow so .ft-links stays the direct grid item */
+    footer > nav[aria-label="Footer"] { display: contents; }
     .ft-brand { display: flex; flex-direction: column; gap: 0.18rem; }
     .ft-name { font-family: var(--f-h); font-weight: 600; font-size: 0.85rem; color: #fff; }
     .ft-tag { font-family: var(--f-i); font-size: 0.68rem; color: rgba(248,245,240,0.45); font-style: italic; }
@@ -328,9 +328,6 @@ html { scroll-behavior: smooth; }
       .tm-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    /* Intermediate tablet step (new): keep the process timeline's
-       description column visible a while longer instead of jumping
-       straight to the fully-collapsed 2-column mobile layout. */
     @media (max-width: 900px) {
       .proc-row { grid-template-columns: 52px 160px 1fr; }
       .proc-time { display: none; }
