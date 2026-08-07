@@ -63,11 +63,7 @@ export default function Hero() {
         <p className="hero-p">In cybersecurity, complete knowledge of the terrain wins before the attack begins. We know your network, your vulnerabilities, your field - before threats do.</p>
         <div className="hero-actions">
           <a className="btn-v" href="#contact">Request Free Assessment</a>
-          <button
-            type="button"
-            className="btn-g"
-            onClick={() => document.querySelector('.nav-svc-trigger')?.click()}
-          >View All Services</button>
+          <a className="btn-g" href="#services">View All Services</a>
         </div>
         <div className="hero-scroll">
           <span className="scroll-lbl">Enter the field</span>
