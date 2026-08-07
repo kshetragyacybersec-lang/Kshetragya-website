@@ -138,22 +138,15 @@ export default function Nav() {
           <h3 className="mega-detail-title">{serviceGroups[activeGroupIdx].name}</h3>
           <ul className="mega-svc-list">
             {serviceGroups[activeGroupIdx].services.map(s => (
-              serviceGroups[activeGroupIdx].id === 'infrastructure-solutions' ? (
-                <li key={s.id} className="mega-svc-item mega-svc-item-link">
-                  <Link
-                    to={`/services/${s.id}`}
-                    className="mega-svc-name-link"
-                    onClick={() => setMegaOpen(false)}
-                  >
-                    {s.name}
-                  </Link>
-                </li>
-              ) : (
-                <li key={s.id} className="mega-svc-item">
-                  <span className="mega-svc-name">{s.name}</span>
-                  <p className="mega-svc-short">{s.short}</p>
-                </li>
-              )
+              <li key={s.id} className="mega-svc-item mega-svc-item-link">
+                <Link
+                  to={`/services/${s.id}`}
+                  className="mega-svc-name-link"
+                  onClick={() => setMegaOpen(false)}
+                >
+                  {s.name}
+                </Link>
+              </li>
             ))}
           </ul>
           <a href="#contact" className="mega-detail-cta" onClick={() => setMegaOpen(false)}>Request this assessment →</a>
