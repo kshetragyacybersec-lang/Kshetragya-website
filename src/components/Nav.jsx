@@ -21,12 +21,24 @@ export default function Nav() {
   useEffect(() => {
     if (!megaOpen) return;
     function onClick(e) {
-      if (megaRef.current && !megaRef.current.contains(e.target) && !svcTriggerRef.current.contains(e.target)) {
+      if (megaRef.current && !megaRef.current.contains(e.target) && !svcTriggerRef.current?.contains(e.target)) {
         setMegaOpen(false);
       }
     }
     function onKey(e) {
-      if (e.key === 'Escape') { setMegaOpen(false); svcTriggerRef.current?.focus(); }
+      if (e.key === 'Escape') {
+        setMegaOpen(false);
+        svcTriggerRef.current?.focus();
+        return;
+      }
+      // Arrow-key navigation between service groups when the mega menu is open.
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActiveGroupIdx(i => {
+          const dir = e.key === 'ArrowDown' ? 1 : -1;
+          return (i + dir + serviceGroups.length) % serviceGroups.length;
+        });
+      }
     }
     document.addEventListener('mousedown', onClick);
     document.addEventListener('keydown', onKey);
@@ -122,6 +134,7 @@ export default function Nav() {
             <button
               key={g.id}
               type="button"
+              tabIndex={activeGroupIdx === i ? 0 : -1}
               className={`mega-item${activeGroupIdx === i ? ' active' : ''}`}
               aria-current={activeGroupIdx === i}
               onMouseEnter={() => setActiveGroupIdx(i)}
