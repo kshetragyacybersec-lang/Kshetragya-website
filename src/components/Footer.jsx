@@ -11,13 +11,7 @@ export default function Footer() {
       <p className="ft-copy">© {year} Kshetragya Cybersec<br/>All rights reserved.</p>
       <nav aria-label="Footer">
         <ul className="ft-links">
-          <li>
-            <button
-              type="button"
-              className="ft-link-btn"
-              onClick={() => document.querySelector('.nav-svc-trigger')?.click()}
-            >Services</button>
-          </li>
+          <li><Link to="/#services">Services</Link></li>
           <li><Link to="/#process">Process</Link></li>
           <li><Link to="/#contact">Contact</Link></li>
         </ul>
