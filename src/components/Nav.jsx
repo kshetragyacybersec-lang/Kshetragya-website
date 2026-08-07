@@ -1,15 +1,39 @@
 import { useState, useEffect, useRef } from 'react';
+import { services } from '../data.js';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
   const burgerRef = useRef(null);
   const drawerRef = useRef(null);
+  const megaRef = useRef(null);
+  const svcTriggerRef = useRef(null);
 
   useEffect(() => {
     function onResize() { if (window.innerWidth > 768) setOpen(false); }
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
+
+  // Close mega menu on outside click or Escape
+  useEffect(() => {
+    if (!megaOpen) return;
+    function onClick(e) {
+      if (megaRef.current && !megaRef.current.contains(e.target) && !svcTriggerRef.current.contains(e.target)) {
+        setMegaOpen(false);
+      }
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') { setMegaOpen(false); svcTriggerRef.current?.focus(); }
+    }
+    document.addEventListener('mousedown', onClick);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onClick);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [megaOpen]);
 
   // Escape closes the drawer and returns focus to the trigger.
   useEffect(() => {
@@ -62,7 +86,19 @@ export default function Nav() {
           id="navLinks"
           ref={drawerRef}
         >
-          <li><a href="#services" onClick={close}>Services</a></li>
+          <li className="nav-svc-item">
+            <button
+              ref={svcTriggerRef}
+              type="button"
+              className={`nav-svc-trigger${megaOpen ? ' open' : ''}`}
+              aria-expanded={megaOpen}
+              aria-haspopup="true"
+              onClick={() => { setMegaOpen(o => !o); close(); }}
+            >
+              Services
+              <svg className="nav-svc-caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          </li>
           <li><a href="#process" onClick={close}>Process</a></li>
           <li><a href="#contact" className="nav-cta" onClick={close}>Begin Assessment</a></li>
         </ul>
@@ -77,6 +113,34 @@ export default function Nav() {
           <span></span><span></span><span></span>
         </button>
       </nav>
+
+      {/* SERVICES MEGA MENU */}
+      <div className={`mega-scrim${megaOpen ? ' open' : ''}`} onClick={() => setMegaOpen(false)} aria-hidden="true"></div>
+      <div className={`mega-menu${megaOpen ? ' open' : ''}`} ref={megaRef} role="dialog" aria-label="Services menu">
+        <div className="mega-list">
+          {services.map((s, i) => (
+            <button
+              key={s.n}
+              type="button"
+              className={`mega-item${activeIdx === i ? ' active' : ''}`}
+              onMouseEnter={() => setActiveIdx(i)}
+              onClick={() => setActiveIdx(i)}
+            >
+              <span>{s.name}</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2.5L9.5 7L5 11.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          ))}
+        </div>
+        <div className="mega-detail" key={activeIdx}>
+          <span className="mega-detail-cat">{services[activeIdx].cat}</span>
+          <h3 className="mega-detail-title">{services[activeIdx].name}</h3>
+          <p className="mega-detail-desc">{services[activeIdx].desc}</p>
+          <div className="mega-detail-tags">
+            {services[activeIdx].tags.map(t => <span key={t} className="mega-tag">{t}</span>)}
+          </div>
+          <a href="#contact" className="mega-detail-cta" onClick={() => setMegaOpen(false)}>Request this assessment →</a>
+        </div>
+      </div>
       <div
         className={`nav-scrim${open ? ' open' : ''}`}
         onClick={close}
