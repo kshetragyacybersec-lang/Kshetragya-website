@@ -99,8 +99,8 @@ export default function Nav() {
               Services
             </button>
           </li>
-          <li><a href="#process" onClick={close}>Process</a></li>
-          <li><a href="#contact" className="nav-cta" onClick={close}>Begin Assessment</a></li>
+          <li><Link to="/#process" onClick={close}>Process</Link></li>
+          <li><Link to="/#contact" className="nav-cta" onClick={close}>Begin Assessment</Link></li>
         </ul>
         <button
           ref={burgerRef}
