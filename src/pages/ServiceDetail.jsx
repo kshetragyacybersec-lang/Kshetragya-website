@@ -1,23 +1,29 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { serviceGroups } from '../data.js';
 
-// STEP 2 (partial): wired up for "Infrastructure Solutions" services only.
-// Other categories still fall back to the placeholder until we do them next.
-const WIRED_GROUP_ID = 'infrastructure-solutions';
+// Finds a service by its slug across all 4 groups.
+function findService(slug) {
+  for (const group of serviceGroups) {
+    const service = group.services.find(s => s.id === slug);
+    if (service) return { group, service };
+  }
+  return null;
+}
 
 export default function ServiceDetail() {
   const { slug } = useParams();
+  const match = findService(slug);
 
-  const group = serviceGroups.find(g => g.id === WIRED_GROUP_ID);
-  const service = group?.services.find(s => s.id === slug);
-
-  if (!service) {
+  if (!match) {
     return (
       <div style={{ padding: '8rem 5vw 4rem' }}>
-        <p>Service detail page placeholder for: <strong>{slug}</strong></p>
+        <p>Sorry, we couldn't find that service.</p>
+        <Link to="/">← Back to home</Link>
       </div>
     );
   }
+
+  const { group, service } = match;
 
   return (
     <div style={{ padding: '8rem 5vw 4rem', maxWidth: '760px', margin: '0 auto' }}>
