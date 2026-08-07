@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
@@ -9,9 +11,15 @@ export default function Footer() {
       <p className="ft-copy">© {year} Kshetragya Cybersec<br/>All rights reserved.</p>
       <nav aria-label="Footer">
         <ul className="ft-links">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li>
+            <button
+              type="button"
+              className="ft-link-btn"
+              onClick={() => document.querySelector('.nav-svc-trigger')?.click()}
+            >Services</button>
+          </li>
+          <li><Link to="/#process">Process</Link></li>
+          <li><Link to="/#contact">Contact</Link></li>
         </ul>
       </nav>
     </footer>
