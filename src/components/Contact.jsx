@@ -94,7 +94,7 @@ export default function Contact() {
             <div className="frow one">
               <div className="fg">
                 <label htmlFor="f-reqs">Requirements & Environment</label>
-                <textarea id="f-reqs" name="Requirements & Environment" placeholder="Brief description of your environment, compliance needs, or what requires testing..."></textarea>
+                <textarea id="f-reqs" name="Requirements & Environment" maxLength={2000} placeholder="Brief description of your environment, compliance needs, or what requires testing..."></textarea>
               </div>
             </div>
             <div className="cform-foot">
