@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 const STATS = [
-  { key: 'svc',    label: 'Service Lines',      target: 9,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud & more — full-spectrum coverage.' },
+  { key: 'svc',    label: 'Service Lines',      target: 11,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud & more — full-spectrum coverage.' },
   { key: 'turn',   label: 'Report Turnaround',   target: 72,  suffix: 'h', tooltip: 'From kickoff call to your first delivered report draft.' },
   { key: 'global', label: 'Remote Delivery',     target: null, display: 'Global', tooltip: 'Serving clients across India, USA, UK & UAE remotely.' },
 ];
