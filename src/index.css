@@ -70,7 +70,7 @@ html { scroll-behavior: smooth; }
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 1000;
+      z-index: 1092; /* above .nav-scrim (1040) and .mega-scrim (1090); below .mega-menu (1095) */
       display: flex;
       align-items: center;
       justify-content: space-between;
