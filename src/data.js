@@ -6,8 +6,8 @@ export const serviceGroups = [
       {
         id: 'network-infrastructure',
         name: 'Network Infrastructure',
-        short: 'End-to-end design and deployment of reliable, secure network infrastructure built to support your business as it grows.',
-        full: "We design and build the network foundation your business runs on — from structured cabling and hardware selection to full deployment and documentation. Best suited for businesses setting up a new office, expanding to a new location, or replacing an outdated network that's become a liability. Our process starts with a site assessment and requirements review, followed by a design proposal, staged implementation, and thorough testing before handover. Every deployment is documented, so you're never dependent on a single person to understand how your network is built. The payoff is infrastructure that's stable, scalable, and secure from day one — not something bolted together and hoped for the best.",
+        short: 'End-to-end design and deployment of reliable, secure network infrastructure — based in Gujarat, delivering across India.',
+        full: "We design and build the network foundation your business runs on — from structured cabling and hardware selection to full deployment and documentation. We're based in Gujarat and work closely with businesses here — Ahmedabad, Surat, Vadodara, Rajkot — while also delivering network infrastructure projects across India. Best suited for businesses setting up a new office, expanding to a new location, or replacing an outdated network that's become a liability. Our process starts with a site assessment and requirements review, followed by a design proposal, staged implementation, and thorough testing before handover. Every deployment is documented, so you're never dependent on a single person to understand how your network is built. The payoff is infrastructure that's stable, scalable, and secure from day one — not something bolted together and hoped for the best.",
       },
       {
         id: 'switching-routing',
@@ -18,8 +18,8 @@ export const serviceGroups = [
       {
         id: 'cctv-surveillance',
         name: 'CCTV & Surveillance',
-        short: 'Design, installation, and integration of CCTV and surveillance systems for physical security you can actually rely on.',
-        full: "Physical security and cybersecurity increasingly overlap, and we treat your surveillance system with the same rigor as your network. We handle site surveys, camera placement planning, NVR/DVR setup, storage sizing, and remote access configuration for CCTV systems that are reliable and properly secured — not just installed and forgotten. This service suits businesses setting up surveillance for the first time, upgrading an aging analog system, or needing better remote monitoring across multiple sites. We assess your premises, recommend appropriate coverage and hardware, install and configure the system, and walk you through day-to-day operation. Because we come from a security background, we also make sure your surveillance system itself isn't left as an easy entry point into your network.",
+        short: 'Design, installation, and integration of CCTV and surveillance systems — based in Gujarat, delivering across India.',
+        full: "Physical security and cybersecurity increasingly overlap, and we treat your surveillance system with the same rigor as your network. We handle site surveys, camera placement planning, NVR/DVR setup, storage sizing, and remote access configuration for CCTV systems that are reliable and properly secured — not just installed and forgotten. We're based in Gujarat and work with businesses here first, while also taking on CCTV projects across India. This service suits businesses setting up surveillance for the first time, upgrading an aging analog system, or needing better remote monitoring across multiple sites. We assess your premises, recommend appropriate coverage and hardware, install and configure the system, and walk you through day-to-day operation. Because we come from a security background, we also make sure your surveillance system itself isn't left as an easy entry point into your network.",
       },
     ],
   },
