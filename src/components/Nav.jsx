@@ -170,7 +170,7 @@ export default function Nav() {
               </li>
             ))}
           </ul>
-          <Link to="/#contact" className="mega-detail-cta" onClick={() => setMegaOpen(false)}>Request this assessment →</Link>
+          <Link to="/#contact" className="mega-detail-cta" onClick={() => setMegaOpen(false)}>Request this assessment</Link>
         </div>
       </div>
       <div
