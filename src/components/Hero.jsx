@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const STATS = [
   { key: 'svc',    label: 'Service Lines',      target: 11,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud & more — full-spectrum coverage.' },
@@ -44,6 +44,8 @@ function StatNode({ stat }) {
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
+  const [parallaxY, setParallaxY] = useState(0);
+  const heroRef = useRef(null);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -52,17 +54,47 @@ export default function Hero() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  // Subtle parallax: overlay/content drift at a fraction of scroll speed
+  // while the hero is in view. Skipped for prefers-reduced-motion and
+  // disabled once the hero has scrolled out of view (perf).
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const el = heroRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      setParallaxY(window.scrollY * 0.25);
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const hl = n => `hero-load hero-load-${n}${loaded ? ' hero-load-in' : ''}`;
 
   return (
-    <section className="hero" id="main-content" tabIndex={-1}>
-      <div className="hero-overlay" aria-hidden="true"></div>
+    <section className="hero" id="main-content" tabIndex={-1} ref={heroRef}>
+      <div
+        className="hero-overlay"
+        aria-hidden="true"
+        style={{ transform: `translate3d(0, ${parallaxY * 0.5}px, 0)` }}
+      ></div>
 
       <dl className={`hero-stats ${hl(6)}`}>
         {STATS.map(s => <StatNode stat={s} key={s.key} />)}
       </dl>
 
-      <div className="hero-content">
+      <div className="hero-content" style={{ transform: `translate3d(0, ${parallaxY * -0.15}px, 0)` }}>
         <div className={`hero-ch ${hl(1)}`}>
           <span className="hero-ch-mark">Bhagavad Gita · Chapter XIII · Verse 2</span>
           <span className="hero-ch-rule" aria-hidden="true"></span>
