@@ -396,6 +396,25 @@ html { scroll-behavior: smooth; }
       .fg { border-right: none !important; }
     }
 
+    /* Scroll-reveal: fade-in + slide-up as elements enter the viewport */
+    .svc-group.reveal,
+    .areas-tag.reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease var(--stagger, 0ms), transform 0.55s ease var(--stagger, 0ms);
+    }
+    .proc-row.reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s ease var(--stagger, 0ms), transform 0.5s ease var(--stagger, 0ms), background 0.18s;
+    }
+    .svc-group.reveal-in,
+    .areas-tag.reveal-in,
+    .proc-row.reveal-in {
+      opacity: 1;
+      transform: none;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .scroll-line::after { animation: none; }
       .btn-v,
@@ -404,6 +423,13 @@ html { scroll-behavior: smooth; }
       .nav-burger span {
         transition: none !important;
         transform: none !important;
+      }
+      .svc-group.reveal,
+      .areas-tag.reveal,
+      .proc-row.reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
       }
     }
 
