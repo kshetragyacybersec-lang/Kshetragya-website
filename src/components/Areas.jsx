@@ -1,6 +1,9 @@
 import { areasServed } from '../data.js';
+import { useScrollReveal } from '../useScrollReveal.js';
 
 export default function Areas() {
+  const tagsRef = useScrollReveal('.areas-tag');
+
   return (
     <section id="areas" aria-labelledby="areas-heading">
       <div className="areas-head">
@@ -16,9 +19,9 @@ export default function Areas() {
         </p>
       </div>
 
-      <ul className="areas-tags" aria-label="Cities we serve across Gujarat">
-        {areasServed.map(city => (
-          <li className="areas-tag" key={city}>{city}</li>
+      <ul className="areas-tags" aria-label="Cities we serve across Gujarat" ref={tagsRef}>
+        {areasServed.map((city, i) => (
+          <li className="areas-tag" key={city} style={{ '--stagger': `${(i % 8) * 35}ms` }}>{city}</li>
         ))}
       </ul>
     </section>
