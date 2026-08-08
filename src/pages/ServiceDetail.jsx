@@ -20,8 +20,8 @@ export default function ServiceDetail() {
   useEffect(() => {
     const prevTitle = document.title;
     document.title = match
-      ? `${match.service.name} — Kshetragya Cybersec`
-      : 'Service Not Found — Kshetragya Cybersec';
+      ? `${match.service.name} | Kshetragya Cybersec`
+      : 'Service Not Found | Kshetragya Cybersec';
     return () => { document.title = prevTitle; };
   }, [match]);
 
@@ -42,7 +42,7 @@ export default function ServiceDetail() {
     return (
       <div className={`svc-detail svc-detail-empty ${mountFadeClass}`}>
         <p>Sorry, we couldn't find that service.</p>
-        <Link to="/">← Back to home</Link>
+        <Link to="/">Back to home</Link>
       </div>
     );
   }
@@ -54,7 +54,7 @@ export default function ServiceDetail() {
       <p className="svc-detail-group">{group.name}</p>
       <h1 className="svc-detail-title">{service.name}</h1>
       <p className="svc-detail-full">{service.full}</p>
-      <Link to="/#contact" className="svc-detail-cta">Request this assessment →</Link>
+      <Link to="/#contact" className="svc-detail-cta">Request this assessment</Link>
     </div>
   );
 }
