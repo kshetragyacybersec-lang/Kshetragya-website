@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { useMagnetic } from '../useMagnetic.js';
 
 const STATS = [
-  { key: 'svc',    label: 'Service Lines',      target: 11,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud & more — full-spectrum coverage.' },
-  { key: 'turn',   label: 'Report Turnaround',   target: 72,  suffix: 'h', tooltip: 'From kickoff call to your first delivered report draft.' },
+  { key: 'svc',    label: 'Service Lines',      target: 11,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud and more, covering the full spectrum.' },
+  { key: 'turn',   label: 'Report Turnaround',   target: 72,  suffix: 'h', tooltip: 'From the kickoff call to your first delivered report draft.' },
   { key: 'global', label: 'Service Area',       target: null, display: 'Pan-India', tooltip: 'Based in Gujarat, available on-site across India, remote delivery too.' },
 ];
 
@@ -127,12 +127,12 @@ export default function Hero() {
 
       <div className="hero-content" style={{ transform: `translate3d(0, ${parallaxY * -0.15}px, 0)` }}>
         <div className={`hero-ch ${hl(1)}`}>
-          <span className="hero-ch-mark">Bhagavad Gita · Chapter XIII · Verse 2</span>
+          <span className="hero-ch-mark">Bhagavad Gita, Chapter XIII, Verse 2</span>
           <span className="hero-ch-rule" aria-hidden="true"></span>
         </div>
         <p className={`hero-sk ${hl(2)}`} lang="sa">यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति</p>
-        <h1 className={`hero-h1 ${hl(3)}`}>He who knows the field -<br/>that one is called <em>Kshetragya.</em></h1>
-        <p className={`hero-p ${hl(4)}`}>From network infrastructure to CCTV surveillance to cybersecurity - we know your network, your terrain, your field, before problems find it. Based in Gujarat, delivering across India.</p>
+        <h1 className={`hero-h1 ${hl(3)}`}>He who knows the field,<br/>that one is called <em>Kshetragya.</em></h1>
+        <p className={`hero-p ${hl(4)}`}>From network infrastructure to CCTV surveillance to cybersecurity, we know your network, your terrain, your field, before problems find it. Based in Gujarat, delivering across India.</p>
         <div className={`hero-actions ${hl(5)}`}>
           <a className="btn-v btn-magnetic" href="#contact" ref={magneticRef}>Request Free Assessment</a>
           <a className="btn-g" href="#services">View All Services</a>
