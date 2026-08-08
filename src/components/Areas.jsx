@@ -14,7 +14,7 @@ export default function Areas() {
           </h2>
         </div>
         <p className="areas-note">
-          Every service we offer - network infrastructure, CCTV surveillance, and cybersecurity -
+          Every service we offer, from network infrastructure to CCTV surveillance to cybersecurity,
           is available on-site across Gujarat and anywhere in India, with remote delivery too.
         </p>
       </div>
