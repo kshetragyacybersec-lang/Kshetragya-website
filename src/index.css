@@ -273,6 +273,8 @@ html { scroll-behavior: smooth; }
     }
 
     .hstat-num { font-family: var(--f-h); font-size: 1.9rem; font-weight: 700; color: var(--cyan); line-height: 1; display: block; }
+    @keyframes hstat-pulse-kf { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
+    .hstat-pulse { animation: hstat-pulse-kf 0.4s ease; }
     .hstat-lbl { font-family: var(--f-i); font-size: 0.6rem; color: rgba(248,245,240,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
 
     /* ── SHARED ───────────────────────────────── */
@@ -443,6 +445,7 @@ html { scroll-behavior: smooth; }
 
     @media (prefers-reduced-motion: reduce) {
       .scroll-line::after { animation: none; }
+      .hstat-pulse { animation: none !important; }
       .btn-v,
       .cform-btn,
       .nav-cta,
