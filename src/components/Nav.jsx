@@ -6,10 +6,18 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [activeGroupIdx, setActiveGroupIdx] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
   const burgerRef = useRef(null);
   const drawerRef = useRef(null);
   const megaRef = useRef(null);
   const svcTriggerRef = useRef(null);
+
+  useEffect(() => {
+    function onScroll() { setScrolled(window.scrollY > 24); }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     function onResize() { if (window.innerWidth > 768) setOpen(false); }
@@ -86,7 +94,7 @@ export default function Nav() {
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <nav aria-label="Primary">
+      <nav aria-label="Primary" className={scrolled ? 'nav-scrolled' : ''}>
         <a className="logo" href="#">
           <span className="logo-mark" aria-hidden="true">K</span>
           <span className="logo-text">
