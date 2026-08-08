@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 const STATS = [
   { key: 'svc',    label: 'Service Lines',      target: 11,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud & more — full-spectrum coverage.' },
   { key: 'turn',   label: 'Report Turnaround',   target: 72,  suffix: 'h', tooltip: 'From kickoff call to your first delivered report draft.' },
-  { key: 'global', label: 'Remote Delivery',     target: null, display: 'Global', tooltip: 'Serving clients across India, USA, UK & UAE remotely.' },
+  { key: 'global', label: 'Remote Delivery',     target: null, display: 'Global', tooltip: 'Based in Gujarat, serving clients across India and remotely worldwide.' },
 ];
 
 function useCountUp(target, duration = 1100) {
@@ -58,7 +58,7 @@ export default function Hero() {
         </div>
         <p className="hero-sk" lang="sa">यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति</p>
         <h1 className="hero-h1">He who knows the field -<br/>that one is called <em>Kshetragya.</em></h1>
-        <p className="hero-p">In cybersecurity, complete knowledge of the terrain wins before the attack begins. We know your network, your vulnerabilities, your field - before threats do.</p>
+        <p className="hero-p">From network infrastructure to CCTV surveillance to cybersecurity - we know your network, your terrain, your field, before problems find it. Based in Gujarat, delivering across India.</p>
         <div className="hero-actions">
           <a className="btn-v" href="#contact">Request Free Assessment</a>
           <a className="btn-g" href="#services">View All Services</a>
