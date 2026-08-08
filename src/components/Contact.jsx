@@ -8,7 +8,7 @@ export default function Contact() {
   async function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    setStatus({ show: true, ok: false, msg: '' });
+    setStatus({ show: false, ok: false, msg: '' });
 
     const form = e.target;
     try {
