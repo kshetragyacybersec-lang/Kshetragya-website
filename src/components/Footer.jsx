@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="ft-brand">
-        <span className="ft-name">Kshetragya Cybersec · Ahmedabad, India</span>
+        <span className="ft-name">Kshetragya Cybersec, Ahmedabad, India</span>
         <span className="ft-tag">"Knowers of the Field"</span>
       </div>
       <p className="ft-copy">© {year} Kshetragya Cybersec<br/>All rights reserved.</p>
