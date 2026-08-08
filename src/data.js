@@ -106,10 +106,10 @@ export const serviceOptions = serviceGroups
   .concat('Multiple / Not Sure');
 
 export const areasServed = [
-  { city: 'Ahmedabad', note: 'Home base - on-site and remote for network, CCTV, and cybersecurity engagements.' },
-  { city: 'Surat', note: 'On-site network infrastructure and CCTV installation, plus remote security services.' },
-  { city: 'Vadodara', note: 'Structured cabling, switching & routing, and surveillance system deployment.' },
-  { city: 'Rajkot', note: 'Network setup and CCTV surveillance for growing businesses and new offices.' },
-  { city: 'Gandhinagar', note: 'On-site network and CCTV work, close to our Ahmedabad base.' },
-  { city: 'Rest of India', note: 'Remote delivery for cybersecurity, GRC, and cloud services - on-site available on request.' },
+  'Ahmedabad',
+  'Surat',
+  'Vadodara',
+  'Rajkot',
+  'Gandhinagar',
+  'Rest of Gujarat',
 ];
