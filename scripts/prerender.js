@@ -20,7 +20,7 @@ const { serviceGroups } = await import(path.join(root, 'src/data.js'));
 const template = readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
 function buildPageHtml(service, group) {
-  const title = `${service.name} — Kshetragya Cybersec`;
+  const title = `${service.name} | Kshetragya Cybersec`;
   const description = service.short;
   const pageUrl = `${siteUrl}/services/${service.id}`;
 
