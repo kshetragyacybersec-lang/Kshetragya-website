@@ -43,23 +43,34 @@ function StatNode({ stat }) {
 }
 
 export default function Hero() {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) { setLoaded(true); return; }
+    const raf = requestAnimationFrame(() => setLoaded(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  const hl = n => `hero-load hero-load-${n}${loaded ? ' hero-load-in' : ''}`;
+
   return (
     <section className="hero" id="main-content" tabIndex={-1}>
       <div className="hero-overlay" aria-hidden="true"></div>
 
-      <dl className="hero-stats">
+      <dl className={`hero-stats ${hl(6)}`}>
         {STATS.map(s => <StatNode stat={s} key={s.key} />)}
       </dl>
 
       <div className="hero-content">
-        <div className="hero-ch">
+        <div className={`hero-ch ${hl(1)}`}>
           <span className="hero-ch-mark">Bhagavad Gita · Chapter XIII · Verse 2</span>
           <span className="hero-ch-rule" aria-hidden="true"></span>
         </div>
-        <p className="hero-sk" lang="sa">यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति</p>
-        <h1 className="hero-h1">He who knows the field -<br/>that one is called <em>Kshetragya.</em></h1>
-        <p className="hero-p">From network infrastructure to CCTV surveillance to cybersecurity - we know your network, your terrain, your field, before problems find it. Based in Gujarat, delivering across India.</p>
-        <div className="hero-actions">
+        <p className={`hero-sk ${hl(2)}`} lang="sa">यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति</p>
+        <h1 className={`hero-h1 ${hl(3)}`}>He who knows the field -<br/>that one is called <em>Kshetragya.</em></h1>
+        <p className={`hero-p ${hl(4)}`}>From network infrastructure to CCTV surveillance to cybersecurity - we know your network, your terrain, your field, before problems find it. Based in Gujarat, delivering across India.</p>
+        <div className={`hero-actions ${hl(5)}`}>
           <a className="btn-v" href="#contact">Request Free Assessment</a>
           <a className="btn-g" href="#services">View All Services</a>
         </div>
