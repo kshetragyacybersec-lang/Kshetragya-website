@@ -6,37 +6,46 @@ const STATS = [
   { key: 'global', label: 'Service Area',       target: null, display: 'Pan-India', tooltip: 'Based in Gujarat, available on-site across India, remote delivery too.' },
 ];
 
-function useCountUp(target, duration = 1100) {
+function useCountUp(target, start, duration = 1100) {
   const [value, setValue] = useState(0);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (target === null) return;
+    if (target === null || !start) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) { setValue(target); return; }
+    if (reduceMotion) { setValue(target); setDone(true); return; }
 
-    let start = null;
+    let raf = null;
+    let startTs = null;
     function step(ts) {
-      if (start === null) start = ts;
-      const progress = Math.min((ts - start) / duration, 1);
+      if (startTs === null) startTs = ts;
+      const progress = Math.min((ts - startTs) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
       setValue(Math.round(eased * target));
-      if (progress < 1) requestAnimationFrame(step);
+      if (progress < 1) {
+        raf = requestAnimationFrame(step);
+      } else {
+        setDone(true);
+      }
     }
-    requestAnimationFrame(step);
-  }, [target, duration]);
+    raf = requestAnimationFrame(step);
+    return () => { if (raf) cancelAnimationFrame(raf); };
+  }, [target, start, duration]);
 
-  return value;
+  return [value, done];
 }
 
-function StatNode({ stat }) {
-  const count = useCountUp(stat.target);
+function StatNode({ stat, start }) {
+  const [count, done] = useCountUp(stat.target, start);
   const displayValue = stat.target === null ? stat.display : count;
+  // For the "Pan-India" stat (no numeric target), pulse once it's revealed.
+  const pulse = stat.target === null ? start : done;
 
   return (
     <div className="hstat" tabIndex={0}>
       <dt className="hstat-lbl">{stat.label}</dt>
-      <dd className="hstat-num">{displayValue}{stat.suffix}</dd>
+      <dd className={`hstat-num${pulse ? ' hstat-pulse' : ''}`}>{displayValue}{stat.suffix}</dd>
       <span className="hstat-tip" role="tooltip">{stat.tooltip}</span>
     </div>
   );
@@ -45,13 +54,33 @@ function StatNode({ stat }) {
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
   const [parallaxY, setParallaxY] = useState(0);
+  const [statsVisible, setStatsVisible] = useState(false);
   const heroRef = useRef(null);
+  const statsRef = useRef(null);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) { setLoaded(true); return; }
     const raf = requestAnimationFrame(() => setLoaded(true));
     return () => cancelAnimationFrame(raf);
+  }, []);
+
+  // Stat counters only start once the stats panel actually scrolls into
+  // view, rather than immediately on mount.
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          setStatsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   // Subtle parallax: overlay/content drift at a fraction of scroll speed
@@ -90,8 +119,8 @@ export default function Hero() {
         style={{ transform: `translate3d(0, ${parallaxY * 0.5}px, 0)` }}
       ></div>
 
-      <dl className={`hero-stats ${hl(6)}`}>
-        {STATS.map(s => <StatNode stat={s} key={s.key} />)}
+      <dl className={`hero-stats ${hl(6)}`} ref={statsRef}>
+        {STATS.map(s => <StatNode stat={s} start={statsVisible} key={s.key} />)}
       </dl>
 
       <div className="hero-content" style={{ transform: `translate3d(0, ${parallaxY * -0.15}px, 0)` }}>
