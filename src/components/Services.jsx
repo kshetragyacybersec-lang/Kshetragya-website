@@ -15,7 +15,7 @@ export default function Services() {
           </h2>
         </div>
         <p className="svc-note">
-          From the network up: infrastructure, defence, testing, and governance — each service scoped and
+          From the network up: infrastructure, defence, testing, and governance. Each service can be scoped and
           delivered on its own, or combined into a full security program.
         </p>
       </div>
