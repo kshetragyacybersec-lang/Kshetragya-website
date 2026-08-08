@@ -18,7 +18,7 @@ export default function Contact() {
         headers: { Accept: 'application/json' },
       });
       if (res.ok) {
-        setStatus({ show: true, ok: true, msg: "Request sent - we'll be in touch within 24 hours." });
+        setStatus({ show: true, ok: true, msg: "Request sent, we'll be in touch within 24 hours." });
         form.reset();
       } else {
         throw new Error(`Form submission failed with status ${res.status}`);
@@ -38,12 +38,12 @@ export default function Contact() {
           <div className="eyebrow">Begin Here</div>
           <h2 className="sec-h dark" style={{ marginBottom: '0.65rem' }} id="contact-heading">Start with a<br/><em>free assessment.</em></h2>
           <p className="contact-intro">
-            Tell us what you are working with. We respond within 24 hours with a scoping proposal and a clear quote - no obligation.
+            Tell us what you're working with. We respond within 24 hours with a scoping proposal and a clear quote, no obligation.
           </p>
           <div className="contact-details">
             <div className="cd-item"><div className="cd-lbl">Location</div><div className="cd-val">Ahmedabad, Gujarat, India</div></div>
             <div className="cd-item"><div className="cd-lbl">Email</div><div className="cd-val"><a href="mailto:info@kshetragyacybersec.com" style={{ color: 'inherit', textDecoration: 'none' }}>info@kshetragyacybersec.com</a></div></div>
-            <div className="cd-item"><div className="cd-lbl">Service Region</div><div className="cd-val">India · USA · UK · UAE · Global Remote</div></div>
+            <div className="cd-item"><div className="cd-lbl">Service Region</div><div className="cd-val">India, USA, UK, UAE and remote worldwide</div></div>
             <div className="cd-item"><div className="cd-lbl">Response Time</div><div className="cd-val">Within 24 hours on business days</div></div>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function Contact() {
 
             <div className="cform-top">
               <span className="cform-td">Assessment Request</span>
-              <span className="cform-te">KCS · Inquiry Form</span>
+              <span className="cform-te">KCS Inquiry Form</span>
             </div>
             <div className="frow two">
               <div className="fg">
@@ -99,7 +99,7 @@ export default function Contact() {
               </div>
             </div>
             <div className="cform-foot">
-              <span className="cform-note">NDA available on request · No obligation</span>
+              <span className="cform-note">NDA available on request, no obligation</span>
               <button className="cform-btn" type="submit" disabled={sending} aria-busy={sending}>
                 {sending ? 'Sending...' : 'Send Request'}
               </button>
