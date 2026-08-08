@@ -21,9 +21,10 @@ export default function Contact() {
         setStatus({ show: true, ok: true, msg: "Request sent - we'll be in touch within 24 hours." });
         form.reset();
       } else {
-        throw new Error('Bad response');
+        throw new Error(`Form submission failed with status ${res.status}`);
       }
-    } catch {
+    } catch (err) {
+      console.error('Contact form submission failed:', err);
       setStatus({ show: true, ok: false, msg: 'Something went wrong. Please email info@kshetragyacybersec.com directly.' });
     } finally {
       setSending(false);
