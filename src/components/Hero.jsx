@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { useMagnetic } from '../useMagnetic.js';
 
 const STATS = [
   { key: 'svc',    label: 'Service Lines',      target: 11,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud & more — full-spectrum coverage.' },
@@ -57,6 +58,7 @@ export default function Hero() {
   const [statsVisible, setStatsVisible] = useState(false);
   const heroRef = useRef(null);
   const statsRef = useRef(null);
+  const magneticRef = useMagnetic();
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -132,7 +134,7 @@ export default function Hero() {
         <h1 className={`hero-h1 ${hl(3)}`}>He who knows the field -<br/>that one is called <em>Kshetragya.</em></h1>
         <p className={`hero-p ${hl(4)}`}>From network infrastructure to CCTV surveillance to cybersecurity - we know your network, your terrain, your field, before problems find it. Based in Gujarat, delivering across India.</p>
         <div className={`hero-actions ${hl(5)}`}>
-          <a className="btn-v" href="#contact">Request Free Assessment</a>
+          <a className="btn-v btn-magnetic" href="#contact" ref={magneticRef}>Request Free Assessment</a>
           <a className="btn-g" href="#services">View All Services</a>
         </div>
         <div className="hero-scroll">
