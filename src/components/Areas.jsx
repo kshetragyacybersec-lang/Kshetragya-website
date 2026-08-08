@@ -12,7 +12,7 @@ export default function Areas() {
         </div>
         <p className="areas-note">
           Every service we offer - network infrastructure, CCTV surveillance, and cybersecurity -
-          is available on-site across Gujarat and remotely anywhere in India.
+          is available on-site across Gujarat and anywhere in India, with remote delivery too.
         </p>
       </div>
 
