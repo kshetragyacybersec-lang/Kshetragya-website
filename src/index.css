@@ -207,6 +207,19 @@ html { scroll-behavior: smooth; }
 
     .hero-content { position: relative; width: 100%; padding: 7rem 5vw 4.5rem; z-index: 10; }
 
+    /* Hero load-in: staggered entrance, no color changes, opacity/transform only */
+    .hero-load { opacity: 0; transform: translateY(16px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .hero-load-in { opacity: 1; transform: none; }
+    .hero-sk.hero-load-in { opacity: 0.92; }
+    .hero-load-1.hero-load-in { transition-delay: 0.05s; }
+    .hero-load-2.hero-load-in { transition-delay: 0.15s; }
+    .hero-load-3.hero-load-in { transition-delay: 0.25s; }
+    .hero-load-4.hero-load-in { transition-delay: 0.38s; }
+    .hero-load-5.hero-load-in { transition-delay: 0.5s; }
+    .hero-load-6.hero-load-in { transition-delay: 0.62s; }
+    .hero-stats.hero-load { transform: translateY(-50%); }
+    .hero-stats.hero-load-in { transform: translateY(-50%); }
+
     .hero-ch { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.25rem; }
     .hero-ch-mark { font-family: var(--f-i); font-size: 0.6rem; font-weight: 700; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; }
     .hero-ch-rule { width: 44px; height: 1px; background: var(--cyan); opacity: 0.6; }
