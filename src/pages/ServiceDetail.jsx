@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { serviceGroups } from '../data.js';
 
@@ -25,9 +25,22 @@ export default function ServiceDetail() {
     return () => { document.title = prevTitle; };
   }, [match]);
 
+  // Brief fade-in on mount so navigating here from a service card doesn't
+  // feel like an abrupt jump. Skipped for prefers-reduced-motion.
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) { setVisible(true); return; }
+    setVisible(false);
+    const raf = requestAnimationFrame(() => setVisible(true));
+    return () => cancelAnimationFrame(raf);
+  }, [slug]);
+
+  const mountFadeClass = `page-fade${visible ? ' page-fade-in' : ''}`;
+
   if (!match) {
     return (
-      <div className="svc-detail svc-detail-empty">
+      <div className={`svc-detail svc-detail-empty ${mountFadeClass}`}>
         <p>Sorry, we couldn't find that service.</p>
         <Link to="/">← Back to home</Link>
       </div>
@@ -37,7 +50,7 @@ export default function ServiceDetail() {
   const { group, service } = match;
 
   return (
-    <div className="svc-detail">
+    <div className={`svc-detail ${mountFadeClass}`}>
       <p className="svc-detail-group">{group.name}</p>
       <h1 className="svc-detail-title">{service.name}</h1>
       <p className="svc-detail-full">{service.full}</p>
