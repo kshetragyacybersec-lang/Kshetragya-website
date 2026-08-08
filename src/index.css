@@ -72,7 +72,14 @@ html { scroll-behavior: smooth; }
       background: rgba(255,255,255,0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
+      transition: padding 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
     }
+    .nav-scrolled {
+      padding: 0.6rem 5vw;
+      box-shadow: 0 8px 24px -12px rgba(23,20,18,0.12);
+      backdrop-filter: blur(22px);
+    }
+    .nav-scrolled .logo-mark { width: 30px; height: 30px; font-size: 0.85rem; }
 
     .logo { text-decoration: none; display: flex; align-items: center; gap: 0.7rem; }
 
@@ -84,6 +91,7 @@ html { scroll-behavior: smooth; }
       display: flex; align-items: center; justify-content: center;
       font-family: var(--f-h); font-weight: 700; font-size: 1rem;
       flex-shrink: 0;
+      transition: width 0.25s ease, height 0.25s ease, font-size 0.25s ease;
     }
 
     .logo-text { display: flex; flex-direction: column; gap: 0.05rem; }
@@ -443,6 +451,8 @@ html { scroll-behavior: smooth; }
       .proc-row,
       .page-fade,
       .nav-links,
+      nav,
+      .logo-mark,
       .nav-burger span {
         transition: none !important;
         transform: none !important;
