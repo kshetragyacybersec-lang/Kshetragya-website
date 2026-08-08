@@ -23,6 +23,7 @@ export default function Services() {
       <div className="svc-grid" ref={gridRef}>
         {serviceGroups.map((group, i) => (
           <div className="svc-group" key={group.id} style={{ '--stagger': `${(i % 4) * 60}ms` }}>
+            <span className="svc-group-idx" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             <div className="svc-group-hd">
               <h3 className="svc-group-name">{group.name}</h3>
               <span className="svc-group-count">{group.services.length} services</span>
