@@ -106,7 +106,7 @@ export default function Nav() {
               className={`nav-svc-trigger${megaOpen ? ' open' : ''}`}
               aria-expanded={megaOpen}
               aria-haspopup="true"
-              onClick={() => { setMegaOpen(o => !o); close(); }}
+              onClick={() => { setMegaOpen(o => !o); if (open) close(); }}
             >
               Services
             </button>
