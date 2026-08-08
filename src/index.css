@@ -243,6 +243,13 @@ html { scroll-behavior: smooth; }
     .btn-v { font-family: var(--f-i); font-size: 0.78rem; font-weight: 600; color: #fff; background: var(--blue); border-radius: var(--radius-btn); padding: 0.88rem 2rem; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
     .btn-v:hover { background: var(--blue-dk); transform: translateY(-1px); }
     .btn-v:active { transform: scale(0.96); }
+
+    /* Magnetic pull (desktop only, see useMagnetic.js): --mag-x/--mag-y are
+       set on mousemove and layered on top of the existing hover/press
+       transforms above rather than replacing them. */
+    .btn-magnetic { --mag-x: 0px; --mag-y: 0px; transition: background 0.2s, transform 0.15s ease-out; }
+    .btn-magnetic:hover { transform: translate(var(--mag-x), var(--mag-y)) translateY(-1px); }
+    .btn-magnetic:active { transform: translate(var(--mag-x), var(--mag-y)) scale(0.96); }
     .btn-g { font-family: var(--f-i); font-size: 0.78rem; font-weight: 500; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.35); border-radius: var(--radius-btn); padding: 0.88rem 2rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; display: inline-block; cursor: pointer; }
     .btn-g:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
@@ -291,8 +298,31 @@ html { scroll-behavior: smooth; }
     .svc-note { font-family: var(--f-i); font-size: 0.92rem; color: var(--ink-mut); line-height: 1.8; font-weight: 400; }
 
     .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-    .svc-group { background: var(--panel); border: 1px solid var(--line); border-radius: 4px 14px 4px 14px; padding: 1.85rem; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
+    .svc-group { position: relative; overflow: hidden; background: var(--panel); border: 1px solid var(--line); border-radius: 4px 14px 4px 14px; padding: 1.85rem; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
     .svc-group:hover { transform: translateY(-4px); box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.18); border-color: var(--blue); }
+
+    /* Index number reveal: sits tucked in the corner, swings into place on
+       hover on top of the existing lift+shadow above. */
+    .svc-group-idx {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.25rem;
+      font-family: var(--f-h);
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--blue);
+      opacity: 0;
+      transform: translateY(-6px) rotate(-8deg) scale(0.85);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+    }
+    .svc-group:hover .svc-group-idx {
+      opacity: 0.16;
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .svc-group-idx { transition: opacity 0.15s ease; transform: none; }
+    }
     .svc-group-hd { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); }
     .svc-group-name { font-family: var(--f-h); font-weight: 600; font-size: 1rem; color: var(--ink); }
     .svc-group-count { font-family: var(--f-i); font-size: 0.6rem; font-weight: 700; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
