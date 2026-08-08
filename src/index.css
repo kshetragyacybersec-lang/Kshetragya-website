@@ -428,6 +428,7 @@ html { scroll-behavior: smooth; }
       .svc-group,
       .areas-tag,
       .proc-row,
+      .page-fade,
       .nav-links,
       .nav-burger span {
         transition: none !important;
@@ -440,6 +441,17 @@ html { scroll-behavior: smooth; }
         transform: none;
         transition: none;
       }
+    }
+
+    /* Page/section mount transition */
+    .page-fade {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    .page-fade-in {
+      opacity: 1;
+      transform: none;
     }
 
     /* Service detail page */
