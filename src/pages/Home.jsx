@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero.jsx';
 import Services from '../components/Services.jsx';
+import Areas from '../components/Areas.jsx';
 import Process from '../components/Process.jsx';
 import Contact from '../components/Contact.jsx';
 
@@ -21,6 +22,7 @@ export default function Home() {
     <>
       <Hero />
       <Services />
+      <Areas />
       <Process />
       <Contact />
     </>
