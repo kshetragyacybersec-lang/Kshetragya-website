@@ -19,6 +19,22 @@ const { serviceGroups } = await import(path.join(root, 'src/data.js'));
 
 const template = readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
+// Runs html.replace(regex, replacement) but throws loudly if the regex
+// didn't match anything in the template. Without this, a future edit to
+// index.html's markup (attribute order, missing self-closing slash, etc.)
+// would make these substitutions silently no-op, and every prerendered
+// service page would quietly ship with the homepage's default meta tags
+// instead of failing the build.
+function safeReplace(html, regex, replacement, label) {
+  if (!regex.test(html)) {
+    throw new Error(
+      `prerender.js: expected to find and replace "${label}" in dist/index.html, but the pattern ${regex} did not match. ` +
+        `index.html's markup may have changed in a way that broke this substitution.`
+    );
+  }
+  return html.replace(regex, replacement);
+}
+
 function buildPageHtml(service, group) {
   const title = `${service.name} in Gujarat & India | Kshetragya Cybersec`;
   const description = service.short;
@@ -27,43 +43,57 @@ function buildPageHtml(service, group) {
   let html = template;
 
   // <title>
-  html = html.replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(title)}</title>`);
+  html = safeReplace(html, /<title>.*?<\/title>/s, `<title>${escapeHtml(title)}</title>`, 'title');
 
   // meta description
-  html = html.replace(
+  html = safeReplace(
+    html,
     /<meta name="description" content=".*?"\/>/s,
-    `<meta name="description" content="${escapeHtml(description)}"/>`
+    `<meta name="description" content="${escapeHtml(description)}"/>`,
+    'meta description'
   );
 
   // og:title / og:description / og:url
-  html = html.replace(
+  html = safeReplace(
+    html,
     /<meta property="og:title" content=".*?"\/>/s,
-    `<meta property="og:title" content="${escapeHtml(title)}"/>`
+    `<meta property="og:title" content="${escapeHtml(title)}"/>`,
+    'og:title'
   );
-  html = html.replace(
+  html = safeReplace(
+    html,
     /<meta property="og:description" content=".*?"\/>/s,
-    `<meta property="og:description" content="${escapeHtml(description)}"/>`
+    `<meta property="og:description" content="${escapeHtml(description)}"/>`,
+    'og:description'
   );
-  html = html.replace(
+  html = safeReplace(
+    html,
     /<meta property="og:url" content=".*?"\/>/s,
-    `<meta property="og:url" content="${pageUrl}"/>`
+    `<meta property="og:url" content="${pageUrl}"/>`,
+    'og:url'
   );
 
   // twitter:title / twitter:description
-  html = html.replace(
+  html = safeReplace(
+    html,
     /<meta name="twitter:title" content=".*?"\/>/s,
-    `<meta name="twitter:title" content="${escapeHtml(title)}"/>`
+    `<meta name="twitter:title" content="${escapeHtml(title)}"/>`,
+    'twitter:title'
   );
-  html = html.replace(
+  html = safeReplace(
+    html,
     /<meta name="twitter:description" content=".*?"\/>/s,
-    `<meta name="twitter:description" content="${escapeHtml(description)}"/>`
+    `<meta name="twitter:description" content="${escapeHtml(description)}"/>`,
+    'twitter:description'
   );
 
   // canonical — the template already carries a self-canonical for "/",
   // so replace it with the per-page URL rather than appending a second tag.
-  html = html.replace(
+  html = safeReplace(
+    html,
     /<link rel="canonical" href=".*?"\/>/s,
-    `<link rel="canonical" href="${pageUrl}"/>`
+    `<link rel="canonical" href="${pageUrl}"/>`,
+    'canonical link'
   );
 
   // per-page Service JSON-LD, added alongside the existing LocalBusiness block
@@ -99,8 +129,17 @@ function escapeHtml(str) {
 }
 
 let count = 0;
+const seenIds = new Set();
 for (const group of serviceGroups) {
   for (const service of group.services) {
+    if (seenIds.has(service.id)) {
+      throw new Error(
+        `prerender.js: duplicate service id "${service.id}" found across serviceGroups in src/data.js. ` +
+          `Two services would overwrite the same dist/services/${service.id}/index.html.`
+      );
+    }
+    seenIds.add(service.id);
+
     const outDir = path.join(distDir, 'services', service.id);
     mkdirSync(outDir, { recursive: true });
     writeFileSync(path.join(outDir, 'index.html'), buildPageHtml(service, group), 'utf-8');
