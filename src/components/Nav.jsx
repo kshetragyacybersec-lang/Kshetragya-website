@@ -103,7 +103,7 @@ export default function Nav() {
         Skip to content
       </a>
       <nav aria-label="Primary" className={scrolled ? 'nav-scrolled' : ''}>
-        <a className="logo" href="#">
+        <Link className="logo" to="/" onClick={close}>
           <span className="logo-mark" aria-hidden="true">
             K
           </span>
@@ -111,7 +111,7 @@ export default function Nav() {
             <span className="logo-en">Kshetragya Cybersec</span>
             <span className="logo-sub">Ahmedabad, India</span>
           </span>
-        </a>
+        </Link>
         <ul className={`nav-links${open ? ' open' : ''}`} id="navLinks" ref={drawerRef}>
           <li className="nav-svc-item">
             <button
