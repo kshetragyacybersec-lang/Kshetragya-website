@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useMagnetic } from '../useMagnetic.js';
+import { useThrottledScroll } from '../useThrottledScroll.js';
 
 const STATS = [
   {
@@ -118,30 +119,22 @@ export default function Hero() {
   }, []);
 
   // Subtle parallax: overlay/content drift at a fraction of scroll speed
-  // while the hero is in view. Skipped for prefers-reduced-motion and
-  // disabled once the hero has scrolled out of view (perf).
+  // while the hero is in view. Skipped for prefers-reduced-motion; the
+  // state update (not the listener itself) is skipped once the hero has
+  // scrolled out of view, since that's cheap to check per-frame.
+  const reduceMotionRef = useRef(false);
   useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
-
-    let ticking = false;
-    function update() {
-      ticking = false;
-      const el = heroRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-      setParallaxY(window.scrollY * 0.25);
-    }
-    function onScroll() {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    reduceMotionRef.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }, []);
+
+  useThrottledScroll(() => {
+    if (reduceMotionRef.current) return;
+    const el = heroRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+    setParallaxY(window.scrollY * 0.25);
+  });
 
   const hl = (n) => `hero-load hero-load-${n}${loaded ? ' hero-load-in' : ''}`;
 
