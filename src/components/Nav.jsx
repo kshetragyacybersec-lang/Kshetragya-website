@@ -135,7 +135,7 @@ export default function Nav() {
           </li>
           <li>
             <Link to="/#contact" className="nav-cta" onClick={close}>
-              Begin Assessment
+              Request Free Assessment
             </Link>
           </li>
         </ul>
@@ -209,7 +209,7 @@ export default function Nav() {
             ))}
           </ul>
           <Link to="/#contact" className="mega-detail-cta" onClick={() => setMegaOpen(false)}>
-            Request this assessment
+            Request Free Assessment
           </Link>
         </div>
       </div>
