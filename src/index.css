@@ -816,6 +816,8 @@ nav {
 #services {
   padding: 6rem 5vw;
   background: var(--bg);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .svc-head {
   display: grid;
@@ -1126,6 +1128,7 @@ nav {
   padding: 6rem 5vw;
   background: var(--bg);
   border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   position: relative;
   overflow: hidden;
 }
@@ -1562,18 +1565,8 @@ footer > nav[aria-label='Footer'] {
 .svc-detail-empty {
   padding: 8rem 5vw 4rem;
 }
-.svc-detail-group {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 0.75rem;
-}
 .svc-detail-title {
-  font-family: var(--f-s);
-  font-size: 2.2rem;
   margin-bottom: 1.25rem;
-  color: var(--ink);
 }
 .svc-detail-full {
   font-size: 1rem;
@@ -1585,7 +1578,7 @@ footer > nav[aria-label='Footer'] {
   margin-bottom: 2.25rem;
   padding: 1.5rem 1.75rem;
   border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
-  border-radius: 10px;
+  border-radius: 4px 14px 4px 14px;
 }
 .svc-detail-deliv-h {
   font-family: var(--f-s);
@@ -1622,22 +1615,29 @@ footer > nav[aria-label='Footer'] {
 .svc-detail-cta {
   display: inline-block;
   font-family: var(--f-i);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--blue);
+  border-radius: var(--radius-btn);
+  padding: 0.88rem 2rem;
   text-decoration: none;
+  transition:
+    background 0.2s,
+    transform 0.15s;
 }
 .svc-detail-cta:hover {
-  text-decoration: underline;
+  background: var(--blue-dk);
+  transform: translateY(-1px);
+}
+.svc-detail-cta:active {
+  transform: scale(0.96);
 }
 
 @media (max-width: 640px) {
   .svc-detail,
   .svc-detail-empty {
     padding: 6rem 6vw 3rem;
-  }
-  .svc-detail-title {
-    font-size: 1.6rem;
   }
   .svc-detail-deliv {
     padding: 1.25rem 1.25rem;
