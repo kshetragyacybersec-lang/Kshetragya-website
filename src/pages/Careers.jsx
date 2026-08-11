@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { usePageFadeIn } from '../usePageFadeIn.js';
 
 export default function Careers() {
   // Per-route document title, since index.html only sets one static title/meta
@@ -11,20 +12,7 @@ export default function Careers() {
     };
   }, []);
 
-  // Brief fade-in on mount, same pattern used on ServiceDetail.jsx.
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      setVisible(true);
-      return;
-    }
-    setVisible(false);
-    const raf = requestAnimationFrame(() => setVisible(true));
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
-  const mountFadeClass = `page-fade${visible ? ' page-fade-in' : ''}`;
+  const mountFadeClass = usePageFadeIn();
 
   return (
     <div className={`svc-detail ${mountFadeClass}`}>
