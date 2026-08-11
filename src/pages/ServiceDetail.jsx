@@ -5,7 +5,7 @@ import { serviceGroups } from '../data.js';
 // Finds a service by its slug across all 4 groups.
 function findService(slug) {
   for (const group of serviceGroups) {
-    const service = group.services.find(s => s.id === slug);
+    const service = group.services.find((s) => s.id === slug);
     if (service) return { group, service };
   }
   return null;
@@ -22,7 +22,9 @@ export default function ServiceDetail() {
     document.title = match
       ? `${match.service.name} | Kshetragya Cybersec`
       : 'Service Not Found | Kshetragya Cybersec';
-    return () => { document.title = prevTitle; };
+    return () => {
+      document.title = prevTitle;
+    };
   }, [match]);
 
   // Brief fade-in on mount so navigating here from a service card doesn't
@@ -30,7 +32,10 @@ export default function ServiceDetail() {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) { setVisible(true); return; }
+    if (reduceMotion) {
+      setVisible(true);
+      return;
+    }
     setVisible(false);
     const raf = requestAnimationFrame(() => setVisible(true));
     return () => cancelAnimationFrame(raf);
@@ -58,13 +63,17 @@ export default function ServiceDetail() {
         <div className="svc-detail-deliv">
           <h2 className="svc-detail-deliv-h">What You Get</h2>
           <ul className="svc-detail-deliv-list">
-            {service.deliverables.map(item => (
-              <li key={item} className="svc-detail-deliv-item">{item}</li>
+            {service.deliverables.map((item) => (
+              <li key={item} className="svc-detail-deliv-item">
+                {item}
+              </li>
             ))}
           </ul>
         </div>
       )}
-      <Link to="/#contact" className="svc-detail-cta">Request this assessment</Link>
+      <Link to="/#contact" className="svc-detail-cta">
+        Request this assessment
+      </Link>
     </div>
   );
 }
