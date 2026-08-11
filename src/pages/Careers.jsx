@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 export default function Careers() {
   // Per-route document title, since index.html only sets one static title/meta
@@ -40,17 +39,10 @@ export default function Careers() {
         <h2 className="svc-detail-deliv-h">How It Works</h2>
         <ul className="svc-detail-deliv-list">
           <li className="svc-detail-deliv-item">
-            Send us your background using the form below, select "Careers / Future Opportunities"
+            No open positions right now, we'll post here as soon as that changes
           </li>
-          <li className="svc-detail-deliv-item">
-            We'll keep it on file and reach out when a relevant position opens
-          </li>
-          <li className="svc-detail-deliv-item">No open roles today, that's the honest state</li>
         </ul>
       </div>
-      <Link to="/#contact" className="svc-detail-cta">
-        Get in Touch
-      </Link>
     </div>
   );
 }
