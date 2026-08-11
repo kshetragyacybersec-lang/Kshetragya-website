@@ -56,8 +56,8 @@ export default function ServiceDetail() {
 
   return (
     <div className={`svc-detail ${mountFadeClass}`}>
-      <p className="svc-detail-group">{group.name}</p>
-      <h1 className="svc-detail-title">{service.name}</h1>
+      <div className="eyebrow">{group.name}</div>
+      <h1 className="sec-h dark svc-detail-title">{service.name}</h1>
       <p className="svc-detail-full">{service.full}</p>
       {service.deliverables && service.deliverables.length > 0 && (
         <div className="svc-detail-deliv">
