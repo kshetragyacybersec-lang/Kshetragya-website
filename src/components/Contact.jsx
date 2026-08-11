@@ -102,7 +102,7 @@ export default function Contact() {
 
             <div className="cform-top">
               <span className="cform-td">Assessment Request</span>
-              <span className="cform-te">KCS Inquiry Form</span>
+              <span className="cform-te">Kshetragya Cybersec Inquiry Form</span>
             </div>
             <div className="frow two">
               <div className="fg">
