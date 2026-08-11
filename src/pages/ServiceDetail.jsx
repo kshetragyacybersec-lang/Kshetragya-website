@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { serviceGroups } from '../data.js';
+import NotFound from './NotFound.jsx';
+import { usePageFadeIn } from '../usePageFadeIn.js';
 
 // Finds a service by its slug across all 4 groups.
 function findService(slug) {
@@ -18,38 +20,18 @@ export default function ServiceDetail() {
   // Per-route document title, since index.html only sets one static title/meta
   // shared across all routes otherwise.
   useEffect(() => {
+    if (!match) return;
     const prevTitle = document.title;
-    document.title = match
-      ? `${match.service.name} in Gujarat & India | Kshetragya Cybersec`
-      : 'Service Not Found | Kshetragya Cybersec';
+    document.title = `${match.service.name} in Gujarat & India | Kshetragya Cybersec`;
     return () => {
       document.title = prevTitle;
     };
   }, [match]);
 
-  // Brief fade-in on mount so navigating here from a service card doesn't
-  // feel like an abrupt jump. Skipped for prefers-reduced-motion.
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      setVisible(true);
-      return;
-    }
-    setVisible(false);
-    const raf = requestAnimationFrame(() => setVisible(true));
-    return () => cancelAnimationFrame(raf);
-  }, [slug]);
-
-  const mountFadeClass = `page-fade${visible ? ' page-fade-in' : ''}`;
+  const mountFadeClass = usePageFadeIn([slug]);
 
   if (!match) {
-    return (
-      <div className={`svc-detail svc-detail-empty ${mountFadeClass}`}>
-        <p>Sorry, we couldn't find that service.</p>
-        <Link to="/">Back to home</Link>
-      </div>
-    );
+    return <NotFound />;
   }
 
   const { group, service } = match;
