@@ -130,6 +130,7 @@ export const serviceGroups = [
           'Manual exploitation of key flows',
           'Findings with proof of concept',
           'Fix guidance for each issue',
+          'Free retest after fixes',
         ],
       },
     ],
@@ -184,13 +185,13 @@ export const processSteps = [
   {
     d: 3,
     title: 'Assessment & Testing',
-    desc: 'Manual and tool assisted testing. Every finding is documented with evidence as it is discovered, not reconstructed afterward.',
+    desc: 'Manual and tool-assisted testing. Every finding is documented with evidence as it is discovered, not reconstructed afterward.',
     time: 'Day 2 to 5',
   },
   {
     d: 4,
     title: 'Report Delivery',
-    desc: 'An executive summary for leadership, plus a full technical report with risk ratings, evidence and step by step remediation guidance.',
+    desc: 'An executive summary for leadership, plus a full technical report with risk ratings, evidence and step-by-step remediation guidance.',
     time: 'Day 5 to 7',
   },
   {
