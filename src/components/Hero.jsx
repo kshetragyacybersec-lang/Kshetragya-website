@@ -178,7 +178,7 @@ export default function Hero() {
         <p className={`hero-p ${hl(4)}`}>
           From network infrastructure to CCTV surveillance to cybersecurity, we know your network,
           your terrain, your field, before problems find it. Based in Gujarat, delivering across
-          India.
+          India, with remote delivery for clients in the USA, UK and UAE.
         </p>
         <div className={`hero-actions ${hl(5)}`}>
           <a className="btn-v btn-magnetic" href="#contact" ref={magneticRef}>
