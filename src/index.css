@@ -1396,7 +1396,26 @@ footer > nav[aria-label='Footer'] {
   .ft-links {
     justify-content: center;
   }
+  .hero {
+    flex-direction: column;
+  }
+  .hero-content {
+    order: 1;
+  }
   .hero-stats {
+    order: 2;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1.5rem 2.5rem;
+    padding: 0 5vw 3rem;
+    transform: none !important;
+  }
+  .hstat {
+    text-align: left;
+  }
+  .hstat-tip {
     display: none;
   }
 }
@@ -1638,6 +1657,9 @@ footer > nav[aria-label='Footer'] {
   .svc-detail,
   .svc-detail-empty {
     padding: 6rem 6vw 3rem;
+  }
+  .svc-detail-title {
+    font-size: 1.6rem;
   }
   .svc-detail-deliv {
     padding: 1.25rem 1.25rem;
