@@ -4,6 +4,7 @@ import Footer from './components/Footer.jsx';
 import Home from './pages/Home.jsx';
 import ServiceDetail from './pages/ServiceDetail.jsx';
 import Careers from './pages/Careers.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
