@@ -18,15 +18,15 @@ export function useScrollReveal(itemSelector) {
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
-      items.forEach(el => el.classList.add('reveal-in'));
+      items.forEach((el) => el.classList.add('reveal-in'));
       return;
     }
 
-    items.forEach(el => el.classList.add('reveal'));
+    items.forEach((el) => el.classList.add('reveal'));
 
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('reveal-in');
             observer.unobserve(entry.target);
@@ -36,7 +36,7 @@ export function useScrollReveal(itemSelector) {
       { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
     );
 
-    items.forEach(el => observer.observe(el));
+    items.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, [itemSelector]);
