@@ -54,6 +54,16 @@ export default function ServiceDetail() {
       <p className="svc-detail-group">{group.name}</p>
       <h1 className="svc-detail-title">{service.name}</h1>
       <p className="svc-detail-full">{service.full}</p>
+      {service.deliverables && service.deliverables.length > 0 && (
+        <div className="svc-detail-deliv">
+          <h2 className="svc-detail-deliv-h">What You Get</h2>
+          <ul className="svc-detail-deliv-list">
+            {service.deliverables.map(item => (
+              <li key={item} className="svc-detail-deliv-item">{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       <Link to="/#contact" className="svc-detail-cta">Request this assessment</Link>
     </div>
   );
