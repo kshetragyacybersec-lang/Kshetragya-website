@@ -20,7 +20,7 @@ export default function ServiceDetail() {
   useEffect(() => {
     const prevTitle = document.title;
     document.title = match
-      ? `${match.service.name} | Kshetragya Cybersec`
+      ? `${match.service.name} in Gujarat & India | Kshetragya Cybersec`
       : 'Service Not Found | Kshetragya Cybersec';
     return () => {
       document.title = prevTitle;
