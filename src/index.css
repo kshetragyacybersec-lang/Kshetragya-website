@@ -540,6 +540,44 @@ html { scroll-behavior: smooth; }
       color: var(--ink-mut);
       margin-bottom: 2rem;
     }
+    .svc-detail-deliv {
+      margin-bottom: 2.25rem;
+      padding: 1.5rem 1.75rem;
+      border: 1px solid var(--line, rgba(0,0,0,0.1));
+      border-radius: 10px;
+    }
+    .svc-detail-deliv-h {
+      font-family: var(--f-s);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.9rem;
+    }
+    .svc-detail-deliv-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.6rem;
+    }
+    .svc-detail-deliv-item {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--ink-mut);
+      padding-left: 1.4rem;
+      position: relative;
+    }
+    .svc-detail-deliv-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
     .svc-detail-cta {
       display: inline-block;
       font-family: var(--f-i);
@@ -553,4 +591,5 @@ html { scroll-behavior: smooth; }
     @media (max-width: 640px) {
       .svc-detail, .svc-detail-empty { padding: 6rem 6vw 3rem; }
       .svc-detail-title { font-size: 1.6rem; }
+      .svc-detail-deliv { padding: 1.25rem 1.25rem; }
     }
