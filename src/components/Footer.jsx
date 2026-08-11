@@ -22,6 +22,9 @@ export default function Footer() {
             <Link to="/#process">Process</Link>
           </li>
           <li>
+            <Link to="/careers">Careers</Link>
+          </li>
+          <li>
             <Link to="/#contact">Contact</Link>
           </li>
         </ul>
