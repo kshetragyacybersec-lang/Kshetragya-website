@@ -1,9 +1,53 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { serviceOptions } from '../data.js';
+
+// Cloudflare Turnstile site key (public — safe to expose in the frontend).
+// The matching secret key lives server-side only, in api/contact.js, as the
+// TURNSTILE_SECRET_KEY environment variable. Until VITE_TURNSTILE_SITE_KEY
+// is set, the widget is skipped and the form behaves as it did before
+// (protected only by the honeypot), so this never blocks real visitors from
+// submitting while it's unconfigured.
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+
+function useTurnstile(containerRef, onVerify) {
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) return;
+
+    let widgetId;
+    function render() {
+      if (!containerRef.current || !window.turnstile) return;
+      widgetId = window.turnstile.render(containerRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: onVerify,
+        'expired-callback': () => onVerify(''),
+      });
+    }
+
+    if (window.turnstile) {
+      render();
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+      script.async = true;
+      script.defer = true;
+      script.onload = render;
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      if (widgetId && window.turnstile) window.turnstile.remove(widgetId);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
 
 export default function Contact() {
   const [status, setStatus] = useState({ show: false, ok: false, msg: '' });
   const [sending, setSending] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const turnstileRef = useRef(null);
+
+  useTurnstile(turnstileRef, setTurnstileToken);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -11,11 +55,16 @@ export default function Contact() {
     setStatus({ show: false, ok: false, msg: '' });
 
     const form = e.target;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    if (TURNSTILE_SITE_KEY) {
+      payload['cf-turnstile-response'] = turnstileToken;
+    }
+
     try {
-      const res = await fetch(form.action, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
       });
       if (res.ok) {
         setStatus({
@@ -24,8 +73,13 @@ export default function Contact() {
           msg: "Request sent, we'll be in touch within 24 hours.",
         });
         form.reset();
+        if (TURNSTILE_SITE_KEY && window.turnstile && turnstileRef.current) {
+          window.turnstile.reset();
+          setTurnstileToken('');
+        }
       } else {
-        throw new Error(`Form submission failed with status ${res.status}`);
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `Form submission failed with status ${res.status}`);
       }
     } catch (err) {
       console.error('Contact form submission failed:', err);
@@ -38,6 +92,8 @@ export default function Contact() {
       setSending(false);
     }
   }
+
+  const turnstilePending = Boolean(TURNSTILE_SITE_KEY) && !turnstileToken;
 
   return (
     <section id="contact" aria-labelledby="contact-heading">
@@ -80,8 +136,6 @@ export default function Contact() {
         </div>
         <div className="cform">
           <form
-            action="https://formsubmit.co/info@kshetragyacybersec.com"
-            method="POST"
             onSubmit={handleSubmit}
             aria-describedby={status.show ? 'cform-status-msg' : undefined}
           >
@@ -91,13 +145,20 @@ export default function Contact() {
               value="New Assessment Request - Kshetragya website"
             />
             <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
             <input
               type="text"
               name="_honey"
-              style={{ display: 'none' }}
+              aria-hidden="true"
               tabIndex="-1"
               autoComplete="off"
+              style={{
+                position: 'absolute',
+                left: '-9999px',
+                width: '1px',
+                height: '1px',
+                opacity: 0,
+                pointerEvents: 'none',
+              }}
             />
 
             <div className="cform-top">
@@ -160,9 +221,19 @@ export default function Contact() {
                 ></textarea>
               </div>
             </div>
+            {TURNSTILE_SITE_KEY && (
+              <div className="frow one">
+                <div ref={turnstileRef} />
+              </div>
+            )}
             <div className="cform-foot">
               <span className="cform-note">NDA available on request, no obligation</span>
-              <button className="cform-btn" type="submit" disabled={sending} aria-busy={sending}>
+              <button
+                className="cform-btn"
+                type="submit"
+                disabled={sending || turnstilePending}
+                aria-busy={sending}
+              >
                 {sending ? 'Sending...' : 'Send Request'}
               </button>
             </div>
