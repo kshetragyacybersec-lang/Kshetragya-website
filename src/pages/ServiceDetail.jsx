@@ -72,7 +72,7 @@ export default function ServiceDetail() {
         </div>
       )}
       <Link to="/#contact" className="svc-detail-cta">
-        Request this assessment
+        Request Free Assessment
       </Link>
     </div>
   );
