@@ -206,7 +206,7 @@ export const processSteps = [
 // so it always reflects the real services without needing to be updated separately.
 export const serviceOptions = serviceGroups
   .flatMap((g) => g.services.map((s) => s.name))
-  .concat('Multiple / Not Sure');
+  .concat('Careers / Future Opportunities', 'Multiple / Not Sure');
 
 export const areasServed = [
   'Ahmedabad',
