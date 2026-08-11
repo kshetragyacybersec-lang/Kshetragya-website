@@ -140,9 +140,9 @@ export default function Contact() {
             </div>
             <div className="frow one">
               <div className="fg">
-                <label htmlFor="f-service">Service Required</label>
-                <select id="f-service" name="Service Required" defaultValue="">
-                  <option value="">Select a service...</option>
+                <label htmlFor="f-service">Service or Inquiry Type</label>
+                <select id="f-service" name="Service or Inquiry Type" defaultValue="">
+                  <option value="">Select an option...</option>
                   {serviceOptions.map((o) => (
                     <option key={o}>{o}</option>
                   ))}
