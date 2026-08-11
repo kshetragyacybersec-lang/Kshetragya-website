@@ -13,14 +13,18 @@ export default function Nav() {
   const svcTriggerRef = useRef(null);
 
   useEffect(() => {
-    function onScroll() { setScrolled(window.scrollY > 24); }
+    function onScroll() {
+      setScrolled(window.scrollY > 24);
+    }
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
-    function onResize() { if (window.innerWidth > 768) setOpen(false); }
+    function onResize() {
+      if (window.innerWidth > 768) setOpen(false);
+    }
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -29,7 +33,11 @@ export default function Nav() {
   useEffect(() => {
     if (!megaOpen) return;
     function onClick(e) {
-      if (megaRef.current && !megaRef.current.contains(e.target) && !svcTriggerRef.current?.contains(e.target)) {
+      if (
+        megaRef.current &&
+        !megaRef.current.contains(e.target) &&
+        !svcTriggerRef.current?.contains(e.target)
+      ) {
         setMegaOpen(false);
       }
     }
@@ -42,7 +50,7 @@ export default function Nav() {
       // Arrow-key navigation between service groups when the mega menu is open.
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        setActiveGroupIdx(i => {
+        setActiveGroupIdx((i) => {
           const dir = e.key === 'ArrowDown' ? 1 : -1;
           return (i + dir + serviceGroups.length) % serviceGroups.length;
         });
@@ -67,9 +75,7 @@ export default function Nav() {
       }
       // Simple focus trap: keep Tab / Shift+Tab cycling within the drawer.
       if (e.key === 'Tab' && drawerRef.current) {
-        const focusable = drawerRef.current.querySelectorAll(
-          'a[href], button:not([disabled])'
-        );
+        const focusable = drawerRef.current.querySelectorAll('a[href], button:not([disabled])');
         if (focusable.length === 0) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
@@ -93,20 +99,20 @@ export default function Nav() {
 
   return (
     <>
-      <a className="skip-link" href="#main-content">Skip to content</a>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <nav aria-label="Primary" className={scrolled ? 'nav-scrolled' : ''}>
         <a className="logo" href="#">
-          <span className="logo-mark" aria-hidden="true">K</span>
+          <span className="logo-mark" aria-hidden="true">
+            K
+          </span>
           <span className="logo-text">
             <span className="logo-en">Kshetragya Cybersec</span>
             <span className="logo-sub">Ahmedabad, India</span>
           </span>
         </a>
-        <ul
-          className={`nav-links${open ? ' open' : ''}`}
-          id="navLinks"
-          ref={drawerRef}
-        >
+        <ul className={`nav-links${open ? ' open' : ''}`} id="navLinks" ref={drawerRef}>
           <li className="nav-svc-item">
             <button
               ref={svcTriggerRef}
@@ -114,13 +120,24 @@ export default function Nav() {
               className={`nav-svc-trigger${megaOpen ? ' open' : ''}`}
               aria-expanded={megaOpen}
               aria-haspopup="true"
-              onClick={() => { setMegaOpen(o => !o); if (open) close(); }}
+              onClick={() => {
+                setMegaOpen((o) => !o);
+                if (open) close();
+              }}
             >
               Services
             </button>
           </li>
-          <li><Link to="/#process" onClick={close}>Process</Link></li>
-          <li><Link to="/#contact" className="nav-cta" onClick={close}>Begin Assessment</Link></li>
+          <li>
+            <Link to="/#process" onClick={close}>
+              Process
+            </Link>
+          </li>
+          <li>
+            <Link to="/#contact" className="nav-cta" onClick={close}>
+              Begin Assessment
+            </Link>
+          </li>
         </ul>
         <button
           ref={burgerRef}
@@ -128,15 +145,26 @@ export default function Nav() {
           aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={open}
           aria-controls="navLinks"
-          onClick={() => setOpen(o => !o)}
+          onClick={() => setOpen((o) => !o)}
         >
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </nav>
 
       {/* SERVICES MEGA MENU */}
-      <div className={`mega-scrim${megaOpen ? ' open' : ''}`} onClick={() => setMegaOpen(false)} aria-hidden="true"></div>
-      <div className={`mega-menu${megaOpen ? ' open' : ''}`} ref={megaRef} role="dialog" aria-label="Services menu">
+      <div
+        className={`mega-scrim${megaOpen ? ' open' : ''}`}
+        onClick={() => setMegaOpen(false)}
+        aria-hidden="true"
+      ></div>
+      <div
+        className={`mega-menu${megaOpen ? ' open' : ''}`}
+        ref={megaRef}
+        role="dialog"
+        aria-label="Services menu"
+      >
         <div className="mega-list">
           {serviceGroups.map((g, i) => (
             <button
@@ -150,15 +178,25 @@ export default function Nav() {
               onClick={() => setActiveGroupIdx(i)}
             >
               <span>{g.name}</span>
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2.5L9.5 7L5 11.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M5 2.5L9.5 7L5 11.5"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
           ))}
         </div>
         <div className="mega-detail" key={activeGroupIdx}>
-          <span className="mega-detail-cat">{serviceGroups[activeGroupIdx].services.length} services</span>
+          <span className="mega-detail-cat">
+            {serviceGroups[activeGroupIdx].services.length} services
+          </span>
           <h3 className="mega-detail-title">{serviceGroups[activeGroupIdx].name}</h3>
           <ul className="mega-svc-list">
-            {serviceGroups[activeGroupIdx].services.map(s => (
+            {serviceGroups[activeGroupIdx].services.map((s) => (
               <li key={s.id} className="mega-svc-item mega-svc-item-link">
                 <Link
                   to={`/services/${s.id}`}
@@ -170,14 +208,12 @@ export default function Nav() {
               </li>
             ))}
           </ul>
-          <Link to="/#contact" className="mega-detail-cta" onClick={() => setMegaOpen(false)}>Request this assessment</Link>
+          <Link to="/#contact" className="mega-detail-cta" onClick={() => setMegaOpen(false)}>
+            Request this assessment
+          </Link>
         </div>
       </div>
-      <div
-        className={`nav-scrim${open ? ' open' : ''}`}
-        onClick={close}
-        aria-hidden="true"
-      ></div>
+      <div className={`nav-scrim${open ? ' open' : ''}`} onClick={close} aria-hidden="true"></div>
     </>
   );
 }

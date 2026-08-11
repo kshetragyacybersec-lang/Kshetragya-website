@@ -8,12 +8,22 @@ export default function Footer() {
         <span className="ft-name">Kshetragya Cybersec, Ahmedabad, India</span>
         <span className="ft-tag">"Knowers of the Field"</span>
       </div>
-      <p className="ft-copy">© {year} Kshetragya Cybersec<br/>All rights reserved.</p>
+      <p className="ft-copy">
+        © {year} Kshetragya Cybersec
+        <br />
+        All rights reserved.
+      </p>
       <nav aria-label="Footer">
         <ul className="ft-links">
-          <li><Link to="/#services">Services</Link></li>
-          <li><Link to="/#process">Process</Link></li>
-          <li><Link to="/#contact">Contact</Link></li>
+          <li>
+            <Link to="/#services">Services</Link>
+          </li>
+          <li>
+            <Link to="/#process">Process</Link>
+          </li>
+          <li>
+            <Link to="/#contact">Contact</Link>
+          </li>
         </ul>
       </nav>
     </footer>

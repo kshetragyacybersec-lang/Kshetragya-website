@@ -2,9 +2,27 @@ import { useEffect, useState, useRef } from 'react';
 import { useMagnetic } from '../useMagnetic.js';
 
 const STATS = [
-  { key: 'svc',    label: 'Service Lines',      target: 11,   suffix: '',  tooltip: 'Network, SOC, VAPT, GRC, Cloud and more, covering the full spectrum.' },
-  { key: 'turn',   label: 'Report Turnaround',   target: 72,  suffix: 'h', tooltip: 'From the kickoff call to your first delivered report draft.' },
-  { key: 'global', label: 'Service Area',       target: null, display: 'Pan-India', tooltip: 'Based in Gujarat, available on-site across India, remote delivery too.' },
+  {
+    key: 'svc',
+    label: 'Service Lines',
+    target: 11,
+    suffix: '',
+    tooltip: 'Network, SOC, VAPT, GRC, Cloud and more, covering the full spectrum.',
+  },
+  {
+    key: 'turn',
+    label: 'Report Turnaround',
+    target: 72,
+    suffix: 'h',
+    tooltip: 'From the kickoff call to your first delivered report draft.',
+  },
+  {
+    key: 'global',
+    label: 'Service Area',
+    target: null,
+    display: 'Pan-India',
+    tooltip: 'Based in Gujarat, available on-site across India, remote delivery too.',
+  },
 ];
 
 function useCountUp(target, start, duration = 1100) {
@@ -15,7 +33,11 @@ function useCountUp(target, start, duration = 1100) {
     if (target === null || !start) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) { setValue(target); setDone(true); return; }
+    if (reduceMotion) {
+      setValue(target);
+      setDone(true);
+      return;
+    }
 
     let raf = null;
     let startTs = null;
@@ -31,7 +53,9 @@ function useCountUp(target, start, duration = 1100) {
       }
     }
     raf = requestAnimationFrame(step);
-    return () => { if (raf) cancelAnimationFrame(raf); };
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [target, start, duration]);
 
   return [value, done];
@@ -46,8 +70,13 @@ function StatNode({ stat, start }) {
   return (
     <div className="hstat" tabIndex={0}>
       <dt className="hstat-lbl">{stat.label}</dt>
-      <dd className={`hstat-num${pulse ? ' hstat-pulse' : ''}`}>{displayValue}{stat.suffix}</dd>
-      <span className="hstat-tip" role="tooltip">{stat.tooltip}</span>
+      <dd className={`hstat-num${pulse ? ' hstat-pulse' : ''}`}>
+        {displayValue}
+        {stat.suffix}
+      </dd>
+      <span className="hstat-tip" role="tooltip">
+        {stat.tooltip}
+      </span>
     </div>
   );
 }
@@ -62,7 +91,10 @@ export default function Hero() {
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) { setLoaded(true); return; }
+    if (reduceMotion) {
+      setLoaded(true);
+      return;
+    }
     const raf = requestAnimationFrame(() => setLoaded(true));
     return () => cancelAnimationFrame(raf);
   }, []);
@@ -73,7 +105,7 @@ export default function Hero() {
     const el = statsRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      entries => {
+      (entries) => {
         if (entries[0].isIntersecting) {
           setStatsVisible(true);
           observer.disconnect();
@@ -111,7 +143,7 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const hl = n => `hero-load hero-load-${n}${loaded ? ' hero-load-in' : ''}`;
+  const hl = (n) => `hero-load hero-load-${n}${loaded ? ' hero-load-in' : ''}`;
 
   return (
     <section className="hero" id="main-content" tabIndex={-1} ref={heroRef}>
@@ -122,20 +154,39 @@ export default function Hero() {
       ></div>
 
       <dl className={`hero-stats ${hl(6)}`} ref={statsRef}>
-        {STATS.map(s => <StatNode stat={s} start={statsVisible} key={s.key} />)}
+        {STATS.map((s) => (
+          <StatNode stat={s} start={statsVisible} key={s.key} />
+        ))}
       </dl>
 
-      <div className="hero-content" style={{ transform: `translate3d(0, ${parallaxY * -0.15}px, 0)` }}>
+      <div
+        className="hero-content"
+        style={{ transform: `translate3d(0, ${parallaxY * -0.15}px, 0)` }}
+      >
         <div className={`hero-ch ${hl(1)}`}>
           <span className="hero-ch-mark">Bhagavad Gita, Chapter XIII, Verse 2</span>
           <span className="hero-ch-rule" aria-hidden="true"></span>
         </div>
-        <p className={`hero-sk ${hl(2)}`} lang="sa">यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति</p>
-        <h1 className={`hero-h1 ${hl(3)}`}>He who knows the field,<br/>that one is called <em>Kshetragya.</em></h1>
-        <p className={`hero-p ${hl(4)}`}>From network infrastructure to CCTV surveillance to cybersecurity, we know your network, your terrain, your field, before problems find it. Based in Gujarat, delivering across India.</p>
+        <p className={`hero-sk ${hl(2)}`} lang="sa">
+          यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति
+        </p>
+        <h1 className={`hero-h1 ${hl(3)}`}>
+          He who knows the field,
+          <br />
+          that one is called <em>Kshetragya.</em>
+        </h1>
+        <p className={`hero-p ${hl(4)}`}>
+          From network infrastructure to CCTV surveillance to cybersecurity, we know your network,
+          your terrain, your field, before problems find it. Based in Gujarat, delivering across
+          India.
+        </p>
         <div className={`hero-actions ${hl(5)}`}>
-          <a className="btn-v btn-magnetic" href="#contact" ref={magneticRef}>Request Free Assessment</a>
-          <a className="btn-g" href="#services">View All Services</a>
+          <a className="btn-v btn-magnetic" href="#contact" ref={magneticRef}>
+            Request Free Assessment
+          </a>
+          <a className="btn-g" href="#services">
+            View All Services
+          </a>
         </div>
         <div className="hero-scroll">
           <span className="scroll-lbl">Enter the field</span>
