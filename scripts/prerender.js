@@ -20,7 +20,7 @@ const { serviceGroups } = await import(path.join(root, 'src/data.js'));
 const template = readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
 function buildPageHtml(service, group) {
-  const title = `${service.name} | Kshetragya Cybersec`;
+  const title = `${service.name} in Gujarat & India | Kshetragya Cybersec`;
   const description = service.short;
   const pageUrl = `${siteUrl}/services/${service.id}`;
 
@@ -59,9 +59,12 @@ function buildPageHtml(service, group) {
     `<meta name="twitter:description" content="${escapeHtml(description)}"/>`
   );
 
-  // canonical (add — the template doesn't have one currently)
-  const canonicalTag = `<link rel="canonical" href="${pageUrl}"/>`;
-  html = html.replace('</head>', `  ${canonicalTag}\n</head>`);
+  // canonical — the template already carries a self-canonical for "/",
+  // so replace it with the per-page URL rather than appending a second tag.
+  html = html.replace(
+    /<link rel="canonical" href=".*?"\/>/s,
+    `<link rel="canonical" href="${pageUrl}"/>`
+  );
 
   // per-page Service JSON-LD, added alongside the existing LocalBusiness block
   const serviceJsonLd = {
