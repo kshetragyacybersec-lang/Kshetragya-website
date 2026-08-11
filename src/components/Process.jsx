@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { processSteps } from '../data.js';
 import { useScrollReveal } from '../useScrollReveal.js';
+import { useThrottledScroll } from '../useThrottledScroll.js';
 
 export default function Process() {
   const listRef = useScrollReveal('.proc-row');
@@ -8,37 +9,26 @@ export default function Process() {
   // Connector line down the number column fills in as the timeline
   // scrolls through view. Skipped for prefers-reduced-motion.
   useEffect(() => {
-    const el = listRef.current;
-    if (!el) return;
-
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      el.style.setProperty('--proc-progress', 1);
-      return;
+    if (reduceMotion && listRef.current) {
+      listRef.current.style.setProperty('--proc-progress', 1);
     }
+  }, [listRef]);
 
-    let ticking = false;
-    function update() {
-      ticking = false;
+  useThrottledScroll(
+    () => {
+      const el = listRef.current;
+      if (!el) return;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight;
       const progress = Math.min(Math.max((vh * 0.85 - rect.top) / rect.height, 0), 1);
       el.style.setProperty('--proc-progress', progress);
-    }
-    function onScroll() {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    }
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, [listRef]);
+    },
+    { onResize: true }
+  );
 
   return (
     <section id="process" aria-labelledby="process-heading">
