@@ -40,23 +40,43 @@ export default function Contact() {
   }
 
   return (
-    <section className="contact" id="contact">
-      <div className="contact-wrap">
-        <div className="contact-left">
+    <section id="contact" aria-labelledby="contact-heading">
+      <div className="contact-grid">
+        <div>
           <div className="eyebrow">Get Started</div>
-          <h2 className="sec-h dark">Request a Confidential Assessment</h2>
-          <p className="contact-sub">
-            Tell us about your environment. We'll respond within 24 hours with next steps — no
+          <h2 className="sec-h dark" id="contact-heading">
+            Request a Confidential
+            <br />
+            <em>Assessment.</em>
+          </h2>
+          <p className="contact-intro">
+            Tell us about your environment. We'll respond within 24 hours with next steps, no
             spam, no sales pressure.
           </p>
+          <div className="contact-details">
+            <div className="cd-item">
+              <div className="cd-lbl">Email</div>
+              <div className="cd-val">info@kshetragyacybersec.com</div>
+            </div>
+            <div className="cd-item">
+              <div className="cd-lbl">Location</div>
+              <div className="cd-val">Ahmedabad, Gujarat, India</div>
+            </div>
+          </div>
         </div>
-        <div className="contact-right">
+
+        <div className="cform">
           <form
             action="https://formsubmit.co/info@kshetragyacybersec.com"
             method="POST"
             onSubmit={handleSubmit}
             aria-describedby={status.show ? 'cform-status-msg' : undefined}
           >
+            <div className="cform-top">
+              <span className="cform-td">Request Assessment</span>
+              <span className="cform-te">No Obligation</span>
+            </div>
+
             <input
               type="hidden"
               name="_subject"
@@ -84,29 +104,29 @@ export default function Contact() {
             )}
 
             <div className="frow two">
-              <div className="field">
+              <div className="fg">
                 <label htmlFor="cf-name">Full Name *</label>
                 <input id="cf-name" type="text" name="name" required autoComplete="name" />
               </div>
-              <div className="field">
+              <div className="fg">
                 <label htmlFor="cf-company">Company</label>
                 <input id="cf-company" type="text" name="company" autoComplete="organization" />
               </div>
             </div>
 
             <div className="frow two">
-              <div className="field">
+              <div className="fg">
                 <label htmlFor="cf-email">Email *</label>
                 <input id="cf-email" type="email" name="email" required autoComplete="email" />
               </div>
-              <div className="field">
+              <div className="fg">
                 <label htmlFor="cf-phone">Phone</label>
                 <input id="cf-phone" type="tel" name="phone" autoComplete="tel" />
               </div>
             </div>
 
             <div className="frow one">
-              <div className="field">
+              <div className="fg">
                 <label htmlFor="cf-service">Service Interested In</label>
                 <select id="cf-service" name="service" defaultValue="">
                   <option value="" disabled>
@@ -122,7 +142,7 @@ export default function Contact() {
             </div>
 
             <div className="frow one">
-              <div className="field">
+              <div className="fg">
                 <label htmlFor="cf-message">Message</label>
                 <textarea id="cf-message" name="message" rows="4" />
               </div>
