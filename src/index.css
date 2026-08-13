@@ -19,6 +19,7 @@ html {
   --ink: #171412;
   --ink-mut: #6b6055;
   --ink-soft: #756c60;
+  --ink-faint: #a89f92;
 
   --navy: #171412;
   --navy2: #241e1a;
@@ -385,7 +386,6 @@ nav {
   flex-direction: column;
   gap: 1.1rem;
   list-style: none;
-  overflow-y: auto;
 }
 .mega-svc-item {
   padding-bottom: 1.1rem;
@@ -1255,7 +1255,7 @@ nav {
 }
 .fg input::placeholder,
 .fg textarea::placeholder {
-  color: var(--ink-soft);
+  color: var(--ink-faint);
 }
 .fg select {
   cursor: pointer;
