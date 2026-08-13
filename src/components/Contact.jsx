@@ -23,6 +23,9 @@ export default function Contact() {
           ok: true,
           msg: "Request sent, we'll be in touch within 24 hours.",
         });
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'assessment_request_submitted');
+        }
         form.reset();
       } else {
         throw new Error(`Form submission failed with status ${res.status}`);
