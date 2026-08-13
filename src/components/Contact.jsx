@@ -43,24 +43,32 @@ export default function Contact() {
     <section id="contact" aria-labelledby="contact-heading">
       <div className="contact-grid">
         <div>
-          <div className="eyebrow">Get Started</div>
+          <div className="eyebrow">Begin Here</div>
           <h2 className="sec-h dark" id="contact-heading">
-            Request a Confidential
+            Start with a
             <br />
-            <em>Assessment.</em>
+            <em>free assessment.</em>
           </h2>
           <p className="contact-intro">
-            Tell us about your environment. We'll respond within 24 hours with next steps, no
-            spam, no sales pressure.
+            Tell us what you are working with. We respond within 24 hours with a scoping proposal
+            and a clear quote - no obligation.
           </p>
           <div className="contact-details">
+            <div className="cd-item">
+              <div className="cd-lbl">Location</div>
+              <div className="cd-val">Ahmedabad, Gujarat, India</div>
+            </div>
             <div className="cd-item">
               <div className="cd-lbl">Email</div>
               <div className="cd-val">info@kshetragyacybersec.com</div>
             </div>
             <div className="cd-item">
-              <div className="cd-lbl">Location</div>
-              <div className="cd-val">Ahmedabad, Gujarat, India</div>
+              <div className="cd-lbl">Service Region</div>
+              <div className="cd-val">India · USA · UK · UAE · Global Remote</div>
+            </div>
+            <div className="cd-item">
+              <div className="cd-lbl">Response Time</div>
+              <div className="cd-val">Within 24 hours on business days</div>
             </div>
           </div>
         </div>
@@ -73,8 +81,8 @@ export default function Contact() {
             aria-describedby={status.show ? 'cform-status-msg' : undefined}
           >
             <div className="cform-top">
-              <span className="cform-td">Request Assessment</span>
-              <span className="cform-te">No Obligation</span>
+              <span className="cform-td">Assessment Request</span>
+              <span className="cform-te">KCS · Inquiry Form</span>
             </div>
 
             <input
@@ -106,31 +114,57 @@ export default function Contact() {
             <div className="frow two">
               <div className="fg">
                 <label htmlFor="cf-name">Full Name *</label>
-                <input id="cf-name" type="text" name="name" required autoComplete="name" />
+                <input
+                  id="cf-name"
+                  type="text"
+                  name="name"
+                  placeholder="John Smith"
+                  required
+                  autoComplete="name"
+                />
               </div>
               <div className="fg">
                 <label htmlFor="cf-company">Company</label>
-                <input id="cf-company" type="text" name="company" autoComplete="organization" />
+                <input
+                  id="cf-company"
+                  type="text"
+                  name="company"
+                  placeholder="Acme Corp"
+                  autoComplete="organization"
+                />
               </div>
             </div>
 
             <div className="frow two">
               <div className="fg">
-                <label htmlFor="cf-email">Email *</label>
-                <input id="cf-email" type="email" name="email" required autoComplete="email" />
+                <label htmlFor="cf-email">Email Address *</label>
+                <input
+                  id="cf-email"
+                  type="email"
+                  name="email"
+                  placeholder="john@acmecorp.com"
+                  required
+                  autoComplete="email"
+                />
               </div>
               <div className="fg">
-                <label htmlFor="cf-phone">Phone</label>
-                <input id="cf-phone" type="tel" name="phone" autoComplete="tel" />
+                <label htmlFor="cf-country">Country</label>
+                <input
+                  id="cf-country"
+                  type="text"
+                  name="country"
+                  placeholder="United States"
+                  autoComplete="country-name"
+                />
               </div>
             </div>
 
             <div className="frow one">
               <div className="fg">
-                <label htmlFor="cf-service">Service Interested In</label>
+                <label htmlFor="cf-service">Service Required</label>
                 <select id="cf-service" name="service" defaultValue="">
                   <option value="" disabled>
-                    Select a service
+                    Select a service...
                   </option>
                   {serviceOptions.map((opt) => (
                     <option key={opt} value={opt}>
@@ -143,13 +177,18 @@ export default function Contact() {
 
             <div className="frow one">
               <div className="fg">
-                <label htmlFor="cf-message">Message</label>
-                <textarea id="cf-message" name="message" rows="4" />
+                <label htmlFor="cf-message">Requirements &amp; Environment</label>
+                <textarea
+                  id="cf-message"
+                  name="message"
+                  rows="4"
+                  placeholder="Brief description of your environment, compliance needs, or what requires testing..."
+                />
               </div>
             </div>
 
             <div className="cform-foot">
-              <span className="cform-note">NDA available on request, no obligation</span>
+              <span className="cform-note">NDA available on request · No obligation</span>
               <button className="cform-btn" type="submit" disabled={sending} aria-busy={sending}>
                 {sending ? 'Sending...' : 'Send Request'}
               </button>
