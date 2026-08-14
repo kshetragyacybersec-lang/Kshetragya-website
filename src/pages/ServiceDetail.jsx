@@ -82,7 +82,7 @@ function ProcessStepper({ steps }) {
 
   return (
     <div className="svc-stepper">
-      <div className="svc-stepper-rail">
+      <div className="svc-stepper-rail" style={{ '--step-count': steps.length }}>
         {steps.map((s, i) => (
           <button
             key={s.title}
