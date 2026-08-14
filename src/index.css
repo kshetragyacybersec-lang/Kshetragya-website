@@ -1682,6 +1682,91 @@ footer > nav[aria-label='Footer'] {
   margin-bottom: 0.6rem;
 }
 
+/* Process connector line, same fill-in-on-scroll effect as the homepage timeline */
+.svc-detail-process-list {
+  position: relative;
+}
+.svc-detail-process-connector {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: calc(1.125rem - 1px);
+  width: 2px;
+  background: var(--line, rgba(0, 0, 0, 0.1));
+  z-index: 0;
+  pointer-events: none;
+}
+.svc-detail-process-connector-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--blue);
+  transform-origin: top;
+  transform: scaleY(var(--proc-progress, 0));
+}
+.svc-detail-process-item {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s ease var(--stagger, 0ms),
+    transform 0.5s ease var(--stagger, 0ms);
+}
+.svc-detail-process-item.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+.svc-detail-process-num {
+  position: relative;
+  background: var(--bg, #fff);
+}
+
+/* Benefit / Why Us cards fade + slide in on scroll, same as homepage service cards */
+.svc-detail-grid-card {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s ease var(--stagger, 0ms),
+    transform 0.5s ease var(--stagger, 0ms),
+    border-color 0.2s;
+}
+.svc-detail-grid-card.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+.svc-detail-grid-card:hover {
+  border-color: var(--blue);
+}
+
+/* FAQ rows fade in on scroll too */
+.svc-detail-faq-item {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.45s ease var(--stagger, 0ms),
+    transform 0.45s ease var(--stagger, 0ms);
+}
+.svc-detail-faq-item.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-detail-process-item,
+  .svc-detail-grid-card,
+  .svc-detail-faq-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .svc-detail-process-connector-fill {
+    transition: none !important;
+  }
+}
+
 /* Quick Answer block */
 .svc-detail-qa {
   margin-bottom: 2.25rem;
