@@ -36,6 +36,17 @@ html {
   --radius-btn: 6px;
   --focus-ring: 2px solid var(--blue);
   --focus-offset: 2px;
+
+  /* Premium elevation scale */
+  --shadow-xs: 0 1px 2px rgba(23, 20, 18, 0.05);
+  --shadow-sm: 0 4px 14px -6px rgba(23, 20, 18, 0.1);
+  --shadow-md: 0 14px 34px -14px rgba(23, 20, 18, 0.16);
+  --shadow-lg: 0 30px 60px -20px rgba(23, 20, 18, 0.22);
+
+  /* Section rhythm */
+  --sec-pad-y: 8.5rem;
+  --sec-pad-y-mobile: 4.5rem;
+  --container-max: 1240px;
 }
 
 html {
@@ -89,7 +100,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 5vw;
+  padding: 1.35rem 6vw;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
@@ -99,8 +110,8 @@ nav {
     backdrop-filter 0.25s ease;
 }
 .nav-scrolled {
-  padding: 0.6rem 5vw;
-  box-shadow: 0 8px 24px -12px rgba(23, 20, 18, 0.12);
+  padding: 0.75rem 6vw;
+  box-shadow: var(--shadow-sm);
   backdrop-filter: blur(22px);
 }
 .nav-scrolled .logo-mark {
@@ -485,7 +496,7 @@ nav {
 .hero-content {
   position: relative;
   width: 100%;
-  padding: 7rem 5vw 4.5rem;
+  padding: 7rem 6vw 5rem;
   z-index: 10;
 }
 
@@ -595,19 +606,23 @@ nav {
   font-family: var(--f-i);
   font-size: 0.78rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
   color: #fff;
   background: var(--blue);
   border-radius: var(--radius-btn);
-  padding: 0.88rem 2rem;
+  padding: 1rem 2.3rem;
   text-decoration: none;
+  box-shadow: var(--shadow-sm);
   transition:
     background 0.2s,
-    transform 0.15s;
+    transform 0.15s,
+    box-shadow 0.2s;
   display: inline-block;
 }
 .btn-v:hover {
   background: var(--blue-dk);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 .btn-v:active {
   transform: scale(0.96);
@@ -814,7 +829,7 @@ nav {
 
 /* ── SERVICES ─────────────────────────────── */
 #services {
-  padding: 6rem 5vw;
+  padding: var(--sec-pad-y) 6vw;
   background: var(--bg);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -824,7 +839,10 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 3.5rem;
   align-items: end;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
 }
 .svc-note {
   font-family: var(--f-i);
@@ -837,7 +855,9 @@ nav {
 .svc-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
+  max-width: var(--container-max);
+  margin: 0 auto;
 }
 .svc-group {
   position: relative;
@@ -845,15 +865,16 @@ nav {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 4px 14px 4px 14px;
-  padding: 1.85rem;
+  padding: 2.1rem 1.85rem;
+  box-shadow: var(--shadow-xs);
   transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    border-color 0.18s ease;
+    transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
 }
 .svc-group:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.18);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
   border-color: var(--blue);
 }
 
@@ -951,7 +972,7 @@ nav {
 
 /* ── AREAS SERVED ─────────────────────────── */
 #areas {
-  padding: 6rem 5vw;
+  padding: var(--sec-pad-y) 6vw;
   background: var(--bg2);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -961,7 +982,10 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 3.5rem;
   align-items: end;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
 }
 .areas-note {
   font-family: var(--f-i);
@@ -976,8 +1000,9 @@ nav {
   flex-wrap: wrap;
   gap: 0.75rem;
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  max-width: var(--container-max);
 }
 .areas-tag {
   font-family: var(--f-h);
@@ -987,16 +1012,21 @@ nav {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 0.6rem 1.3rem;
+  padding: 0.65rem 1.4rem;
+  box-shadow: var(--shadow-xs);
   transition:
     background 0.18s ease,
     color 0.18s ease,
-    border-color 0.18s ease;
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
 }
 .areas-tag:hover {
   background: var(--blue);
   border-color: var(--blue);
   color: #fff;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 1024px) {
@@ -1008,8 +1038,8 @@ nav {
 
 /* ── PROCESS ──────────────────────────────── */
 #process {
-  padding: 6rem 5vw;
-  background: var(--bg2);
+  padding: var(--sec-pad-y) 6vw;
+  background: var(--bg);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -1018,7 +1048,10 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 3.5rem;
   align-items: end;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
 }
 .proc-note {
   font-family: var(--f-i);
@@ -1035,8 +1068,10 @@ nav {
   border-radius: 14px 4px 14px 4px;
   overflow: hidden;
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  max-width: var(--container-max);
+  box-shadow: var(--shadow-sm);
 }
 .proc-connector {
   position: absolute;
@@ -1111,8 +1146,8 @@ nav {
 
 /* ── CONTACT ──────────────────────────────── */
 #contact {
-  padding: 6rem 5vw;
-  background: var(--bg);
+  padding: var(--sec-pad-y) 6vw;
+  background: var(--bg2);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   position: relative;
@@ -1133,6 +1168,8 @@ nav {
   align-items: start;
   position: relative;
   z-index: 1;
+  max-width: var(--container-max);
+  margin: 0 auto;
 }
 .contact-details {
   margin-top: 1.6rem;
@@ -1164,6 +1201,8 @@ nav {
   border: 1px solid var(--line);
   border-radius: 4px 14px 14px 4px;
   overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--panel);
 }
 .cform-top {
   padding: 1.25rem 2rem;
@@ -1310,11 +1349,12 @@ nav {
 /* ── FOOTER ───────────────────────────────── */
 footer {
   background: var(--navy);
-  padding: 2.25rem 5vw;
+  padding: 2.75rem 6vw;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 2rem;
+  border-top: 1px solid rgba(255, 138, 107, 0.15);
 }
 footer > nav[aria-label='Footer'] {
   display: contents;
@@ -1469,7 +1509,7 @@ footer > nav[aria-label='Footer'] {
   #areas,
   #process,
   #contact {
-    padding: 4.5rem 5vw;
+    padding: var(--sec-pad-y-mobile) 6vw;
   }
   .fg {
     padding: 0.95rem 1.25rem;
