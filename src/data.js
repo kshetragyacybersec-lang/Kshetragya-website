@@ -118,6 +118,93 @@ export const serviceGroups = [
           'Report ranked by severity',
           'Free retest after fixes',
         ],
+        quickAnswer:
+          "Kshetragya Cybersec runs Network VAPT by combining automated vulnerability scanning with manual, hands-on penetration testing against your firewalls, switches, routers and servers. The three of us handle the entire engagement ourselves, scoping, testing, and reporting, with a severity-ranked report and a free retest once fixes are made.",
+        process: [
+          {
+            title: 'Scoping & Reconnaissance',
+            desc: 'We agree on scope with you, then map your network to understand what we are actually testing.',
+          },
+          {
+            title: 'Automated Vulnerability Scanning',
+            desc: 'A broad scan across your firewalls, switches, routers and servers to surface known weaknesses fast.',
+          },
+          {
+            title: 'Manual Exploitation',
+            desc: 'Hands-on testing by us, not just tools, to catch the issues automated scans miss and confirm what is actually exploitable.',
+          },
+          {
+            title: 'Severity-Ranked Report',
+            desc: 'Every finding ranked by real risk, with clear, practical steps to fix each one.',
+          },
+          {
+            title: 'Free Retest',
+            desc: 'Once you have fixed the issues, we retest at no extra cost to confirm they are actually closed.',
+          },
+        ],
+        benefits: [
+          {
+            title: 'Honest Picture of Risk',
+            desc: 'You find out exactly where your network stands, not a vague compliance checkbox.',
+          },
+          {
+            title: 'Real Attack Simulation',
+            desc: 'We test the way an actual attacker would, not just what a scanner flags by default.',
+          },
+          {
+            title: 'Prioritized Fixes',
+            desc: 'Findings ranked by severity, so your team fixes what matters most first.',
+          },
+          {
+            title: 'Proof for Clients & Auditors',
+            desc: 'A clear report you can hand to enterprise clients or compliance auditors as evidence.',
+          },
+          {
+            title: 'Free Retest Included',
+            desc: 'Confirmation that fixes actually worked, at no extra cost.',
+          },
+        ],
+        whyUs: [
+          {
+            title: 'Same People, Start to Finish',
+            desc: 'The three partners who scope your engagement are the same people who test your network and write your report.',
+          },
+          {
+            title: 'No Call Centers, No Handoffs',
+            desc: "You're never passed between departments. You deal directly with the people doing the work.",
+          },
+          {
+            title: 'Manual Testing, Not Just Tools',
+            desc: 'We combine automated scanning with real hands-on exploitation, catching what tools alone miss.',
+          },
+          {
+            title: 'Built for Gujarat, Available Across India',
+            desc: 'Rooted in Ahmedabad, we bring the same standard of testing to businesses across the country.',
+          },
+        ],
+        faq: [
+          {
+            q: 'How long does a Network VAPT engagement take?',
+            a: 'It depends on the size of your network, but most engagements run from scoping through report delivery within a few weeks. We agree on a timeline with you upfront.',
+          },
+          {
+            q: 'Will testing disrupt our live network?',
+            a: 'We scope and plan testing carefully to avoid disruption, and agree on rules of engagement with you before anything runs against your systems.',
+          },
+          {
+            q: 'What do we get at the end?',
+            a: 'A detailed report ranking every finding by severity, with clear steps to fix each one, plus a free retest once fixes are made.',
+          },
+          {
+            q: "Is this different from an automated vulnerability scan?",
+            a: 'Yes. We combine automated scanning with manual, hands-on testing by our team, which catches real exploitable issues that scanners alone tend to miss.',
+          },
+          {
+            q: 'Do you test firewalls, switches and routers, or just servers?',
+            a: 'All of them. We test your firewalls, switches, routers, servers and other connected devices as part of the same engagement.',
+          },
+        ],
+        related: ['web-application-vapt', 'firewall-network-security', 'security-hardening'],
       },
       {
         id: 'web-application-vapt',
