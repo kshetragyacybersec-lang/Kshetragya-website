@@ -216,7 +216,9 @@ export default function ServiceDetail() {
       {service.process && service.process.length > 0 && (
         <div className="svc-detail-section" id="process">
           <h2 className="svc-detail-section-h">Our Process</h2>
-          <ProcessStepper steps={service.process} />
+          <div className="svc-stepper-breakout">
+            <ProcessStepper steps={service.process} />
+          </div>
         </div>
       )}
 
