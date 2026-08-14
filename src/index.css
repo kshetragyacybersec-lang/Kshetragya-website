@@ -1564,12 +1564,13 @@ footer > nav[aria-label='Footer'] {
 
 /* Service detail page */
 .svc-detail {
-  padding: 8rem 5vw 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 8rem 4vw 4rem;
 }
 .svc-detail-full {
   max-width: 760px;
+}
+.svc-detail-section {
+  margin-top: 4.5rem;
 }
 .svc-detail-empty {
   padding: 8rem 5vw 4rem;
