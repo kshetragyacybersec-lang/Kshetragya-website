@@ -41,6 +41,14 @@ export default function ServiceDetail() {
       <div className="eyebrow">{group.name}</div>
       <h1 className="sec-h dark svc-detail-title">{service.name}</h1>
       <p className="svc-detail-full">{service.full}</p>
+
+      {service.quickAnswer && (
+        <div className="svc-detail-qa">
+          <h2 className="svc-detail-qa-h">Quick Answer</h2>
+          <p className="svc-detail-qa-p">{service.quickAnswer}</p>
+        </div>
+      )}
+
       {service.deliverables && service.deliverables.length > 0 && (
         <div className="svc-detail-deliv">
           <h2 className="svc-detail-deliv-h">What You Get</h2>
@@ -53,6 +61,87 @@ export default function ServiceDetail() {
           </ul>
         </div>
       )}
+
+      {service.process && service.process.length > 0 && (
+        <div className="svc-detail-section">
+          <h2 className="svc-detail-section-h">Our Process</h2>
+          <ol className="svc-detail-process-list">
+            {service.process.map((step, i) => (
+              <li key={step.title} className="svc-detail-process-item">
+                <span className="svc-detail-process-num">{i + 1}</span>
+                <div>
+                  <div className="svc-detail-process-title">{step.title}</div>
+                  <div className="svc-detail-process-desc">{step.desc}</div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      {service.benefits && service.benefits.length > 0 && (
+        <div className="svc-detail-section">
+          <h2 className="svc-detail-section-h">Benefits</h2>
+          <div className="svc-detail-grid">
+            {service.benefits.map((b) => (
+              <div key={b.title} className="svc-detail-grid-card">
+                <div className="svc-detail-grid-card-title">{b.title}</div>
+                <div className="svc-detail-grid-card-desc">{b.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {service.whyUs && service.whyUs.length > 0 && (
+        <div className="svc-detail-section">
+          <h2 className="svc-detail-section-h">Why Choose Us</h2>
+          <div className="svc-detail-grid">
+            {service.whyUs.map((w) => (
+              <div key={w.title} className="svc-detail-grid-card">
+                <div className="svc-detail-grid-card-title">{w.title}</div>
+                <div className="svc-detail-grid-card-desc">{w.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {service.faq && service.faq.length > 0 && (
+        <div className="svc-detail-section">
+          <h2 className="svc-detail-section-h">FAQ</h2>
+          <div className="svc-detail-faq-list">
+            {service.faq.map((item) => (
+              <div key={item.q} className="svc-detail-faq-item">
+                <div className="svc-detail-faq-q">{item.q}</div>
+                <div className="svc-detail-faq-a">{item.a}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {service.related && service.related.length > 0 && (
+        <div className="svc-detail-section">
+          <h2 className="svc-detail-section-h">Related Services</h2>
+          <div className="svc-detail-related-list">
+            {service.related.map((relId) => {
+              const relMatch = findService(relId);
+              if (!relMatch) return null;
+              return (
+                <Link
+                  key={relId}
+                  to={`/services/${relId}`}
+                  className="svc-detail-related-link"
+                >
+                  {relMatch.service.name}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       <Link to="/#contact" className="svc-detail-cta">
         Request Free Assessment
       </Link>
