@@ -1676,7 +1676,19 @@ footer > nav[aria-label='Footer'] {
 
 
 /* ===== Process Stepper (horizontal, clickable) ===== */
+.svc-stepper-breakout {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 0 5vw;
+  box-sizing: border-box;
+}
 .svc-stepper {
+  max-width: 1200px;
+  margin: 0 auto;
   border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
   border-radius: 4px 14px 4px 14px;
   overflow: hidden;
