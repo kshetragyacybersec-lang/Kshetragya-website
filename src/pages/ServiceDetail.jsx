@@ -13,6 +13,54 @@ function findService(slug) {
   return null;
 }
 
+// Small inline icons, no external icon library needed so nothing new to install.
+function IconCheck() {
+  return (
+    <svg className="svc-detail-card-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M8 12.5l2.5 2.5L16 9.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconShield() {
+  return (
+    <svg className="svc-detail-card-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 12l2 2 4-4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+// Sections that appear on the page, in order, used to build the jump-nav.
+// Only rendered as an anchor link when that section actually has data.
+const SECTION_DEFS = [
+  { key: 'quickAnswer', id: 'quick-answer', label: 'Quick Answer' },
+  { key: 'deliverables', id: 'what-you-get', label: 'What You Get' },
+  { key: 'process', id: 'process', label: 'Process' },
+  { key: 'benefits', id: 'benefits', label: 'Benefits' },
+  { key: 'whyUs', id: 'why-us', label: 'Why Us' },
+  { key: 'faq', id: 'faq', label: 'FAQ' },
+  { key: 'related', id: 'related', label: 'Related' },
+];
+
 export default function ServiceDetail() {
   const { slug } = useParams();
   const match = findService(slug);
@@ -36,21 +84,36 @@ export default function ServiceDetail() {
 
   const { group, service } = match;
 
+  const activeSections = SECTION_DEFS.filter((s) => {
+    const val = service[s.key];
+    return Array.isArray(val) ? val.length > 0 : Boolean(val);
+  });
+
   return (
     <div className={`svc-detail ${mountFadeClass}`}>
       <div className="eyebrow">{group.name}</div>
       <h1 className="sec-h dark svc-detail-title">{service.name}</h1>
       <p className="svc-detail-full">{service.full}</p>
 
+      {activeSections.length > 1 && (
+        <nav className="svc-detail-jumpnav" aria-label="Sections on this page">
+          {activeSections.map((s) => (
+            <a key={s.id} href={`#${s.id}`} className="svc-detail-jumpnav-link">
+              {s.label}
+            </a>
+          ))}
+        </nav>
+      )}
+
       {service.quickAnswer && (
-        <div className="svc-detail-qa">
+        <div className="svc-detail-qa" id="quick-answer">
           <h2 className="svc-detail-qa-h">Quick Answer</h2>
           <p className="svc-detail-qa-p">{service.quickAnswer}</p>
         </div>
       )}
 
       {service.deliverables && service.deliverables.length > 0 && (
-        <div className="svc-detail-deliv">
+        <div className="svc-detail-deliv" id="what-you-get">
           <h2 className="svc-detail-deliv-h">What You Get</h2>
           <ul className="svc-detail-deliv-list">
             {service.deliverables.map((item) => (
@@ -63,7 +126,7 @@ export default function ServiceDetail() {
       )}
 
       {service.process && service.process.length > 0 && (
-        <div className="svc-detail-section">
+        <div className="svc-detail-section" id="process">
           <h2 className="svc-detail-section-h">Our Process</h2>
           <ol className="svc-detail-process-list">
             {service.process.map((step, i) => (
@@ -80,11 +143,12 @@ export default function ServiceDetail() {
       )}
 
       {service.benefits && service.benefits.length > 0 && (
-        <div className="svc-detail-section">
+        <div className="svc-detail-section" id="benefits">
           <h2 className="svc-detail-section-h">Benefits</h2>
           <div className="svc-detail-grid">
             {service.benefits.map((b) => (
               <div key={b.title} className="svc-detail-grid-card">
+                <IconCheck />
                 <div className="svc-detail-grid-card-title">{b.title}</div>
                 <div className="svc-detail-grid-card-desc">{b.desc}</div>
               </div>
@@ -94,11 +158,12 @@ export default function ServiceDetail() {
       )}
 
       {service.whyUs && service.whyUs.length > 0 && (
-        <div className="svc-detail-section">
+        <div className="svc-detail-section" id="why-us">
           <h2 className="svc-detail-section-h">Why Choose Us</h2>
           <div className="svc-detail-grid">
             {service.whyUs.map((w) => (
               <div key={w.title} className="svc-detail-grid-card">
+                <IconShield />
                 <div className="svc-detail-grid-card-title">{w.title}</div>
                 <div className="svc-detail-grid-card-desc">{w.desc}</div>
               </div>
@@ -108,7 +173,7 @@ export default function ServiceDetail() {
       )}
 
       {service.faq && service.faq.length > 0 && (
-        <div className="svc-detail-section">
+        <div className="svc-detail-section" id="faq">
           <h2 className="svc-detail-section-h">FAQ</h2>
           <div className="svc-detail-faq-list">
             {service.faq.map((item) => (
@@ -122,7 +187,7 @@ export default function ServiceDetail() {
       )}
 
       {service.related && service.related.length > 0 && (
-        <div className="svc-detail-section">
+        <div className="svc-detail-section" id="related">
           <h2 className="svc-detail-section-h">Related Services</h2>
           <div className="svc-detail-related-list">
             {service.related.map((relId) => {
