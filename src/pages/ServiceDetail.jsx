@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { serviceGroups } from '../data.js';
 import NotFound from './NotFound.jsx';
 import { usePageFadeIn } from '../usePageFadeIn.js';
 import { useScrollReveal } from '../useScrollReveal.js';
-import { useThrottledScroll } from '../useThrottledScroll.js';
 
 // Finds a service by its slug across all 4 groups.
 function findService(slug) {
@@ -18,12 +17,11 @@ function findService(slug) {
 // Small inline icons, no external icon library needed so nothing new to install.
 function IconCheck() {
   return (
-    <svg className="svc-detail-card-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
-        d="M8 12.5l2.5 2.5L16 9.5"
+        d="M5 12.5l4.5 4.5L19 7"
         stroke="currentColor"
-        strokeWidth="1.5"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -33,17 +31,31 @@ function IconCheck() {
 
 function IconShield() {
   return (
-    <svg className="svc-detail-card-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
         d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"
         stroke="currentColor"
-        strokeWidth="1.5"
+        strokeWidth="1.7"
         strokeLinejoin="round"
       />
       <path
         d="M9 12l2 2 4-4"
         stroke="currentColor"
-        strokeWidth="1.5"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconChevron() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M9 6l6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -54,14 +66,90 @@ function IconShield() {
 // Sections that appear on the page, in order, used to build the jump-nav.
 // Only rendered as an anchor link when that section actually has data.
 const SECTION_DEFS = [
-  { key: 'quickAnswer', id: 'quick-answer', label: 'Quick Answer' },
-  { key: 'deliverables', id: 'what-you-get', label: 'What You Get' },
   { key: 'process', id: 'process', label: 'Process' },
   { key: 'benefits', id: 'benefits', label: 'Benefits' },
   { key: 'whyUs', id: 'why-us', label: 'Why Us' },
-  { key: 'faq', id: 'faq', label: 'FAQ' },
+  { key: 'faq', id: 'quick-answer', label: 'Quick Answer' },
   { key: 'related', id: 'related', label: 'Related' },
 ];
+
+// Horizontal numbered stepper for "Our Process" — click a step to switch
+// the panel below it, with a progress underline that slides to match.
+function ProcessStepper({ steps }) {
+  const [active, setActive] = useState(0);
+  const step = steps[active];
+  const isLast = active === steps.length - 1;
+
+  return (
+    <div className="svc-stepper">
+      <div className="svc-stepper-rail">
+        {steps.map((s, i) => (
+          <button
+            key={s.title}
+            type="button"
+            className={`svc-stepper-step ${i === active ? 'is-active' : ''} ${
+              i < active ? 'is-done' : ''
+            }`}
+            onClick={() => setActive(i)}
+          >
+            <span className="svc-stepper-num">{i + 1}</span>
+            <span className="svc-stepper-label">{s.title}</span>
+          </button>
+        ))}
+      </div>
+      <div className="svc-stepper-panel">
+        <div className="svc-stepper-panel-text">
+          <div className="svc-stepper-panel-title">{step.title}</div>
+          <p className="svc-stepper-panel-desc">{step.desc}</p>
+        </div>
+        <button
+          type="button"
+          className="svc-stepper-next"
+          onClick={() => setActive(isLast ? 0 : active + 1)}
+        >
+          <span className="svc-stepper-next-label">
+            {isLast ? 'Restart' : 'Next Step'}
+          </span>
+          <span className="svc-stepper-next-title">
+            {isLast ? steps[0].title : steps[active + 1].title}
+          </span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Accordion FAQ list — first item open by default, click a row to toggle it.
+function FaqAccordion({ items }) {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  return (
+    <div className="svc-faq-accordion">
+      {items.map((item, i) => {
+        const isOpen = openIndex === i;
+        return (
+          <div key={item.q} className={`svc-faq-row ${isOpen ? 'is-open' : ''}`}>
+            <button
+              type="button"
+              className="svc-faq-row-head"
+              onClick={() => setOpenIndex(isOpen ? -1 : i)}
+              aria-expanded={isOpen}
+            >
+              <span className="svc-faq-row-icon" aria-hidden="true">
+                ?
+              </span>
+              <span className="svc-faq-row-q">{item.q}</span>
+              <span className="svc-faq-row-toggle" aria-hidden="true">
+                {isOpen ? '\u2212' : '+'}
+              </span>
+            </button>
+            {isOpen && <div className="svc-faq-row-a">{item.a}</div>}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function ServiceDetail() {
   const { slug } = useParams();
@@ -80,34 +168,10 @@ export default function ServiceDetail() {
 
   const mountFadeClass = usePageFadeIn([slug]);
 
-  // Fade/slide-in reveal for benefit + why-us cards and FAQ rows as they scroll into view,
+  // Fade/slide-in reveal for benefit cards and why-us cells as they scroll into view,
   // matching the same effect used on the homepage Services/Areas/Process sections.
-  const benefitsRef = useScrollReveal('.svc-detail-grid-card');
-  const whyUsRef = useScrollReveal('.svc-detail-grid-card');
-  const faqRef = useScrollReveal('.svc-detail-faq-item');
-
-  // Connector line down the process step numbers fills in as the list scrolls
-  // through view, same effect as the homepage "Our Method" timeline.
-  const processRef = useScrollReveal('.svc-detail-process-item');
-  useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion && processRef.current) {
-      processRef.current.style.setProperty('--proc-progress', 1);
-    }
-  }, [processRef]);
-  useThrottledScroll(
-    () => {
-      const el = processRef.current;
-      if (!el) return;
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduceMotion) return;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const progress = Math.min(Math.max((vh * 0.85 - rect.top) / rect.height, 0), 1);
-      el.style.setProperty('--proc-progress', progress);
-    },
-    { onResize: true }
-  );
+  const benefitsRef = useScrollReveal('.svc-benefit-card');
+  const whyUsRef = useScrollReveal('.svc-whyus-cell');
 
   if (!match) {
     return <NotFound />;
@@ -136,15 +200,8 @@ export default function ServiceDetail() {
         </nav>
       )}
 
-      {service.quickAnswer && (
-        <div className="svc-detail-qa" id="quick-answer">
-          <h2 className="svc-detail-qa-h">Quick Answer</h2>
-          <p className="svc-detail-qa-p">{service.quickAnswer}</p>
-        </div>
-      )}
-
       {service.deliverables && service.deliverables.length > 0 && (
-        <div className="svc-detail-deliv" id="what-you-get">
+        <div className="svc-detail-deliv">
           <h2 className="svc-detail-deliv-h">What You Get</h2>
           <ul className="svc-detail-deliv-list">
             {service.deliverables.map((item) => (
@@ -159,36 +216,25 @@ export default function ServiceDetail() {
       {service.process && service.process.length > 0 && (
         <div className="svc-detail-section" id="process">
           <h2 className="svc-detail-section-h">Our Process</h2>
-          <ol className="svc-detail-process-list" ref={processRef}>
-            <span className="svc-detail-process-connector" aria-hidden="true">
-              <span className="svc-detail-process-connector-fill"></span>
-            </span>
-            {service.process.map((step, i) => (
-              <li key={step.title} className="svc-detail-process-item">
-                <span className="svc-detail-process-num">{i + 1}</span>
-                <div>
-                  <div className="svc-detail-process-title">{step.title}</div>
-                  <div className="svc-detail-process-desc">{step.desc}</div>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <ProcessStepper steps={service.process} />
         </div>
       )}
 
       {service.benefits && service.benefits.length > 0 && (
         <div className="svc-detail-section" id="benefits">
           <h2 className="svc-detail-section-h">Benefits</h2>
-          <div className="svc-detail-grid" ref={benefitsRef}>
+          <div className="svc-benefit-grid" ref={benefitsRef}>
             {service.benefits.map((b, i) => (
               <div
                 key={b.title}
-                className="svc-detail-grid-card"
+                className="svc-benefit-card"
                 style={{ '--stagger': `${i * 60}ms` }}
               >
-                <IconCheck />
-                <div className="svc-detail-grid-card-title">{b.title}</div>
-                <div className="svc-detail-grid-card-desc">{b.desc}</div>
+                <span className="svc-benefit-icon">
+                  <IconCheck />
+                </span>
+                <div className="svc-benefit-title">{b.title}</div>
+                <div className="svc-benefit-desc">{b.desc}</div>
               </div>
             ))}
           </div>
@@ -198,16 +244,18 @@ export default function ServiceDetail() {
       {service.whyUs && service.whyUs.length > 0 && (
         <div className="svc-detail-section" id="why-us">
           <h2 className="svc-detail-section-h">Why Choose Us</h2>
-          <div className="svc-detail-grid" ref={whyUsRef}>
+          <div className="svc-whyus-grid" ref={whyUsRef}>
             {service.whyUs.map((w, i) => (
               <div
                 key={w.title}
-                className="svc-detail-grid-card"
+                className="svc-whyus-cell"
                 style={{ '--stagger': `${i * 60}ms` }}
               >
-                <IconShield />
-                <div className="svc-detail-grid-card-title">{w.title}</div>
-                <div className="svc-detail-grid-card-desc">{w.desc}</div>
+                <span className="svc-whyus-icon">
+                  <IconShield />
+                </span>
+                <div className="svc-whyus-title">{w.title}</div>
+                <div className="svc-whyus-desc">{w.desc}</div>
               </div>
             ))}
           </div>
@@ -215,37 +263,33 @@ export default function ServiceDetail() {
       )}
 
       {service.faq && service.faq.length > 0 && (
-        <div className="svc-detail-section" id="faq">
-          <h2 className="svc-detail-section-h">FAQ</h2>
-          <div className="svc-detail-faq-list" ref={faqRef}>
-            {service.faq.map((item, i) => (
-              <div
-                key={item.q}
-                className="svc-detail-faq-item"
-                style={{ '--stagger': `${i * 50}ms` }}
-              >
-                <div className="svc-detail-faq-q">{item.q}</div>
-                <div className="svc-detail-faq-a">{item.a}</div>
-              </div>
-            ))}
+        <div className="svc-detail-section" id="quick-answer">
+          <div className="svc-qa-split">
+            <div className="svc-qa-left">
+              <h2 className="svc-qa-heading">Quick Answer</h2>
+              {service.quickAnswer && (
+                <p className="svc-qa-text">{service.quickAnswer}</p>
+              )}
+            </div>
+            <div className="svc-qa-right">
+              <FaqAccordion items={service.faq} />
+            </div>
           </div>
         </div>
       )}
 
       {service.related && service.related.length > 0 && (
         <div className="svc-detail-section" id="related">
-          <h2 className="svc-detail-section-h">Related Services</h2>
-          <div className="svc-detail-related-list">
+          <h2 className="svc-detail-section-h">Explore Next</h2>
+          <div className="svc-related-col">
+            <div className="svc-related-col-h">Related Services</div>
             {service.related.map((relId) => {
               const relMatch = findService(relId);
               if (!relMatch) return null;
               return (
-                <Link
-                  key={relId}
-                  to={`/services/${relId}`}
-                  className="svc-detail-related-link"
-                >
+                <Link key={relId} to={`/services/${relId}`} className="svc-related-link">
                   {relMatch.service.name}
+                  <IconChevron />
                 </Link>
               );
             })}
