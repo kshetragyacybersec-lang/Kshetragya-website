@@ -1682,19 +1682,17 @@ footer > nav[aria-label='Footer'] {
   overflow: hidden;
 }
 .svc-stepper-rail {
-  display: flex;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(var(--step-count, 5), 1fr);
   border-bottom: 1px solid var(--line, rgba(0, 0, 0, 0.1));
   background: var(--bg2);
 }
 .svc-stepper-step {
-  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1.25rem 1.25rem 1rem;
-  min-width: 130px;
+  gap: 0.6rem;
+  padding: 1.5rem 0.85rem 1.1rem;
   background: none;
   border: none;
   border-bottom: 3px solid transparent;
@@ -1707,6 +1705,7 @@ footer > nav[aria-label='Footer'] {
 .svc-stepper-num {
   width: 2.1rem;
   height: 2.1rem;
+  flex-shrink: 0;
   border-radius: 50%;
   border: 1.5px solid var(--line, rgba(0, 0, 0, 0.15));
   display: flex;
@@ -1723,12 +1722,14 @@ footer > nav[aria-label='Footer'] {
 }
 .svc-stepper-label {
   font-family: var(--f-s);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--ink-mut);
   text-align: center;
+  line-height: 1.35;
+  overflow-wrap: break-word;
   transition: color 0.25s;
 }
 .svc-stepper-step.is-active {
@@ -1799,13 +1800,24 @@ footer > nav[aria-label='Footer'] {
   color: #fff;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 860px) {
   .svc-stepper-panel {
     grid-template-columns: 1fr;
   }
+  .svc-stepper-label {
+    font-size: 0.62rem;
+  }
   .svc-stepper-step {
-    min-width: 100px;
-    padding: 1rem 0.75rem 0.85rem;
+    padding: 1.1rem 0.5rem 0.85rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .svc-stepper-rail {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(96px, 1fr);
+    overflow-x: auto;
   }
 }
 
