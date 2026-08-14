@@ -32,24 +32,19 @@ export default function Process() {
 
   return (
     <section id="process" aria-labelledby="process-heading">
-      <div className="proc-head reversed">
-        <p className="proc-note" style={{ order: 1 }}>
-          A structured engagement at every stage, no black box, and no unexplained gaps between
-          kickoff and delivery.
-        </p>
-        <div style={{ order: 2 }}>
-          <div
-            className="eyebrow"
-            style={{ justifyContent: 'flex-end', flexDirection: 'row-reverse' }}
-          >
-            Our Method
-          </div>
+      <div className="proc-head">
+        <div>
+          <div className="eyebrow">Our Method</div>
           <h2 className="sec-h dark" id="process-heading">
             From first call
             <br />
             <em>to final report.</em>
           </h2>
         </div>
+        <p className="proc-note">
+          A structured engagement at every stage, no black box, and no unexplained gaps between
+          kickoff and delivery.
+        </p>
       </div>
       <ol
         className="proc-list"
