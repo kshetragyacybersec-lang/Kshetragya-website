@@ -63,16 +63,6 @@ function IconChevron() {
   );
 }
 
-// Sections that appear on the page, in order, used to build the jump-nav.
-// Only rendered as an anchor link when that section actually has data.
-const SECTION_DEFS = [
-  { key: 'process', id: 'process', label: 'Process' },
-  { key: 'benefits', id: 'benefits', label: 'Benefits' },
-  { key: 'whyUs', id: 'why-us', label: 'Why Us' },
-  { key: 'faq', id: 'quick-answer', label: 'Quick Answer' },
-  { key: 'related', id: 'related', label: 'Related' },
-];
-
 // Horizontal numbered stepper for "Our Process" — click a step to switch
 // the panel below it, with a progress underline that slides to match.
 function ProcessStepper({ steps }) {
@@ -179,26 +169,11 @@ export default function ServiceDetail() {
 
   const { group, service } = match;
 
-  const activeSections = SECTION_DEFS.filter((s) => {
-    const val = service[s.key];
-    return Array.isArray(val) ? val.length > 0 : Boolean(val);
-  });
-
   return (
     <div className={`svc-detail ${mountFadeClass}`}>
       <div className="eyebrow">{group.name}</div>
       <h1 className="sec-h dark svc-detail-title">{service.name}</h1>
       <p className="svc-detail-full">{service.full}</p>
-
-      {activeSections.length > 1 && (
-        <nav className="svc-detail-jumpnav" aria-label="Sections on this page">
-          {activeSections.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="svc-detail-jumpnav-link">
-              {s.label}
-            </a>
-          ))}
-        </nav>
-      )}
 
       {service.deliverables && service.deliverables.length > 0 && (
         <div className="svc-detail-deliv">
