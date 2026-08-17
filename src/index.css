@@ -1612,6 +1612,14 @@ footer > nav[aria-label='Footer'] {
 .svc-detail-section {
   margin-top: 4.5rem;
 }
+.svc-detail-section-h {
+  font-family: var(--f-s);
+  font-weight: 800;
+  font-size: 1.9rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
 .svc-detail-empty {
   padding: 8rem 5vw 4rem;
 }
