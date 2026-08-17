@@ -1692,41 +1692,6 @@ footer > nav[aria-label='Footer'] {
   transform: scale(0.96);
 }
 
-/* Sticky jump navigation to skim sections, esp. on mobile */
-.svc-detail-jumpnav {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0.75rem 0;
-  margin-bottom: 2rem;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line, rgba(0, 0, 0, 0.1));
-  overflow-x: auto;
-}
-.svc-detail-jumpnav-link {
-  flex: 0 0 auto;
-  font-family: var(--f-i);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--ink-mut);
-  text-decoration: none;
-  padding: 0.4rem 0.85rem;
-  border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
-  border-radius: var(--radius-btn);
-  white-space: nowrap;
-  transition:
-    color 0.2s,
-    border-color 0.2s;
-}
-.svc-detail-jumpnav-link:hover {
-  color: var(--blue);
-  border-color: var(--blue);
-}
-
-
 /* ===== Process Stepper (horizontal, clickable) ===== */
 .svc-stepper {
   border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
@@ -2006,7 +1971,7 @@ footer > nav[aria-label='Footer'] {
   font-size: 1.9rem;
   letter-spacing: -0.01em;
   color: var(--ink);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 .svc-qa-text {
   font-size: 0.94rem;
