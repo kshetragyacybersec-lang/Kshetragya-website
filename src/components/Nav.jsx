@@ -129,6 +129,11 @@ export default function Nav() {
             </button>
           </li>
           <li>
+            <Link to="/about" onClick={close}>
+              About
+            </Link>
+          </li>
+          <li>
             <Link to="/#process" onClick={close}>
               Process
             </Link>
