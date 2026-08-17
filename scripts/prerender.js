@@ -40,12 +40,10 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-function buildPageHtml(service, group) {
-  const title = `${service.name} in Gujarat & India | Kshetragya Cybersec`;
-  const description = service.short;
-  const pageUrl = `${siteUrl}/services/${service.id}`;
-
-  let html = template;
+// Applies title/description/canonical/OG/Twitter meta tags shared by every prerendered
+// page. Callers pass the fully-formed title/description/pageUrl for their page type
+// (service page, About page, etc.) and optionally append their own JSON-LD afterward.
+function applyCommonMeta(html, { title, description, pageUrl }) {
 
   html = safeReplace(html, /<title>.*?<\/title>/s, `<title>${escapeHtml(title)}</title>`, 'title');
 
@@ -97,6 +95,16 @@ function buildPageHtml(service, group) {
     'canonical link'
   );
 
+  return html;
+}
+
+function buildServicePageHtml(service, group) {
+  const title = `${service.name} in Gujarat & India | Kshetragya Cybersec`;
+  const description = service.short;
+  const pageUrl = `${siteUrl}/services/${service.id}`;
+
+  let html = applyCommonMeta(template, { title, description, pageUrl });
+
   // per-page Service JSON-LD, added alongside the existing LocalBusiness block
   const serviceJsonLd = {
     '@context': 'https://schema.org',
@@ -121,6 +129,38 @@ function buildPageHtml(service, group) {
   return html;
 }
 
+function buildAboutPageHtml() {
+  const title = 'About Us | Kshetragya Cybersec';
+  const description =
+    "Kshetragya Cybersec is run by three partners who handle every engagement themselves, " +
+    "from scoping to the final report. Based in Ahmedabad, working across Gujarat and India.";
+  const pageUrl = `${siteUrl}/about`;
+
+  let html = applyCommonMeta(template, { title, description, pageUrl });
+
+  // AboutPage / Organization JSON-LD, same LocalBusiness identity used on service pages.
+  const aboutJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: title,
+    description,
+    url: pageUrl,
+    mainEntity: {
+      '@type': 'LocalBusiness',
+      name: 'Kshetragya Cybersec',
+      url: siteUrl,
+      areaServed: [
+        { '@type': 'State', name: 'Gujarat' },
+        { '@type': 'Country', name: 'India' },
+      ],
+    },
+  };
+  const aboutJsonLdTag = `<script type="application/ld+json">\n${JSON.stringify(aboutJsonLd, null, 2)}\n</script>`;
+  html = html.replace('</head>', `  ${aboutJsonLdTag}\n</head>`);
+
+  return html;
+}
+
 let count = 0;
 const seenIds = new Set();
 for (const group of serviceGroups) {
@@ -135,9 +175,13 @@ for (const group of serviceGroups) {
 
     const outDir = path.join(distDir, 'services', service.id);
     mkdirSync(outDir, { recursive: true });
-    writeFileSync(path.join(outDir, 'index.html'), buildPageHtml(service, group), 'utf-8');
+    writeFileSync(path.join(outDir, 'index.html'), buildServicePageHtml(service, group), 'utf-8');
     count++;
   }
 }
 
-console.log(`Prerendered ${count} service pages with per-page meta tags and JSON-LD.`);
+const aboutOutDir = path.join(distDir, 'about');
+mkdirSync(aboutOutDir, { recursive: true });
+writeFileSync(path.join(aboutOutDir, 'index.html'), buildAboutPageHtml(), 'utf-8');
+
+console.log(`Prerendered ${count} service pages and 1 About page with per-page meta tags and JSON-LD.`);
