@@ -94,7 +94,7 @@ export default function Contact() {
               value="New Assessment Request - Kshetragya website"
             />
             <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_captcha" value="true" />
             <input
               type="text"
               name="_honey"
