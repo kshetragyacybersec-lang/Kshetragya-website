@@ -1,4 +1,4 @@
-import { sql } from '../../lib/db.js';
+import { sql, noStore } from '../../lib/db.js';
 import { requireAuth, getSessionFromRequest } from '../../lib/auth.js';
 
 function slugify(title) {
@@ -10,6 +10,7 @@ function slugify(title) {
 }
 
 export default async function handler(req, res) {
+  noStore(res);
   if (req.method === 'GET') {
     const session = getSessionFromRequest(req);
     const includeDrafts = Boolean(session) && req.query.all === '1';
