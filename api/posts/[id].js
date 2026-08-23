@@ -1,7 +1,8 @@
-import { sql } from '../../lib/db.js';
+import { sql, noStore } from '../../lib/db.js';
 import { requireAuth, getSessionFromRequest } from '../../lib/auth.js';
 
 export default async function handler(req, res) {
+  noStore(res);
   const { id } = req.query;
 
   if (req.method === 'GET') {
