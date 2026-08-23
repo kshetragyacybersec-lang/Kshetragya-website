@@ -25,6 +25,12 @@ export default function Footer() {
             <Link to="/careers">Careers</Link>
           </li>
           <li>
+            <Link to="/case-studies">Case Studies</Link>
+          </li>
+          <li>
+            <Link to="/blog">Blog</Link>
+          </li>
+          <li>
             <Link to="/#contact">Contact</Link>
           </li>
         </ul>
