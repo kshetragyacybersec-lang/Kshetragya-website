@@ -1657,6 +1657,46 @@ footer > nav[aria-label='Footer'] {
   color: var(--ink-mut);
   margin-bottom: 2rem;
 }
+.svc-detail-full h2 {
+  font-family: var(--f-h);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--ink);
+  margin: 2rem 0 1rem;
+}
+.svc-detail-full h3 {
+  font-family: var(--f-h);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--ink);
+  margin: 1.75rem 0 0.85rem;
+}
+.svc-detail-full p {
+  margin: 0 0 1.1rem;
+}
+.svc-detail-full ul,
+.svc-detail-full ol {
+  margin: 0 0 1.1rem 1.4rem;
+}
+.svc-detail-full li {
+  margin-bottom: 0.4rem;
+}
+.svc-detail-full a {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.svc-detail-full blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 3px solid var(--line, rgba(0, 0, 0, 0.2));
+  font-style: italic;
+  color: var(--ink);
+}
+.svc-detail-full img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 1.25rem 0;
+}
 .svc-detail-deliv {
   margin-bottom: 2.25rem;
   padding: 1.5rem 1.75rem;
