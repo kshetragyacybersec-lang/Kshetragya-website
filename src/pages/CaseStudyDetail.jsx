@@ -30,7 +30,10 @@ export default function CaseStudyDetail() {
   if (cs === undefined) return null;
   if (cs === null) return <NotFound />;
 
-  const html = DOMPurify.sanitize(marked.parse(cs.body || ''));
+  const looksLikeHtml = /<[a-z][\s\S]*>/i.test(cs.body || '');
+  const html = DOMPurify.sanitize(
+    looksLikeHtml ? cs.body || '' : marked.parse(cs.body || '')
+  );
 
   return (
     <div className={`svc-detail ${mountFadeClass}`}>

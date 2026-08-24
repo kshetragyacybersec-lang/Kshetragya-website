@@ -30,7 +30,13 @@ export default function BlogPost() {
   if (post === undefined) return null;
   if (post === null) return <NotFound />;
 
-  const html = DOMPurify.sanitize(marked.parse(post.body || ''));
+  // New posts come from the rich text editor as ready HTML. Older posts
+  // (written before that editor existed) are plain markdown-ish text —
+  // detect which one this is so both display correctly.
+  const looksLikeHtml = /<[a-z][\s\S]*>/i.test(post.body || '');
+  const html = DOMPurify.sanitize(
+    looksLikeHtml ? post.body || '' : marked.parse(post.body || '')
+  );
 
   return (
     <div className={`svc-detail ${mountFadeClass}`}>
