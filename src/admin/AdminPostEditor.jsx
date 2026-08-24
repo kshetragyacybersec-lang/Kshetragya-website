@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import RichTextEditor from './RichTextEditor.jsx';
 
 export default function AdminPostEditor({ kind }) {
   // kind is 'blog' or 'case'
@@ -50,6 +51,11 @@ export default function AdminPostEditor({ kind }) {
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
+    const plainText = form.body.replace(/<[^>]*>/g, '').trim();
+    if (!plainText) {
+      setError('Content cannot be empty.');
+      return;
+    }
     setSaving(true);
     try {
       const url = isNew ? apiBase : `${apiBase}/${id}`;
@@ -132,13 +138,10 @@ export default function AdminPostEditor({ kind }) {
         </label>
 
         <label style={styles.label}>
-          Content (Markdown supported — e.g. ## Heading, **bold**)
-          <textarea
-            required
+          Content
+          <RichTextEditor
             value={form.body}
-            onChange={(e) => update('body', e.target.value)}
-            rows={14}
-            style={styles.textareaLarge}
+            onChange={(html) => update('body', html)}
           />
         </label>
 
