@@ -1,6 +1,7 @@
 import { put } from '@vercel/blob';
 import { requireAuth } from '../lib/auth.js';
 import { noStore } from '../lib/db.js';
+import { checkRateLimit } from '../lib/rateLimit.js';
 
 export const config = {
   api: {
@@ -10,6 +11,8 @@ export const config = {
 
 const MAX_BYTES = 8 * 1024 * 1024; // 8 MB
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+const UPLOAD_LIMIT = 20; // uploads
+const UPLOAD_WINDOW_MS = 10 * 60 * 1000; // per 10 minutes, per admin user
 
 export default async function handler(req, res) {
   noStore(res);
@@ -18,8 +21,13 @@ export default async function handler(req, res) {
     return;
   }
 
-  const session = requireAuth(req, res);
+  const session = await requireAuth(req, res);
   if (!session) return;
+
+  if (!checkRateLimit(`upload:${session.id}`, UPLOAD_LIMIT, UPLOAD_WINDOW_MS)) {
+    res.status(429).json({ error: 'Too many uploads. Please wait a few minutes and try again.' });
+    return;
+  }
 
   const filename = req.headers['x-filename'] || 'upload';
   const contentType = req.headers['content-type'] || '';
