@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import { sql, noStore } from '../../lib/db.js';
-import { signSession, setSessionCookie } from '../../lib/auth.js';
+import { signSession, setAuthCookies, generateCsrfToken } from '../../lib/auth.js';
 
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_MINUTES = 15;
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   const normalizedEmail = String(email).trim().toLowerCase();
 
   const { rows } = await sql`
-    SELECT id, name, email, password_hash, failed_attempts, locked_until
+    SELECT id, name, email, password_hash, failed_attempts, locked_until, token_version
     FROM admin_users
     WHERE email = ${normalizedEmail}
   `;
@@ -71,8 +71,10 @@ export default async function handler(req, res) {
   `;
 
   const token = signSession(user);
-  setSessionCookie(res, token);
+  const csrfToken = generateCsrfToken();
+  setAuthCookies(res, token, csrfToken);
   res.status(200).json({
     user: { id: user.id, name: user.name, email: user.email },
+    csrfToken,
   });
 }
