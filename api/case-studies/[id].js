@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       return;
     }
     if (!cs.published) {
-      const session = getSessionFromRequest(req);
+      const session = await getSessionFromRequest(req);
       if (!session) {
         res.status(404).json({ error: 'Not found' });
         return;
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'PUT') {
-    const session = requireAuth(req, res);
+    const session = await requireAuth(req, res);
     if (!session) return;
 
     const { title, client, excerpt, cover, body, date, published } = req.body || {};
@@ -54,7 +54,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'DELETE') {
-    const session = requireAuth(req, res);
+    const session = await requireAuth(req, res);
     if (!session) return;
 
     await sql`DELETE FROM case_studies WHERE id = ${id}`;
