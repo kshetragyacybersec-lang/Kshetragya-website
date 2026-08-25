@@ -15,8 +15,18 @@ async function main() {
       failed_attempts INT DEFAULT 0,
       locked_until TIMESTAMPTZ,
       last_login TIMESTAMPTZ,
+      -- Bumped whenever every existing session for this user should be
+      -- force-invalidated (password reset, "log out everywhere", a
+      -- suspected compromise). Checked against the JWT on every request.
+      token_version INT DEFAULT 0,
       created_at TIMESTAMPTZ DEFAULT NOW()
     )
+  `;
+
+  // Existing databases created before token_version existed won't have the
+  // column yet — add it if missing so this script is safe to re-run.
+  await sql`
+    ALTER TABLE admin_users ADD COLUMN IF NOT EXISTS token_version INT DEFAULT 0
   `;
 
   await sql`

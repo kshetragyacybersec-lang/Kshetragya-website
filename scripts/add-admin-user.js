@@ -25,7 +25,15 @@ async function main() {
     INSERT INTO admin_users (name, email, password_hash)
     VALUES (${name}, ${normalizedEmail}, ${hash})
     ON CONFLICT (email)
-    DO UPDATE SET password_hash = ${hash}, name = ${name}, failed_attempts = 0, locked_until = NULL
+    DO UPDATE SET
+      password_hash = ${hash},
+      name = ${name},
+      failed_attempts = 0,
+      locked_until = NULL,
+      -- Invalidate every session currently issued for this account —
+      -- important when this script is used to reset a compromised
+      -- password, so old sessions don't stay valid after the reset.
+      token_version = COALESCE(admin_users.token_version, 0) + 1
   `;
 
   console.log(`Account ready for ${normalizedEmail}.`);
