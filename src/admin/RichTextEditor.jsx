@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { csrfFetch } from './csrfFetch.js';
 
 // A simple, no-dependency rich text editor that feels like Word/Google Docs
 // for non-technical editors: click a button, it formats the selected text.
@@ -49,7 +50,7 @@ export default function RichTextEditor({ value, onChange }) {
     setUploading(true);
     setUploadError('');
     try {
-      const res = await fetch('/api/upload', {
+      const res = await csrfFetch('/api/upload', {
         method: 'POST',
         headers: {
           'Content-Type': file.type,

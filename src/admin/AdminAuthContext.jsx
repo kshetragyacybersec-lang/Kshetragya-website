@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { csrfFetch } from './csrfFetch.js';
 
 const AdminAuthContext = createContext(null);
 
@@ -27,8 +28,26 @@ export function AdminAuthProvider({ children }) {
   }
 
   async function logout() {
-    await fetch('/api/auth/logout', { method: 'POST' });
+    await csrfFetch('/api/auth/logout', { method: 'POST' });
     setUser(null);
+    clearAllDrafts();
+  }
+
+  // Post/case-study drafts are auto-saved to localStorage as `draft:<kind>:<id>`
+  // (see AdminPostEditor.jsx) so nothing is lost if the tab closes mid-edit.
+  // On logout, wipe all of them so unpublished or sensitive draft content
+  // doesn't linger in the browser's storage on a shared or public device.
+  function clearAllDrafts() {
+    try {
+      const keysToRemove = [];
+      for (let i = 0; i < window.localStorage.length; i++) {
+        const key = window.localStorage.key(i);
+        if (key && key.startsWith('draft:')) keysToRemove.push(key);
+      }
+      keysToRemove.forEach((key) => window.localStorage.removeItem(key));
+    } catch {
+      // storage unavailable — safe to ignore, not critical
+    }
   }
 
   return (

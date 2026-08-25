@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAdminAuth } from './AdminAuthContext.jsx';
+import { csrfFetch } from './csrfFetch.js';
 
 export default function AdminDashboard() {
   const { user, logout } = useAdminAuth();
@@ -28,7 +29,7 @@ export default function AdminDashboard() {
   async function handleDelete(kind, id) {
     if (!confirm('Delete this permanently?')) return;
     const url = kind === 'blog' ? `/api/posts/${id}` : `/api/case-studies/${id}`;
-    await fetch(url, { method: 'DELETE' });
+    await csrfFetch(url, { method: 'DELETE' });
     load();
   }
 

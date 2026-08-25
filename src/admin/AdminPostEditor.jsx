@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import RichTextEditor from './RichTextEditor.jsx';
+import { csrfFetch } from './csrfFetch.js';
 
 const emptyForm = {
   title: '',
@@ -114,7 +115,7 @@ export default function AdminPostEditor({ kind }) {
     setCoverUploading(true);
     setCoverError('');
     try {
-      const res = await fetch('/api/upload', {
+      const res = await csrfFetch('/api/upload', {
         method: 'POST',
         headers: { 'Content-Type': file.type, 'x-filename': file.name },
         body: file,
@@ -141,7 +142,7 @@ export default function AdminPostEditor({ kind }) {
     try {
       const url = isNew ? apiBase : `${apiBase}/${id}`;
       const method = isNew ? 'POST' : 'PUT';
-      const res = await fetch(url, {
+      const res = await csrfFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
