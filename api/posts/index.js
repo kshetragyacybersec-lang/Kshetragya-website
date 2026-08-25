@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   noStore(res);
   if (req.method === 'GET') {
     // Public: only published posts, unless a valid admin session asks for all.
-    const session = getSessionFromRequest(req);
+    const session = await getSessionFromRequest(req);
     const includeDrafts = Boolean(session) && req.query.all === '1';
 
     const { rows } = includeDrafts
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    const session = requireAuth(req, res);
+    const session = await requireAuth(req, res);
     if (!session) return;
 
     const { title, excerpt, cover, body, date, published } = req.body || {};
