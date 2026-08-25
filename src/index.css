@@ -48,7 +48,7 @@ html {
   /* Section rhythm */
   --sec-pad-y: 8.5rem;
   --sec-pad-y-mobile: 4.5rem;
-  --container-max: 1240px;
+  --container-max: min(1240px, 88vw);
 }
 
 html {
@@ -59,7 +59,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--f-i);
-  font-size: 16px;
+  font-size: clamp(15px, 0.85vw + 0.6rem, 18px);
   line-height: 1.65;
   overflow-x: hidden;
 }
@@ -2163,5 +2163,55 @@ footer > nav[aria-label='Footer'] {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ── RESPONSIVE: EXTRA-LARGE SCREENS ─────────────────────────────
+   Ultra-wide monitors / 4K displays. Container already caps via
+   min(1240px, 88vw) above; here we let a couple of grids breathe a
+   little more instead of just centering with huge empty margins. */
+@media (min-width: 1600px) {
+  :root {
+    --container-max: min(1400px, 78vw);
+  }
+  .svc-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── RESPONSIVE: SMALL PHONES ─────────────────────────────────────
+   Tighten spacing/typography further for narrow phones (iPhone SE,
+   older Android devices) so nothing feels cramped or overflows. */
+@media (max-width: 380px) {
+  :root {
+    --sec-pad-y-mobile: 3.25rem;
+  }
+  .hero-h1 {
+    font-size: clamp(1.7rem, 8vw, 2.1rem);
+  }
+  .hero-p {
+    font-size: 0.9rem;
+  }
+  .hero-stats {
+    gap: 1rem 1.5rem;
+    padding: 0 6vw 2.25rem;
+  }
+  .btn-v,
+  .btn-g {
+    width: 100%;
+    text-align: center;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+/* ── RESPONSIVE: LANDSCAPE TABLETS / FOLDABLES ────────────────────
+   Covers the awkward zone between phone and desktop breakpoints
+   where a rigid single-column layout wastes horizontal space. */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .svc-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
