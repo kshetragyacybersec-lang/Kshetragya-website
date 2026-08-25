@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 import { processSteps } from '../data.js';
-import { useScrollReveal } from '../useScrollReveal.js';
 import { useThrottledScroll } from '../useThrottledScroll.js';
+import { Reveal } from './Reveal.jsx';
 
 export default function Process() {
-  const listRef = useScrollReveal('.proc-row');
+  const listRef = useRef(null);
 
   // Connector line down the number column fills in as the timeline
   // scrolls through view. Skipped for prefers-reduced-motion.
@@ -13,7 +14,7 @@ export default function Process() {
     if (reduceMotion && listRef.current) {
       listRef.current.style.setProperty('--proc-progress', 1);
     }
-  }, [listRef]);
+  }, []);
 
   useThrottledScroll(
     () => {
@@ -46,7 +47,8 @@ export default function Process() {
           kickoff and delivery.
         </p>
       </div>
-      <ol
+      <Reveal
+        as="ol"
         className="proc-list"
         aria-label="Engagement timeline, five stages from scoping to retest"
         ref={listRef}
@@ -54,17 +56,17 @@ export default function Process() {
         <span className="proc-connector" aria-hidden="true">
           <span className="proc-connector-fill"></span>
         </span>
-        {processSteps.map((p, i) => (
-          <li className="proc-row" key={p.d} style={{ '--stagger': `${i * 70}ms` }}>
+        {processSteps.map((p) => (
+          <Reveal.Item as="li" className="proc-row" key={p.d}>
             <span className="proc-d" aria-hidden="true">
               {p.d}
             </span>
             <div className="proc-t">{p.title}</div>
             <div className="proc-desc">{p.desc}</div>
             <div className="proc-time">{p.time}</div>
-          </li>
+          </Reveal.Item>
         ))}
-      </ol>
+      </Reveal>
     </section>
   );
 }

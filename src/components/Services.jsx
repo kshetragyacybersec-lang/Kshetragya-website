@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 import { serviceGroups } from '../data.js';
-import { useScrollReveal } from '../useScrollReveal.js';
+import { Reveal } from './Reveal.jsx';
 
 export default function Services() {
-  const gridRef = useScrollReveal('.svc-group');
-
   return (
     <section id="services" aria-labelledby="services-heading">
       <div className="svc-head">
@@ -22,9 +20,9 @@ export default function Services() {
         </p>
       </div>
 
-      <div className="svc-grid" ref={gridRef}>
+      <Reveal className="svc-grid">
         {serviceGroups.map((group, i) => (
-          <div className="svc-group" key={group.id} style={{ '--stagger': `${(i % 4) * 60}ms` }}>
+          <Reveal.Item className="svc-group" key={group.id}>
             <span className="svc-group-idx" aria-hidden="true">
               {String(i + 1).padStart(2, '0')}
             </span>
@@ -42,9 +40,9 @@ export default function Services() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal.Item>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

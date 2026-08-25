@@ -1,6 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
+import { motion } from 'motion/react';
 import { useMagnetic } from '../useMagnetic.js';
 import { useThrottledScroll } from '../useThrottledScroll.js';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 220, damping: 24, delay },
+  }),
+};
 
 const STATS = [
   {
@@ -136,8 +146,6 @@ export default function Hero() {
     setParallaxY(window.scrollY * 0.25);
   });
 
-  const hl = (n) => `hero-load hero-load-${n}${loaded ? ' hero-load-in' : ''}`;
-
   return (
     <section className="hero" id="main-content" tabIndex={-1} ref={heroRef}>
       <div
@@ -146,41 +154,90 @@ export default function Hero() {
         style={{ transform: `translate3d(0, ${parallaxY * 0.5}px, 0)` }}
       ></div>
 
-      <dl className={`hero-stats ${hl(6)}`} ref={statsRef}>
+      <motion.dl
+        className="hero-stats"
+        ref={statsRef}
+        variants={fadeUp}
+        custom={0.55}
+        initial="hidden"
+        animate={loaded ? 'show' : 'hidden'}
+      >
         {STATS.map((s) => (
           <StatNode stat={s} start={statsVisible} key={s.key} />
         ))}
-      </dl>
+      </motion.dl>
 
       <div
         className="hero-content"
         style={{ transform: `translate3d(0, ${parallaxY * -0.15}px, 0)` }}
       >
-        <div className={`hero-ch ${hl(1)}`}>
+        <motion.div
+          className="hero-ch"
+          variants={fadeUp}
+          custom={0}
+          initial="hidden"
+          animate={loaded ? 'show' : 'hidden'}
+        >
           <span className="hero-ch-mark">Bhagavad Gita, Chapter XIII, Verse 2</span>
           <span className="hero-ch-rule" aria-hidden="true"></span>
-        </div>
-        <p className={`hero-sk ${hl(2)}`} lang="sa">
+        </motion.div>
+        <motion.p
+          className="hero-sk"
+          lang="sa"
+          variants={fadeUp}
+          custom={0.08}
+          initial="hidden"
+          animate={loaded ? 'show' : 'hidden'}
+        >
           यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति
-        </p>
-        <h1 className={`hero-h1 ${hl(3)}`}>
+        </motion.p>
+        <motion.h1
+          className="hero-h1"
+          variants={fadeUp}
+          custom={0.16}
+          initial="hidden"
+          animate={loaded ? 'show' : 'hidden'}
+        >
           He who knows the field,
           <br />
           that one is called <em>Kshetragya.</em>
-        </h1>
-        <p className={`hero-p ${hl(4)}`}>
+        </motion.h1>
+        <motion.p
+          className="hero-p"
+          variants={fadeUp}
+          custom={0.26}
+          initial="hidden"
+          animate={loaded ? 'show' : 'hidden'}
+        >
           From network infrastructure to CCTV surveillance to cybersecurity, we know your network,
           your terrain, your field, before problems find it. Based in Gujarat, delivering across
           India, with remote delivery for clients in the USA, UK and UAE.
-        </p>
-        <div className={`hero-actions ${hl(5)}`}>
-          <a className="btn-v btn-magnetic" href="#contact" ref={magneticRef}>
+        </motion.p>
+        <motion.div
+          className="hero-actions"
+          variants={fadeUp}
+          custom={0.36}
+          initial="hidden"
+          animate={loaded ? 'show' : 'hidden'}
+        >
+          <motion.a
+            className="btn-v btn-magnetic"
+            href="#contact"
+            ref={magneticRef}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+          >
             Request Free Assessment
-          </a>
-          <a className="btn-g" href="#services">
+          </motion.a>
+          <motion.a
+            className="btn-g"
+            href="#services"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+          >
             View All Services
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
         <div className="hero-scroll">
           <span className="scroll-lbl">Enter the field</span>
           <span className="scroll-line" aria-hidden="true"></span>
