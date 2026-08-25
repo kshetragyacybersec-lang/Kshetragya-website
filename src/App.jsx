@@ -1,6 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'motion/react';
 import Nav from './components/Nav.jsx';
 import Footer from './components/Footer.jsx';
+import PageTransition from './components/PageTransition.jsx';
 import Home from './pages/Home.jsx';
 import ServiceDetail from './pages/ServiceDetail.jsx';
 import About from './pages/About.jsx';
@@ -13,20 +15,44 @@ import NotFound from './pages/NotFound.jsx';
 import AdminApp from './admin/AdminApp.jsx';
 
 function PublicSite() {
+  const location = useLocation();
   return (
     <>
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services/:slug" element={<ServiceDetail />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-        <Route path="/case-studies" element={<CaseStudies />} />
-        <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <AnimatePresence mode="wait" initial={false}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+          <Route
+            path="/services/:slug"
+            element={
+              <PageTransition>
+                <ServiceDetail />
+              </PageTransition>
+            }
+          />
+          <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+          <Route path="/careers" element={<PageTransition><Careers /></PageTransition>} />
+          <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+          <Route path="/blog/:slug" element={<PageTransition><BlogPost /></PageTransition>} />
+          <Route
+            path="/case-studies"
+            element={
+              <PageTransition>
+                <CaseStudies />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/case-studies/:slug"
+            element={
+              <PageTransition>
+                <CaseStudyDetail />
+              </PageTransition>
+            }
+          />
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+        </Routes>
+      </AnimatePresence>
       <Footer />
     </>
   );
