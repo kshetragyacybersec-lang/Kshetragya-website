@@ -93,6 +93,11 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <span className="footer-copy">© {year} Kshetragya Cybersec · All rights reserved</span>
+        <div className="footer-legal-links" style={{ display: 'flex', gap: '1rem' }}>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/terms-of-service">Terms of Service</Link>
+          <Link to="/responsible-disclosure">Responsible Disclosure</Link>
+        </div>
         <button
           className="footer-back-top"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
