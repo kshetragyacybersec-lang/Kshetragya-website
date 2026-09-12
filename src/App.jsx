@@ -11,6 +11,9 @@ import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import CaseStudies from './pages/CaseStudies.jsx';
 import CaseStudyDetail from './pages/CaseStudyDetail.jsx';
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
+import TermsOfService from './pages/TermsOfService.jsx';
+import ResponsibleDisclosure from './pages/ResponsibleDisclosure.jsx';
 import NotFound from './pages/NotFound.jsx';
 import AdminApp from './admin/AdminApp.jsx';
 
@@ -47,6 +50,30 @@ function PublicSite() {
             element={
               <PageTransition>
                 <CaseStudyDetail />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/privacy-policy"
+            element={
+              <PageTransition>
+                <PrivacyPolicy />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/terms-of-service"
+            element={
+              <PageTransition>
+                <TermsOfService />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/responsible-disclosure"
+            element={
+              <PageTransition>
+                <ResponsibleDisclosure />
               </PageTransition>
             }
           />
