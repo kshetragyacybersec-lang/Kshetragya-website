@@ -4,7 +4,9 @@ import { motion, useScroll, useSpring } from 'motion/react';
 import Hero from '../components/Hero.jsx';
 import MarqueeTicker from '../components/MarqueeTicker.jsx';
 import Services from '../components/Services.jsx';
+import SecurityApproach from '../components/SecurityApproach.jsx';
 import Areas from '../components/Areas.jsx';
+import SecurityInsights from '../components/SecurityInsights.jsx';
 import Process from '../components/Process.jsx';
 import Contact from '../components/Contact.jsx';
 
@@ -76,7 +78,9 @@ export default function Home() {
       <Hero />
       <MarqueeTicker />
       <Services />
+      <SecurityApproach />
       <Areas />
+      <SecurityInsights />
       <Process />
       <Contact />
     </main>
