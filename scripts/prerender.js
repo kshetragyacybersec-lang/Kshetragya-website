@@ -259,12 +259,48 @@ for (const group of serviceGroups) {
   }
 }
 
+function buildSimpleLegalPageHtml({ title, description, slug }) {
+  const pageUrl = `${siteUrl}/${slug}`;
+  let html = applyCommonMeta(template, { title, description, pageUrl });
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: title,
+    description,
+    url: pageUrl,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Kshetragya Cybersec',
+      url: siteUrl,
+    },
+  };
+  const jsonLdTag = `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`;
+  html = html.replace('</head>', `  ${jsonLdTag}\n</head>`);
+  return html;
+}
+
 // Prerender static standalone pages
 const staticPages = [
   { dir: 'about', html: buildAboutPageHtml() },
   { dir: 'careers', html: buildCareersPageHtml() },
   { dir: 'blog', html: buildBlogPageHtml() },
   { dir: 'case-studies', html: buildCaseStudiesPageHtml() },
+  { dir: 'privacy-policy', html: buildSimpleLegalPageHtml({
+      title: 'Privacy Policy | Kshetragya Cybersec',
+      description: 'How Kshetragya Cybersec collects, uses, and protects your information.',
+      slug: 'privacy-policy',
+    }) },
+  { dir: 'terms-of-service', html: buildSimpleLegalPageHtml({
+      title: 'Terms of Service | Kshetragya Cybersec',
+      description: 'The terms that govern use of the Kshetragya Cybersec website and services.',
+      slug: 'terms-of-service',
+    }) },
+  { dir: 'responsible-disclosure', html: buildSimpleLegalPageHtml({
+      title: 'Responsible Disclosure | Kshetragya Cybersec',
+      description: 'How to report a security vulnerability to Kshetragya Cybersec.',
+      slug: 'responsible-disclosure',
+    }) },
 ];
 
 for (const p of staticPages) {
@@ -274,5 +310,5 @@ for (const p of staticPages) {
 }
 
 console.log(
-  `Prerendered ${count} service pages and ${staticPages.length} static pages (About, Careers, Blog, Case Studies) with per-page meta tags and JSON-LD.`
+  `Prerendered ${count} service pages and ${staticPages.length} static pages (About, Careers, Blog, Case Studies, Privacy Policy, Terms of Service, Responsible Disclosure) with per-page meta tags and JSON-LD.`
 );
