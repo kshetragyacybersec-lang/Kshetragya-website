@@ -3,8 +3,8 @@ import { Reveal } from './Reveal.jsx';
 const INSIGHTS = [
   {
     id: 'perimeter',
-    stat: '11',
-    label: 'Service Lines',
+    stat: '4',
+    label: 'Core Disciplines',
     desc: 'From structured cabling and firewalls to VAPT and cloud security, one team handles your entire stack.',
   },
   {

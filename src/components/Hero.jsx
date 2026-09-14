@@ -393,7 +393,7 @@ export default function Hero() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              Explore 11 Services
+              Explore Disciplines
             </motion.a>
           </motion.div>
 

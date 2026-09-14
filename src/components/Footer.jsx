@@ -52,7 +52,7 @@ export default function Footer() {
             <li><Link to="/services/web-application-vapt">Web Application VAPT</Link></li>
             <li><Link to="/services/soc-as-a-service">SOC as a Service</Link></li>
             <li><Link to="/services/grc-compliance-audit">GRC &amp; Compliance Audit</Link></li>
-            <li><Link to="/#services" style={{ color: 'var(--blue)', fontWeight: 600 }}>Explore All 11 Services →</Link></li>
+            <li><Link to="/#services" style={{ color: 'var(--blue)', fontWeight: 600 }}>Explore Our 4 Disciplines →</Link></li>
           </ul>
         </div>
 

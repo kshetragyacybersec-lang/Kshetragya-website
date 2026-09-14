@@ -82,7 +82,7 @@ export default function About() {
             </div>
             <div className="about-fact">
               <div className="about-fact-label">Core Services</div>
-              <div className="about-fact-value">11 Practice Areas</div>
+              <div className="about-fact-value">4 Core Disciplines</div>
             </div>
             <div className="about-fact">
               <div className="about-fact-label">Delivery Scope</div>

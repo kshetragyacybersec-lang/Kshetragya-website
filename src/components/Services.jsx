@@ -84,20 +84,6 @@ const DISCIPLINE_META = {
   },
 };
 
-const SERVICE_CHIPS = {
-  'network-infrastructure': ['Cat6A Cabling', 'Server Racks', 'Cable Labeling'],
-  'switching-routing': ['VLAN Segregation', 'L3 Core Routing', 'STP / LACP'],
-  'cctv-surveillance': ['IP Cameras', 'NVR RAID', 'Dedicated VLAN'],
-  'firewall-network-security': ['Fortinet / Sophos', 'IPS & Web Filtering', 'Zero-Trust VPN'],
-  'soc-as-a-service': ['Wazuh SIEM', '24/7 Event Triage', 'Direct Alert Escalation'],
-  'incident-response-dfir': ['Emergency Isolation', 'Memory Forensics', 'Root Cause Report'],
-  'security-hardening': ['CIS Benchmarks', 'Port Closure', 'Host Firewall Tuning'],
-  'network-va': ['Port Discovery', 'CVE Audit', 'Weak Cipher Scan'],
-  'web-application-vapt': ['OWASP Top 10', 'API Vulnerabilities', 'Auth Bypass Checks'],
-  'grc-compliance-audit': ['DPDP 2023 Readiness', 'ISO 27001 Gap Report', 'CERT-In Alignment'],
-  'cloud-security-review': ['AWS / Azure Review', 'IAM Least Privilege', 'S3 Bucket Audit'],
-};
-
 export default function Services() {
   const [selectedTab, setSelectedTab] = useState('all');
 
@@ -114,7 +100,7 @@ export default function Services() {
           <h2 className="sec-h dark" id="services-heading">
             Four disciplines.
             <br />
-            <em>Eleven specialized services.</em>
+            <em>Direct Engineering Practice.</em>
           </h2>
         </div>
         <div className="svc-head-desc-col">
@@ -131,7 +117,7 @@ export default function Services() {
               onClick={() => setSelectedTab('all')}
             >
               <span className="tac-tab-dot" />
-              <span>All Disciplines (11)</span>
+              <span>All Disciplines (4)</span>
             </button>
             {serviceGroups.map((g) => {
               const meta = DISCIPLINE_META[g.id] || {};
@@ -190,42 +176,6 @@ export default function Services() {
                         {tag}
                       </span>
                     ))}
-                  </div>
-                </div>
-
-                {/* Sub-Services Tiles */}
-                <div className="svc-services-wrapper">
-                  <div className="svc-services-header">
-                    <span>SPECIALIZED SERVICE LINES</span>
-                    <span className="svc-count-pill">{group.services.length} Services</span>
-                  </div>
-
-                  <div className="svc-tiles-stack">
-                    {group.services.map((svc) => {
-                      const chips = SERVICE_CHIPS[svc.id] || [];
-                      return (
-                        <Link
-                          key={svc.id}
-                          to={`/services/${svc.id}`}
-                          className="svc-tile-item"
-                        >
-                          <div className="svc-tile-main">
-                            <div className="svc-tile-title-row">
-                              <span className="svc-tile-name">{svc.name}</span>
-                              <span className="svc-tile-arrow" aria-hidden="true">↗</span>
-                            </div>
-                            <p className="svc-tile-desc">{svc.short}</p>
-                            {chips.length > 0 && (
-                              <div className="svc-tile-chips">
-                                {chips.map((c, cIdx) => (
-                                  <span className="svc-mini-chip" key={cIdx}>{c}</span>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        </Link>
-                      );
-                    })}
                   </div>
                 </div>
 
