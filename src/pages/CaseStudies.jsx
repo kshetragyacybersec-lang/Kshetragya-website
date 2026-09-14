@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageFadeIn } from '../usePageFadeIn.js';
+import { seedCaseStudies } from '../data.js';
 
 function SkeletonCard() {
   return (
@@ -17,7 +18,7 @@ function SkeletonCard() {
 }
 
 export default function CaseStudies() {
-  const [caseStudies, setCaseStudies] = useState([]);
+  const [caseStudies, setCaseStudies] = useState(seedCaseStudies);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,8 +26,11 @@ export default function CaseStudies() {
     document.title = 'Case Studies | Kshetragya Cybersec';
     fetch('/api/case-studies')
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Failed to fetch case studies'))))
-      .then((data) => setCaseStudies(data.caseStudies || []))
-      .catch(() => setCaseStudies([]))
+      .then((data) => {
+        const list = data.caseStudies && data.caseStudies.length > 0 ? data.caseStudies : seedCaseStudies;
+        setCaseStudies(list);
+      })
+      .catch(() => setCaseStudies(seedCaseStudies))
       .finally(() => setLoading(false));
     return () => { document.title = prevTitle; };
   }, []);

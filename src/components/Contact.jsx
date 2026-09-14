@@ -47,31 +47,42 @@ export default function Contact() {
     setStatus({ show: false, ok: false, msg: '' });
 
     const form = e.target;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
     try {
-      const res = await fetch(form.action, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
-      if (res.ok) {
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
         setStatus({
           show: true,
           ok: true,
-          msg: "Request sent, we'll be in touch within 24 hours.",
+          msg: data.message || "Request sent, we'll be in touch within 24 hours.",
         });
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'assessment_request_submitted');
         }
         form.reset();
       } else {
-        throw new Error(`Form submission failed with status ${res.status}`);
+        throw new Error(data.error || `Form submission failed with status ${res.status}`);
       }
     } catch (err) {
       console.error('Contact form submission failed:', err);
       setStatus({
         show: true,
         ok: false,
-        msg: 'Something went wrong. Please email info@kshetragyacybersec.com directly.',
+        msg:
+          err.message && (err.message.startsWith('Please') || err.message.startsWith('Too many'))
+            ? err.message
+            : 'Something went wrong. Please email info@kshetragyacybersec.com directly.',
       });
     } finally {
       setSending(false);
@@ -125,7 +136,7 @@ export default function Contact() {
 
         <div className="cform">
           <form
-            action="https://formsubmit.co/info@kshetragyacybersec.com"
+            action="/api/contact"
             method="POST"
             onSubmit={handleSubmit}
             aria-describedby={status.show ? 'cform-status-msg' : undefined}
@@ -135,13 +146,6 @@ export default function Contact() {
               <span className="cform-te">KCS · Inquiry Form</span>
             </div>
 
-            <input
-              type="hidden"
-              name="_subject"
-              value="New Assessment Request - Kshetragya website"
-            />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
             <input
               type="text"
               name="_honey"

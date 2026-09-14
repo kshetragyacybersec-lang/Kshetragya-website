@@ -15,7 +15,7 @@ const root = path.resolve(__dirname, '..');
 const distDir = path.join(root, 'dist');
 const siteUrl = 'https://www.kshetragyacybersec.com';
 
-const { serviceGroups } = await import(path.join(root, 'src/data.js'));
+const { serviceGroups, seedCaseStudies } = await import(path.join(root, 'src/data.js'));
 
 const template = readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
@@ -309,6 +309,47 @@ for (const p of staticPages) {
   writeFileSync(path.join(outDir, 'index.html'), p.html, 'utf-8');
 }
 
+function buildCaseStudyDetailPageHtml(cs) {
+  const title = `${cs.title} | Kshetragya Cybersec Case Studies`;
+  const description = cs.excerpt;
+  const pageUrl = `${siteUrl}/case-studies/${cs.slug}`;
+
+  let html = applyCommonMeta(template, { title, description, pageUrl });
+
+  const csJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: cs.title,
+    description: cs.excerpt,
+    datePublished: cs.date,
+    author: {
+      '@type': 'Organization',
+      name: 'Kshetragya Cybersec',
+      url: siteUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Kshetragya Cybersec',
+      url: siteUrl,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': pageUrl,
+    },
+  };
+  const jsonLdTag = `<script type="application/ld+json">\n${JSON.stringify(csJsonLd, null, 2)}\n</script>`;
+  html = html.replace('</head>', `  ${jsonLdTag}\n</head>`);
+  return html;
+}
+
+let csCount = 0;
+for (const cs of (seedCaseStudies || [])) {
+  const outDir = path.join(distDir, 'case-studies', cs.slug);
+  mkdirSync(outDir, { recursive: true });
+  writeFileSync(path.join(outDir, 'index.html'), buildCaseStudyDetailPageHtml(cs), 'utf-8');
+  csCount++;
+}
+
 console.log(
-  `Prerendered ${count} service pages and ${staticPages.length} static pages (About, Careers, Blog, Case Studies, Privacy Policy, Terms of Service, Responsible Disclosure) with per-page meta tags and JSON-LD.`
+  `Prerendered ${count} service pages, ${csCount} case studies, and ${staticPages.length} static pages with per-page meta tags and JSON-LD.`
 );

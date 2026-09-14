@@ -15,11 +15,21 @@ export default async function handler(req, res) {
     const session = await getSessionFromRequest(req);
     const includeDrafts = Boolean(session) && req.query.all === '1';
 
-    const { rows } = includeDrafts
-      ? await sql`SELECT * FROM case_studies ORDER BY date DESC, created_at DESC`
-      : await sql`SELECT * FROM case_studies WHERE published = true ORDER BY date DESC, created_at DESC`;
+    try {
+      const { rows } = includeDrafts
+        ? await sql`SELECT * FROM case_studies ORDER BY date DESC, created_at DESC`
+        : await sql`SELECT * FROM case_studies WHERE published = true ORDER BY date DESC, created_at DESC`;
 
-    res.status(200).json({ caseStudies: rows });
+      if (rows && rows.length > 0) {
+        res.status(200).json({ caseStudies: rows });
+        return;
+      }
+    } catch (err) {
+      console.warn('Postgres query failed, falling back to seed case studies:', err?.message || err);
+    }
+
+    const { seedCaseStudies } = await import('../../src/data.js');
+    res.status(200).json({ caseStudies: seedCaseStudies });
     return;
   }
 

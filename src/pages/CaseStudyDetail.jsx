@@ -4,6 +4,7 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import { usePageFadeIn } from '../usePageFadeIn.js';
 import NotFound from './NotFound.jsx';
+import { seedCaseStudies } from '../data.js';
 
 export default function CaseStudyDetail() {
   const { slug } = useParams();
@@ -11,11 +12,23 @@ export default function CaseStudyDetail() {
   const mountFadeClass = usePageFadeIn([slug]);
 
   useEffect(() => {
-    setCs(undefined);
+    const fallback = seedCaseStudies.find((item) => item.slug === slug);
+    setCs(fallback !== undefined ? fallback : undefined);
+
     fetch(`/api/case-studies/${slug}`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data) => setCs(data.caseStudy))
-      .catch(() => setCs(null));
+      .then((data) => {
+        if (data && data.caseStudy) {
+          setCs(data.caseStudy);
+        } else if (fallback) {
+          setCs(fallback);
+        } else {
+          setCs(null);
+        }
+      })
+      .catch(() => {
+        setCs(fallback || null);
+      });
   }, [slug]);
 
   useEffect(() => {
