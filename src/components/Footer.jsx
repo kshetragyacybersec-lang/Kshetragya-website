@@ -92,11 +92,14 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <span className="footer-copy">© {year} Kshetragya Cybersec · All rights reserved</span>
-        <div className="footer-legal-links" style={{ display: 'flex', gap: '1rem' }}>
-          <Link to="/privacy-policy">Privacy Policy</Link>
-          <Link to="/terms-of-service">Terms of Service</Link>
-          <Link to="/responsible-disclosure">Responsible Disclosure</Link>
+        <div className="footer-bottom-left">
+          <span className="footer-copy">© {year} Kshetragya Cybersec · All rights reserved</span>
+          <span className="footer-copy-sep">·</span>
+          <Link to="/privacy-policy" className="footer-legal-link">Privacy Policy</Link>
+          <span className="footer-copy-sep">·</span>
+          <Link to="/terms-of-service" className="footer-legal-link">Terms of Service</Link>
+          <span className="footer-copy-sep">·</span>
+          <Link to="/responsible-disclosure" className="footer-legal-link">Responsible Disclosure</Link>
         </div>
         <button
           className="footer-back-top"
