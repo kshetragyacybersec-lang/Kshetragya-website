@@ -33,7 +33,7 @@ export default function AdminPostEditor({ kind }) {
   const [coverError, setCoverError] = useState('');
 
   // Load existing content (edit mode), then check for a locally saved
-  // draft that's newer than what's on the server — offer to restore it.
+  // draft that is newer than what is on the server; offer to restore it.
   useEffect(() => {
     if (isNew) {
       const saved = readDraft();
@@ -87,7 +87,7 @@ export default function AdminPostEditor({ kind }) {
         window.localStorage.setItem(draftKey, JSON.stringify(form));
         setLastSavedAt(new Date());
       } catch {
-        // storage full or unavailable — safe to ignore, not critical
+        // storage full or unavailable: safe to ignore, not critical
       }
     }, 1500);
     return () => clearTimeout(t);

@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
 
           <h2>Information we collect</h2>
           <p>
-            When you submit our contact form, we collect the details you provide — your name,
+            When you submit our contact form, we collect the details you provide, including your name,
             email address, phone number, company name, and the message you send us. We use this
             solely to respond to your enquiry.
           </p>

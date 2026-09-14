@@ -59,7 +59,7 @@ export const serviceGroups = [
             checks: [
               'RF spectrum analysis and 2.4GHz / 5GHz / 6GHz interference mapping',
               'Optimal Access Point density and ceiling mounting placement',
-              'Seamless Fast BSS Transition (802.11r/k/v) client roaming',
+              'Fast BSS Transition (802.11r/k/v) roaming without packet drops',
               'PoE+ / PoE++ switch power budgeting for high-throughput Wi-Fi 6/6E/7',
             ],
           },
@@ -202,7 +202,7 @@ export const serviceGroups = [
           },
           {
             q: 'Can you configure high availability so our network stays up if a switch or link fails?',
-            a: 'Yes. We deploy switch stacking, MLAG (Multi-Chassis Link Aggregation), LACP port-channels, and First Hop Redundancy Protocols (VRRP/HSRP). If any single switch port, uplink cable, or distribution switch fails, traffic fails over seamlessly in milliseconds with zero disruption to users.',
+            a: 'Yes. We deploy switch stacking, MLAG (Multi-Chassis Link Aggregation), LACP port-channels, and First Hop Redundancy Protocols (VRRP/HSRP). If any single switch port, uplink cable, or distribution switch fails, traffic fails over in milliseconds with zero disruption to users.',
           },
           {
             q: 'Will reconfiguring our switches and routing cause downtime for our office or plant?',
@@ -217,7 +217,7 @@ export const serviceGroups = [
         id: 'cctv-surveillance',
         name: 'CCTV & Surveillance',
         short:
-          'Commercial surveillance engineered by network and cybersecurity specialists — zero network lag, isolated VLANs, and cyber-hardened remote viewing.',
+          'Commercial surveillance engineered by network and cybersecurity engineers with zero network lag, isolated VLANs, and secure remote viewing.',
         full: 'Commercial surveillance systems require proper camera optics selection, RAID storage calculations, and network isolation to operate reliably without choking internal corporate bandwidth or creating cybersecurity vulnerabilities. We assess physical premises to eliminate blind spots, install high-definition IP cameras with appropriate focal lengths, configure Network Video Recorders (NVRs) with RAID 5/10 storage, and isolate all camera traffic on a dedicated Layer 2/3 VLAN. We harden camera firmware against CVE exploits, set up encrypted SSL-VPN remote access for authorized personnel, and align data storage with DPDP Act 2023 video privacy standards.',
         standards: ['CIS Benchmarks', 'ISO 27001 ISMS', 'DPDP Act 2023', 'IEEE 802.3at/bt PoE'],
         deliverables: [
@@ -315,7 +315,7 @@ export const serviceGroups = [
           },
         ],
         quickAnswer:
-          'Commercial surveillance engineered by network and cybersecurity specialists — zero network lag, dedicated VLAN isolation, RAID 5/10 storage redundancy, and DPDP Act 2023 compliance. Deployed on-site in Gujarat and Pan-India.',
+          'Commercial surveillance engineered by network and security engineers: zero network lag, dedicated VLAN isolation, RAID 5/10 storage redundancy, and DPDP Act 2023 compliance. Deployed on-site in Gujarat and across India.',
         related: ['network-infrastructure', 'switching-routing', 'security-hardening'],
       },
     ],
@@ -941,7 +941,7 @@ export const serviceGroups = [
         faqs: [
           {
             q: 'Do you perform automated scanning or manual penetration testing?',
-            a: 'We combine automated scanners with deep manual penetration testing. Automated tools cannot understand business logic flaws, IDOR vulnerabilities, or multi-step privilege escalation — over 80% of critical vulnerabilities are discovered through our manual testing.',
+            a: 'We combine automated scanners with deep manual penetration testing. Automated tools cannot catch business logic flaws, IDOR issues, or multi-step privilege escalation. In fact, our manual testing uncovers over 80% of critical vulnerabilities.',
           },
           {
             q: 'Will web application penetration testing damage our live production database or site?',
@@ -1157,7 +1157,7 @@ export const serviceGroups = [
         faqs: [
           {
             q: 'How do you conduct a cloud security review without access to our sensitive customer data?',
-            a: 'We require only read-only audit permissions (such as SecurityAudit IAM policy in AWS or Reader/Security Reader in Azure). We inspect metadata, configurations, IAM policies, and network rules — our team never accesses or downloads your sensitive databases or customer files.',
+            a: 'We require only read-only audit permissions (such as SecurityAudit IAM policy in AWS or Reader/Security Reader in Azure). We inspect metadata, configurations, IAM policies, and network rules. Our team never accesses or downloads your databases or customer files.',
           },
           {
             q: 'Which cloud providers do you support for architecture and security audits?',

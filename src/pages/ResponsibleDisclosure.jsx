@@ -70,7 +70,7 @@ export default function ResponsibleDisclosure() {
           <h2>Scope</h2>
           <p>
             This policy covers this public website. If you've identified an issue with a client
-            system we manage, please do not test it directly — contact us instead so we can
+            system we manage, please do not test it directly. Instead, contact us so we can
             coordinate with the client appropriately.
           </p>
         </div>

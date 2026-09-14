@@ -46,7 +46,7 @@ export function AdminAuthProvider({ children }) {
       }
       keysToRemove.forEach((key) => window.localStorage.removeItem(key));
     } catch {
-      // storage unavailable — safe to ignore, not critical
+      // storage unavailable: safe to ignore, not critical
     }
   }
 

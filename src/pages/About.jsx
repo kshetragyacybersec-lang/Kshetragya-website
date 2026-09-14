@@ -62,7 +62,7 @@ export default function About() {
         <div className="about-story">
           <div className="about-story-text">
             <p>
-              We are three founding partners with backgrounds in network engineering, systems administration, and offensive security testing. When you engage Kshetragya, you communicate and work directly with the partners executing your project — from the initial technical scoping meeting and physical site survey to the final configuration and testing report.
+              We are three founding partners with backgrounds in network engineering, systems administration, and offensive security testing. When you engage Kshetragya, you communicate and work directly with the partners executing your project, from the initial technical scoping meeting and physical site survey to the final configuration and testing report.
             </p>
             <p>
               Our practice covers the full lifecycle of business networks: structured physical cabling and server rack deployments, L2/L3 switching and routing, CCTV surveillance networks, next-gen firewall configurations, 24/7 SOC monitoring, incident response, OS security hardening, network vulnerability assessments (VA), web application VAPT, GRC compliance readiness (including India's DPDP Act 2023), and cloud security reviews.

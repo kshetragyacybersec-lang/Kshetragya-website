@@ -36,7 +36,7 @@ export default function Footer() {
         {/* Column 1: Brand */}
         <div className="footer-brand">
           <span className="ft-name">Kshetragya Cybersec</span>
-          <span className="ft-tag">क्षेत्रज्ञ — Network &amp; Security Engineering</span>
+          <span className="ft-tag">क्षेत्रज्ञ · Network &amp; Security Engineering</span>
           <p className="footer-brand-desc">
             Network infrastructure design, firewall engineering, and cybersecurity services based in Ahmedabad, Gujarat. Delivering on-site across Gujarat and India.
           </p>

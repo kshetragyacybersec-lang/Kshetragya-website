@@ -251,7 +251,7 @@ export default function Services() {
           <span className="svc-banner-badge">DIRECT FOUNDER ENGAGEMENT</span>
           <h3 className="svc-banner-title">Need an end-to-end infrastructure &amp; cybersecurity audit?</h3>
           <p className="svc-banner-desc">
-            We scope custom multi-discipline engagements tailored to your exact operational requirements — from structured cabling and firewalls to deep offensive VAPT and DPDP compliance. Handled directly by founding partners in Ahmedabad.
+            We scope custom multi-discipline engagements tailored to your exact requirements, from structured cabling and firewalls to offensive VAPT and DPDP compliance. Handled directly by our founding partners in Ahmedabad.
           </p>
         </div>
         <div className="svc-banner-right">

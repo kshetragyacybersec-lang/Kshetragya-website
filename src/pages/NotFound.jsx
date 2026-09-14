@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 export default function NotFound() {
   useEffect(() => {
     const prevTitle = document.title;
-    document.title = '404 — Page Not Found | Kshetragya Cybersec';
+    document.title = '404: Page Not Found | Kshetragya Cybersec';
     return () => { document.title = prevTitle; };
   }, []);
 

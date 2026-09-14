@@ -5,7 +5,7 @@ const INSIGHTS = [
     id: 'perimeter',
     stat: '11',
     label: 'Service Lines',
-    desc: 'From structured cabling and firewalls to VAPT and cloud security — one team covers your full stack.',
+    desc: 'From structured cabling and firewalls to VAPT and cloud security, one team handles your entire stack.',
   },
   {
     id: 'response',

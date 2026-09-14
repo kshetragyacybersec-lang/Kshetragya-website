@@ -51,7 +51,7 @@ export default function TermsOfService() {
 
           <h2>Intellectual property</h2>
           <p>
-            All content on this website — text, graphics, logos, and design — is the property of
+            All content on this website, including text, graphics, logos, and design, is the property of
             Kshetragya Cybersec unless otherwise noted, and may not be reproduced without
             permission.
           </p>

@@ -46,7 +46,7 @@ const REGIONS = [
     tagline: '100% remote delivery via encrypted channels',
     dispatch: 'Direct Encrypted Remote Access',
     deliveryMode: 'Remote Only (No Overseas On-Site)',
-    desc: 'For international clients across North America, Europe, and the Middle East, our services are delivered strictly remotely — including web application VAPT, AWS/Azure cloud security reviews, and compliance advisory.',
+    desc: 'For international clients across North America, Europe, and the Middle East, our services are delivered remotely. This includes web application VAPT, AWS/Azure cloud security reviews, and compliance advisory.',
     locations: [
       { name: 'USA & Canada', detail: 'AWS / Azure cloud IAM & architecture reviews' },
       { name: 'UK & Europe', detail: 'External web app & REST API penetration testing' },
@@ -108,7 +108,7 @@ export default function Areas() {
                       <span className="area-loc-bullet" style={{ color: 'var(--blue)', fontSize: '0.65rem' }}>✦</span>
                       <div>
                         <strong className="area-loc-name">{loc.name}</strong>
-                        <span className="area-loc-detail"> — {loc.detail}</span>
+                        <span className="area-loc-detail"> · {loc.detail}</span>
                       </div>
                     </li>
                   ))}
