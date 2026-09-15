@@ -1500,7 +1500,7 @@ nav[aria-label='Primary'] {
 .svc-card-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1rem;
   border-top: 1px solid var(--line);
   padding-top: 1.1rem;

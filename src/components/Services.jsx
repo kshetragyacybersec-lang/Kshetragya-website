@@ -185,9 +185,6 @@ export default function Services() {
                     <span>Explore {group.name}</span>
                     <span className="svc-btn-arrow" aria-hidden="true">↗</span>
                   </Link>
-                  <a href="#contact" className="svc-card-scope-link">
-                    Request Scope Proposal →
-                  </a>
                 </div>
               </motion.div>
             );
