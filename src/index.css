@@ -5093,3 +5093,123 @@ nav[aria-label='Primary'] {
     padding: 1.5rem;
   }
 }
+
+/* ── SECURITY FOCUS / INSIGHTS ──────────────────────── */
+#security-insights {
+  padding: var(--sec-pad-y) 6vw;
+  background: var(--ink, #0b0c0f);
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.insights-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.insights-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: end;
+  margin-bottom: 3.5rem;
+}
+
+.insights-note {
+  font-family: var(--f-i);
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.insights-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  overflow: hidden;
+}
+
+.insights-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue) 0%, rgba(229, 67, 42, 0.3) 100%);
+  opacity: 0.8;
+}
+
+.insights-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(229, 67, 42, 0.45);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.insights-stat-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.insights-stat {
+  font-family: var(--f-h);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.insights-stat-badge {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.insights-label {
+  font-family: var(--f-h);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.75rem;
+  line-height: 1.35;
+}
+
+.insights-desc {
+  font-family: var(--f-i);
+  font-size: 0.94rem;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .insights-head {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .insights-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

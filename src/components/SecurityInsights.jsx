@@ -4,63 +4,58 @@ const INSIGHTS = [
   {
     id: 'perimeter',
     stat: '4',
+    badge: 'FULL STACK',
     label: 'Core Disciplines',
-    desc: 'From structured cabling and firewalls to VAPT and cloud security, one team handles your entire stack.',
+    desc: 'From structured cabling and firewalls to VAPT and cloud security, one unified team handles your entire security posture.',
   },
   {
     id: 'response',
     stat: 'Day 1',
+    badge: 'FAST ONBOARDING',
     label: 'Response Time',
-    desc: 'Scope and rules of engagement are agreed on day one, so testing and configuration work starts fast.',
+    desc: 'Scope and rules of engagement are agreed on day one, so testing and configuration work starts fast without administrative delay.',
   },
   {
     id: 'retest',
     stat: 'Free',
+    badge: 'POST-FIX ASSURANCE',
     label: 'Verification Retest',
-    desc: 'After remediation, we retest at no extra cost to confirm the fixes actually hold.',
+    desc: 'After remediation, we retest at no extra cost to confirm that the fixes and patches actually hold against attacks.',
   },
 ];
 
 export default function SecurityInsights() {
   return (
-    <section
-      id="security-insights"
-      aria-labelledby="security-insights-heading"
-      style={{ padding: '5rem 0', background: 'var(--ink, #0b0c0f)', color: '#fff' }}
-    >
-      <div style={{ marginBottom: '2.5rem' }}>
-        <div className="eyebrow">Security Focus</div>
-        <h2 className="sec-h dark" id="security-insights-heading" style={{ color: '#fff' }}>
-          Built around one goal: fewer exploitable gaps.
-        </h2>
-      </div>
+    <section id="security-insights" aria-labelledby="security-insights-heading">
+      <div className="insights-inner">
+        <div className="insights-head">
+          <div>
+            <div className="eyebrow" style={{ color: 'var(--blue)' }}>Security Focus</div>
+            <h2 className="sec-h dark" id="security-insights-heading" style={{ color: '#ffffff' }}>
+              Built around one goal:
+              <br />
+              <em>fewer exploitable gaps.</em>
+            </h2>
+          </div>
+          <p className="insights-note">
+            We focus on eliminating real attack vectors before malicious actors discover them.
+            Our technical audits prioritize practical exploitability over endless automated scanner noise.
+          </p>
+        </div>
 
-      <Reveal
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: '1.5rem',
-        }}
-      >
-        {INSIGHTS.map((item) => (
-          <Reveal.Item
-            key={item.id}
-            style={{
-              padding: '1.75rem',
-              borderRadius: '14px',
-              border: '1px solid rgba(255,255,255,0.12)',
-            }}
-          >
-            <div style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--blue)' }}>
-              {item.stat}
-            </div>
-            <div style={{ fontWeight: 600, margin: '0.4rem 0 0.6rem' }}>{item.label}</div>
-            <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.72)' }}>
-              {item.desc}
-            </p>
-          </Reveal.Item>
-        ))}
-      </Reveal>
+        <Reveal className="insights-grid">
+          {INSIGHTS.map((item) => (
+            <Reveal.Item key={item.id} className="insights-card">
+              <div className="insights-stat-row">
+                <div className="insights-stat">{item.stat}</div>
+                <span className="insights-stat-badge">{item.badge}</span>
+              </div>
+              <h3 className="insights-label">{item.label}</h3>
+              <p className="insights-desc">{item.desc}</p>
+            </Reveal.Item>
+          ))}
+        </Reveal>
+      </div>
     </section>
   );
 }
