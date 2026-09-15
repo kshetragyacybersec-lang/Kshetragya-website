@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { serviceGroups } from '../data.js';
@@ -86,6 +86,22 @@ const DISCIPLINE_META = {
 
 export default function Services() {
   const [selectedTab, setSelectedTab] = useState('all');
+  const [activeModalIdx, setActiveModalIdx] = useState(null);
+
+  useEffect(() => {
+    if (activeModalIdx === null) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setActiveModalIdx(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [activeModalIdx]);
 
   const visibleGroups =
     selectedTab === 'all'
@@ -181,10 +197,17 @@ export default function Services() {
 
                 {/* Card Footer CTA */}
                 <div className="svc-card-footer">
-                  <Link to={meta.primaryCta} className="svc-card-primary-btn">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const idx = serviceGroups.findIndex((g) => g.id === group.id);
+                      setActiveModalIdx(idx !== -1 ? idx : 0);
+                    }}
+                    className="svc-card-primary-btn"
+                  >
                     <span>Explore {group.name}</span>
                     <span className="svc-btn-arrow" aria-hidden="true">↗</span>
-                  </Link>
+                  </button>
                 </div>
               </motion.div>
             );
@@ -208,6 +231,113 @@ export default function Services() {
           </a>
         </div>
       </div>
+
+      {/* Interactive Service Directory Modal */}
+      <AnimatePresence>
+        {activeModalIdx !== null && (
+          <div
+            className="svc-modal-portal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="svc-modal-title"
+          >
+            <motion.div
+              className="svc-modal-scrim"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setActiveModalIdx(null)}
+              aria-hidden="true"
+            />
+            <div className="svc-modal-wrapper">
+              <motion.div
+                className="svc-modal-dialog"
+                initial={{ opacity: 0, scale: 0.96, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96, y: 16 }}
+                transition={{ duration: 0.26, ease: [0.2, 0.9, 0.25, 1] }}
+              >
+                <button
+                  type="button"
+                  className="svc-modal-close-btn"
+                  onClick={() => setActiveModalIdx(null)}
+                  aria-label="Close service directory modal"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+
+                {/* Left Column: 4 Disciplines */}
+                <div className="svc-modal-list">
+                  <div className="svc-modal-list-eyebrow">Disciplines</div>
+                  {serviceGroups.map((g, i) => (
+                    <button
+                      key={g.id}
+                      type="button"
+                      className={`svc-modal-item${activeModalIdx === i ? ' active' : ''}`}
+                      onClick={() => setActiveModalIdx(i)}
+                    >
+                      <span>{g.name}</span>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path
+                          d="M5 2.5L9.5 7L5 11.5"
+                          stroke="currentColor"
+                          strokeWidth="1.4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Right Column: Active Discipline Services */}
+                <div className="svc-modal-detail" key={activeModalIdx}>
+                  <span className="svc-modal-detail-cat">
+                    {serviceGroups[activeModalIdx].services.length} services
+                  </span>
+                  <h3 id="svc-modal-title" className="svc-modal-detail-title">
+                    {serviceGroups[activeModalIdx].name}
+                  </h3>
+                  <ul className="svc-modal-svc-list">
+                    {serviceGroups[activeModalIdx].services.map((s) => (
+                      <li key={s.id} className="svc-modal-svc-item">
+                        <Link
+                          to={`/services/${s.id}`}
+                          className="svc-modal-svc-link"
+                          onClick={() => setActiveModalIdx(null)}
+                        >
+                          <span className="svc-modal-svc-name">{s.name}</span>
+                          <span className="svc-modal-link-arrow" aria-hidden="true">↗</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="#contact"
+                    className="svc-modal-detail-cta"
+                    onClick={() => setActiveModalIdx(null)}
+                  >
+                    Request Free Assessment
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
