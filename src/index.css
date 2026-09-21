@@ -548,6 +548,12 @@ nav[aria-label='Primary'] {
    ────────────────────────────────────────── */
 .hero {
   --nav-h: 5.25rem; /* height of the fixed top menu bar */
+  /* smallest allowed text sizes (desktop can go smaller so the whole card fits) */
+  --fl-xs: 6px;
+  --fl-s: 6.5px;
+  --fl-badge: 7.5px;
+  --fl-trust: 8px;
+  --fl-desc: 8px;
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -558,8 +564,8 @@ nav[aria-label='Primary'] {
   flex-direction: column;
   justify-content: center;
   /* fallback first, then the smarter version for modern browsers */
-  font-size: clamp(12px, min(1.15vw, 2vh), 28px);
-  font-size: clamp(12px, min(1.15vw, calc((100svh - var(--nav-h)) / 41)), 28px);
+  font-size: clamp(9.5px, min(1.15vw, 2vh), 28px);
+  font-size: clamp(9.5px, min(1.15vw, calc((100svh - var(--nav-h)) / 44)), 28px);
   padding: calc(var(--nav-h) + 1em) 6vw 1em;
 }
 .hero-cyber-canvas {
@@ -626,7 +632,7 @@ nav[aria-label='Primary'] {
   display: inline-flex;
   align-items: center;
   font-family: var(--f-mono);
-  font-size: max(0.62em, 9.5px);
+  font-size: max(0.62em, var(--fl-badge));
   font-weight: 600;
   color: var(--cyan);
   background: rgba(255, 139, 107, 0.12);
@@ -778,7 +784,7 @@ nav[aria-label='Primary'] {
   align-items: center;
   gap: 0.6em;
   font-family: var(--f-i);
-  font-size: max(0.74em, 10.5px);
+  font-size: max(0.74em, var(--fl-trust));
   color: rgba(248, 245, 240, 0.65);
   font-weight: 400;
 }
@@ -864,7 +870,7 @@ nav[aria-label='Primary'] {
 }
 .shc-sub {
   font-family: var(--f-mono);
-  font-size: max(0.58em, 9px);
+  font-size: max(0.58em, var(--fl-s));
   color: rgba(248, 245, 240, 0.55);
 }
 
@@ -873,7 +879,7 @@ nav[aria-label='Primary'] {
   align-items: center;
   gap: 0.8em;
   font-family: var(--f-mono);
-  font-size: max(0.56em, 9px);
+  font-size: max(0.56em, var(--fl-s));
   font-weight: 600;
   color: #10b981;
   background: rgba(16, 185, 129, 0.1);
@@ -901,7 +907,7 @@ nav[aria-label='Primary'] {
   background: rgba(229, 67, 42, 0.08);
   border-bottom: 1px solid rgba(229, 67, 42, 0.18);
   font-family: var(--f-mono);
-  font-size: max(0.58em, 9px);
+  font-size: max(0.58em, var(--fl-s));
   color: var(--cyan);
   letter-spacing: 0.08em;
   font-weight: 600;
@@ -969,7 +975,7 @@ nav[aria-label='Primary'] {
 }
 .shc-service-pill {
   font-family: var(--f-mono);
-  font-size: max(0.52em, 8.5px);
+  font-size: max(0.52em, var(--fl-xs));
   font-weight: 700;
   color: #ff8b6b;
   background: rgba(229, 67, 42, 0.12);
@@ -981,7 +987,7 @@ nav[aria-label='Primary'] {
 }
 .shc-service-desc {
   font-family: var(--f-i);
-  font-size: max(0.74em, 11px);
+  font-size: max(0.74em, var(--fl-desc));
   color: rgba(248, 245, 240, 0.65);
   line-height: 1.45;
 }
@@ -1003,7 +1009,7 @@ nav[aria-label='Primary'] {
   align-items: center;
   gap: 0.35em;
   font-family: var(--f-mono);
-  font-size: max(0.56em, 9px);
+  font-size: max(0.56em, var(--fl-s));
   font-weight: 600;
   color: var(--cyan);
 }
@@ -1042,7 +1048,7 @@ nav[aria-label='Primary'] {
 }
 .shc-note {
   font-family: var(--f-mono);
-  font-size: max(0.54em, 9px);
+  font-size: max(0.54em, var(--fl-s));
   color: rgba(248, 245, 240, 0.5);
   text-align: center;
 }
@@ -1062,7 +1068,7 @@ nav[aria-label='Primary'] {
 }
 .scroll-cue-lbl {
   font-family: var(--f-mono);
-  font-size: max(0.58em, 9px);
+  font-size: max(0.58em, var(--fl-s));
   color: rgba(248, 245, 240, 0.4);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1077,31 +1083,14 @@ nav[aria-label='Primary'] {
   50% { transform: translateY(4px); }
 }
 
-/* ── HERO: SHORT DESKTOP SCREENS (e.g. laptop with big browser toolbars) ──
-   Not enough height for the full card, so drop the least important lines
-   to keep the whole hero visible in one screen. */
-@media (min-width: 1100px) and (max-height: 700px) {
-  .hero-scroll-cue {
-    display: none;
-  }
-}
-@media (min-width: 1100px) and (max-height: 620px) {
-  .shc-service-desc,
-  .shc-note {
-    display: none;
-  }
-  .shc-header {
-    padding: 0.9em 1.4em;
-  }
-  .shc-services-list {
-    padding: 0.9em 1.4em;
-    gap: 0.6em;
-  }
-}
-
 /* ── HERO: TABLET & PHONE (one column, text first, card below) ── */
 @media (max-width: 1099px) {
   .hero {
+    --fl-xs: 8.5px;
+    --fl-s: 9px;
+    --fl-badge: 9.5px;
+    --fl-trust: 10.5px;
+    --fl-desc: 11px;
     font-size: clamp(13.5px, 0.9vw + 10.5px, 18px);
     padding: calc(var(--nav-h) + 2.5em) 6vw 2.5em;
   }
