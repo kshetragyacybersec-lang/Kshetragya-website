@@ -24,18 +24,26 @@ function CyberRadarCanvas() {
 
     let animId;
     let dpr = window.devicePixelRatio || 1;
-
-    function resize() {
-      if (!canvas || !canvas.parentElement) return;
-      const rect = canvas.parentElement.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
-    }
-    resize();
-    window.addEventListener('resize', resize);
+    let cssW = 0;
+    let cssH = 0;
+    let em = 16; // the hero's font-size in px, so the radar scales with the hero
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const singleColumn = window.matchMedia('(max-width: 1099px)');
+
+    // Size the canvas from its own on-screen box (it sits below the top menu bar)
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      dpr = window.devicePixelRatio || 1;
+      cssW = rect.width;
+      cssH = rect.height;
+      canvas.width = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      em = parseFloat(getComputedStyle(canvas.parentElement).fontSize) || 16;
+      if (reduceMotion) render(); // no animation loop, so draw again by hand
+    }
 
     // Authentic Radar Targets distributed symmetrically
     const targets = [
@@ -51,22 +59,22 @@ function CyberRadarCanvas() {
     const sweepSpeed = 0.018; // smooth realistic rotation speed
 
     function render() {
-      const width = canvas.width / dpr;
-      const height = canvas.height / dpr;
+      const width = cssW;
+      const height = cssH;
 
       ctx.clearRect(0, 0, width, height);
 
-      // Centered radar sized to fit safely within viewport boundaries without any clipping
-      const isMobile = width < 960;
-      const centerX = width * 0.50;
-      const centerY = height * 0.49;
-      // Safe radius ensures complete 360-degree circle fits within visible hero area with breathing room
-      const maxRadius = isMobile
-        ? Math.min(width * 0.40, height * 0.28, 180)
-        : Math.min(width * 0.32, height * 0.38, 275);
+      // Radar is centered in the canvas and scales with the hero, so the full
+      // circle (and its labels) always stays inside the visible area
+      const u = Math.max(1, em / 16); // label / dot scale
+      const centerX = width * 0.5;
+      const centerY = height * 0.5;
+      const maxRadius = singleColumn.matches
+        ? Math.min(width * 0.36, height * 0.36, 15 * em)
+        : Math.min(width * 0.3, height * 0.36, 17.2 * em);
 
       if (maxRadius <= 30) {
-        animId = requestAnimationFrame(render);
+        if (!reduceMotion) animId = requestAnimationFrame(render);
         return;
       }
 
@@ -87,7 +95,7 @@ function CyberRadarCanvas() {
         ctx.setLineDash([]);
 
         // Range ring distance markers
-        ctx.font = '8px "IBM Plex Mono", monospace';
+        ctx.font = `${8 * u}px "IBM Plex Mono", monospace`;
         ctx.fillStyle = 'rgba(248, 245, 240, 0.25)';
         ctx.fillText(`${Math.round(frac * 100)}%`, centerX + r - 12, centerY - 4);
       });
@@ -117,9 +125,9 @@ function CyberRadarCanvas() {
 
         // Compass cardinal labels
         if (isMainAxis) {
-          const labelDist = maxRadius + 14;
+          const labelDist = maxRadius + 14 * u;
           const labels = { 0: '090°', 90: '180°', 180: '270°', 270: '000°' };
-          ctx.font = '7.5px "IBM Plex Mono", monospace';
+          ctx.font = `${7.5 * u}px "IBM Plex Mono", monospace`;
           ctx.fillStyle = 'rgba(255, 139, 107, 0.35)';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
@@ -188,7 +196,7 @@ function CyberRadarCanvas() {
 
         // Blip point
         ctx.beginPath();
-        ctx.arc(tx, ty, 3, 0, Math.PI * 2);
+        ctx.arc(tx, ty, 3 * u, 0, Math.PI * 2);
         ctx.fillStyle = target.intensity > 0.5 ? '#ff8b6b' : `rgba(229, 67, 42, ${alpha})`;
         ctx.shadowColor = '#e5432a';
         ctx.shadowBlur = target.intensity > 0.5 ? 8 : 2;
@@ -197,7 +205,7 @@ function CyberRadarCanvas() {
 
         // Target micro label
         if (target.intensity > 0.3) {
-          ctx.font = '8px "IBM Plex Mono", monospace';
+          ctx.font = `${8 * u}px "IBM Plex Mono", monospace`;
           ctx.fillStyle = `rgba(255, 139, 107, ${target.intensity * 0.85})`;
           ctx.textAlign = 'left';
           ctx.fillText(target.label, tx + 6, ty - 4);
@@ -205,20 +213,25 @@ function CyberRadarCanvas() {
       });
 
       // 5. Radar Live Telemetry Badge in bottom-left of radar scope
-      ctx.font = '8px "IBM Plex Mono", monospace';
+      ctx.font = `${8 * u}px "IBM Plex Mono", monospace`;
       ctx.fillStyle = 'rgba(248, 245, 240, 0.4)';
       ctx.textAlign = 'left';
-      ctx.fillText(`RADAR // AZ: ${Math.round((currentAngle * 180) / Math.PI)}°`, centerX - maxRadius + 5, centerY + maxRadius + 14);
+      ctx.fillText(`RADAR // AZ: ${Math.round((currentAngle * 180) / Math.PI)}°`, centerX - maxRadius + 5, centerY + maxRadius + 14 * u);
 
       if (!reduceMotion) {
         animId = requestAnimationFrame(render);
       }
     }
 
+    resize();
     render();
 
+    // Re-size whenever the canvas box changes (window resize, rotate phone, fonts load)
+    const observer = new ResizeObserver(resize);
+    observer.observe(canvas);
+
     return () => {
-      window.removeEventListener('resize', resize);
+      observer.disconnect();
       cancelAnimationFrame(animId);
     };
   }, []);
@@ -456,7 +469,7 @@ export default function Hero() {
             <div className="shc-services-list">
               <div className="shc-service-item">
                 <span className="shc-service-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 16, height: 16 }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shc-icon-svg">
                     <path d="M12 2.5l8 3.5v6c0 5-3.5 9.5-8 10.5-4.5-1-8-5.5-8-10.5V6L12 2.5z" strokeLinejoin="round" />
                     <path d="M8.5 12l2.5 2.5 4.5-4.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -472,7 +485,7 @@ export default function Hero() {
 
               <div className="shc-service-item">
                 <span className="shc-service-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 16, height: 16 }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shc-icon-svg">
                     <circle cx="11" cy="11" r="8" />
                     <path d="M21 21l-4.35-4.35" strokeLinecap="round" />
                   </svg>
@@ -488,7 +501,7 @@ export default function Hero() {
 
               <div className="shc-service-item">
                 <span className="shc-service-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 16, height: 16 }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shc-icon-svg">
                     <path d="M12 3v18M3 8l9-4 9 4M5 16l4-8M19 16l-4-8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
@@ -505,19 +518,19 @@ export default function Hero() {
             {/* Partner Direct Commitments */}
             <div className="shc-trust-strip">
               <div className="shc-trust-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ width: 12, height: 12, marginRight: 4, display: 'inline-block', verticalAlign: 'middle' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="shc-check">
                   <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 3 Technical Partners
               </div>
               <div className="shc-trust-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ width: 12, height: 12, marginRight: 4, display: 'inline-block', verticalAlign: 'middle' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="shc-check">
                   <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 Direct Scoping &amp; Retest
               </div>
               <div className="shc-trust-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ width: 12, height: 12, marginRight: 4, display: 'inline-block', verticalAlign: 'middle' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="shc-check">
                   <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 Pan-India Delivery
