@@ -22,6 +22,7 @@ function PublicSite() {
   return (
     <>
       <Nav />
+      <main id="main-content" className="site-main">
       <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageTransition><Home /></PageTransition>} />
@@ -80,6 +81,7 @@ function PublicSite() {
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </AnimatePresence>
+      </main>
       <Footer />
     </>
   );

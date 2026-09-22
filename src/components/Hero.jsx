@@ -320,7 +320,7 @@ export default function Hero() {
   });
 
   return (
-    <section className="hero" id="main-content" tabIndex={-1} ref={heroRef}>
+    <section className="hero" id="hero-intro" ref={heroRef}>
       {/* Precision Circular Cyber Radar Animation */}
       <CyberRadarCanvas />
 

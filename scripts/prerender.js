@@ -16,6 +16,7 @@ const distDir = path.join(root, 'dist');
 const siteUrl = 'https://www.kshetragyacybersec.com';
 
 const { serviceGroups, seedCaseStudies } = await import(path.join(root, 'src/data.js'));
+const { PAGE_META, serviceMeta } = await import(path.join(root, 'src/pageMeta.js'));
 
 const template = readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
@@ -99,8 +100,7 @@ function applyCommonMeta(html, { title, description, pageUrl }) {
 }
 
 function buildServicePageHtml(service, group) {
-  const title = `${service.name} in Gujarat & India | Kshetragya Cybersec`;
-  const description = service.short;
+  const { title, description } = serviceMeta(service);
   const pageUrl = `${siteUrl}/services/${service.id}`;
 
   let html = applyCommonMeta(template, { title, description, pageUrl });
@@ -130,10 +130,7 @@ function buildServicePageHtml(service, group) {
 }
 
 function buildAboutPageHtml() {
-  const title = 'About Us | Kshetragya Cybersec';
-  const description =
-    'Kshetragya Cybersec is run by three partners who handle every engagement themselves, ' +
-    'from scoping to the final report. Based in Ahmedabad, working across Gujarat and India.';
+  const { title, description } = PAGE_META.about;
   const pageUrl = `${siteUrl}/about`;
 
   let html = applyCommonMeta(template, { title, description, pageUrl });
@@ -160,9 +157,7 @@ function buildAboutPageHtml() {
 }
 
 function buildCareersPageHtml() {
-  const title = 'Careers | Kshetragya Cybersec';
-  const description =
-    'Work directly on live enterprise network infrastructure, firewall deployments, and offensive security testing across Gujarat and India.';
+  const { title, description } = PAGE_META.careers;
   const pageUrl = `${siteUrl}/careers`;
 
   let html = applyCommonMeta(template, { title, description, pageUrl });
@@ -191,9 +186,7 @@ function buildCareersPageHtml() {
 }
 
 function buildBlogPageHtml() {
-  const title = 'Blog | Kshetragya Cybersec';
-  const description =
-    'Practical notes, network architecture guides, and cybersecurity analysis written by our founding engineers.';
+  const { title, description } = PAGE_META.blog;
   const pageUrl = `${siteUrl}/blog`;
 
   let html = applyCommonMeta(template, { title, description, pageUrl });
@@ -216,9 +209,7 @@ function buildBlogPageHtml() {
 }
 
 function buildCaseStudiesPageHtml() {
-  const title = 'Case Studies | Kshetragya Cybersec';
-  const description =
-    'Summaries of network deployments, firewall configurations, and penetration testing projects across Gujarat and India.';
+  const { title, description } = PAGE_META['case-studies'];
   const pageUrl = `${siteUrl}/case-studies`;
 
   let html = applyCommonMeta(template, { title, description, pageUrl });
@@ -286,21 +277,9 @@ const staticPages = [
   { dir: 'careers', html: buildCareersPageHtml() },
   { dir: 'blog', html: buildBlogPageHtml() },
   { dir: 'case-studies', html: buildCaseStudiesPageHtml() },
-  { dir: 'privacy-policy', html: buildSimpleLegalPageHtml({
-      title: 'Privacy Policy | Kshetragya Cybersec',
-      description: 'How Kshetragya Cybersec collects, uses, and protects your information.',
-      slug: 'privacy-policy',
-    }) },
-  { dir: 'terms-of-service', html: buildSimpleLegalPageHtml({
-      title: 'Terms of Service | Kshetragya Cybersec',
-      description: 'The terms that govern use of the Kshetragya Cybersec website and services.',
-      slug: 'terms-of-service',
-    }) },
-  { dir: 'responsible-disclosure', html: buildSimpleLegalPageHtml({
-      title: 'Responsible Disclosure | Kshetragya Cybersec',
-      description: 'How to report a security vulnerability to Kshetragya Cybersec.',
-      slug: 'responsible-disclosure',
-    }) },
+  { dir: 'privacy-policy', html: buildSimpleLegalPageHtml({ ...PAGE_META['privacy-policy'], slug: 'privacy-policy' }) },
+  { dir: 'terms-of-service', html: buildSimpleLegalPageHtml({ ...PAGE_META['terms-of-service'], slug: 'terms-of-service' }) },
+  { dir: 'responsible-disclosure', html: buildSimpleLegalPageHtml({ ...PAGE_META['responsible-disclosure'], slug: 'responsible-disclosure' }) },
 ];
 
 for (const p of staticPages) {

@@ -1,15 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { usePageMeta } from '../usePageMeta.js';
+import { NOT_FOUND_META } from '../pageMeta.js';
 
 export default function NotFound() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = '404: Page Not Found | Kshetragya Cybersec';
-    return () => { document.title = prevTitle; };
-  }, []);
+  usePageMeta(NOT_FOUND_META);
 
   return (
-    <main className="not-found">
+    <div className="not-found">
       <div className="not-found-code" aria-hidden="true">404</div>
       <h1 className="not-found-msg">Page not found</h1>
       <p className="not-found-desc">
@@ -18,6 +15,6 @@ export default function NotFound() {
       <div className="not-found-cta">
         <Link to="/" className="btn-v">Go Back Home</Link>
       </div>
-    </main>
+    </div>
   );
 }

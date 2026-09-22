@@ -127,7 +127,7 @@ export default function Services() {
           </p>
 
           {/* Tactical Discipline Switcher */}
-          <div className="svc-tactical-tabs" role="tablist" aria-label="Filter service disciplines">
+          <div className="svc-tactical-tabs" role="group" aria-label="Filter service disciplines">
             <button
               className={`svc-tac-tab ${selectedTab === 'all' ? 'is-active' : ''}`}
               onClick={() => setSelectedTab('all')}

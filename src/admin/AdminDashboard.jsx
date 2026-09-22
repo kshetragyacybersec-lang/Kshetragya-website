@@ -299,8 +299,8 @@ const styles = {
     cursor: 'pointer',
   },
   tabActive: {
-    background: '#5b8cff',
-    border: '1px solid #5b8cff',
+    background: '#3562d6',
+    border: '1px solid #3562d6',
     color: '#fff',
     borderRadius: '8px',
     padding: '0.5rem 0.9rem',

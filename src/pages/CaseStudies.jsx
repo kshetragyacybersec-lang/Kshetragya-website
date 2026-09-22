@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageFadeIn } from '../usePageFadeIn.js';
-import { seedCaseStudies } from '../data.js';
+import { usePageMeta } from '../usePageMeta.js';
+import { PAGE_META } from '../pageMeta.js';
 
 function SkeletonCard() {
   return (
@@ -18,22 +19,18 @@ function SkeletonCard() {
 }
 
 export default function CaseStudies() {
-  const [caseStudies, setCaseStudies] = useState(seedCaseStudies);
+  const [caseStudies, setCaseStudies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const prevTitle = document.title;
-    document.title = 'Case Studies | Kshetragya Cybersec';
     fetch('/api/case-studies')
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Failed to fetch case studies'))))
-      .then((data) => {
-        const list = data.caseStudies && data.caseStudies.length > 0 ? data.caseStudies : seedCaseStudies;
-        setCaseStudies(list);
-      })
-      .catch(() => setCaseStudies(seedCaseStudies))
+      .then((data) => setCaseStudies(data.caseStudies || []))
+      .catch(() => setCaseStudies([]))
       .finally(() => setLoading(false));
-    return () => { document.title = prevTitle; };
   }, []);
+
+  usePageMeta({ ...PAGE_META['case-studies'], noindex: !loading && caseStudies.length === 0 });
 
   const mountFadeClass = usePageFadeIn();
 

@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageFadeIn } from '../usePageFadeIn.js';
+import { usePageMeta } from '../usePageMeta.js';
+import { PAGE_META } from '../pageMeta.js';
 
 function IconImpact() {
   return (
@@ -31,11 +32,7 @@ function IconCulture() {
 }
 
 export default function Careers() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = 'Careers | Kshetragya Cybersec';
-    return () => { document.title = prevTitle; };
-  }, []);
+  usePageMeta(PAGE_META['careers']);
 
   const mountFadeClass = usePageFadeIn();
 
@@ -55,21 +52,21 @@ export default function Careers() {
         <div className="careers-benefits-grid">
           <div className="careers-benefit-card">
             <div className="careers-benefit-icon"><IconImpact /></div>
-            <h3 className="careers-benefit-title">Live Technical Engagements</h3>
+            <h2 className="careers-benefit-title">Live Technical Engagements</h2>
             <p className="careers-benefit-desc">
               Work on live enterprise networks, managed switches, next-gen firewalls, network VA, and web VAPT assessments.
             </p>
           </div>
           <div className="careers-benefit-card">
             <div className="careers-benefit-icon"><IconLearn /></div>
-            <h3 className="careers-benefit-title">Direct Partner Mentorship</h3>
+            <h2 className="careers-benefit-title">Direct Partner Mentorship</h2>
             <p className="careers-benefit-desc">
               Collaborate directly alongside technical founders across infrastructure design, defensive monitoring, and penetration testing.
             </p>
           </div>
           <div className="careers-benefit-card">
             <div className="careers-benefit-icon"><IconCulture /></div>
-            <h3 className="careers-benefit-title">Continuous Skill Development</h3>
+            <h2 className="careers-benefit-title">Continuous Skill Development</h2>
             <p className="careers-benefit-desc">
               Gain deep practical experience across structured networking, Active Directory auditing, and cloud security frameworks.
             </p>

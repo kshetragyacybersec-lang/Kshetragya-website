@@ -4,11 +4,14 @@ import RequireAdmin from './RequireAdmin.jsx';
 import AdminLogin from './AdminLogin.jsx';
 import AdminDashboard from './AdminDashboard.jsx';
 import AdminPostEditor from './AdminPostEditor.jsx';
+import { usePageMeta } from '../usePageMeta.js';
+import { ADMIN_META } from '../pageMeta.js';
 
 export default function AdminApp() {
+  usePageMeta(ADMIN_META);
   return (
     <AdminAuthProvider>
-      <div style={{ minHeight: '100vh', background: '#0b0c0f' }}>
+      <main style={{ minHeight: '100vh', background: '#0b0c0f' }}>
         <Routes>
           <Route path="login" element={<AdminLogin />} />
           <Route
@@ -52,7 +55,7 @@ export default function AdminApp() {
             }
           />
         </Routes>
-      </div>
+      </main>
     </AdminAuthProvider>
   );
 }

@@ -1,15 +1,10 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageFadeIn } from '../usePageFadeIn.js';
+import { usePageMeta } from '../usePageMeta.js';
+import { PAGE_META } from '../pageMeta.js';
 
 export default function ResponsibleDisclosure() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = 'Responsible Disclosure | Kshetragya Cybersec';
-    return () => {
-      document.title = prevTitle;
-    };
-  }, []);
+  usePageMeta(PAGE_META['responsible-disclosure']);
 
   const mountFadeClass = usePageFadeIn();
 

@@ -9,9 +9,11 @@ import Areas from '../components/Areas.jsx';
 import SecurityInsights from '../components/SecurityInsights.jsx';
 import Process from '../components/Process.jsx';
 import Contact from '../components/Contact.jsx';
+import { usePageMeta } from '../usePageMeta.js';
+import { HOME_META } from '../pageMeta.js';
 
 const chapters = [
-  { id: 'main-content', label: 'Intro' },
+  { id: 'hero-intro', label: 'Intro' },
   { id: 'services', label: 'Services' },
   { id: 'areas', label: 'Coverage' },
   { id: 'process', label: 'Method' },
@@ -21,7 +23,7 @@ const chapters = [
 function StoryProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 26, mass: 0.2 });
-  const [active, setActive] = useState('main-content');
+  const [active, setActive] = useState('hero-intro');
 
   useEffect(() => {
     const observers = chapters.map(({ id }) => {
@@ -54,6 +56,7 @@ function StoryProgress() {
 
 export default function Home() {
   const location = useLocation();
+  usePageMeta(HOME_META);
 
   // When arriving at "/" with a hash (e.g. from /services/x clicking "Process" or "#contact"),
   // scroll to that section once this page's content is mounted.
@@ -73,7 +76,7 @@ export default function Home() {
   }, [location.hash]);
 
   return (
-    <main className="home-shell">
+    <div className="home-shell">
       <StoryProgress />
       <Hero />
       <MarqueeTicker />
@@ -83,6 +86,6 @@ export default function Home() {
       <SecurityInsights />
       <Process />
       <Contact />
-    </main>
+    </div>
   );
 }

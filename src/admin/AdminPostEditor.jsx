@@ -371,7 +371,7 @@ const styles = {
   },
   actions: { display: 'flex', gap: '0.7rem', marginTop: '0.5rem', alignItems: 'center', flexWrap: 'wrap' },
   saveBtn: {
-    background: '#5b8cff',
+    background: '#3562d6',
     color: '#fff',
     border: 'none',
     borderRadius: '8px',

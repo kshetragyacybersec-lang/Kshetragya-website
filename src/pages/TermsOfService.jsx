@@ -1,15 +1,10 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageFadeIn } from '../usePageFadeIn.js';
+import { usePageMeta } from '../usePageMeta.js';
+import { PAGE_META } from '../pageMeta.js';
 
 export default function TermsOfService() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = 'Terms of Service | Kshetragya Cybersec';
-    return () => {
-      document.title = prevTitle;
-    };
-  }, []);
+  usePageMeta(PAGE_META['terms-of-service']);
 
   const mountFadeClass = usePageFadeIn();
 

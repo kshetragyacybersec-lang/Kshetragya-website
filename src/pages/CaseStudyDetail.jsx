@@ -4,7 +4,8 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import { usePageFadeIn } from '../usePageFadeIn.js';
 import NotFound from './NotFound.jsx';
-import { seedCaseStudies } from '../data.js';
+import { usePageMeta } from '../usePageMeta.js';
+import { plainDescription, SITE_NAME, SITE_URL } from '../pageMeta.js';
 
 export default function CaseStudyDetail() {
   const { slug } = useParams();
@@ -12,33 +13,34 @@ export default function CaseStudyDetail() {
   const mountFadeClass = usePageFadeIn([slug]);
 
   useEffect(() => {
-    const fallback = seedCaseStudies.find((item) => item.slug === slug);
-    setCs(fallback !== undefined ? fallback : undefined);
-
+    setCs(undefined);
     fetch(`/api/case-studies/${slug}`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data) => {
-        if (data && data.caseStudy) {
-          setCs(data.caseStudy);
-        } else if (fallback) {
-          setCs(fallback);
-        } else {
-          setCs(null);
-        }
-      })
-      .catch(() => {
-        setCs(fallback || null);
-      });
+      .then((data) => setCs(data && data.caseStudy ? data.caseStudy : null))
+      .catch(() => setCs(null));
   }, [slug]);
 
-  useEffect(() => {
-    if (!cs) return;
-    const prevTitle = document.title;
-    document.title = `${cs.title} | Kshetragya Cybersec Case Studies`;
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [cs]);
+  usePageMeta(
+    cs
+      ? {
+          path: `/case-studies/${slug}`,
+          title: `${cs.title} | Kshetragya Cybersec Case Studies`,
+          description: cs.excerpt || plainDescription(cs.body),
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: cs.title,
+            description: cs.excerpt || plainDescription(cs.body),
+            datePublished: cs.date ? String(cs.date).slice(0, 10) : undefined,
+            dateModified: cs.updated_at || undefined,
+            image: cs.cover || undefined,
+            author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+            publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+            mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/case-studies/${slug}` },
+          },
+        }
+      : null
+  );
 
   if (cs === undefined) return null;
   if (cs === null) return <NotFound />;

@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageFadeIn } from '../usePageFadeIn.js';
+import { usePageMeta } from '../usePageMeta.js';
+import { PAGE_META } from '../pageMeta.js';
 
 function IconDirect() {
   return (
@@ -30,11 +31,7 @@ function IconMap() {
 }
 
 export default function About() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = 'About Us | Kshetragya Cybersec';
-    return () => { document.title = prevTitle; };
-  }, []);
+  usePageMeta(PAGE_META['about']);
 
   const mountFadeClass = usePageFadeIn();
 

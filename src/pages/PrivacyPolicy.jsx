@@ -1,15 +1,10 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageFadeIn } from '../usePageFadeIn.js';
+import { usePageMeta } from '../usePageMeta.js';
+import { PAGE_META } from '../pageMeta.js';
 
 export default function PrivacyPolicy() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = 'Privacy Policy | Kshetragya Cybersec';
-    return () => {
-      document.title = prevTitle;
-    };
-  }, []);
+  usePageMeta(PAGE_META['privacy-policy']);
 
   const mountFadeClass = usePageFadeIn();
 

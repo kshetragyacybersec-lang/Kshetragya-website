@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { serviceGroups } from '../data.js';
 import NotFound from './NotFound.jsx';
 import { usePageFadeIn } from '../usePageFadeIn.js';
 import { useScrollReveal } from '../useScrollReveal.js';
+import { usePageMeta } from '../usePageMeta.js';
+import { serviceMeta } from '../pageMeta.js';
 
 // Finds a service by its slug across all 4 groups.
 function findService(slug) {
@@ -132,14 +134,7 @@ export default function ServiceDetail() {
   const { slug } = useParams();
   const match = findService(slug);
 
-  useEffect(() => {
-    if (!match) return;
-    const prevTitle = document.title;
-    document.title = `${match.service.name} in Gujarat & India | Kshetragya Cybersec`;
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [match]);
+  usePageMeta(match ? serviceMeta(match.service) : null);
 
   const mountFadeClass = usePageFadeIn([slug]);
   const benefitsRef = useScrollReveal('.svc-benefit-card');

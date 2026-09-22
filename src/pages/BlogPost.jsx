@@ -4,6 +4,8 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import { usePageFadeIn } from '../usePageFadeIn.js';
 import NotFound from './NotFound.jsx';
+import { usePageMeta } from '../usePageMeta.js';
+import { plainDescription, SITE_NAME, SITE_URL } from '../pageMeta.js';
 
 export default function BlogPost() {
   const { slug } = useParams();
@@ -18,14 +20,27 @@ export default function BlogPost() {
       .catch(() => setPost(null));
   }, [slug]);
 
-  useEffect(() => {
-    if (!post) return;
-    const prevTitle = document.title;
-    document.title = `${post.title} | Kshetragya Cybersec Blog`;
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [post]);
+  usePageMeta(
+    post
+      ? {
+          path: `/blog/${slug}`,
+          title: `${post.title} | Kshetragya Cybersec Blog`,
+          description: post.excerpt || plainDescription(post.body),
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post.title,
+            description: post.excerpt || plainDescription(post.body),
+            datePublished: post.date ? String(post.date).slice(0, 10) : undefined,
+            dateModified: post.updated_at || undefined,
+            image: post.cover || undefined,
+            author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+            publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+            mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${slug}` },
+          },
+        }
+      : null
+  );
 
   if (post === undefined) return null;
   if (post === null) return <NotFound />;

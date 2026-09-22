@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageFadeIn } from '../usePageFadeIn.js';
+import { usePageMeta } from '../usePageMeta.js';
+import { PAGE_META } from '../pageMeta.js';
 
 function SkeletonCard() {
   return (
@@ -21,15 +23,14 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const prevTitle = document.title;
-    document.title = 'Blog | Kshetragya Cybersec';
     fetch('/api/posts')
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Failed to fetch posts'))))
       .then((data) => setPosts(data.posts || []))
       .catch(() => setPosts([]))
       .finally(() => setLoading(false));
-    return () => { document.title = prevTitle; };
   }, []);
+
+  usePageMeta({ ...PAGE_META.blog, noindex: !loading && posts.length === 0 });
 
   const mountFadeClass = usePageFadeIn();
 
