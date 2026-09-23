@@ -27,9 +27,9 @@ const REGIONS = [
     badgeType: 'national',
     title: 'All Over India (Pan-India)',
     tagline: 'On-site project execution & full remote security services',
-    dispatch: 'Scheduled On-Site & 24/7 Remote',
+    dispatch: 'Scheduled On-Site & Remote',
     deliveryMode: 'On-Site & Remote Available',
-    desc: 'We travel for scheduled on-site infrastructure deployments, multi-branch network rollouts, and data center audits across all Indian states, combined with 24/7 remote SOC monitoring and web VAPT.',
+    desc: 'We travel for scheduled on-site infrastructure deployments, multi-branch network rollouts, and data center audits across all Indian states, combined with remote SOC monitoring and web VAPT.',
     locations: [
       { name: 'Mumbai & Pune', detail: 'Enterprise financial & tech networks' },
       { name: 'Delhi NCR', detail: 'Corporate HQ infrastructure & firewalls' },

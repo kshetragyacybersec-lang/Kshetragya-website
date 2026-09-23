@@ -66,7 +66,7 @@ export const serviceGroups = [
           {
             title: 'Fluke Certification & Drop Testing',
             badge: 'TESTING & QUALITY ASSURANCE',
-            desc: '100% end-to-end channel validation using industry-standard Fluke cable analyzers to guarantee zero packet loss and full rated throughput.',
+            desc: '100% end-to-end channel validation using industry-standard Fluke cable analyzers to verify packet loss and rated throughput on every tested link.',
             checks: [
               'Wiremap, cable length, propagation delay, and skew testing',
               'Near-End Crosstalk (NEXT) and Return Loss channel verification',
@@ -187,7 +187,7 @@ export const serviceGroups = [
               'Differentiated Services Code Point (DSCP) and CoS Layer 2 priority mapping',
               'Strict priority queuing (SPQ) for VoIP SIP and RTP voice packets',
               'Bandwidth rate limiting and policing on high-volume background streams',
-              'Buffer allocation tuning to eliminate switch packet drops during traffic bursts',
+              'Buffer allocation tuning to reduce switch packet drops during traffic bursts',
             ],
           },
         ],
@@ -218,7 +218,7 @@ export const serviceGroups = [
         name: 'CCTV & Surveillance',
         short:
           'Commercial surveillance engineered by network and cybersecurity engineers with zero network lag, isolated VLANs, and secure remote viewing.',
-        full: 'Commercial surveillance systems require proper camera optics selection, RAID storage calculations, and network isolation to operate reliably without choking internal corporate bandwidth or creating cybersecurity vulnerabilities. We assess physical premises to eliminate blind spots, install high-definition IP cameras with appropriate focal lengths, configure Network Video Recorders (NVRs) with RAID 5/10 storage, and isolate all camera traffic on a dedicated Layer 2/3 VLAN. We harden camera firmware against CVE exploits, set up encrypted SSL-VPN remote access for authorized personnel, and align data storage with DPDP Act 2023 video privacy standards.',
+        full: 'Commercial surveillance systems require proper camera optics selection, RAID storage calculations, and network isolation to operate reliably without choking internal corporate bandwidth or creating cybersecurity vulnerabilities. We assess physical premises to reduce blind spots, install high-definition IP cameras with appropriate focal lengths, configure Network Video Recorders (NVRs) with RAID 5/10 storage, and isolate all camera traffic on a dedicated Layer 2/3 VLAN. We harden camera firmware against CVE exploits, set up encrypted SSL-VPN remote access for authorized personnel, and align data storage with DPDP Act 2023 video privacy standards.',
         standards: ['CIS Benchmarks', 'ISO 27001 ISMS', 'DPDP Act 2023', 'IEEE 802.3at/bt PoE'],
         deliverables: [
           'On-site premises survey and CAD camera coverage floor plan',
@@ -265,7 +265,7 @@ export const serviceGroups = [
           {
             title: 'RAID Storage Sizing & Retention Policies',
             badge: 'RELIABILITY & BACKUP',
-            desc: 'Exact bitrate and retention calculations (30/60/90 days), RAID 5/10 NVR drive arrays with hot-spare failover to guarantee zero lost evidence.',
+            desc: 'Exact bitrate and retention calculations (30/60/90 days), RAID 5/10 NVR drive arrays with hot-spare failover to minimize the risk of lost footage.',
             checks: [
               'H.265+ smart compression and bitrate storage sizing calculations',
               'RAID 5 / RAID 10 disk redundancy configuration with hot-spare',
@@ -315,7 +315,7 @@ export const serviceGroups = [
           },
         ],
         quickAnswer:
-          'Commercial surveillance engineered by network and security engineers: zero network lag, dedicated VLAN isolation, RAID 5/10 storage redundancy, and DPDP Act 2023 compliance. Deployed on-site in Gujarat and across India.',
+          'Commercial surveillance engineered by network and security engineers: low network lag, dedicated VLAN isolation, RAID 5/10 storage redundancy, and DPDP Act 2023 compliance. Deployed on-site in Gujarat and across India.',
         related: ['network-infrastructure', 'switching-routing', 'security-hardening'],
       },
     ],
@@ -370,7 +370,7 @@ export const serviceGroups = [
               'Activation of vendor CVE signature feeds targeting perimeter vulnerabilities',
               'Protocol anomaly detection for TCP, UDP, ICMP, and HTTP malformed packets',
               'DDoS threshold rate limiting and SYN flood defense profiles',
-              'Custom sensor tuning to eliminate false-positive operational alerts',
+              'Custom sensor tuning to reduce false-positive operational alerts',
             ],
           },
           {
@@ -397,7 +397,7 @@ export const serviceGroups = [
           },
           {
             title: 'High Availability (HA) & Redundancy Setup',
-            badge: 'REDUNDANCY & 100% UPTIME',
+            badge: 'REDUNDANCY & HIGH AVAILABILITY',
             desc: 'Configuring dual firewall appliances in Active-Passive or Active-Active clusters with dedicated heartbeat links for sub-second failover.',
             checks: [
               'Active-Passive state synchronization over dedicated heartbeat links',
@@ -433,15 +433,15 @@ export const serviceGroups = [
         id: 'soc-as-a-service',
         name: 'SOC as a Service',
         short:
-          '24/7 security event monitoring, log collection, SIEM alert triage, and direct threat escalation without internal headcount overhead.',
-        full: 'Continuous security monitoring is essential for timely threat detection, but building an internal 24/7 Security Operations Center requires significant tooling and specialized staffing. With our SOC as a Service, we ingest logs from firewalls, switches, Active Directory domain controllers, servers, and cloud environments into a centralized SIEM. Our team filters false positives, triages security anomalies around the clock, and escalates actionable incidents with concrete remediation steps.',
+          'Security event monitoring, log collection, SIEM alert triage, and direct threat escalation without internal headcount overhead.',
+        full: 'Continuous security monitoring is essential for timely threat detection, but building an internal Security Operations Center requires significant tooling and specialized staffing. With our SOC as a Service, we ingest logs from firewalls, switches, Active Directory domain controllers, servers, and cloud environments into a centralized SIEM. Our team filters false positives, triages security anomalies, and escalates actionable incidents with concrete remediation steps.',
         standards: ['MITRE ATT&CK Framework', 'NIST SP 800-61', 'ISO 27001 ISMS', 'DPDP Act 2023'],
         deliverables: [
           'Ingestion agent deployment across firewalls, domain controllers, and cloud',
           'Baseline behavioral modeling and custom SIEM rule calibration',
-          '24/7 continuous threat monitoring and anomalous activity detection',
+          'Ongoing threat monitoring and anomalous activity detection',
           'Weekly and monthly executive risk and compliance telemetry reports',
-          'Dedicated emergency escalation channel with 15-minute critical SLA',
+          'Dedicated emergency escalation channel, with response times defined in your service agreement',
           'Actionable step-by-step containment instructions for validated threats',
         ],
         vectors: [
@@ -468,11 +468,11 @@ export const serviceGroups = [
             ],
           },
           {
-            title: '24/7 Human Alert Triage & Validation',
+            title: 'Human Alert Triage & Validation',
             badge: 'ANALYST VERIFICATION',
-            desc: 'Every alert is analyzed and verified by security specialists to eliminate noise and false positives before notifying your team.',
+            desc: 'Every alert is analyzed and verified by security specialists to reduce noise and false positives before notifying your team.',
             checks: [
-              'Continuous 24/7/365 security event monitoring and triage',
+              'Ongoing security event monitoring and triage',
               'Contextual analysis separating benign admin actions from genuine attacks',
               'Zero notification fatigue: you only receive validated, high-severity alerts',
               'Documented investigation notes and artifact attachments for every case',
@@ -505,7 +505,7 @@ export const serviceGroups = [
             badge: 'ACTIONABLE RESPONSE',
             desc: 'When a critical incident occurs, our founding partners escalate directly to your leadership with concrete, step-by-step containment instructions.',
             checks: [
-              'Direct phone and secure messaging escalation within 15 minutes of critical alerts',
+              'Direct phone and secure messaging escalation for critical alerts, per your agreed escalation plan',
               'Actionable containment guidance (exact firewall blocks, account lockouts)',
               'Assistance during emergency remediation and host isolation',
               'Monthly operational reviews highlighting security posture improvements',
@@ -527,11 +527,11 @@ export const serviceGroups = [
           },
           {
             q: 'What happens when a high-severity threat is detected in our environment?',
-            a: 'Our team verifies the alert, initiates our 15-minute emergency escalation protocol, calls your designated IT contact immediately, and provides specific containment steps (e.g., isolating the host, revoking credentials, or blocking the external IP).',
+            a: 'Our team verifies the alert, initiates our emergency escalation protocol, calls your designated IT contact immediately, and provides specific containment steps (e.g., isolating the host, revoking credentials, or blocking the external IP).',
           },
         ],
         quickAnswer:
-          '24/7 Security Operations Center monitoring, SIEM log correlation, threat intelligence matching, and direct technical partner escalation. Enterprise security visibility without the expense of an internal SOC team.',
+          'Security Operations Center monitoring, SIEM log correlation, threat intelligence matching, and direct technical partner escalation. Enterprise security visibility without the expense of an internal SOC team.',
         related: ['incident-response-dfir', 'firewall-network-security', 'security-hardening'],
       },
       {
@@ -611,7 +611,7 @@ export const serviceGroups = [
             desc: 'Guiding your engineering team through clean operating system rebuilds, secure backup restoration, and vulnerability remediation.',
             checks: [
               'Verification of clean backups before restoring production services',
-              'Patching of initial exploit vectors to eliminate reinfection risks',
+              'Patching of initial exploit vectors to reduce reinfection risk',
               'Domain controller hardening and Golden Ticket / Kerberos reset procedures',
               'Post-incident executive debrief and long-term security roadmap delivery',
             ],
@@ -741,7 +741,7 @@ export const serviceGroups = [
           },
         ],
         quickAnswer:
-          'Systematic OS and network hardening aligned with CIS Benchmarks Level 1/2. We eliminate legacy protocols, secure Active Directory, and enforce least privilege without disrupting business operations.',
+          'Systematic OS and network hardening aligned with CIS Benchmarks Level 1/2. We disable unnecessary legacy protocols, secure Active Directory, and enforce least privilege without disrupting business operations.',
         related: ['firewall-network-security', 'network-va', 'grc-compliance-audit'],
       },
     ],
@@ -755,7 +755,7 @@ export const serviceGroups = [
         name: 'Network Vulnerability Assessment (VA)',
         short:
           'Systematic vulnerability scanning, port enumeration, configuration review, and security gap identification across external perimeters and internal networks.',
-        full: 'Automated and systematic vulnerability assessments provide full visibility into security weaknesses across perimeter firewalls, switches, routers, servers, endpoints, and Active Directory domains without intrusive exploitation. We perform deep port and service enumeration, CVE vulnerability identification, weak cipher audits, missing patch detection, default credential checks, and network segmentation reviews. Every finding is manually verified to eliminate false positives and categorized by CVSS severity with actionable remediation steps.',
+        full: 'Automated and systematic vulnerability assessments provide full visibility into security weaknesses across perimeter firewalls, switches, routers, servers, endpoints, and Active Directory domains without intrusive exploitation. We perform deep port and service enumeration, CVE vulnerability identification, weak cipher audits, missing patch detection, default credential checks, and network segmentation reviews. Every finding is manually verified to reduce false positives and categorized by CVSS severity with actionable remediation steps.',
         standards: ['NIST SP 800-115', 'CIS Benchmarks', 'OSSTMM 3.0', 'CVSS v3.1'],
         deliverables: [
           'Pre-assessment scope definition and host inventory validation',
@@ -813,7 +813,7 @@ export const serviceGroups = [
           {
             title: 'Vulnerability Prioritization & CVSS 3.1 Scoring',
             badge: 'RISK SCORING & VERIFICATION',
-            desc: 'Manual verification of every automated scanner finding to eliminate false positives and score risks by realistic exploitability and business impact.',
+            desc: 'Manual verification of every automated scanner finding to reduce false positives and score risks by realistic exploitability and business impact.',
             checks: [
               'Manual false-positive elimination on all scanner findings',
               'CVSS v3.1 base, temporal, and environmental risk scoring',

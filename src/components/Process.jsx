@@ -19,7 +19,7 @@ const STEPS = [
     timeline: 'Day 1 - 2',
     title: 'Mutual NDA & Rules of Engagement',
     desc: 'A bilateral legal agreement is signed and communication channels are locked down before any testing packets touch your network.',
-    partnerExecution: 'We draft and sign a strict mutual NDA guaranteeing full confidentiality of all proprietary architectures and findings.',
+    partnerExecution: 'We draft and sign a strict mutual NDA covering the confidentiality of all proprietary architectures and findings.',
     clientDeliverable: 'Signed Bilateral NDA & Fixed Written SOW',
     clientInputs: 'Authorized signatory approval and emergency contact points.',
   },
@@ -48,7 +48,7 @@ const STEPS = [
     phase: 'Assurance',
     timeline: 'Day 14 - 21',
     title: 'Remediation Verification & Free Retest',
-    desc: 'After your team patches the discovered vulnerabilities, we retest all affected endpoints for free to guarantee complete remediation.',
+    desc: 'After your team patches the discovered vulnerabilities, we retest all affected endpoints for free to verify that the fixes have been applied correctly.',
     partnerExecution: 'Partners personally re-verify every finding to validate that patches hold against real-world attack methods.',
     clientDeliverable: 'Letter of Attestation & Final Clean Retest Report',
     clientInputs: 'Confirmation that development and IT teams applied the fixes.',
@@ -198,7 +198,7 @@ export default function Process() {
             </svg>
           </span>
           <div className="guarantee-text">
-            <strong>Direct Partner Execution:</strong> All 5 stages are handled directly by our 3 founding partners in Gujarat, with zero subcontracting or third-party handoffs.
+            <strong>Direct Partner Execution:</strong> All 5 stages are led directly by our founding partners in Gujarat.
           </div>
         </div>
       </div>

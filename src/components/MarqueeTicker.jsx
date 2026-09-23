@@ -1,13 +1,13 @@
 const CAPABILITIES = [
   'Cat6A / 10G Structured Cabling',
   'FortiGate & Sophos Next-Gen Firewalls',
-  '24/7 Wazuh SOC & SIEM Log Triage',
+  'Wazuh SOC & SIEM Log Triage',
   'Offensive Web & API VAPT',
   'Network Vulnerability Assessment (VA)',
   'Incident Response & DFIR Forensics',
   'DPDP Act 2023 & ISO 27001 Readiness',
   'CIS Benchmark Security Hardening',
-  'Direct Founding Partners · Zero Subcontracting',
+  'Direct Founding Partners · Partner-Led Delivery',
   'Ahmedabad HQ · Pan-India & Remote Global',
 ];
 

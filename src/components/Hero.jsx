@@ -379,8 +379,7 @@ export default function Hero() {
             animate={loaded ? 'show' : 'hidden'}
           >
             Structured network cabling, firewall architecture, and rigorous manual vulnerability
-            testing for Gujarat &amp; Indian enterprises. Executed directly by 3 technical partners
-            with zero subcontracting.
+            testing for Gujarat &amp; Indian enterprises. Led directly by our 3 technical partners.
           </motion.p>
 
           <motion.div
@@ -424,7 +423,7 @@ export default function Hero() {
             </div>
             <div className="hero-trust-item">
               <span className="hero-trust-dot" />
-              <span>Zero Outsourcing</span>
+              <span>Partner-Led Delivery</span>
             </div>
             <div className="hero-trust-item">
               <span className="hero-trust-dot" />

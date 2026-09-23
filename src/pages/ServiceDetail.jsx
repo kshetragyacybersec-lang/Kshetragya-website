@@ -217,11 +217,11 @@ export default function ServiceDetail() {
             <div className="svc-narrative-footer">
               <div className="svc-narrative-feat">
                 <span className="svc-feat-dot" />
-                <span>Engineered for zero operational lag &amp; 100% uptime</span>
+                <span>Engineered for low latency &amp; high availability</span>
               </div>
               <div className="svc-narrative-feat">
                 <span className="svc-feat-dot" />
-                <span>Zero third-party subcontracts or handoffs</span>
+                <span>Led directly by our founding partners</span>
               </div>
               <div className="svc-narrative-feat">
                 <span className="svc-feat-dot" />
@@ -320,7 +320,7 @@ export default function ServiceDetail() {
               <div className="eyebrow">Value &amp; Assurance</div>
               <h2 className="svc-detail-section-h">Engagement Benefits</h2>
               <p className="svc-section-sub">
-                Direct partner engineering guarantees zero red-tape, verified findings, and long-term infrastructure stability.
+                Direct partner engineering means less red-tape, verified findings, and a focus on long-term infrastructure stability.
               </p>
             </div>
             <div className="svc-benefit-grid" ref={benefitsRef}>

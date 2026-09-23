@@ -57,11 +57,11 @@ const DISCIPLINE_META = {
   },
   'cyber-defence': {
     index: '02',
-    badge: '24/7 PERIMETER MONITORING & HARDENING',
+    badge: 'PERIMETER MONITORING & HARDENING',
     headline: 'Next-gen firewall architecture, SIEM triage & rapid incident containment.',
-    desc: 'Proactive UTM firewall tuning, 24/7 Wazuh SIEM log monitoring, DFIR containment, and CIS Benchmark system hardening handled directly by founders.',
+    desc: 'Proactive UTM firewall tuning, Wazuh SIEM log monitoring, DFIR containment, and CIS Benchmark system hardening handled directly by founders.',
     Icon: IconDefence,
-    tags: ['FortiGate / Sophos', 'Wazuh 24/7 SIEM', 'DFIR Forensics', 'CIS Hardening'],
+    tags: ['FortiGate / Sophos', 'Wazuh SIEM', 'DFIR Forensics', 'CIS Hardening'],
     primaryCta: '/services/firewall-network-security',
   },
   'security-testing': {
@@ -122,8 +122,7 @@ export default function Services() {
         <div className="svc-head-desc-col">
           <p className="svc-note">
             From physical cabling and server rack setups up through firewall architecture, offensive
-            VAPT, and regulatory compliance. Every engagement is executed directly by founding partners with
-            zero subcontracting.
+            VAPT, and regulatory compliance. Every engagement is led directly by our founding partners.
           </p>
 
           {/* Tactical Discipline Switcher */}

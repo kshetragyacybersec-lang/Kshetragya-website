@@ -46,7 +46,7 @@ const PRINCIPLES = [
     id: 'hands-on',
     num: '01',
     title: 'Founder-Led, Hands-On',
-    desc: 'Every engagement, from a firewall rollout to a full VAPT, is handled directly by our founding technical partners. No subcontracted labor, no handoffs.',
+    desc: 'Every engagement, from a firewall rollout to a full VAPT, is led directly by our founding technical partners.',
     Icon: IconFounder,
   },
   {

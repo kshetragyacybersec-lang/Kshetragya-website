@@ -51,7 +51,7 @@ export default function About() {
         {/* Mission */}
         <div className="about-mission">
           <p className="about-mission-text">
-            Our objective is straightforward: provide direct, hands-on network engineering and security testing without middle management or subcontracted work.
+            Our objective is straightforward: provide direct, hands-on network engineering and security testing without middle management.
           </p>
         </div>
 
@@ -62,7 +62,7 @@ export default function About() {
               We are three founding partners with backgrounds in network engineering, systems administration, and offensive security testing. When you engage Kshetragya, you communicate and work directly with the partners executing your project, from the initial technical scoping meeting and physical site survey to the final configuration and testing report.
             </p>
             <p>
-              Our practice covers the full lifecycle of business networks: structured physical cabling and server rack deployments, L2/L3 switching and routing, CCTV surveillance networks, next-gen firewall configurations, 24/7 SOC monitoring, incident response, OS security hardening, network vulnerability assessments (VA), web application VAPT, GRC compliance readiness (including India's DPDP Act 2023), and cloud security reviews.
+              Our practice covers the full lifecycle of business networks: structured physical cabling and server rack deployments, L2/L3 switching and routing, CCTV surveillance networks, next-gen firewall configurations, SOC monitoring, incident response, OS security hardening, network vulnerability assessments (VA), web application VAPT, GRC compliance readiness (including India's DPDP Act 2023), and cloud security reviews.
             </p>
             <p>
               Headquartered in Ahmedabad, we actively serve clients across Ahmedabad, Surat, Vadodara, Rajkot, and all industrial regions of Gujarat, alongside project delivery across India and remote consulting for international clients.
