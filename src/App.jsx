@@ -1,20 +1,23 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import Nav from './components/Nav.jsx';
 import Footer from './components/Footer.jsx';
 import PageTransition from './components/PageTransition.jsx';
 import Home from './pages/Home.jsx';
-import ServiceDetail from './pages/ServiceDetail.jsx';
-import About from './pages/About.jsx';
-import Careers from './pages/Careers.jsx';
-import Blog from './pages/Blog.jsx';
-import BlogPost from './pages/BlogPost.jsx';
-import CaseStudies from './pages/CaseStudies.jsx';
-import CaseStudyDetail from './pages/CaseStudyDetail.jsx';
-import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
-import TermsOfService from './pages/TermsOfService.jsx';
-import ResponsibleDisclosure from './pages/ResponsibleDisclosure.jsx';
-import NotFound from './pages/NotFound.jsx';
+
+// Home is loaded eagerly for a fast first paint; other pages are code-split.
+const ServiceDetail = lazy(() => import('./pages/ServiceDetail.jsx'));
+const About = lazy(() => import('./pages/About.jsx'));
+const Careers = lazy(() => import('./pages/Careers.jsx'));
+const Blog = lazy(() => import('./pages/Blog.jsx'));
+const BlogPost = lazy(() => import('./pages/BlogPost.jsx'));
+const CaseStudies = lazy(() => import('./pages/CaseStudies.jsx'));
+const CaseStudyDetail = lazy(() => import('./pages/CaseStudyDetail.jsx'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy.jsx'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService.jsx'));
+const ResponsibleDisclosure = lazy(() => import('./pages/ResponsibleDisclosure.jsx'));
+const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 function PublicSite() {
   const location = useLocation();
@@ -29,19 +32,19 @@ function PublicSite() {
             path="/services/:slug"
             element={
               <PageTransition>
-                <ServiceDetail />
+                <Suspense fallback={null}><ServiceDetail /></Suspense>
               </PageTransition>
             }
           />
-          <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-          <Route path="/careers" element={<PageTransition><Careers /></PageTransition>} />
-          <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
-          <Route path="/blog/:slug" element={<PageTransition><BlogPost /></PageTransition>} />
+          <Route path="/about" element={<PageTransition><Suspense fallback={null}><About /></Suspense></PageTransition>} />
+          <Route path="/careers" element={<PageTransition><Suspense fallback={null}><Careers /></Suspense></PageTransition>} />
+          <Route path="/blog" element={<PageTransition><Suspense fallback={null}><Blog /></Suspense></PageTransition>} />
+          <Route path="/blog/:slug" element={<PageTransition><Suspense fallback={null}><BlogPost /></Suspense></PageTransition>} />
           <Route
             path="/case-studies"
             element={
               <PageTransition>
-                <CaseStudies />
+                <Suspense fallback={null}><CaseStudies /></Suspense>
               </PageTransition>
             }
           />
@@ -49,7 +52,7 @@ function PublicSite() {
             path="/case-studies/:slug"
             element={
               <PageTransition>
-                <CaseStudyDetail />
+                <Suspense fallback={null}><CaseStudyDetail /></Suspense>
               </PageTransition>
             }
           />
@@ -57,7 +60,7 @@ function PublicSite() {
             path="/privacy-policy"
             element={
               <PageTransition>
-                <PrivacyPolicy />
+                <Suspense fallback={null}><PrivacyPolicy /></Suspense>
               </PageTransition>
             }
           />
@@ -65,7 +68,7 @@ function PublicSite() {
             path="/terms-of-service"
             element={
               <PageTransition>
-                <TermsOfService />
+                <Suspense fallback={null}><TermsOfService /></Suspense>
               </PageTransition>
             }
           />
@@ -73,11 +76,11 @@ function PublicSite() {
             path="/responsible-disclosure"
             element={
               <PageTransition>
-                <ResponsibleDisclosure />
+                <Suspense fallback={null}><ResponsibleDisclosure /></Suspense>
               </PageTransition>
             }
           />
-          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+          <Route path="*" element={<PageTransition><Suspense fallback={null}><NotFound /></Suspense></PageTransition>} />
         </Routes>
       </AnimatePresence>
       </main>
