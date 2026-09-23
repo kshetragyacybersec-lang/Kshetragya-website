@@ -225,7 +225,7 @@ export default function ServiceDetail() {
               </div>
               <div className="svc-narrative-feat">
                 <span className="svc-feat-dot" />
-                <span>Comprehensive as-built technical documentation</span>
+                <span>Full as-built technical documentation</span>
               </div>
             </div>
           </div>
@@ -238,7 +238,7 @@ export default function ServiceDetail() {
               <div className="eyebrow">Technical Scope</div>
               <h2 className="svc-detail-section-h">Core Pillars &amp; Defense Layers</h2>
               <p className="svc-section-sub">
-                Every component is systematically evaluated, segmented, and hardened to ensure enterprise reliability and cyber resilience.
+                We check, segment, and harden every component so the setup stays reliable and resilient.
               </p>
             </div>
             <div className="svc-vectors-grid">
@@ -358,7 +358,7 @@ export default function ServiceDetail() {
                 <div className="svc-qa-contact-box">
                   <span className="svc-qa-box-lbl">NEED DIRECT SCOPING?</span>
                   <p className="svc-qa-box-desc">
-                    We review site layouts and network topologies within 24 hours under NDA.
+                    We review site layouts and network topologies within 24 hours on business days, under NDA.
                   </p>
                   <Link to="/#contact" className="svc-qa-box-link">
                     Request Scope Review ↗
@@ -406,7 +406,7 @@ export default function ServiceDetail() {
           <div className="svc-cta-badge">DIRECT FOUNDING PARTNER ENGAGEMENT</div>
           <h2 className="svc-cta-title">Ready to engineer or secure your {service.name.toLowerCase()}?</h2>
           <p className="svc-cta-desc">
-            Direct partner consultation. Mutual NDA executed prior to any testing or site survey. Scoping proposal delivered within 24 hours.
+            Direct partner consultation. Mutual NDA executed prior to any testing or site survey. Scoping proposal within 24 hours on business days.
           </p>
           <div className="svc-cta-actions">
             <Link to="/#contact" className="svc-detail-cta">

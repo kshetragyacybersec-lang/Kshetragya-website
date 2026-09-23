@@ -22,7 +22,7 @@ export const serviceGroups = [
           {
             title: 'Structured Cat6/Cat6A & Fiber Cabling',
             badge: 'STRUCTURED CABLING & RUNS',
-            desc: 'Physical cable pathway design, conduit installation, high-grade Cat6/Cat6A copper and single/multi-mode fiber backbones with zero cross-talk.',
+            desc: 'Physical cable pathway design, conduit installation, high-grade Cat6/Cat6A copper and single/multi-mode fiber backbones built to keep cross-talk within the rated standard.',
             checks: [
               'Cable pathway routing and electromagnetic interference (EMI) avoidance',
               '10Gbps+ Cat6A copper termination and Fluke cable-analyzer testing',
@@ -37,14 +37,14 @@ export const serviceGroups = [
             checks: [
               '42U / 24U rack footprint allocation and weight distribution planning',
               'High-density modular patch panel punch-down and neat color-coding',
-              'Horizontal and vertical cable management for unrestricted thermal cooling',
+              'Horizontal and vertical cable management for good airflow and cooling',
               'Front-to-back hot/cold aisle airflow arrangement',
             ],
           },
           {
             title: 'Power Backup, UPS & PDU Integration',
             badge: 'POWER & ELECTRICAL REDUNDANCY',
-            desc: 'Uninterrupted Power Supply (UPS) sizing, dual-feed Rack Power Distribution Units (PDUs), and automated surge protection for mission-critical hardware.',
+            desc: 'Uninterrupted Power Supply (UPS) sizing, dual-feed Rack Power Distribution Units (PDUs), and automated surge protection for critical hardware.',
             checks: [
               'Total wattage load calculation and runtime battery backup sizing',
               'Dual-circuit A/B redundant PDU integration for dual-PSU servers',
@@ -55,7 +55,7 @@ export const serviceGroups = [
           {
             title: 'Enterprise Wi-Fi & Heatmap Planning',
             badge: 'WIRELESS INFRASTRUCTURE',
-            desc: 'RF site surveys, predictive heatmap modeling, enterprise Access Point (AP) mounting, and zero-dead-zone roaming across facilities.',
+            desc: 'RF site surveys, predictive heatmap modeling, enterprise Access Point (AP) mounting, and planned roaming coverage across your facility.',
             checks: [
               'RF spectrum analysis and 2.4GHz / 5GHz / 6GHz interference mapping',
               'Optimal Access Point density and ceiling mounting placement',
@@ -71,13 +71,13 @@ export const serviceGroups = [
               'Wiremap, cable length, propagation delay, and skew testing',
               'Near-End Crosstalk (NEXT) and Return Loss channel verification',
               'Optical time-domain reflectometer (OTDR) fiber loss attenuation tests',
-              'Individual test certification reports provided for every single drop',
+              'A Fluke test report for every tested drop',
             ],
           },
           {
             title: 'As-Built Topology & Asset Labeling',
             badge: 'DOCUMENTATION & HANDOFF',
-            desc: 'Standardized alphanumeric labeling for every port, faceplate, and patch panel, paired with comprehensive CAD network topology diagrams.',
+            desc: 'Standardized alphanumeric labeling for every port, faceplate, and patch panel, paired with CAD network topology diagrams.',
             checks: [
               'Standardized TIA-606-C alphanumeric port and faceplate labeling',
               'As-built Layer 1 physical layout and rack elevation CAD drawings',
@@ -93,11 +93,11 @@ export const serviceGroups = [
           },
           {
             q: 'How do you verify and test the quality of installed network cables?',
-            a: 'Every single copper and fiber drop is tested and verified using professional Fluke cable analyzers. We test for wiremap correctness, attenuation, return loss, and crosstalk, and deliver the Fluke test report for each tested run for your records.',
+            a: 'Every copper and fiber drop is tested using professional Fluke cable analyzers. We test for wiremap correctness, attenuation, return loss, and crosstalk, and deliver the Fluke test report for each tested run for your records.',
           },
           {
             q: 'Can you organize and clean up existing tangled server racks and cabling?',
-            a: 'Yes. We perform rack revitalization and cable cleanup: tracing and auditing unorganized lines, installing horizontal/vertical wire managers, re-terminating messy patch panels, and labeling all connections with zero or minimal scheduled downtime.',
+            a: 'Yes. We perform rack revitalization and cable cleanup: tracing and auditing unorganized lines, installing horizontal/vertical wire managers, re-terminating messy patch panels, and labeling all connections with as little scheduled downtime as possible.',
           },
           {
             q: 'Do you provide power backup and environmental monitoring for server rooms?',
@@ -132,7 +132,7 @@ export const serviceGroups = [
               '802.1Q VLAN tagging and trunk port pruning configuration',
               'Inter-VLAN routing access control lists (ACLs) to prevent unauthorized lateral hops',
               'Dedicated management VLAN with restricted out-of-band administration',
-              'Guest network isolation with zero access to internal corporate subnets',
+              'Guest network kept separate from internal corporate subnets',
             ],
           },
           {
@@ -160,7 +160,7 @@ export const serviceGroups = [
           {
             title: 'Core Layer 3 Routing & Redundant Gateways',
             badge: 'CORE ROUTING & GATEWAYS',
-            desc: 'Configuring enterprise routing protocols (OSPF, BGP, Static) and First Hop Redundancy Protocols (HSRP/VRRP) for zero-downtime gateway failover.',
+            desc: 'Configuring enterprise routing protocols (OSPF, BGP, Static) and First Hop Redundancy Protocols (HSRP/VRRP) for automatic gateway failover.',
             checks: [
               'Layer 3 switch routing engine configuration with wire-speed packet forwarding',
               'VRRP / HSRP virtual router gateway pairing for default gateway resilience',
@@ -202,11 +202,11 @@ export const serviceGroups = [
           },
           {
             q: 'Can you configure high availability so our network stays up if a switch or link fails?',
-            a: 'Yes. We deploy switch stacking, MLAG (Multi-Chassis Link Aggregation), LACP port-channels, and First Hop Redundancy Protocols (VRRP/HSRP). If any single switch port, uplink cable, or distribution switch fails, traffic fails over in milliseconds with zero disruption to users.',
+            a: 'Yes. We deploy switch stacking, MLAG (Multi-Chassis Link Aggregation), LACP port-channels, and First Hop Redundancy Protocols (VRRP/HSRP). If any single switch port, uplink cable, or distribution switch fails, traffic fails over automatically within milliseconds, so users rarely notice.',
           },
           {
             q: 'Will reconfiguring our switches and routing cause downtime for our office or plant?',
-            a: 'We design the new topology offline, stage the configuration scripts, and execute switch cutovers during pre-approved off-peak maintenance windows (such as evenings or weekends) to ensure zero interruption to normal business hours.',
+            a: 'We design the new topology offline, stage the configuration scripts, and execute switch cutovers during pre-approved off-peak maintenance windows (such as evenings or weekends) so normal business hours are not interrupted.',
           },
         ],
         quickAnswer:
@@ -217,7 +217,7 @@ export const serviceGroups = [
         id: 'cctv-surveillance',
         name: 'CCTV & Surveillance',
         short:
-          'Commercial surveillance engineered by network and cybersecurity engineers with zero network lag, isolated VLANs, and secure remote viewing.',
+          'Commercial surveillance engineered by network and cybersecurity engineers with low network lag, isolated VLANs, and secure remote viewing.',
         full: 'Commercial surveillance systems require proper camera optics selection, RAID storage calculations, and network isolation to operate reliably without choking internal corporate bandwidth or creating cybersecurity vulnerabilities. We assess physical premises to reduce blind spots, install high-definition IP cameras with appropriate focal lengths, configure Network Video Recorders (NVRs) with RAID 5/10 storage, and isolate all camera traffic on a dedicated Layer 2/3 VLAN. We harden camera firmware against CVE exploits, set up encrypted SSL-VPN remote access for authorized personnel, and align data storage with DPDP Act 2023 video privacy standards.',
         standards: ['CIS Benchmarks', 'ISO 27001 ISMS', 'DPDP Act 2023', 'IEEE 802.3at/bt PoE'],
         deliverables: [
@@ -241,7 +241,7 @@ export const serviceGroups = [
             ],
           },
           {
-            title: 'Network Isolation & Zero Congestion',
+            title: 'Network Isolation & Traffic Control',
             badge: 'TRAFFIC SEGREGATION',
             desc: 'Video traffic is segregated onto dedicated Layer 2/Layer 3 VLANs with strict QoS rules so high-bitrate 4K streaming never degrades office ERP or Wi-Fi traffic.',
             checks: [
@@ -281,7 +281,7 @@ export const serviceGroups = [
               'SSL-VPN tunnel configuration for remote mobile and desktop clients',
               'Multi-Factor Authentication (MFA) enforcement for video streams',
               'Role-based access control (Admin, Security Guard, Management)',
-              'Zero open inbound firewall ports to the public internet',
+              'No inbound firewall ports opened to the public internet unless required',
             ],
           },
           {
@@ -303,7 +303,7 @@ export const serviceGroups = [
           },
           {
             q: 'How do you secure IP cameras from being hacked or accessed by unauthorized third parties?',
-            a: 'We enforce comprehensive cybersecurity hardening: changing all default credentials, closing unencrypted RTSP and telnet ports, disabling UPnP auto port-forwarding, and applying the latest firmware patches. All external remote viewing is routed through encrypted SSL-VPN tunnels with Multi-Factor Authentication (MFA), leaving zero open ports exposed to the public internet.',
+            a: 'We enforce cybersecurity hardening: changing all default credentials, closing unencrypted RTSP and telnet ports, disabling UPnP auto port-forwarding, and applying the latest firmware patches. All external remote viewing is routed through encrypted SSL-VPN tunnels with Multi-Factor Authentication (MFA), leaving no unnecessary ports exposed to the public internet.',
           },
           {
             q: 'How do you calculate storage requirements for 30 to 100+ IP cameras?',
@@ -329,7 +329,7 @@ export const serviceGroups = [
         name: 'Firewall & Network Security',
         short:
           'Deployment, rule-base hardening, IPS configuration, and secure VPN gateway setup on FortiGate, Sophos, and Palo Alto appliances.',
-        full: 'Firewalls left on factory defaults or overly permissive rules fail to protect corporate networks against unauthorized inbound and outbound traffic. We deploy, configure, and audit next-generation firewalls (FortiGate, Sophos, Palo Alto) tailored to your operational traffic. We audit existing access control lists (ACLs), enforce least-privilege egress filtering, configure Intrusion Prevention System (IPS) profiles, enable SSL inspection where required, and establish secure site-to-site IPsec and client SSL VPN tunnels with Multi-Factor Authentication.',
+        full: 'Firewalls left on factory defaults or overly permissive rules fail to protect corporate networks against unauthorized inbound and outbound traffic. We deploy, configure, and audit next-generation firewalls (FortiGate, Sophos, Palo Alto) configured for your traffic. We audit existing access control lists (ACLs), enforce least-privilege egress filtering, configure Intrusion Prevention System (IPS) profiles, enable SSL inspection where required, and establish secure site-to-site IPsec and client SSL VPN tunnels with Multi-Factor Authentication.',
         standards: ['NIST SP 800-41', 'CIS Firewall Benchmark', 'PCI-DSS 4.0 Req 1', 'ISO 27001 Control A.8.20'],
         deliverables: [
           'Firewall rule-base matrix audit and insecure legacy rule purge',
@@ -403,7 +403,7 @@ export const serviceGroups = [
               'Active-Passive state synchronization over dedicated heartbeat links',
               'Dual WAN link failover, SD-WAN route steering, and SLA health checks',
               'Automated configuration synchronization and backup automation',
-              'Live physical cable unplug failover testing with zero active session drops',
+              'Live physical cable unplug failover testing while checking that active sessions continue',
             ],
           },
         ],
@@ -474,7 +474,7 @@ export const serviceGroups = [
             checks: [
               'Ongoing security event monitoring and triage',
               'Contextual analysis separating benign admin actions from genuine attacks',
-              'Zero notification fatigue: you only receive validated, high-severity alerts',
+              'Less alert noise: you only receive validated, high-severity alerts',
               'Documented investigation notes and artifact attachments for every case',
             ],
           },
@@ -527,7 +527,7 @@ export const serviceGroups = [
           },
           {
             q: 'What happens when a high-severity threat is detected in our environment?',
-            a: 'Our team verifies the alert, initiates our emergency escalation protocol, calls your designated IT contact immediately, and provides specific containment steps (e.g., isolating the host, revoking credentials, or blocking the external IP).',
+            a: 'Our team verifies the alert, initiates our emergency escalation protocol, calls your designated IT contact, and provides specific containment steps (e.g., isolating the host, revoking credentials, or blocking the external IP).',
           },
         ],
         quickAnswer:
@@ -539,10 +539,10 @@ export const serviceGroups = [
         name: 'Incident Response & DFIR',
         short:
           'Rapid incident containment, digital forensics investigation, malware analysis, and evidence-grade root cause reporting.',
-        full: 'When a security incident or suspected breach occurs, fast containment and forensically sound evidence preservation are critical. Our incident response team steps in immediately to isolate compromised hosts, identify the attack vector, analyze malicious artifacts, and contain lateral movement. We reconstruct the attacker timeline, determine whether sensitive data was accessed or exfiltrated, assist your team through safe system recovery, and provide a comprehensive post-incident technical report.',
+        full: 'When a security incident or suspected breach occurs, fast containment and forensically sound evidence preservation are critical. Our incident response team steps in as soon as you contact us to isolate compromised hosts, identify the attack vector, analyze malicious artifacts, and contain lateral movement. We reconstruct the attacker timeline, determine whether sensitive data was accessed or exfiltrated, assist your team through safe system recovery, and provide a detailed post-incident technical report.',
         standards: ['NIST SP 800-61r2', 'ISO/IEC 27037 (Evidence Handling)', 'SANS PICERL', 'RFC 3227'],
         deliverables: [
-          'Immediate emergency containment to isolate compromised hosts',
+          'Emergency containment to isolate compromised hosts',
           'Disk and memory forensic images acquired with documented chain-of-custody',
           'Root-cause technical investigation report with attacker timeline',
           'Malware IOC list, hashes, and network indicator breakdown',
@@ -553,7 +553,7 @@ export const serviceGroups = [
           {
             title: 'Rapid Isolation & Lateral Movement Containment',
             badge: 'EMERGENCY TRIAGE',
-            desc: 'Immediate intervention to sever active attacker sessions, isolate affected endpoints from the network, and stop ransomware spreading.',
+            desc: 'Fast intervention to sever active attacker sessions, isolate affected endpoints from the network, and stop ransomware spreading.',
             checks: [
               'Network isolation of suspected compromised hosts while preserving RAM state',
               'Perimeter firewall IP blocking of active command-and-control (C2) servers',
@@ -624,7 +624,7 @@ export const serviceGroups = [
           },
           {
             q: 'How fast can Kshetragya respond to an emergency security incident?',
-            a: 'We initiate emergency remote containment protocols within 1 hour of engagement. For on-site forensics and physical incident handling in Gujarat, our founding partners dispatch immediately.',
+            a: 'We start emergency remote containment as soon as you engage us. For on-site forensics and physical incident handling in Gujarat, our founding partners travel to you as quickly as they can.',
           },
           {
             q: 'Will the digital forensics report be admissible in court or for regulatory reporting?',
@@ -647,7 +647,7 @@ export const serviceGroups = [
         full: 'Operating systems and network appliances ship with default services, legacy protocols, and permissive settings enabled out of the box. We audit and harden your Windows/Linux servers, workstations, and network equipment against proven benchmarks (CIS Benchmarks, NIST). We disable insecure legacy protocols (such as SMBv1, NTLMv1, TLS 1.0/1.1), configure secure SSH and RDP access, enforce host-level firewalls, and apply system group policies without disrupting business operations.',
         standards: ['CIS Benchmarks Level 1 & 2', 'NIST SP 800-123', 'DISA STIGs', 'ISO 27001 A.8.9'],
         deliverables: [
-          'Comprehensive CIS Benchmark compliance baseline audit',
+          'CIS Benchmark compliance baseline audit',
           'Custom Group Policy Objects (GPOs) and Linux configuration scripts',
           'Purge of insecure legacy ciphers, LLMNR, NetBIOS, and SMBv1',
           'Host firewall rules and SSH public-key authentication enforcement',
@@ -658,7 +658,7 @@ export const serviceGroups = [
           {
             title: 'Windows Server & Active Directory Hardening',
             badge: 'DIRECTORY & OS BASELINES',
-            desc: 'Enforcing CIS Benchmark Level 1/2 policies via tailored Active Directory Group Policy Objects (GPOs) across domain controllers, servers, and workstations.',
+            desc: 'Enforcing CIS Benchmark Level 1/2 policies via custom Active Directory Group Policy Objects (GPOs) across domain controllers, servers, and workstations.',
             checks: [
               'Enforcing strict password complexity, account lockout, and Kerberos ticket lifetimes',
               'Auditing and restricting User Account Control (UAC) and PowerShell execution policies',
@@ -716,9 +716,9 @@ export const serviceGroups = [
             desc: 'Staging hardening policies in test environments to ensure ERP systems, accounting software, and business applications function smoothly without downtime.',
             checks: [
               'Pilot group deployment to validate custom ERP and database compatibility',
-              'Comprehensive event log monitoring for policy conflict identification',
+              'Event log monitoring for policy conflict identification',
               'Documented policy deviation registry for legacy business software exceptions',
-              'Immediate rollback scripts prepared for every configuration change',
+              'Rollback scripts prepared for every configuration change',
             ],
           },
         ],
@@ -762,7 +762,7 @@ export const serviceGroups = [
           'Automated vulnerability scanning combined with manual false-positive verification',
           'Active Directory, VLAN segmentation, and enterprise Wi-Fi security review',
           'Executive Summary with overall infrastructure risk posture and high-level findings',
-          'Comprehensive Technical Report with verified findings, CVSS 3.1 scores, and fix instructions',
+          'Technical Report with verified findings, CVSS 3.1 scores, and fix instructions',
           'Letter of Attestation + one free verification re-scan (within 30 days)',
         ],
         vectors: [
@@ -852,7 +852,7 @@ export const serviceGroups = [
           },
         ],
         quickAnswer:
-          'Network Vulnerability Assessment (VA) is a systematic, non-disruptive evaluation of your external perimeter and internal network infrastructure to discover, validate, and prioritize security weaknesses. Delivered directly by our 3 founding technical partners, it includes a comprehensive technical report with actionable fix instructions, an executive summary, a Letter of Attestation, and one free re-scan within 30 days.',
+          'Network Vulnerability Assessment (VA) is a systematic, non-disruptive evaluation of your external perimeter and internal network infrastructure to discover, validate, and prioritize security weaknesses. Delivered directly by our 3 founding technical partners, it includes a detailed technical report with actionable fix instructions, an executive summary, a Letter of Attestation, and one free re-scan within 30 days.',
         related: ['web-application-vapt', 'firewall-network-security', 'security-hardening'],
       },
       {
@@ -907,7 +907,7 @@ export const serviceGroups = [
           {
             title: 'RESTful & GraphQL API Security Testing',
             badge: 'API SECURITY',
-            desc: 'Comprehensive testing of backend APIs, REST endpoints, and GraphQL resolvers for unauthorized data exposure and rate-limiting bypasses.',
+            desc: 'Testing of backend APIs, REST endpoints, and GraphQL resolvers for unauthorized data exposure and rate-limiting bypasses.',
             checks: [
               'Excessive data exposure in API JSON responses and debug endpoints',
               'Mass assignment vulnerabilities allowing unauthorized parameter updates',
@@ -945,11 +945,11 @@ export const serviceGroups = [
           },
           {
             q: 'Will web application penetration testing damage our live production database or site?',
-            a: 'No. We conduct controlled, non-destructive testing and can perform assessments on staging or UAT environments if preferred. For production testing, we agree on strict rules of engagement to ensure zero data corruption or downtime.',
+            a: 'No. We conduct controlled, non-destructive testing and can perform assessments on staging or UAT environments if preferred. For production testing, we agree on strict rules of engagement to minimize the risk of data corruption or downtime.',
           },
           {
             q: 'What do our software developers receive to help them fix the findings?',
-            a: 'Developers receive exact curl reproduction commands, raw HTTP request/response payloads, screenshots, and specific code-level patch recommendations tailored to their framework (e.g., React, Node.js, Django, Laravel, Spring Boot).',
+            a: 'Developers receive exact curl reproduction commands, raw HTTP request/response payloads, screenshots, and specific code-level patch recommendations specific to their framework (e.g., React, Node.js, Django, Laravel, Spring Boot).',
           },
           {
             q: 'Is a verification retest included after our developers deploy fixes?',
@@ -1029,7 +1029,7 @@ export const serviceGroups = [
           {
             title: 'Security Policy & Procedure Pack Creation',
             badge: 'POLICY & GOVERNANCE',
-            desc: 'Drafting clear, enforceable cybersecurity and data protection policies tailored to your organization’s real-world operational workflows.',
+            desc: 'Drafting clear, enforceable cybersecurity and data protection policies that fit how your organization actually works.',
             checks: [
               'Information Security Policy (ISP) and Acceptable Use Policy (AUP)',
               'Incident Response and Disaster Recovery (BCP/DR) documentation',
@@ -1145,7 +1145,7 @@ export const serviceGroups = [
           {
             title: 'CIS Benchmark & Compliance Audit',
             badge: 'COMPLIANCE POSTURE',
-            desc: 'Executing comprehensive CIS AWS/Azure Foundations Benchmark assessments with prioritized CLI fix commands and Terraform code snippets.',
+            desc: 'Running CIS AWS/Azure Foundations Benchmark assessments with prioritized CLI fix commands and Terraform code snippets.',
             checks: [
               'Automated and manual CIS Benchmark scoring across all cloud regions',
               'Executive summary with overall cloud security posture grade',

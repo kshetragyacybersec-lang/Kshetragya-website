@@ -9,11 +9,11 @@ const REGIONS = [
     badgeType: 'local',
     title: 'Gujarat (HQ: Ahmedabad)',
     tagline: 'Rapid physical site visits & ongoing remote engineering',
-    dispatch: 'Immediate to Same-Day On-Site',
+    dispatch: 'On-Site Visits Scheduled per Project',
     deliveryMode: 'On-Site & Remote Available',
-    desc: 'Based in Ahmedabad, we provide immediate on-site dispatch across Gujarat for structured cabling, server rack installations, firewall deployments, CCTV setups, and internal penetration testing, backed by continuous remote support.',
+    desc: 'Based in Ahmedabad, we send engineers on-site across Gujarat for structured cabling, server rack installations, firewall deployments, CCTV setups, and internal penetration testing, backed by continuous remote support.',
     locations: [
-      { name: 'Ahmedabad (HQ)', detail: 'Immediate 2-hour site dispatch' },
+      { name: 'Ahmedabad (HQ)', detail: 'Local site visits from our HQ' },
       { name: 'Gandhinagar / GIFT City', detail: 'FinTech & enterprise audits' },
       { name: 'Vadodara & Bharuch', detail: 'Industrial network segmentation' },
       { name: 'Surat & South Gujarat', detail: 'Commercial & manufacturing networks' },
@@ -43,7 +43,7 @@ const REGIONS = [
     badge: 'REMOTE ONLY',
     badgeType: 'global',
     title: 'Global (International)',
-    tagline: '100% remote delivery via encrypted channels',
+    tagline: 'Remote delivery via encrypted channels',
     dispatch: 'Direct Encrypted Remote Access',
     deliveryMode: 'Remote Only (No Overseas On-Site)',
     desc: 'For international clients across North America, Europe, and the Middle East, our services are delivered remotely. This includes web application VAPT, AWS/Azure cloud security reviews, and compliance advisory.',
@@ -129,7 +129,7 @@ export default function Areas() {
             </svg>
           </span>
           <div>
-            <strong>Direct Partner Execution:</strong> On-site site visits available across Gujarat and all over India. Global engagements delivered remotely under mutual NDA.
+            <strong>Direct Partner Execution:</strong> Site visits available across Gujarat and all over India. Global engagements delivered remotely under mutual NDA.
           </div>
         </div>
         <Link to="/#contact" className="btn-v areas-dispatch-btn">

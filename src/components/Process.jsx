@@ -29,7 +29,7 @@ const STEPS = [
     timeline: 'Day 2 - 5',
     title: 'Active Deployment & Manual Pentest',
     desc: 'Hands-on engineering: physical rack cabling, firewall policy tuning, and deep manual OWASP/MITRE penetration testing.',
-    partnerExecution: 'Partners perform real exploitation attempts with zero automated scanner dumps, testing logic flaws and perimeter defenses.',
+    partnerExecution: 'Partners perform real exploitation attempts by hand rather than handing over raw scanner output, testing logic flaws and perimeter defenses.',
     clientDeliverable: 'Live Vulnerability Log & Work-in-Progress Briefing',
     clientInputs: 'Test credentials / whitelisted testing IPs (if grey-box).',
   },
@@ -40,7 +40,7 @@ const STEPS = [
     title: 'Executive & Developer Report Handover',
     desc: 'A high-level risk summary for leadership paired with a step-by-step technical remediation guide for your developers and IT team.',
     partnerExecution: 'We write clear, evidence-backed reports with reproducible PoCs and exact configuration fixes for your engineers.',
-    clientDeliverable: 'Executive Summary + Comprehensive Tech Remediation Report',
+    clientDeliverable: 'Executive Summary + Technical Remediation Report',
     clientInputs: '30-minute debrief meeting with technical and executive teams.',
   },
   {
@@ -85,7 +85,7 @@ export default function Process() {
           <h2 className="sec-h dark" id="process-heading">
             Five clear steps.
             <br />
-            <em>Zero ambiguity.</em>
+            <em>No guesswork.</em>
           </h2>
         </div>
         <p className="proc-note">

@@ -50,7 +50,7 @@ const DISCIPLINE_META = {
     index: '01',
     badge: 'LAYER 1-3 HARDWARE & PHYSICAL NETWORKS',
     headline: 'Structured cabling, server room deployment & enterprise switching.',
-    desc: 'Cat6A/10G structured cabling, managed L2/L3 switch segregation, and isolated surveillance networks installed on-site with zero loose ends.',
+    desc: 'Cat6A/10G structured cabling, managed L2/L3 switch segregation, and isolated surveillance networks installed on-site and fully documented.',
     Icon: IconInfrastructure,
     tags: ['Cat6A / 10G Fiber', 'L2/L3 Routing', 'Isolated CCTV', 'Fluke Tested'],
     primaryCta: '/services/network-infrastructure',
@@ -68,7 +68,7 @@ const DISCIPLINE_META = {
     index: '03',
     badge: 'OFFENSIVE PENETRATION TESTING & AUDITS',
     headline: 'Real-world adversary simulation to discover critical vulnerabilities.',
-    desc: 'Comprehensive manual penetration testing for web apps, APIs, and network perimeters with zero automated fluff and free verification re-scans.',
+    desc: 'Manual penetration testing for web apps, APIs, and network perimeters, with one free verification re-scan included.',
     Icon: IconTesting,
     tags: ['OWASP Top 10', 'Network VA', 'REST/GraphQL APIs', 'Free Re-Scan'],
     primaryCta: '/services/network-va',
@@ -220,7 +220,7 @@ export default function Services() {
           <span className="svc-banner-badge">DIRECT FOUNDER ENGAGEMENT</span>
           <h3 className="svc-banner-title">Need an end-to-end infrastructure &amp; cybersecurity audit?</h3>
           <p className="svc-banner-desc">
-            We scope custom multi-discipline engagements tailored to your exact requirements, from structured cabling and firewalls to offensive VAPT and DPDP compliance. Handled directly by our founding partners in Ahmedabad.
+            We scope custom multi-discipline engagements built around your requirements, from structured cabling and firewalls to offensive VAPT and DPDP compliance. Handled directly by our founding partners in Ahmedabad.
           </p>
         </div>
         <div className="svc-banner-right">

@@ -87,7 +87,7 @@ export default function SecurityApproach() {
           </div>
           <p className="approach-note">
             Our engineering principles define how we scope, test, and deliver every engagement.
-            Zero outsourced labor, zero generic checklist scans, and complete transparency from day one.
+            No generic checklist scans, and a clear view of what we are doing from day one.
           </p>
         </div>
 

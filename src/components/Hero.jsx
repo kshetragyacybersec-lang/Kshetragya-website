@@ -378,7 +378,7 @@ export default function Hero() {
             initial="hidden"
             animate={loaded ? 'show' : 'hidden'}
           >
-            Structured network cabling, firewall architecture, and rigorous manual vulnerability
+            Structured network cabling, firewall architecture, and hands-on manual vulnerability
             testing for Gujarat &amp; Indian enterprises. Led directly by our 3 technical partners.
           </motion.p>
 
@@ -494,7 +494,7 @@ export default function Hero() {
                     <span className="shc-service-name">Web VAPT &amp; Network VA</span>
                     <span className="shc-service-pill">OWASP &amp; CVEs</span>
                   </div>
-                  <div className="shc-service-desc">Systematic vulnerability scans, zero-downtime audits &amp; manual web exploitation</div>
+                  <div className="shc-service-desc">Vulnerability scans, low-disruption audits &amp; manual web exploitation</div>
                 </div>
               </div>
 
