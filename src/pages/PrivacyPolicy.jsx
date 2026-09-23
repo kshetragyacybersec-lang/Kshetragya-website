@@ -53,8 +53,10 @@ export default function PrivacyPolicy() {
 
           <h2>Data retention</h2>
           <p>
-            We retain enquiry information for as long as necessary to respond to you and maintain
-            our business records, after which it is deleted or anonymized.
+            We retain enquiry information only as long as necessary to respond to you and maintain
+            our business records. Enquiries that do not lead to an engagement are deleted or
+            anonymized within 12 months of our last communication. If you request deletion, we will
+            act on it within 30 days, except where we are legally required to keep the information.
           </p>
 
           <h2>Your rights</h2>

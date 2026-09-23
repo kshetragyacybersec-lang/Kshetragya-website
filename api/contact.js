@@ -39,7 +39,7 @@ export default async function handler(req, res) {
   // Honeypot spam trap
   if (body._honey && String(body._honey).trim().length > 0) {
     // Silently drop bot submissions
-    res.status(200).json({ ok: true, message: "Request received, we'll be in touch within 24 hours." });
+    res.status(200).json({ ok: true, message: "Request received, we'll be in touch within 24 hours on business days." });
     return;
   }
 
@@ -92,6 +92,6 @@ export default async function handler(req, res) {
 
   res.status(200).json({
     ok: true,
-    message: "Request sent, we'll be in touch within 24 hours.",
+    message: "Request sent, we'll be in touch within 24 hours on business days.",
   });
 }

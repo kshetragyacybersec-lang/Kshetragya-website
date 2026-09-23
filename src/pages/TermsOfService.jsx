@@ -55,8 +55,10 @@ export default function TermsOfService() {
           <p>
             Information on this website is provided "as is" without warranties of any kind.
             Kshetragya Cybersec is not liable for any indirect or consequential loss arising from
-            use of this website. This does not limit liability under any signed service agreement,
-            which is governed by its own terms.
+            use of this website. Content on this website is general information and is not an offer,
+            warranty or guarantee of any specific result. The scope, deliverables, fees and liability
+            for any cybersecurity or network service are governed solely by the signed service
+            agreement or statement of work for that engagement, which is governed by its own terms.
           </p>
 
           <h2>Third-party links</h2>
