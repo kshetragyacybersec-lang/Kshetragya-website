@@ -48,9 +48,9 @@ const STEPS = [
     phase: 'Assurance',
     timeline: 'Day 14 - 21',
     title: 'Remediation Verification & Free Retest',
-    desc: 'After your team patches the discovered vulnerabilities, we retest all affected endpoints for free to verify that the fixes have been applied correctly.',
+    desc: 'After your team patches the discovered vulnerabilities, we retest the originally reported findings once, free of charge and within 30 days of report delivery, to check whether the fixes were applied correctly.',
     partnerExecution: 'Partners personally re-verify every finding to validate that patches hold against real-world attack methods.',
-    clientDeliverable: 'Letter of Attestation & Final Clean Retest Report',
+    clientDeliverable: 'Letter of Attestation & Retest Report (point-in-time)',
     clientInputs: 'Confirmation that development and IT teams applied the fixes.',
   },
 ];

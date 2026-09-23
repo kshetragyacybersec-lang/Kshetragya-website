@@ -14,7 +14,7 @@ export const serviceGroups = [
           'On-site physical survey and floor plan CAD cable pathway mapping',
           'Cat6 / Cat6A structured cabling and modular patch panel termination',
           'Server rack installation, cable dressing, and redundant PDU power setup',
-          '100% Fluke channel certification reports for all copper & fiber drops',
+          'Fluke test reports for every tested copper & fiber drop',
           'Enterprise Wi-Fi access point deployment and RF heatmap validation',
           'Complete TIA-606-C port labeling and as-built network topology documentation',
         ],
@@ -25,7 +25,7 @@ export const serviceGroups = [
             desc: 'Physical cable pathway design, conduit installation, high-grade Cat6/Cat6A copper and single/multi-mode fiber backbones with zero cross-talk.',
             checks: [
               'Cable pathway routing and electromagnetic interference (EMI) avoidance',
-              '10Gbps+ Cat6A copper termination and Fluke certification testing',
+              '10Gbps+ Cat6A copper termination and Fluke cable-analyzer testing',
               'Single-mode and multi-mode fiber optic backbone deployment',
               'Bend-radius compliance and fire-retardant LSZH jacket standards',
             ],
@@ -64,9 +64,9 @@ export const serviceGroups = [
             ],
           },
           {
-            title: 'Fluke Certification & Drop Testing',
+            title: 'Fluke Cable Testing & Drop Reports',
             badge: 'TESTING & QUALITY ASSURANCE',
-            desc: '100% end-to-end channel validation using industry-standard Fluke cable analyzers to verify packet loss and rated throughput on every tested link.',
+            desc: 'End-to-end channel testing using industry-standard Fluke cable analyzers to check performance against the rated standard on every tested link.',
             checks: [
               'Wiremap, cable length, propagation delay, and skew testing',
               'Near-End Crosstalk (NEXT) and Return Loss channel verification',
@@ -93,7 +93,7 @@ export const serviceGroups = [
           },
           {
             q: 'How do you verify and test the quality of installed network cables?',
-            a: 'Every single copper and fiber drop is tested and verified using professional Fluke cable analyzers. We test for wiremap correctness, attenuation, return loss, and crosstalk, and deliver an official Fluke certification test report for your permanent records.',
+            a: 'Every single copper and fiber drop is tested and verified using professional Fluke cable analyzers. We test for wiremap correctness, attenuation, return loss, and crosstalk, and deliver the Fluke test report for each tested run for your records.',
           },
           {
             q: 'Can you organize and clean up existing tangled server racks and cabling?',
@@ -105,7 +105,7 @@ export const serviceGroups = [
           },
         ],
         quickAnswer:
-          'Structured cabling, server rack assembly, and hardware deployment engineered by network specialists across Gujarat and India. Tested with 100% Fluke certification, TIA-606-C port labeling, and as-built topology diagrams.',
+          'Structured cabling, server rack assembly, and hardware deployment engineered by network specialists across Gujarat and India. Every run tested with Fluke cable analyzers, TIA-606-C port labeling, and as-built topology diagrams.',
         related: ['switching-routing', 'cctv-surveillance', 'firewall-network-security'],
       },
       {
@@ -285,14 +285,14 @@ export const serviceGroups = [
             ],
           },
           {
-            title: 'DPDP Act 2023 & Video Privacy Compliance',
+            title: 'DPDP Act 2023 & Video Privacy Readiness',
             badge: 'REGULATORY ASSURANCE',
             desc: 'Ensuring commercial surveillance adheres to Indian data protection regulations with role-based viewing access, audit logs, and data retention policies.',
             checks: [
               'Access audit logging (tracking who viewed, exported, or deleted footage)',
               'Data principal privacy notice placement and perimeter signage alignment',
               'Encrypted storage at rest for sensitive management camera feeds',
-              'Compliant video retention schedules and automated purging cycles',
+              'Video retention schedules and automated purging cycles aligned to your policy',
             ],
           },
         ],
@@ -315,7 +315,7 @@ export const serviceGroups = [
           },
         ],
         quickAnswer:
-          'Commercial surveillance engineered by network and security engineers: low network lag, dedicated VLAN isolation, RAID 5/10 storage redundancy, and DPDP Act 2023 compliance. Deployed on-site in Gujarat and across India.',
+          'Commercial surveillance engineered by network and security engineers: low network lag, dedicated VLAN isolation, RAID 5/10 storage redundancy, and DPDP Act 2023 privacy-readiness guidance. Deployed on-site in Gujarat and across India.',
         related: ['network-infrastructure', 'switching-routing', 'security-hardening'],
       },
     ],
@@ -543,7 +543,7 @@ export const serviceGroups = [
         standards: ['NIST SP 800-61r2', 'ISO/IEC 27037 (Evidence Handling)', 'SANS PICERL', 'RFC 3227'],
         deliverables: [
           'Immediate emergency containment to isolate compromised hosts',
-          'Chain-of-custody certified disk and memory forensic images',
+          'Disk and memory forensic images acquired with documented chain-of-custody',
           'Root-cause technical investigation report with attacker timeline',
           'Malware IOC list, hashes, and network indicator breakdown',
           'Executive breach summary suitable for board and legal disclosures',
@@ -763,7 +763,7 @@ export const serviceGroups = [
           'Active Directory, VLAN segmentation, and enterprise Wi-Fi security review',
           'Executive Summary with overall infrastructure risk posture and high-level findings',
           'Comprehensive Technical Report with verified findings, CVSS 3.1 scores, and fix instructions',
-          'Official Letter of Attestation + Free 30-day verification re-scan',
+          'Letter of Attestation + one free verification re-scan (within 30 days)',
         ],
         vectors: [
           {
@@ -822,14 +822,14 @@ export const serviceGroups = [
             ],
           },
           {
-            title: 'Executive Attestation & Free 30-Day Rescan',
+            title: 'Executive Attestation & Free Verification Rescan',
             badge: 'AUDIT ASSURANCE & RE-TEST',
-            desc: 'Official Letter of Attestation for ISO 27001, DPDP Act compliance, or vendor risk reviews, plus a free 30-day verification re-scan after fixes are applied.',
+            desc: 'Letter of Attestation summarizing the tested scope and results as of the test date, for ISO 27001 readiness, DPDP Act readiness, or vendor risk reviews, plus one free verification re-scan within 30 days of report delivery, limited to the originally reported findings.',
             checks: [
               'Executive summary with overall infrastructure risk score',
               'Detailed technical fix instructions with CLI / GUI guidance',
-              'Official Letter of Attestation signed by founding partners',
-              'Free 30-day verification re-scan after fixes are deployed',
+              'Letter of Attestation signed by founding partners (point-in-time, scope-limited)',
+              'One free verification re-scan within 30 days of report delivery',
             ],
           },
         ],
@@ -848,11 +848,11 @@ export const serviceGroups = [
           },
           {
             q: 'What documentation do we receive upon completion?',
-            a: 'You receive an Executive Summary for management, a full Technical Remediation Report with CVSS scores and fix instructions, an official Letter of Attestation, and a final verification re-scan report.',
+            a: 'You receive an Executive Summary for management, a full Technical Remediation Report with CVSS scores and fix instructions, a Letter of Attestation, and a final verification re-scan report.',
           },
         ],
         quickAnswer:
-          'Network Vulnerability Assessment (VA) is a systematic, non-disruptive evaluation of your external perimeter and internal network infrastructure to discover, validate, and prioritize security weaknesses. Delivered directly by our 3 founding technical partners, it includes a comprehensive technical report with actionable fix instructions, an executive summary, an official Letter of Attestation, and a free 30-day re-scan.',
+          'Network Vulnerability Assessment (VA) is a systematic, non-disruptive evaluation of your external perimeter and internal network infrastructure to discover, validate, and prioritize security weaknesses. Delivered directly by our 3 founding technical partners, it includes a comprehensive technical report with actionable fix instructions, an executive summary, a Letter of Attestation, and one free re-scan within 30 days.',
         related: ['web-application-vapt', 'firewall-network-security', 'security-hardening'],
       },
       {
@@ -868,7 +868,7 @@ export const serviceGroups = [
           'Executive summary with business risk ratings and compliance posture',
           'Detailed technical report with curl POCs, screenshots, and exact code-level patches',
           'Direct engineer-to-engineer remediation debrief call',
-          'Official Letter of Attestation + Free 30-day verification retest',
+          'Letter of Attestation + one free verification retest (within 30 days)',
         ],
         vectors: [
           {
@@ -953,11 +953,11 @@ export const serviceGroups = [
           },
           {
             q: 'Is a verification retest included after our developers deploy fixes?',
-            a: 'Yes. Every web application VAPT engagement includes a free 30-day verification retest. Once your developers apply patches, we retest each finding and issue an updated report and an official Letter of Attestation.',
+            a: 'Yes. Every web application VAPT engagement includes one free verification retest within 30 days of report delivery, limited to the originally reported findings. Once your developers apply patches, we retest those findings and issue an updated report and a Letter of Attestation. Additional retest rounds can be scoped separately.',
           },
         ],
         quickAnswer:
-          'Manual and automated web application penetration testing covering the OWASP Top 10, business logic flaws, and API vulnerabilities. Delivered with actionable developer fix instructions, Letter of Attestation, and a free 30-day retest.',
+          'Manual and automated web application penetration testing covering the OWASP Top 10, business logic flaws, and API vulnerabilities. Delivered with actionable developer fix instructions, Letter of Attestation, and one free retest within 30 days.',
         related: ['network-va', 'cloud-security-review', 'grc-compliance-audit'],
       },
     ],
@@ -1056,11 +1056,11 @@ export const serviceGroups = [
           },
           {
             q: 'How does your GRC audit help our company achieve ISO 27001 certification?',
-            a: 'We perform a full gap analysis against ISO/IEC 27001:2022, develop the required policies and Statement of Applicability (SoA), assist your team in implementing required technical controls, and conduct a pre-audit mock assessment so your organization passes the Stage 1 and Stage 2 certification audits smoothly.',
+            a: 'We perform a full gap analysis against ISO/IEC 27001:2022, develop the required policies and Statement of Applicability (SoA), assist your team in implementing required technical controls, and conduct a pre-audit mock assessment to help your organization prepare for the Stage 1 and Stage 2 certification audits. Audit outcomes are decided by the certification body.',
           },
           {
             q: 'Can you help us complete complex security questionnaires from overseas enterprise clients?',
-            a: 'Yes. We assist Indian companies in answering detailed vendor security assessments (such as SIG, CAIQ, SOC 2 questionnaires) and provide the necessary technical evidence and Letter of Attestation to win enterprise contracts.',
+            a: 'Yes. We assist Indian companies in answering detailed vendor security assessments (such as SIG, CAIQ, SOC 2 questionnaires) and provide the necessary technical evidence and Letter of Attestation to support your vendor security reviews. Outcomes depend on the requesting organization.',
           },
           {
             q: 'How long does a typical compliance gap assessment take?',
@@ -1150,7 +1150,7 @@ export const serviceGroups = [
               'Automated and manual CIS Benchmark scoring across all cloud regions',
               'Executive summary with overall cloud security posture grade',
               'Step-by-step CLI commands and Infrastructure-as-Code (IaC) fix snippets',
-              'Free 30-day verification re-assessment after cloud configurations are updated',
+              'One free verification re-assessment within 30 days of report delivery',
             ],
           },
         ],
@@ -1169,11 +1169,11 @@ export const serviceGroups = [
           },
           {
             q: 'Is a verification re-assessment included after our team applies cloud fixes?',
-            a: 'Yes. We include a free 30-day verification re-scan to re-audit your cloud environment, confirm all misconfigurations have been resolved, and issue an official Letter of Attestation.',
+            a: 'Yes. We include one free verification re-scan within 30 days of report delivery, limited to the originally reported findings, to check whether the reported misconfigurations have been resolved, and issue a Letter of Attestation.',
           },
         ],
         quickAnswer:
-          'Deep AWS and Azure cloud security reviews auditing IAM permissions, storage exposure, VPC network topology, and CIS Benchmarks. Includes Terraform/CLI fix scripts and a free 30-day re-assessment.',
+          'Deep AWS and Azure cloud security reviews auditing IAM permissions, storage exposure, VPC network topology, and CIS Benchmarks. Includes Terraform/CLI fix scripts and one free re-assessment within 30 days.',
         related: ['web-application-vapt', 'grc-compliance-audit', 'firewall-network-security'],
       },
     ],

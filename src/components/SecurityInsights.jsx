@@ -20,7 +20,7 @@ const INSIGHTS = [
     stat: 'Free',
     badge: 'POST-FIX ASSURANCE',
     label: 'Verification Retest',
-    desc: 'After remediation, we retest at no extra cost to confirm that the fixes and patches actually hold against attacks.',
+    desc: 'After remediation, we retest the originally reported findings once at no extra cost, within 30 days of report delivery.',
   },
 ];
 

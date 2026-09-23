@@ -65,7 +65,7 @@ export default function Contact() {
         setStatus({
           show: true,
           ok: true,
-          msg: data.message || "Request sent, we'll be in touch within 24 hours.",
+          msg: data.message || "Request sent, we'll be in touch within 24 hours on business days.",
         });
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'assessment_request_submitted');
@@ -100,7 +100,7 @@ export default function Contact() {
             <em>Assessment Proposal.</em>
           </h2>
           <p className="contact-intro">
-            Share details about your network, upcoming compliance audit, or penetration testing requirements. We will review your scope and respond within 24 hours.
+            Share details about your network, upcoming compliance audit, or penetration testing requirements. We will review your scope and respond within 24 hours on business days.
           </p>
           <div className="cd-cards">
             <div className="cd-card">

@@ -52,7 +52,7 @@ const DISCIPLINE_META = {
     headline: 'Structured cabling, server room deployment & enterprise switching.',
     desc: 'Cat6A/10G structured cabling, managed L2/L3 switch segregation, and isolated surveillance networks installed on-site with zero loose ends.',
     Icon: IconInfrastructure,
-    tags: ['Cat6A / 10G Fiber', 'L2/L3 Routing', 'Isolated CCTV', 'Fluke Certified'],
+    tags: ['Cat6A / 10G Fiber', 'L2/L3 Routing', 'Isolated CCTV', 'Fluke Tested'],
     primaryCta: '/services/network-infrastructure',
   },
   'cyber-defence': {
