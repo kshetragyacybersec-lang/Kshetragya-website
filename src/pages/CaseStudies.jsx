@@ -1,36 +1,11 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { caseStudies } from '../data.js';
 import { usePageFadeIn } from '../usePageFadeIn.js';
 import { usePageMeta } from '../usePageMeta.js';
 import { PAGE_META } from '../pageMeta.js';
 
-function SkeletonCard() {
-  return (
-    <div className="content-skeleton">
-      <div className="content-skeleton-cover" />
-      <div className="content-skeleton-body">
-        <div className="content-skeleton-line" />
-        <div className="content-skeleton-line" />
-        <div className="content-skeleton-line" />
-        <div className="content-skeleton-line" />
-      </div>
-    </div>
-  );
-}
-
 export default function CaseStudies() {
-  const [caseStudies, setCaseStudies] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/api/case-studies')
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Failed to fetch case studies'))))
-      .then((data) => setCaseStudies(data.caseStudies || []))
-      .catch(() => setCaseStudies([]))
-      .finally(() => setLoading(false));
-  }, []);
-
-  usePageMeta({ ...PAGE_META['case-studies'], noindex: !loading && caseStudies.length === 0 });
+  usePageMeta({ ...PAGE_META['case-studies'], noindex: caseStudies.length === 0 });
 
   const mountFadeClass = usePageFadeIn();
 
@@ -47,14 +22,7 @@ export default function CaseStudies() {
 
       <div className="content-page">
         <div className="content-grid">
-          {loading && (
-            <>
-              <SkeletonCard />
-              <SkeletonCard />
-            </>
-          )}
-
-          {!loading && caseStudies.length === 0 && (
+          {caseStudies.length === 0 && (
             <div className="content-empty">
               <div className="content-empty-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ width: 32, height: 32, color: 'var(--blue)' }}>

@@ -4540,16 +4540,6 @@ nav[aria-label='Primary'] {
   color: var(--ink);
 }
 
-/* ── ADMIN DASHBOARD: loading skeleton shimmer ──────────────────── */
-@keyframes admin-skeleton-pulse {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 /* ── HOW WE WORK / SECURITY APPROACH ─────────────────── */
 #approach {
   padding: var(--sec-pad-y) 6vw;

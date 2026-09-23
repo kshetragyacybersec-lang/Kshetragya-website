@@ -1184,4 +1184,37 @@ export const serviceOptions = serviceGroups
   .flatMap((g) => g.services.map((s) => s.name))
   .concat('Careers / Future Opportunities', 'Multiple / Not Sure');
 
-export const seedCaseStudies = [];
+// ─────────────────────────────────────────────────────────────────────────
+// Blog posts & case studies are plain arrays edited by hand — there is no
+// database or admin panel. To publish something, add an object to the
+// matching array below and redeploy. `body` accepts either Markdown text
+// or a raw HTML string (starting with a tag, e.g. "<p>...").
+//
+// Fields: slug (used in the URL), title, date ('YYYY-MM-DD'), excerpt
+// (shown on the list card + used as the SEO description), cover (image
+// URL, optional), body (the full content), and for case studies: client
+// (optional, shown on the card).
+// ─────────────────────────────────────────────────────────────────────────
+
+export const blogPosts = [
+  // {
+  //   slug: 'example-post',
+  //   title: 'Example Post Title',
+  //   date: '2026-01-15',
+  //   excerpt: 'One or two sentences shown on the blog list and used for SEO.',
+  //   cover: '',
+  //   body: '## Heading\n\nWrite the post here in Markdown, or paste raw HTML.',
+  // },
+];
+
+export const caseStudies = [
+  // {
+  //   slug: 'example-case-study',
+  //   title: 'Example Case Study Title',
+  //   client: 'Client or industry (optional)',
+  //   date: '2026-01-15',
+  //   excerpt: 'One or two sentences shown on the case studies list and used for SEO.',
+  //   cover: '',
+  //   body: '## What we did\n\nWrite the case study here in Markdown, or paste raw HTML.',
+  // },
+];

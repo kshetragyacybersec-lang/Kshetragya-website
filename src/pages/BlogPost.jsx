@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import { blogPosts } from '../data.js';
 import { usePageFadeIn } from '../usePageFadeIn.js';
 import NotFound from './NotFound.jsx';
 import { usePageMeta } from '../usePageMeta.js';
@@ -9,16 +9,8 @@ import { plainDescription, SITE_NAME, SITE_URL } from '../pageMeta.js';
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const [post, setPost] = useState(undefined); // undefined = loading, null = not found
+  const post = blogPosts.find((p) => p.slug === slug) || null;
   const mountFadeClass = usePageFadeIn([slug]);
-
-  useEffect(() => {
-    setPost(undefined);
-    fetch(`/api/posts/${slug}`)
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data) => setPost(data.post))
-      .catch(() => setPost(null));
-  }, [slug]);
 
   usePageMeta(
     post
@@ -32,7 +24,6 @@ export default function BlogPost() {
             headline: post.title,
             description: post.excerpt || plainDescription(post.body),
             datePublished: post.date ? String(post.date).slice(0, 10) : undefined,
-            dateModified: post.updated_at || undefined,
             image: post.cover || undefined,
             author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
             publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
@@ -42,8 +33,7 @@ export default function BlogPost() {
       : null
   );
 
-  if (post === undefined) return null;
-  if (post === null) return <NotFound />;
+  if (!post) return <NotFound />;
 
   const looksLikeHtml = /<[a-z][\s\S]*>/i.test(post.body || '');
   const html = DOMPurify.sanitize(

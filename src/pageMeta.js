@@ -63,11 +63,6 @@ export const NOT_FOUND_META = {
   noindex: true,
 };
 
-export const ADMIN_META = {
-  title: `Content Admin | ${SITE_NAME}`,
-  noindex: true,
-};
-
 export function serviceMeta(service) {
   return {
     path: `/services/${service.id}`,

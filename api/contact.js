@@ -1,5 +1,8 @@
-import { noStore } from '../lib/db.js';
 import { checkRateLimit } from '../lib/rateLimit.js';
+
+function noStore(res) {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+}
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RATE_LIMIT_MAX = 5;

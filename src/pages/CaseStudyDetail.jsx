@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import { caseStudies } from '../data.js';
 import { usePageFadeIn } from '../usePageFadeIn.js';
 import NotFound from './NotFound.jsx';
 import { usePageMeta } from '../usePageMeta.js';
@@ -9,16 +9,8 @@ import { plainDescription, SITE_NAME, SITE_URL } from '../pageMeta.js';
 
 export default function CaseStudyDetail() {
   const { slug } = useParams();
-  const [cs, setCs] = useState(undefined);
+  const cs = caseStudies.find((c) => c.slug === slug) || null;
   const mountFadeClass = usePageFadeIn([slug]);
-
-  useEffect(() => {
-    setCs(undefined);
-    fetch(`/api/case-studies/${slug}`)
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data) => setCs(data && data.caseStudy ? data.caseStudy : null))
-      .catch(() => setCs(null));
-  }, [slug]);
 
   usePageMeta(
     cs
@@ -32,7 +24,6 @@ export default function CaseStudyDetail() {
             headline: cs.title,
             description: cs.excerpt || plainDescription(cs.body),
             datePublished: cs.date ? String(cs.date).slice(0, 10) : undefined,
-            dateModified: cs.updated_at || undefined,
             image: cs.cover || undefined,
             author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
             publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
@@ -42,8 +33,7 @@ export default function CaseStudyDetail() {
       : null
   );
 
-  if (cs === undefined) return null;
-  if (cs === null) return <NotFound />;
+  if (!cs) return <NotFound />;
 
   const looksLikeHtml = /<[a-z][\s\S]*>/i.test(cs.body || '');
   const html = DOMPurify.sanitize(

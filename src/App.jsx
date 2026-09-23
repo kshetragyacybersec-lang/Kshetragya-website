@@ -15,7 +15,6 @@ import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import TermsOfService from './pages/TermsOfService.jsx';
 import ResponsibleDisclosure from './pages/ResponsibleDisclosure.jsx';
 import NotFound from './pages/NotFound.jsx';
-import AdminApp from './admin/AdminApp.jsx';
 
 function PublicSite() {
   const location = useLocation();
@@ -88,10 +87,5 @@ function PublicSite() {
 }
 
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/admin/*" element={<AdminApp />} />
-      <Route path="/*" element={<PublicSite />} />
-    </Routes>
-  );
+  return <PublicSite />;
 }

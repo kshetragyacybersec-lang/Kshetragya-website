@@ -15,7 +15,7 @@ const root = path.resolve(__dirname, '..');
 const distDir = path.join(root, 'dist');
 const siteUrl = 'https://www.kshetragyacybersec.com';
 
-const { serviceGroups, seedCaseStudies } = await import(path.join(root, 'src/data.js'));
+const { serviceGroups, caseStudies } = await import(path.join(root, 'src/data.js'));
 const { PAGE_META, serviceMeta } = await import(path.join(root, 'src/pageMeta.js'));
 
 const template = readFileSync(path.join(distDir, 'index.html'), 'utf-8');
@@ -322,7 +322,7 @@ function buildCaseStudyDetailPageHtml(cs) {
 }
 
 let csCount = 0;
-for (const cs of (seedCaseStudies || [])) {
+for (const cs of (caseStudies || [])) {
   const outDir = path.join(distDir, 'case-studies', cs.slug);
   mkdirSync(outDir, { recursive: true });
   writeFileSync(path.join(outDir, 'index.html'), buildCaseStudyDetailPageHtml(cs), 'utf-8');
