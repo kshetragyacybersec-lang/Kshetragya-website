@@ -51,13 +51,14 @@ export default function CookieBanner() {
   };
 
   const btn = {
-    padding: '8px 16px',
-    borderRadius: 6,
-    border: '1px solid #4b5563',
+    padding: '9px 18px',
+    borderRadius: 'var(--radius-btn, 3px)',
+    border: '1px solid rgba(248, 245, 240, 0.35)',
     background: 'transparent',
-    color: '#f3f4f6',
-    font: 'inherit',
+    color: '#f8f5f0',
+    fontFamily: 'var(--f-h, Inter, system-ui, sans-serif)',
     fontSize: 14,
+    fontWeight: 600,
     cursor: 'pointer',
   };
 
@@ -71,22 +72,24 @@ export default function CookieBanner() {
         right: 16,
         bottom: 16,
         zIndex: 1000,
-        maxWidth: 560,
+        maxWidth: 520,
         margin: '0 auto',
-        padding: '14px 16px',
-        background: '#111827',
-        color: '#f3f4f6',
-        border: '1px solid #374151',
-        borderRadius: 10,
-        boxShadow: '0 8px 30px rgba(0,0,0,0.35)',
+        padding: '16px 18px',
+        background: 'var(--navy, #171412)',
+        color: '#f8f5f0',
+        border: '1px solid #3a322b',
+        borderTop: '2px solid var(--blue, #e5432a)',
+        borderRadius: 'var(--radius-card, 2px)',
+        boxShadow: '0 20px 50px -16px rgba(23, 20, 18, 0.55)',
+        fontFamily: 'var(--f-i, Inter, system-ui, sans-serif)',
         fontSize: 14,
-        lineHeight: 1.5,
+        lineHeight: 1.55,
       }}
     >
       <p style={{ margin: '0 0 10px' }}>
         We use Google Analytics cookies to understand how the site is used. They are only set if
         you accept.{' '}
-        <Link to="/privacy-policy" style={{ color: '#93c5fd' }}>
+        <Link to="/privacy-policy" style={{ color: 'var(--cyan, #ff8b6b)' }}>
           Privacy Policy
         </Link>
       </p>
@@ -96,7 +99,7 @@ export default function CookieBanner() {
         </button>
         <button
           type="button"
-          style={{ ...btn, background: '#2563eb', borderColor: '#2563eb' }}
+          style={{ ...btn, background: 'var(--blue-fill, #d23a20)', borderColor: 'var(--blue-fill, #d23a20)', color: '#fff' }}
           onClick={() => decide('accepted')}
         >
           Accept
