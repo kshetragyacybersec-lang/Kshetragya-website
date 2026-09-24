@@ -538,9 +538,6 @@ export default function Hero() {
 
             {/* CTA */}
             <div className="shc-footer">
-              <a href="#contact" className="shc-cta-btn">
-                Request Free Assessment ↗
-              </a>
               <span className="shc-note">Mutual NDA signed prior to technical discovery</span>
             </div>
           </TiltHeroCard>

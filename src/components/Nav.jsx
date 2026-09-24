@@ -150,7 +150,7 @@ export default function Nav() {
           </li>
           <li>
             <Link to="/#contact" className="nav-cta" onClick={close}>
-              Request Free Assessment
+              Talk to an Expert
             </Link>
           </li>
         </ul>
