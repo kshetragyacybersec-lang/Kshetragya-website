@@ -65,7 +65,7 @@ export default function About() {
               Our practice covers the full lifecycle of business networks: structured physical cabling and server rack deployments, L2/L3 switching and routing, CCTV surveillance networks, next-gen firewall configurations, SOC monitoring, incident response, OS security hardening, network vulnerability assessments (VA), web application VAPT, GRC compliance readiness (including India's DPDP Act 2023), and cloud security reviews.
             </p>
             <p>
-              Headquartered in Ahmedabad, we actively serve clients across Ahmedabad, Surat, Vadodara, Rajkot, and all industrial regions of Gujarat, alongside project delivery across India and remote consulting for international clients.
+              Headquartered in Ahmedabad, we work with organizations across Ahmedabad, Surat, Vadodara, Rajkot, and other industrial regions of Gujarat, alongside project delivery across India and remote consulting for international clients.
             </p>
           </div>
           <div className="about-facts">

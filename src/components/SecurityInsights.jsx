@@ -38,7 +38,7 @@ export default function SecurityInsights() {
             </h2>
           </div>
           <p className="insights-note">
-            We focus on eliminating real attack vectors before malicious actors discover them.
+            We focus on closing real attack vectors before malicious actors discover them.
             Our technical audits prioritize practical exploitability over endless automated scanner noise.
           </p>
         </div>

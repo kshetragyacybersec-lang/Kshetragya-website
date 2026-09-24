@@ -379,7 +379,7 @@ export default function Hero() {
             animate={loaded ? 'show' : 'hidden'}
           >
             Structured network cabling, firewall architecture, and hands-on manual vulnerability
-            testing for Gujarat &amp; Indian enterprises. Led directly by our 3 technical partners.
+            testing for Gujarat &amp; Indian enterprises. Led by our 3 technical partners.
           </motion.p>
 
           <motion.div

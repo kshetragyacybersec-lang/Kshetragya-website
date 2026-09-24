@@ -221,7 +221,7 @@ export default function ServiceDetail() {
               </div>
               <div className="svc-narrative-feat">
                 <span className="svc-feat-dot" />
-                <span>Led directly by our founding partners</span>
+                <span>Led by our founding partners</span>
               </div>
               <div className="svc-narrative-feat">
                 <span className="svc-feat-dot" />

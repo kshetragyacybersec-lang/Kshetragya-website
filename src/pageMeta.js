@@ -11,7 +11,7 @@ export const HOME_META = {
   path: '/',
   title: 'Cybersecurity, Network Infrastructure & CCTV Services in Gujarat | Kshetragya Cybersec',
   description:
-    'Kshetragya Cybersec provides structured network cabling, firewall configuration, CCTV surveillance, SOC monitoring, manual VAPT, and cloud security audits. Founded and operated directly by 3 technical partners in Ahmedabad, Gujarat.',
+    'Kshetragya Cybersec provides structured network cabling, firewall configuration, CCTV surveillance, SOC monitoring, manual VAPT, and cloud security audits. Founded and operated by 3 technical partners in Ahmedabad, Gujarat.',
 };
 
 export const PAGE_META = {

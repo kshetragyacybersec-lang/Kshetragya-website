@@ -113,7 +113,7 @@ export const serviceGroups = [
         name: 'Switching & Routing',
         short:
           'L2/L3 switch configuration, VLAN segmentation, core routing, and traffic management for business networks.',
-        full: 'Unmanaged and default-configured network switches often lead to broadcast storms, network congestion, and security blind spots. We configure managed Layer 2 and Layer 3 switches, core routers, and inter-VLAN routing to separate corporate workstations, server subnets, IoT devices, and guest Wi-Fi. Our team configures Spanning Tree Protocol (STP) to eliminate switching loops, sets up link aggregation (LACP) for high throughput, and establishes Quality of Service (QoS) rules to prioritize critical business applications.',
+        full: 'Unmanaged and default-configured network switches often lead to broadcast storms, network congestion, and security blind spots. We configure managed Layer 2 and Layer 3 switches, core routers, and inter-VLAN routing to separate corporate workstations, server subnets, IoT devices, and guest Wi-Fi. Our team configures Spanning Tree Protocol (STP) to prevent switching loops, sets up link aggregation (LACP) for high throughput, and establishes Quality of Service (QoS) rules to prioritize critical business applications.',
         standards: ['IEEE 802.1Q (VLAN)', 'IEEE 802.1w (RSTP)', 'IEEE 802.3ad (LACP)', 'RFC 2328 (OSPF)'],
         deliverables: [
           'L2/L3 topology mapping and subnet allocation architecture',
@@ -198,7 +198,7 @@ export const serviceGroups = [
           },
           {
             q: 'What brand of network switches and routers do you support and configure?',
-            a: 'We work across all leading enterprise networking hardware, including Cisco Catalyst/CBS, Aruba/HP Enterprise, Ubiquiti UniFi/EdgeSwitch, Fortinet FortiSwitch, MikroTik, and TP-Link Omada managed switches.',
+            a: 'We work across common enterprise networking hardware, including Cisco Catalyst/CBS, Aruba/HP Enterprise, Ubiquiti UniFi/EdgeSwitch, Fortinet FortiSwitch, MikroTik, and TP-Link Omada managed switches.',
           },
           {
             q: 'Can you configure high availability so our network stays up if a switch or link fails?',
@@ -210,7 +210,7 @@ export const serviceGroups = [
           },
         ],
         quickAnswer:
-          'Enterprise Layer 2/3 switch configuration, VLAN segmentation, Spanning Tree loop prevention, LACP link bundling, and OSPF/VRRP routing engineered directly by founding technical partners across Gujarat and Pan-India.',
+          'Enterprise Layer 2/3 switch configuration, VLAN segmentation, Spanning Tree loop prevention, LACP link bundling, and OSPF/VRRP routing engineered by our founding technical partners across Gujarat and Pan-India.',
         related: ['network-infrastructure', 'firewall-network-security', 'network-va'],
       },
       {
@@ -237,13 +237,13 @@ export const serviceGroups = [
               'Premises perimeter and entry/exit viewing angle mapping',
               'Lux lighting evaluation for low-light & infrared performance',
               'Focal length and sensor sizing for face/license plate recognition',
-              'High-traffic corridor and blind-spot elimination plan',
+              'High-traffic corridor and blind-spot reduction plan',
             ],
           },
           {
             title: 'Network Isolation & Traffic Control',
             badge: 'TRAFFIC SEGREGATION',
-            desc: 'Video traffic is segregated onto dedicated Layer 2/Layer 3 VLANs with strict QoS rules so high-bitrate 4K streaming never degrades office ERP or Wi-Fi traffic.',
+            desc: 'Video traffic is segregated onto dedicated Layer 2/Layer 3 VLANs with strict QoS rules so high-bitrate 4K streaming is far less likely to affect office ERP or Wi-Fi traffic.',
             checks: [
               'Dedicated surveillance VLAN design and isolated subnet routing',
               'Quality of Service (QoS) bandwidth shaping and throttling',
@@ -287,7 +287,7 @@ export const serviceGroups = [
           {
             title: 'DPDP Act 2023 & Video Privacy Readiness',
             badge: 'REGULATORY ASSURANCE',
-            desc: 'Ensuring commercial surveillance adheres to Indian data protection regulations with role-based viewing access, audit logs, and data retention policies.',
+            desc: 'Helping commercial surveillance meet Indian data protection requirements with role-based viewing access, audit logs, and data retention policies.',
             checks: [
               'Access audit logging (tracking who viewed, exported, or deleted footage)',
               'Data principal privacy notice placement and perimeter signage alignment',
@@ -345,7 +345,7 @@ export const serviceGroups = [
             badge: 'ACCESS CONTROL LISTS',
             desc: "Auditing complex rule bases, removing obsolete 'any-any' allow rules, resolving rule shadow conflicts, and enforcing strict least-privilege policies.",
             checks: [
-              'Identification and elimination of overly permissive ANY service rules',
+              'Identification and removal of overly permissive ANY service rules',
               'Shadow rule and duplicate policy reconciliation',
               'Object group structuring and standardized policy naming conventions',
               'Hit-count analysis to prune inactive and legacy access rules',
@@ -440,7 +440,7 @@ export const serviceGroups = [
           'Ingestion agent deployment across firewalls, domain controllers, and cloud',
           'Baseline behavioral modeling and custom SIEM rule calibration',
           'Alert review and anomaly detection during agreed monitoring hours',
-          'Weekly and monthly executive risk and compliance telemetry reports',
+          'Weekly and monthly executive risk and security posture reports',
           'Dedicated emergency escalation channel, with response times defined in your service agreement',
           'Actionable step-by-step containment instructions for validated threats',
         ],
@@ -538,7 +538,7 @@ export const serviceGroups = [
         id: 'incident-response-dfir',
         name: 'Incident Response & DFIR',
         short:
-          'Rapid incident containment, digital forensics investigation, malware analysis, and evidence-grade root cause reporting.',
+          'Incident containment, digital forensics investigation, malware analysis, and evidence-grade root cause reporting.',
         full: 'When a security incident or suspected breach occurs, fast containment and forensically sound evidence preservation are critical. Our incident response team steps in as soon as you contact us to isolate compromised hosts, identify the attack vector, analyze malicious artifacts, and contain lateral movement. We reconstruct the attacker timeline, determine whether sensitive data was accessed or exfiltrated, assist your team through safe system recovery, and provide a detailed post-incident technical report.',
         standards: ['NIST SP 800-61r2', 'ISO/IEC 27037 (Evidence Handling)', 'SANS PICERL', 'RFC 3227'],
         deliverables: [
@@ -551,7 +551,7 @@ export const serviceGroups = [
         ],
         vectors: [
           {
-            title: 'Rapid Isolation & Lateral Movement Containment',
+            title: 'Isolation & Lateral Movement Containment',
             badge: 'EMERGENCY TRIAGE',
             desc: 'Fast intervention to sever active attacker sessions, isolate affected endpoints from the network, and stop ransomware spreading.',
             checks: [
@@ -568,7 +568,7 @@ export const serviceGroups = [
             checks: [
               'Volatile memory (RAM) acquisition before system reboot or shutdown',
               'Write-blocked physical disk bit-stream imaging and cryptographic hashing (SHA-256)',
-              'Chain-of-custody documentation ensuring evidentiary integrity for legal proceedings',
+              'Chain-of-custody documentation that supports evidentiary integrity. Whether evidence is accepted is decided by the court.',
               'Capture of volatile network connections and running process states',
             ],
           },
@@ -602,7 +602,7 @@ export const serviceGroups = [
               'Firewall netflow and web proxy egress bandwidth volume analysis',
               'Staging archive identification (e.g., unauthorized RAR/ZIP files created by attackers)',
               'Audit log inspection on compromised databases and file shares',
-              'Clear findings for DPDP Act 2023 and CERT-In regulatory compliance notifications',
+              'Clear findings to support DPDP Act 2023 and CERT-In regulatory notifications',
             ],
           },
           {
@@ -631,12 +631,12 @@ export const serviceGroups = [
             a: 'Yes. All digital evidence collection follows strict ISO/IEC 27037 standards with cryptographic hash verification (SHA-256) and complete chain-of-custody logging. Our reports satisfy CERT-In 6-hour reporting requirements and Indian legal standards.',
           },
           {
-            q: 'How do you ensure attackers cannot regain access after remediation?',
+            q: 'How do you reduce the chance of attackers regaining access after remediation?',
             a: 'We conduct a full root-cause investigation to uncover all backdoors, web shells, rogue scheduled tasks, and shadow administrative accounts created by the attacker. We oversee domain-wide credential resets and patch the initial entry vector before systems return online.',
           },
         ],
         quickAnswer:
-          'Emergency cyber incident response, forensic evidence collection, malware artifact analysis, root-cause investigation, and secure recovery led directly by founding partners across Gujarat and Pan-India.',
+          'Emergency cyber incident response, forensic evidence collection, malware artifact analysis, root-cause investigation, and secure recovery led by our founding partners across Gujarat and Pan-India.',
         related: ['soc-as-a-service', 'firewall-network-security', 'network-va'],
       },
       {
@@ -678,7 +678,7 @@ export const serviceGroups = [
             ],
           },
           {
-            title: 'Legacy Protocol & Weak Cipher Elimination',
+            title: 'Legacy Protocol & Weak Cipher Removal',
             badge: 'PROTOCOL HYGIENE',
             desc: 'Deactivating unencrypted legacy protocols that expose networks to eavesdropping, pass-the-hash, and man-in-the-middle poisoning attacks.',
             checks: [
@@ -729,11 +729,11 @@ export const serviceGroups = [
           },
           {
             q: 'Why is eliminating SMBv1, LLMNR, and NTLMv1 so important for network security?',
-            a: 'Legacy protocols like LLMNR, NetBIOS, and SMBv1 are primary vectors for internal network compromises. Attackers use LLMNR poisoning to capture user password hashes over the local network and use SMBv1 exploits (like EternalBlue) for rapid ransomware propagation. Disabling them removes these attack vectors permanently.',
+            a: 'Legacy protocols like LLMNR, NetBIOS, and SMBv1 are primary vectors for internal network compromises. Attackers use LLMNR poisoning to capture user password hashes over the local network and use SMBv1 exploits (like EternalBlue) for rapid ransomware propagation. Disabling them removes these attack vectors for as long as they stay disabled.',
           },
           {
             q: 'How do you handle local administrator passwords across multiple workstations?',
-            a: 'We deploy Microsoft LAPS (Local Administrator Password Solution) or centralized key management. This ensures that every workstation has a unique, randomized local administrator password stored securely in Active Directory, preventing attackers from using a single stolen password to compromise all company PCs.',
+            a: 'We deploy Microsoft LAPS (Local Administrator Password Solution) or centralized key management. This gives every workstation a unique, randomized local administrator password stored securely in Active Directory, preventing attackers from using a single stolen password to compromise all company PCs.',
           },
           {
             q: 'Can hardening be applied across mixed Windows and Linux server fleets?',
@@ -815,7 +815,7 @@ export const serviceGroups = [
             badge: 'RISK SCORING & VERIFICATION',
             desc: 'Manual verification of every automated scanner finding to reduce false positives and score risks by realistic exploitability and business impact.',
             checks: [
-              'Manual false-positive elimination on all scanner findings',
+              'Manual false-positive filtering on all scanner findings',
               'CVSS v3.1 base, temporal, and environmental risk scoring',
               'Evidence validation with non-destructive verification steps',
               'Prioritized remediation sequencing for engineering teams',
@@ -852,7 +852,7 @@ export const serviceGroups = [
           },
         ],
         quickAnswer:
-          'Network Vulnerability Assessment (VA) is a systematic, non-disruptive evaluation of your external perimeter and internal network infrastructure to discover, validate, and prioritize security weaknesses. Delivered directly by our 3 founding technical partners, it includes a detailed technical report with actionable fix instructions, an executive summary, a Letter of Attestation, and one free re-scan within 30 days.',
+          'Network Vulnerability Assessment (VA) is a systematic, non-disruptive evaluation of your external perimeter and internal network infrastructure to discover, validate, and prioritize security weaknesses. Led by our 3 founding technical partners, it includes a detailed technical report with actionable fix instructions, an executive summary, a Letter of Attestation, and one free re-scan within 30 days.',
         related: ['web-application-vapt', 'firewall-network-security', 'security-hardening'],
       },
       {
@@ -929,7 +929,7 @@ export const serviceGroups = [
           {
             title: 'Cryptographic Security & Data Exposure',
             badge: 'DATA PROTECTION',
-            desc: 'Auditing data transmission security, TLS cipher suites, sensitive data masking in logs, and compliance with Indian DPDP Act requirements.',
+            desc: 'Auditing data transmission security, TLS cipher suites, sensitive data masking in logs, and checks relevant to Indian DPDP Act requirements.',
             checks: [
               'Exposure of API keys, database credentials, or PII in client JavaScript source maps',
               'Improper masking of credit card, Aadhaar, PAN, or health data in logs and responses',
@@ -978,12 +978,12 @@ export const serviceGroups = [
           'Data flow mapping and personal data inventory register',
           'Customized information security policy and standard operating procedure pack',
           'Vendor risk assessment framework and questionnaire template',
-          'CERT-In compliance checklist and incident response plan',
+          'CERT-In readiness checklist and incident response plan',
           'Audit readiness roadmap and executive board briefing deck',
         ],
         vectors: [
           {
-            title: 'DPDP Act 2023 Compliance & Data Mapping',
+            title: 'DPDP Act 2023 Readiness & Data Mapping',
             badge: 'INDIAN DATA PRIVACY',
             desc: 'Auditing collection, storage, processing, and erasure workflows for personal data against India’s Digital Personal Data Protection Act 2023.',
             checks: [
@@ -1005,7 +1005,7 @@ export const serviceGroups = [
             ],
           },
           {
-            title: 'CERT-In Mandatory Directions Compliance',
+            title: 'CERT-In Directions Readiness',
             badge: 'REGULATORY INCIDENT READINESS',
             desc: 'Aligning operational procedures with CERT-In directives, including 6-hour cybersecurity incident reporting and 180-day log retention.',
             checks: [
@@ -1038,13 +1038,13 @@ export const serviceGroups = [
             ],
           },
           {
-            title: 'Executive Audit Defense & Certification Support',
+            title: 'Executive Audit Preparation & Certification Support',
             badge: 'AUDIT ATTESTATION',
             desc: 'Guiding executive leadership and technical teams through external audits, customer due-diligence questionnaires, and investor reviews.',
             checks: [
               'Pre-audit mock assessments to identify non-conformities before external auditors arrive',
               'Guidance during customer vendor risk security questionnaire responses',
-              'Executive board presentation summarizing overall compliance posture and risk reduction',
+              'Executive board presentation summarizing overall readiness posture and risk reduction',
               'Direct partner advisory throughout third-party certification body audits',
             ],
           },
@@ -1068,7 +1068,7 @@ export const serviceGroups = [
           },
         ],
         quickAnswer:
-          'Practical GRC compliance advisory, DPDP Act 2023 readiness, ISO/IEC 27001:2022 gap audits, and CERT-In compliance led directly by senior technical partners in Gujarat and across India.',
+          'Practical GRC advisory, DPDP Act 2023 readiness, ISO/IEC 27001:2022 gap audits, and CERT-In readiness led by senior technical partners in Gujarat and across India.',
         related: ['cloud-security-review', 'network-va', 'security-hardening'],
       },
       {
@@ -1143,8 +1143,8 @@ export const serviceGroups = [
             ],
           },
           {
-            title: 'CIS Benchmark & Compliance Audit',
-            badge: 'COMPLIANCE POSTURE',
+            title: 'CIS Benchmark & Configuration Audit',
+            badge: 'CONFIGURATION POSTURE',
             desc: 'Running CIS AWS/Azure Foundations Benchmark assessments with prioritized CLI fix commands and Terraform code snippets.',
             checks: [
               'Automated and manual CIS Benchmark scoring across all cloud regions',
@@ -1157,7 +1157,7 @@ export const serviceGroups = [
         faqs: [
           {
             q: 'How do you conduct a cloud security review without access to our sensitive customer data?',
-            a: 'We require only read-only audit permissions (such as SecurityAudit IAM policy in AWS or Reader/Security Reader in Azure). We inspect metadata, configurations, IAM policies, and network rules. Our team never accesses or downloads your databases or customer files.',
+            a: 'We require only read-only audit permissions (such as SecurityAudit IAM policy in AWS or Reader/Security Reader in Azure). We inspect metadata, configurations, IAM policies, and network rules. Our reviews are read-only, and we do not need to access or download your databases or customer files.',
           },
           {
             q: 'Which cloud providers do you support for architecture and security audits?',

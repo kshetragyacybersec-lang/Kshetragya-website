@@ -198,7 +198,7 @@ export default function Process() {
             </svg>
           </span>
           <div className="guarantee-text">
-            <strong>Direct Partner Execution:</strong> All 5 stages are led directly by our founding partners in Gujarat.
+            <strong>Direct Partner Execution:</strong> All 5 stages are led by our founding partners in Gujarat.
           </div>
         </div>
       </div>

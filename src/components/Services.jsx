@@ -58,8 +58,8 @@ const DISCIPLINE_META = {
   'cyber-defence': {
     index: '02',
     badge: 'PERIMETER MONITORING & HARDENING',
-    headline: 'Next-gen firewall architecture, SIEM triage & rapid incident containment.',
-    desc: 'Proactive UTM firewall tuning, Wazuh SIEM log monitoring, DFIR containment, and CIS Benchmark system hardening handled directly by founders.',
+    headline: 'Next-gen firewall architecture, SIEM triage & incident containment.',
+    desc: 'Proactive UTM firewall tuning, Wazuh SIEM log monitoring, DFIR containment, and CIS Benchmark system hardening led by our founders.',
     Icon: IconDefence,
     tags: ['FortiGate / Sophos', 'Wazuh SIEM', 'DFIR Forensics', 'CIS Hardening'],
     primaryCta: '/services/firewall-network-security',
@@ -75,7 +75,7 @@ const DISCIPLINE_META = {
   },
   'governance-cloud': {
     index: '04',
-    badge: 'REGULATORY COMPLIANCE & MULTI-CLOUD',
+    badge: 'REGULATORY READINESS & MULTI-CLOUD',
     headline: 'Executive compliance readiness & multi-cloud architecture review.',
     desc: 'Aligning your operations with the DPDP Act 2023, ISO 27001 readiness, CERT-In reporting, and AWS/Azure least-privilege cloud hardening.',
     Icon: IconGovernance,
@@ -122,7 +122,7 @@ export default function Services() {
         <div className="svc-head-desc-col">
           <p className="svc-note">
             From physical cabling and server rack setups up through firewall architecture, offensive
-            VAPT, and regulatory compliance. Every engagement is led directly by our founding partners.
+            VAPT, and regulatory readiness. Every engagement is led by our founding partners.
           </p>
 
           {/* Tactical Discipline Switcher */}
@@ -220,7 +220,7 @@ export default function Services() {
           <span className="svc-banner-badge">DIRECT FOUNDER ENGAGEMENT</span>
           <h3 className="svc-banner-title">Need an end-to-end infrastructure &amp; cybersecurity audit?</h3>
           <p className="svc-banner-desc">
-            We scope custom multi-discipline engagements built around your requirements, from structured cabling and firewalls to offensive VAPT and DPDP compliance. Handled directly by our founding partners in Ahmedabad.
+            We scope custom multi-discipline engagements built around your requirements, from structured cabling and firewalls to offensive VAPT and DPDP readiness. Led by our founding partners in Ahmedabad.
           </p>
         </div>
         <div className="svc-banner-right">
