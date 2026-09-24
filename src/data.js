@@ -1182,7 +1182,7 @@ export const serviceGroups = [
 
 export const serviceOptions = serviceGroups
   .flatMap((g) => g.services.map((s) => s.name))
-  .concat('Careers / Future Opportunities', 'Multiple / Not Sure');
+  .concat('Multiple / Not Sure');
 
 // ─────────────────────────────────────────────────────────────────────────
 // Blog posts & case studies are plain arrays edited by hand — there is no

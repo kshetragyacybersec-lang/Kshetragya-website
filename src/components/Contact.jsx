@@ -229,7 +229,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="frow one">
+            <div className="frow one cform-grow">
               <div className="fg">
                 <label htmlFor="cf-message">Requirements &amp; Environment</label>
                 <textarea

@@ -4873,3 +4873,14 @@ nav[aria-label='Primary'] {
 }
 .disc-modal-link:hover { color: var(--cyan); }
 .disc-modal-arrow { color: var(--blue); }
+
+/* Contact: keep left info column and right form the same height */
+.contact-grid { align-items: stretch; }
+.cform { display: flex; flex-direction: column; }
+.cform > form { flex: 1; display: flex; flex-direction: column; }
+.cform-grow { flex: 1; display: flex; }
+.cform-grow .fg { flex: 1; display: flex; flex-direction: column; }
+.cform-grow .fg textarea { flex: 1; min-height: 6rem; }
+@media (max-width: 900px) {
+  .cform-grow, .cform-grow .fg { display: block; }
+}
