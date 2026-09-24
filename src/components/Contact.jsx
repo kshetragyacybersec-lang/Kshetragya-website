@@ -234,7 +234,7 @@ export default function Contact() {
                 <textarea
                   id="cf-message"
                   name="message"
-                  rows="3"
+                  rows="4"
                   placeholder="Brief description of your environment, compliance needs, or what requires testing..."
                 />
               </div>

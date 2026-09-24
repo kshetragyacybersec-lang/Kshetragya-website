@@ -4874,11 +4874,23 @@ nav[aria-label='Primary'] {
 .disc-modal-link:hover { color: var(--cyan); }
 .disc-modal-arrow { color: var(--blue); }
 
-/* Contact: keep left info column and right form the same height.
-   Any extra height is shared evenly between the form rows. */
-.contact-grid { align-items: stretch; }
-.cform { display: flex; flex-direction: column; }
-.cform > form { flex: 1; display: flex; flex-direction: column; }
-.cform > form > .frow { flex: 1 1 auto; }
-.cform > form > .frow .fg { justify-content: center; }
-.cform .fg textarea { min-height: 3.6rem; resize: none; }
+/* Contact: left info column is compact and stretches to the form's height.
+   The form itself keeps its original size. */
+.contact-grid .sec-h { font-size: clamp(1.6rem, 2.6vw, 2.8rem); }
+@media (min-width: 1025px) {
+  .contact-grid { align-items: stretch; }
+  .contact-grid .cform { align-self: start; }
+  .contact-grid > div:first-child { display: flex; flex-direction: column; }
+  .contact-grid .cd-cards {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: 0.9rem;
+    gap: 0.5rem;
+  }
+  .contact-grid .cd-card {
+    flex: 1;
+    padding: 0.42rem 1.1rem;
+    align-items: center;
+  }
+}
