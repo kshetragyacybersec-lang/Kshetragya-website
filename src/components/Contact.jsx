@@ -143,7 +143,6 @@ export default function Contact() {
           >
             <div className="cform-top">
               <span className="cform-td">Assessment Request</span>
-              <span className="cform-te">KCS · Inquiry Form</span>
             </div>
 
             <input
@@ -229,13 +228,13 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="frow one cform-grow">
+            <div className="frow one">
               <div className="fg">
                 <label htmlFor="cf-message">Requirements &amp; Environment</label>
                 <textarea
                   id="cf-message"
                   name="message"
-                  rows="4"
+                  rows="3"
                   placeholder="Brief description of your environment, compliance needs, or what requires testing..."
                 />
               </div>
