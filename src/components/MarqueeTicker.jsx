@@ -1,7 +1,7 @@
 const CAPABILITIES = [
   'Cat6A / 10G Structured Cabling',
   'FortiGate & Sophos Next-Gen Firewalls',
-  'Wazuh SOC & SIEM Log Triage',
+  'Wazuh SOC & SIEM Log Monitoring',
   'Offensive Web & API VAPT',
   'Network Vulnerability Assessment (VA)',
   'Incident Response & DFIR Forensics',

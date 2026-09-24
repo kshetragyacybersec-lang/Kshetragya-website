@@ -433,13 +433,13 @@ export const serviceGroups = [
         id: 'soc-as-a-service',
         name: 'SOC as a Service',
         short:
-          'Security event monitoring, log collection, SIEM alert triage, and direct threat escalation without internal headcount overhead.',
-        full: 'Continuous security monitoring is essential for timely threat detection, but building an internal Security Operations Center requires significant tooling and specialized staffing. With our SOC as a Service, we ingest logs from firewalls, switches, Active Directory domain controllers, servers, and cloud environments into a centralized SIEM. Our team filters false positives, triages security anomalies, and escalates actionable incidents with concrete remediation steps.',
+          'Security event monitoring, log collection, SIEM alert review, and direct escalation of real issues, without building your own security team.',
+        full: 'Many companies want SOC-level security monitoring but cannot justify building their own security operations team. We collect logs from your firewalls, switches, Active Directory domain controllers, servers, and cloud accounts into a central SIEM. During the agreed monitoring hours, we review alerts, filter out false positives, and tell you about real issues with clear steps to fix them. Monitoring hours are agreed in your service contract. Alerts that arrive outside those hours are reviewed at the start of the next monitoring window, and extended coverage can be discussed for specific clients.',
         standards: ['MITRE ATT&CK Framework', 'NIST SP 800-61', 'ISO 27001 ISMS', 'DPDP Act 2023'],
         deliverables: [
           'Ingestion agent deployment across firewalls, domain controllers, and cloud',
           'Baseline behavioral modeling and custom SIEM rule calibration',
-          'Ongoing threat monitoring and anomalous activity detection',
+          'Alert review and anomaly detection during agreed monitoring hours',
           'Weekly and monthly executive risk and compliance telemetry reports',
           'Dedicated emergency escalation channel, with response times defined in your service agreement',
           'Actionable step-by-step containment instructions for validated threats',
@@ -458,7 +458,7 @@ export const serviceGroups = [
           },
           {
             title: 'SIEM Correlation & Custom Detection Rules',
-            badge: 'REAL-TIME ANALYTICS',
+            badge: 'DETECTION ANALYTICS',
             desc: 'Mapping ingested security events against MITRE ATT&CK techniques to detect brute-force attacks, privilege escalation, and lateral movement.',
             checks: [
               'Correlation rule authoring for suspicious logon anomalies and off-hours activity',
@@ -470,12 +470,12 @@ export const serviceGroups = [
           {
             title: 'Human Alert Triage & Validation',
             badge: 'ANALYST VERIFICATION',
-            desc: 'Every alert is analyzed and verified by security specialists to reduce noise and false positives before notifying your team.',
+            desc: 'Alerts are reviewed and validated by our engineers to reduce noise and false positives before we notify your team.',
             checks: [
-              'Ongoing security event monitoring and triage',
+              'Security event review and triage during agreed monitoring hours',
               'Contextual analysis separating benign admin actions from genuine attacks',
               'Less alert noise: you only receive validated, high-severity alerts',
-              'Documented investigation notes and artifact attachments for every case',
+              'Documented investigation notes and supporting evidence for each escalated case',
             ],
           },
           {
@@ -515,23 +515,23 @@ export const serviceGroups = [
         faqs: [
           {
             q: 'How does SOC as a Service differ from having a basic firewall or antivirus?',
-            a: 'A firewall or antivirus only flags isolated events on a single device. Our SOC as a Service correlates logs across your entire network (firewalls, Active Directory, servers, endpoints, and cloud), detecting sophisticated multi-stage attacks and lateral movement that individual security tools miss.',
+            a: 'A firewall or antivirus only flags isolated events on a single device. Our SOC as a Service correlates logs across your network (firewalls, Active Directory, servers, endpoints, and cloud), which helps spot multi-stage attacks and lateral movement that a single tool can miss.',
           },
           {
-            q: 'Will SOC monitoring slow down our network or consume high server resources?',
-            a: 'No. Log forwarders use asynchronous, lightweight collectors consuming less than 1% CPU and minimal bandwidth. Log processing and correlation occur on dedicated SIEM servers without impacting your production systems.',
+            q: 'Will SOC monitoring slow down our network or use a lot of server resources?',
+            a: 'It should not. Log forwarders are lightweight collectors that typically use very little CPU and bandwidth, and log processing happens on dedicated SIEM servers rather than your production systems. We check resource use on your own machines during setup.',
           },
           {
-            q: 'What SIEM platforms do you deploy and monitor?',
-            a: 'We deploy and manage Wazuh, Elastic Security, Splunk, Microsoft Sentinel, and Graylog, configured and tuned specifically for your infrastructure.',
+            q: 'What SIEM platform do you deploy and monitor?',
+            a: 'We deploy and manage Wazuh SIEM, configured and tuned for your infrastructure. If you already use another SIEM, ask us whether we can work with it.',
           },
           {
             q: 'What happens when a high-severity threat is detected in our environment?',
-            a: 'Our team verifies the alert, initiates our emergency escalation protocol, calls your designated IT contact, and provides specific containment steps (e.g., isolating the host, revoking credentials, or blocking the external IP).',
+            a: 'Our team verifies the alert, contacts your designated IT person using the escalation method agreed in your contract, and provides specific containment steps (e.g., isolating the host, revoking credentials, or blocking the external IP).',
           },
         ],
         quickAnswer:
-          'Security Operations Center monitoring, SIEM log correlation, threat intelligence matching, and direct technical partner escalation. Enterprise security visibility without the expense of an internal SOC team.',
+          'Security Operations Center monitoring, SIEM log correlation, threat intelligence matching, and direct escalation to our founding partners, with monitoring hours agreed in your contract. Security visibility without building an internal SOC team.',
         related: ['incident-response-dfir', 'firewall-network-security', 'security-hardening'],
       },
       {
