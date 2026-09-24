@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { serviceGroups } from '../data.js';
 
 function IconPin() {
   return (
@@ -29,6 +31,21 @@ function IconGlobe() {
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const [openGroup, setOpenGroup] = useState(null);
+
+  useEffect(() => {
+    if (!openGroup) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setOpenGroup(null);
+    };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [openGroup]);
 
   return (
     <footer className="footer-main">
@@ -46,13 +63,18 @@ export default function Footer() {
         <div>
           <div className="footer-col-title">Services</div>
           <ul className="footer-col-list">
-            <li><Link to="/services/network-infrastructure">Network Infrastructure</Link></li>
-            <li><Link to="/services/firewall-network-security">Firewalls &amp; Network Security</Link></li>
-            <li><Link to="/services/network-va">Network Vulnerability Assessment (VA)</Link></li>
-            <li><Link to="/services/web-application-vapt">Web Application VAPT</Link></li>
-            <li><Link to="/services/soc-as-a-service">SOC as a Service</Link></li>
-            <li><Link to="/services/grc-compliance-audit">GRC &amp; Compliance Audit</Link></li>
-            <li><Link to="/#services" style={{ color: 'var(--blue)', fontWeight: 600 }}>Explore Our 4 Disciplines →</Link></li>
+            {serviceGroups.map((group) => (
+              <li key={group.id}>
+                <button
+                  type="button"
+                  className="footer-disc-btn"
+                  onClick={() => setOpenGroup(group)}
+                  aria-haspopup="dialog"
+                >
+                  {group.name}
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -109,6 +131,48 @@ export default function Footer() {
           ↑
         </button>
       </div>
+
+      {openGroup && (
+        <div
+          className="disc-modal-backdrop"
+          onClick={() => setOpenGroup(null)}
+          role="presentation"
+        >
+          <div
+            className="disc-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="disc-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="disc-modal-close"
+              onClick={() => setOpenGroup(null)}
+              aria-label="Close"
+              autoFocus
+            >
+              ×
+            </button>
+            <div className="disc-modal-eyebrow">Discipline</div>
+            <h3 id="disc-modal-title" className="disc-modal-title">{openGroup.name}</h3>
+            <ul className="disc-modal-list">
+              {openGroup.services.map((svc) => (
+                <li key={svc.id}>
+                  <Link
+                    to={`/services/${svc.id}`}
+                    className="disc-modal-link"
+                    onClick={() => setOpenGroup(null)}
+                  >
+                    <span className="disc-modal-name">{svc.name}</span>
+                    <span className="disc-modal-arrow" aria-hidden="true">→</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }
