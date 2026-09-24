@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import Nav from './components/Nav.jsx';
 import Footer from './components/Footer.jsx';
+import CookieBanner from './components/CookieBanner.jsx';
 import PageTransition from './components/PageTransition.jsx';
 import Home from './pages/Home.jsx';
 
@@ -85,6 +86,7 @@ function PublicSite() {
       </AnimatePresence>
       </main>
       <Footer />
+      <CookieBanner />
     </>
   );
 }

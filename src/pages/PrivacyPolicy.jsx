@@ -31,9 +31,11 @@ export default function PrivacyPolicy() {
             solely to respond to your enquiry.
           </p>
           <p>
-            Like most websites, our server and analytics tools automatically log standard
-            technical information such as your IP address, browser type, device type, and pages
-            visited, for security and traffic-analysis purposes.
+            Like most websites, our hosting provider automatically logs standard technical
+            information such as your IP address, browser type, device type, and pages visited, for
+            security purposes. If you accept analytics cookies, Google Analytics also collects
+            usage information such as pages visited and approximate location, so we can understand
+            how the site is used.
           </p>
 
           <h2>How we use your information</h2>
@@ -68,8 +70,10 @@ export default function PrivacyPolicy() {
 
           <h2>Cookies</h2>
           <p>
-            This site may use basic analytics cookies to understand traffic patterns. You can
-            disable cookies through your browser settings at any time.
+            We use Google Analytics (GA4) cookies to understand traffic patterns, but only if you
+            click Accept on the cookie notice. If you click Decline, no analytics cookies are set.
+            You can change your choice by clearing this site's data in your browser settings. You
+            can also block cookies through your browser settings at any time.
           </p>
 
           <h2>Changes to this policy</h2>

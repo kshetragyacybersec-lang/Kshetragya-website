@@ -406,7 +406,7 @@ export default function ServiceDetail() {
           <div className="svc-cta-badge">DIRECT FOUNDING PARTNER ENGAGEMENT</div>
           <h2 className="svc-cta-title">Ready to engineer or secure your {service.name.toLowerCase()}?</h2>
           <p className="svc-cta-desc">
-            Direct partner consultation. Mutual NDA executed prior to any testing or site survey. Scoping proposal within 24 hours on business days.
+            Direct partner consultation. Every engagement starts with a signed scope of work, and a mutual NDA is executed before any testing or site survey. Scoping proposal within 24 hours on business days.
           </p>
           <div className="svc-cta-actions">
             <Link to="/#contact" className="svc-detail-cta">

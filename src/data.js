@@ -328,8 +328,8 @@ export const serviceGroups = [
         id: 'firewall-network-security',
         name: 'Firewall & Network Security',
         short:
-          'Deployment, rule-base hardening, IPS configuration, and secure VPN gateway setup on FortiGate, Sophos, and Palo Alto appliances.',
-        full: 'Firewalls left on factory defaults or overly permissive rules fail to protect corporate networks against unauthorized inbound and outbound traffic. We deploy, configure, and audit next-generation firewalls (FortiGate, Sophos, Palo Alto) configured for your traffic. We audit existing access control lists (ACLs), enforce least-privilege egress filtering, configure Intrusion Prevention System (IPS) profiles, enable SSL inspection where required, and establish secure site-to-site IPsec and client SSL VPN tunnels with Multi-Factor Authentication.',
+          'Deployment, rule-base hardening, IPS configuration, and secure VPN gateway setup on FortiGate, Sophos, SonicWall, and Palo Alto appliances.',
+        full: 'Firewalls left on factory defaults or overly permissive rules fail to protect corporate networks against unauthorized inbound and outbound traffic. We deploy, configure, and audit next-generation firewalls (FortiGate, Sophos, SonicWall, Palo Alto) configured for your traffic. We audit existing access control lists (ACLs), enforce least-privilege egress filtering, configure Intrusion Prevention System (IPS) profiles, enable SSL inspection where required, and establish secure site-to-site IPsec and client SSL VPN tunnels with Multi-Factor Authentication.',
         standards: ['NIST SP 800-41', 'CIS Firewall Benchmark', 'PCI-DSS 4.0 Req 1', 'ISO 27001 Control A.8.20'],
         deliverables: [
           'Firewall rule-base matrix audit and insecure legacy rule purge',
@@ -410,7 +410,7 @@ export const serviceGroups = [
         faqs: [
           {
             q: 'Which firewall brands do you configure, harden, and manage?',
-            a: 'We specialize in Fortinet FortiGate, Sophos XGS/XG, Palo Alto Networks, SonicWall, and pfSense/OPNsense enterprise appliances.',
+            a: 'We specialize in Fortinet FortiGate, Sophos XGS/XG, SonicWall, and Palo Alto Networks enterprise appliances.',
           },
           {
             q: 'How do you conduct a firewall audit without breaking existing business traffic?',
@@ -624,7 +624,7 @@ export const serviceGroups = [
           },
           {
             q: 'How fast can Kshetragya respond to an emergency security incident?',
-            a: 'We start emergency remote containment as soon as you engage us. For on-site forensics and physical incident handling in Gujarat, our founding partners travel to you as quickly as they can.',
+            a: 'We start emergency remote containment as soon as you engage us. For on-site forensics and physical incident handling in Gujarat, our founding partners travel to you as quickly as they can. Urgent incident calls, including outside working hours, are handled on a best-effort basis.',
           },
           {
             q: 'Will the digital forensics report be admissible in court or for regulatory reporting?',
