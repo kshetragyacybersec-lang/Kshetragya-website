@@ -223,9 +223,6 @@ export default function Nav() {
               </li>
             ))}
           </ul>
-          <Link to="/#contact" className="mega-detail-cta" onClick={() => setMegaOpen(false)}>
-            Request Free Assessment
-          </Link>
         </div>
       </div>
       <div className={`nav-scrim${open ? ' open' : ''}`} onClick={close} aria-hidden="true"></div>
