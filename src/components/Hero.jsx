@@ -544,11 +544,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Subtle Scroll Down Cue */}
-      <div className="hero-scroll-cue">
-        <span className="scroll-cue-lbl">Explore Services &amp; Methodology</span>
-        <span className="scroll-cue-arrow" aria-hidden="true">↓</span>
-      </div>
     </section>
   );
 }
