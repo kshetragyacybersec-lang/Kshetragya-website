@@ -219,6 +219,7 @@ export default function Nav() {
                   onClick={() => setMegaOpen(false)}
                 >
                   {s.name}
+                  {s.comingSoon && <span className="mega-svc-soon">Coming Soon</span>}
                 </Link>
               </li>
             ))}

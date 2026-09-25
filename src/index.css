@@ -4894,3 +4894,32 @@ nav[aria-label='Primary'] {
     align-items: center;
   }
 }
+
+/* Coming Soon badges: GRC & Compliance Audit (and any future service marked comingSoon) */
+.mega-svc-soon,
+.disc-modal-soon {
+  display: inline-block;
+  margin-left: 0.55rem;
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #92650a;
+  background: rgba(217, 155, 20, 0.14);
+  border: 1px solid rgba(217, 155, 20, 0.35);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+.svc-hero-pill-soon {
+  color: #92650a;
+  background: rgba(217, 155, 20, 0.14);
+  border: 1px solid rgba(217, 155, 20, 0.35);
+}
+.svc-cta-badge-soon {
+  color: #92650a;
+  background: rgba(217, 155, 20, 0.14);
+  border: 1px solid rgba(217, 155, 20, 0.35);
+}
+.svc-qa-box-lbl-soon { color: #92650a; }

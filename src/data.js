@@ -969,6 +969,7 @@ export const serviceGroups = [
       {
         id: 'grc-compliance-audit',
         name: 'GRC & Compliance Audit',
+        comingSoon: true,
         short:
           'Structured readiness assessments and gap analysis for DPDP Act 2023, ISO 27001, and vendor security questionnaires.',
         full: 'Security compliance should strengthen operational resilience, not just generate static paperwork. We evaluate your current technical controls, information security policies, access workflows, and data handling practices against standards including India’s Digital Personal Data Protection (DPDP) Act 2023 and ISO/IEC 27001. We identify compliance gaps, provide practical policy templates, and guide your team through implementing required technical safeguards.',
@@ -1181,7 +1182,7 @@ export const serviceGroups = [
 ];
 
 export const serviceOptions = serviceGroups
-  .flatMap((g) => g.services.map((s) => s.name))
+  .flatMap((g) => g.services.map((s) => (s.comingSoon ? `${s.name} (Coming Soon)` : s.name)))
   .concat('Multiple / Not Sure');
 
 // ─────────────────────────────────────────────────────────────────────────

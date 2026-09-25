@@ -164,7 +164,10 @@ export default function Footer() {
                     className="disc-modal-link"
                     onClick={() => setOpenGroup(null)}
                   >
-                    <span className="disc-modal-name">{svc.name}</span>
+                    <span className="disc-modal-name">
+                      {svc.name}
+                      {svc.comingSoon && <span className="disc-modal-soon">Coming Soon</span>}
+                    </span>
                     <span className="disc-modal-arrow" aria-hidden="true">→</span>
                   </Link>
                 </li>

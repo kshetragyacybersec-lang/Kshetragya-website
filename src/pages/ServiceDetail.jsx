@@ -162,7 +162,11 @@ export default function ServiceDetail() {
 
           <div className="svc-hero-badge-row">
             <span className="svc-hero-cat">{group.name}</span>
-            <span className="svc-hero-pill">Founding Partners Direct</span>
+            {service.comingSoon ? (
+              <span className="svc-hero-pill svc-hero-pill-soon">Coming Soon</span>
+            ) : (
+              <span className="svc-hero-pill">Founding Partners Direct</span>
+            )}
           </div>
 
           <h1 className="svc-hero-title">{service.name}</h1>
@@ -356,13 +360,28 @@ export default function ServiceDetail() {
                   </p>
                 )}
                 <div className="svc-qa-contact-box">
-                  <span className="svc-qa-box-lbl">NEED DIRECT SCOPING?</span>
-                  <p className="svc-qa-box-desc">
-                    We review site layouts and network topologies within 24 hours on business days, under NDA.
-                  </p>
-                  <Link to="/#contact" className="svc-qa-box-link">
-                    Request Scope Review ↗
-                  </Link>
+                  {service.comingSoon ? (
+                    <>
+                      <span className="svc-qa-box-lbl svc-qa-box-lbl-soon">COMING SOON</span>
+                      <p className="svc-qa-box-desc">
+                        This service is still in development. Contact us to discuss your
+                        requirements and we&apos;ll be in touch once it launches.
+                      </p>
+                      <Link to="/#contact" className="svc-qa-box-link">
+                        Notify Me When Available ↗
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <span className="svc-qa-box-lbl">NEED DIRECT SCOPING?</span>
+                      <p className="svc-qa-box-desc">
+                        We review site layouts and network topologies within 24 hours on business days, under NDA.
+                      </p>
+                      <Link to="/#contact" className="svc-qa-box-link">
+                        Request Scope Review ↗
+                      </Link>
+                    </>
+                  )}
                 </div>
               </div>
               <div className="svc-qa-right">
@@ -403,19 +422,40 @@ export default function ServiceDetail() {
 
         {/* Section 9: Primary Conversion CTA Banner */}
         <div className="svc-cta-banner">
-          <div className="svc-cta-badge">DIRECT FOUNDING PARTNER ENGAGEMENT</div>
-          <h2 className="svc-cta-title">Ready to engineer or secure your {service.name.toLowerCase()}?</h2>
-          <p className="svc-cta-desc">
-            Direct partner consultation. Every engagement starts with a signed scope of work, and a mutual NDA is executed before any testing or site survey. Scoping proposal within 24 hours on business days.
-          </p>
-          <div className="svc-cta-actions">
-            <Link to="/#contact" className="svc-detail-cta">
-              Request Free Assessment ↗
-            </Link>
-            <a href="mailto:info@kshetragyacybersec.com" className="svc-cta-secondary-btn">
-              Email Engineering Team
-            </a>
-          </div>
+          {service.comingSoon ? (
+            <>
+              <div className="svc-cta-badge svc-cta-badge-soon">COMING SOON</div>
+              <h2 className="svc-cta-title">Interested in {service.name}?</h2>
+              <p className="svc-cta-desc">
+                This service is currently in development and is not yet available to book. Reach
+                out to discuss your requirements, and we&apos;ll let you know as soon as it launches.
+              </p>
+              <div className="svc-cta-actions">
+                <Link to="/#contact" className="svc-detail-cta">
+                  Notify Me When Available ↗
+                </Link>
+                <a href="mailto:info@kshetragyacybersec.com" className="svc-cta-secondary-btn">
+                  Email Engineering Team
+                </a>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="svc-cta-badge">DIRECT FOUNDING PARTNER ENGAGEMENT</div>
+              <h2 className="svc-cta-title">Ready to engineer or secure your {service.name.toLowerCase()}?</h2>
+              <p className="svc-cta-desc">
+                Direct partner consultation. Every engagement starts with a signed scope of work, and a mutual NDA is executed before any testing or site survey. Scoping proposal within 24 hours on business days.
+              </p>
+              <div className="svc-cta-actions">
+                <Link to="/#contact" className="svc-detail-cta">
+                  Request Free Assessment ↗
+                </Link>
+                <a href="mailto:info@kshetragyacybersec.com" className="svc-cta-secondary-btn">
+                  Email Engineering Team
+                </a>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
