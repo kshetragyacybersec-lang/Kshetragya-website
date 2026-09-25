@@ -364,12 +364,12 @@ export default function ServiceDetail() {
                     <>
                       <span className="svc-qa-box-lbl svc-qa-box-lbl-soon">COMING SOON</span>
                       <p className="svc-qa-box-desc">
-                        This service is still in development. Contact us to discuss your
-                        requirements and we&apos;ll be in touch once it launches.
+                        This service is still in development. Email our engineering team to
+                        discuss your requirements and we&apos;ll be in touch once it launches.
                       </p>
-                      <Link to="/#contact" className="svc-qa-box-link">
-                        Notify Me When Available ↗
-                      </Link>
+                      <a href="mailto:info@kshetragyacybersec.com" className="svc-qa-box-link">
+                        Email Engineering Team ↗
+                      </a>
                     </>
                   ) : (
                     <>
@@ -427,15 +427,12 @@ export default function ServiceDetail() {
               <div className="svc-cta-badge svc-cta-badge-soon">COMING SOON</div>
               <h2 className="svc-cta-title">Interested in {service.name}?</h2>
               <p className="svc-cta-desc">
-                This service is currently in development and is not yet available to book. Reach
-                out to discuss your requirements, and we&apos;ll let you know as soon as it launches.
+                This service is currently in development and is not yet available to book. Email
+                our engineering team to discuss your requirements in the meantime.
               </p>
               <div className="svc-cta-actions">
-                <Link to="/#contact" className="svc-detail-cta">
-                  Notify Me When Available ↗
-                </Link>
-                <a href="mailto:info@kshetragyacybersec.com" className="svc-cta-secondary-btn">
-                  Email Engineering Team
+                <a href="mailto:info@kshetragyacybersec.com" className="svc-detail-cta">
+                  Email Engineering Team ↗
                 </a>
               </div>
             </>
