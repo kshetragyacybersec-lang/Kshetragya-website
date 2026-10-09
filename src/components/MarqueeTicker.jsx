@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const CAPABILITIES = [
   'Cat6A / 10G Structured Cabling',
   'FortiGate & Sophos Next-Gen Firewalls',
@@ -12,8 +14,14 @@ const CAPABILITIES = [
 ];
 
 export default function MarqueeTicker() {
+  const [paused, setPaused] = useState(false);
+
   return (
-    <div className="tech-marquee-wrapper" aria-label="Technical capabilities ticker">
+    <div
+      className={`tech-marquee-wrapper${paused ? ' is-paused' : ''}`}
+      role="group"
+      aria-label="Technical capabilities ticker"
+    >
       <div className="tech-marquee-fade left" aria-hidden="true" />
       <div className="tech-marquee-fade right" aria-hidden="true" />
       <div className="tech-marquee-track">
@@ -26,8 +34,8 @@ export default function MarqueeTicker() {
             </div>
           ))}
         </div>
-        {/* Duplicate set for infinite loop */}
-        <div className="tech-marquee-group" aria-hidden="true">
+        {/* Duplicate set for infinite loop (hidden from assistive tech; removed when motion is reduced) */}
+        <div className="tech-marquee-group tech-marquee-group-dup" aria-hidden="true">
           {CAPABILITIES.map((text, i) => (
             <div className="tech-marquee-item" key={`cap-2-${i}`}>
               <span className="tech-marquee-label">{text}</span>
@@ -36,6 +44,13 @@ export default function MarqueeTicker() {
           ))}
         </div>
       </div>
+      <button
+        type="button"
+        className="tech-marquee-toggle"
+        onClick={() => setPaused((p) => !p)}
+      >
+        {paused ? 'Play ticker' : 'Pause ticker'}
+      </button>
     </div>
   );
 }
