@@ -1291,8 +1291,31 @@ nav[aria-label='Primary'] {
   flex-shrink: 0;
   animation: marqueeScroll 36s linear infinite;
 }
-.tech-marquee-wrapper:hover .tech-marquee-group {
+.tech-marquee-wrapper:hover .tech-marquee-group,
+.tech-marquee-wrapper.is-paused .tech-marquee-group {
   animation-play-state: paused;
+}
+.tech-marquee-toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #f8f5f0;
+  background: var(--navy);
+  border: 1px solid rgba(229, 67, 42, 0.2);
+  border-radius: var(--radius-btn);
+  padding: 0.35rem 0.7rem;
+  min-height: 28px;
+  cursor: pointer;
+}
+.tech-marquee-toggle:hover { border-color: var(--blue); }
+.tech-marquee-toggle:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 @keyframes marqueeScroll {
   from { transform: translateX(0); }
@@ -4923,3 +4946,28 @@ nav[aria-label='Primary'] {
   border: 1px solid rgba(217, 155, 20, 0.35);
 }
 .svc-qa-box-lbl-soon { color: #92650a; }
+
+/* ── REDUCED MOTION: decorative looping animations ─────────────────
+   The ticker becomes a static, wrapping list (no duplicate set, no
+   pause control needed); pulses, shimmer and bounce are switched off. */
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee-group { animation: none; }
+  .tech-marquee-track {
+    width: 100%;
+    justify-content: center;
+    user-select: auto;
+  }
+  .tech-marquee-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.6rem;
+    padding: 0 1.5rem;
+  }
+  .tech-marquee-group-dup,
+  .tech-marquee-fade,
+  .tech-marquee-toggle { display: none; }
+  .ch-badge-pulse,
+  .shc-dot,
+  .btn-shimmer-ray,
+  .scroll-cue-arrow { animation: none; }
+}
